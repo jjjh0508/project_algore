@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script th:inline="javascript">
+  // 오류 메세지를 출력함
+  alert([[${errorMessage}]]);
+  // 페이지를 로그인 페이지로 이동시킴
+  window.location.replace("/common/login");
+</script>
+</body>
+</html>

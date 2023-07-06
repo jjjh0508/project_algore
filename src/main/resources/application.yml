@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: C##EMPLOYEE
+    password: EMPLOYEE
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location:  #?? ??
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
+  web:
+    resources:
+      static-locations: classpath:/upload/
+
+image:
+  image-dir: src/main/resources
+
+
+mybatis:
+  mapper-locations: mybatis/mapper/*.xml
+  type-aliases-package: com.algore.application
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
+
+open-api:
+  key: 2b83ff411132fa365cdbe1390a21aef11bcefffb6fabd2ace019c208dd8db856

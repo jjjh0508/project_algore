@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.algore.application.employee.dao.EmployeeMapper">
+
+    <resultMap id="employeeMap" type="com.algore.application.employee.dto.SelectEmployeeDTO">
+        <id property="empId" column="EMP_ID"/>
+        <result property="empName" column="EMP_NAME"/>
+        <result property="empNo" column="EMP_NO"/>
+        <result property="email" column="EMAIL"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="employeeMap">
+        SELECT
+               EMP_ID,
+               EMP_NAME,
+               EMP_NO,
+               EMAIL
+          FROM EMPLOYEE
+    </select>
+
+    <insert id="registEmployee" parameterType="com.algore.application.employee.dto.InsertEmpDTO">
+        INSERT
+          INTO EMPLOYEE
+        VALUES
+        (
+          SEQ_EMP.NEXTVAL,
+          #{ empName },
+          #{ empNo },
+          #{ email },
+          #{ phone },
+          #{ deptCode },
+          #{ jobCode },
+          #{ salLevel },
+          #{ salary },
+          #{ bonus },
+          #{ managerId },
+          #{ hireDate },
+          SYSDATE,
+          'N'
+        )
+    </insert>
+</mapper>

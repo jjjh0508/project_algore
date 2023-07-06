@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- 타임리프 th를 사용하고자 하는 경우 아래의 html 헤더를 추가해야됨 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <form th:action="file" method="post" enctype="multipart/form-data">
+    <ul>
+      <li>이름 : <input type="text" name="inputName"/></li>
+      <li>내용 : <textarea type="text" name="inputContent" th:width="100px" th:height="100px"> </textarea></li>
+      <li>파일 : <input type="file" name="inputFile"/></li>
+    </ul>
+    <button type="submit">전송</button>
+  </form>
+
+  <script th:inline="javascript">
+    if([[${message}]] != null){ // redirect가 아닌 경우 이와 같이 읽어 오는 것이 가능함
+      alert([[${message}]])
+    }
+  </script>
+</body>
+</html>
