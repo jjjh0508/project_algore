@@ -15,12 +15,12 @@
 <main class="form-signin mx-auto" style="width: 400px; margin-top: 8%;">
     <form th:action="@{/common/login}" method="post">
         <h1 class="h1 mb-5 fw-bold">ANIGRAM</h1>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="username" name="username" placeholder="id">
+        <div class="form-floating mb-3">  <!-- 테스트용 value 나중에 빼야합니다.-->
+            <input type="email" class="form-control" id="username" name="username"  value="user@gmail.com" placeholder="id">
             <label for="username">로그인 이메일</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password"value="pass" placeholder="Password">
             <label for="password">password</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit" >log in</button>
