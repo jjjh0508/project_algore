@@ -15,6 +15,10 @@ public class SecurityController {
 
     }
 
+    @GetMapping("/test")
+    public void index(){
+    }
+
     @GetMapping("/loginfail")
     public ModelAndView loginFail(@RequestParam String errorMessage, ModelAndView mv){
         mv.addObject("errorMessage", errorMessage);
@@ -22,6 +26,11 @@ public class SecurityController {
         return mv;
     }
 
+    @GetMapping("/layout")
+    public ModelAndView model(ModelAndView mv){
+        mv.setViewName("common/layouts/layout");
+        return mv;
+    }
+
 
 }
-

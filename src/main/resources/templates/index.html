@@ -1,64 +1,13 @@
+<!-- 추가됨 -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <!-- 다음과 같이 조건을 등록하여 엘리먼트를 그려주는 것도 가능   -->
-    <div th:if="${param.message != null}">
-        <p th:text="${param.message}"></p>
-    </div>
-    <ul>
-        <li>
-            <a href="/employee/list">직원 전체조회</a>
-        </li>
-        <li>
-            <a href="/employee/regist">직원등록</a>
-        </li>
-        <li>
-            <a href="/employee/modify">직원 정보 수정</a>
-        </li>
-        <li>
-            <a href="/employee/file">파일 업로드</a>
-        </li>
-    </ul>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
 
-
-    <div>
-        <p th:text="${#authentication.name}"></p>
-        <p th:text="${#authentication.authorities}"></p>
-        <p th:text="${#authentication.authenticated}"></p>
-    </div>
-
-    <div id="test">
-
-    </div>
-    <!-- 코드 주석 추가 -->
-    <button onclick="api()"> 비동기 요청</button>
-
-    <script th:inline="javascript">
-        if([[${message}]] != null){
-            alert([[${message}]])
-        }
-
-
-        // 비동기 요청을 보내는 로직 fetch 메소드를 이용함
-        // 해당 요청은 비동기 요청으로써 호출하는 Controller는 employee > controller > restController 확인
-        let testDiv = document.getElementById("test");
-        function api(){
-            let empList = fetch("http://localhost:8080/test").then((res) => res.json())
-                .then(data => test(data))
-                .catch(err => console.log(err));
-        }
-        function test(data){
-            for (let i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                testDiv.innerHTML += "<div>"+data[i].empName+"</div>";
-            }
-        }
-
-
-    </script>
-</body>
+<th:block layout:fragment="test">
+</th:block>
 </html>
+
+<script th:inline="javascript">
+    window.location.href = "common/test";
+</script>

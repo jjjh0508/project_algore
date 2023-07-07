@@ -1,10 +1,11 @@
+<!-- 추가 됨 -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title> 직원 조회</title>
-</head>
-<body>
-<!-- 여러분 디자인은 알아서~~~~ -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+    <!-- 여러분 디자인은 알아서~~~~ -->
     <table>
         <tr th:each="emp : ${empList}">
             <td th:text="${emp.empId}">직원 아이디</td>
@@ -15,5 +16,5 @@
     </table>
 
     <button onclick="location.href='/common/logout'">로그아웃</button>
-</body>
+</th:block>
 </html>
