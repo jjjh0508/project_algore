@@ -36,7 +36,7 @@ public class SecuriyConfig {
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()//.antMatchers(staticResources).permitAll()
+        http.authorizeRequests().antMatchers(staticResources).permitAll()
                 // (/list) -> 이와 같은 것을 리소르라고 한다.
                 // 아래의 mvcMatchers는 요청 주소 식별에서 (/list/)와 같이 모호한 요청도 식별을 해준다.
                 // 추가됨
