@@ -169,13 +169,13 @@
                 <div class="d-flex justify-content-center">
                     <div id="recipe-writer-profile" class="col-md-10">
                         <img src="/img/bariyado.jpg" alt="프로필사진">
-                        <h5 style="padding: 3px; margin-top: 10px;">작성자 닉네임나오는곳</h5>
-                        <h5 style="padding: 3px;">대충 날짜</h5>
+                        <h6 style="padding: 3px; margin-top: 10px;">작성자 닉네임나오는곳</h6>
+                        <h6 style="padding: 3px;">대충 날짜</h6>
 
                     </div>
                     <div class="views d-flex justify-content-center" style="padding: 1px;margin-top: 10px;">
-                        <img src="/img/viewicon.svg" style="border:none; background-color: transparent; width: 30px">
-                        <div class="d-flex justify-content-center" style="margin-top: 30px; margin-left: 20px">
+                        <img src="/img/viewicon.svg" style="border:none; background-color: transparent; width: 30px; margin-top: 20px">
+                        <div class="d-flex justify-content-center" style="margin-top: 50px; margin-left: 10px">
                         <h5>1000회</h5>
                         </div>
                     </div>
@@ -218,7 +218,7 @@
         </div>
         <!-- 비디오 영역 -->
         <div id="youtube-area" class="col-md-12 p-3" style="margin:30px;">
-            <h4>레시피 동영상</h5>
+            <h5>레시피 동영상</h5>
                 <!-- 비디오 주소를 입력했을때만-->
                 <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
                 <iframe width="800" height="500" src="https://www.youtube.com/embed/O-D7g3ajzRM" title="YouTube video player"
@@ -252,10 +252,11 @@
                     <!-- <img id="step-img"
                    src="/resources/recipeImg/${rsList.recipePicRename }"> -->
                     <img id="step-img" src="/img/donkatu.jpg" style=" width:90%">
+
                     <!-- <br>
                 </c:if> -->
                 </div>
-                <div class="col-md-6" id="step-img-area" style="background-color: rgb(247, 245, 245); width: 40%;">
+                <div class="col-md-6" id="step-img-area" style="background-color: rgb(247, 245, 245); width: 45%;">
                     <!-- <p>${rsList.recipeDescription }</p> -->
                     <p>먼저 어쩌고 저쩌고 돈까스 어쩌고 저쩌고 아니 어쩌고</p>
                 </div>
@@ -270,17 +271,17 @@
 
         <!--요리 꿀팁-->
         <div class="d-flex justify-content-center" style="width:1000px;">
-            <div class="col-md-6" style="margin-left: 30px;">
+            <div class="col-md-6" style="margin-left: 40px;">
                 <h4>레시피 꿀팁</h4>
 
-                <div class="col-md-8" style="margin: 10px; background-color: rgb(247, 245, 245); width: 100%; height: 83%">
+                <div class="col-md-8" style="margin: 10px; background-color: rgb(247, 245, 245); width: 100%; height: 37%">
                     <p>돈까스를 소금에 찍어 드셔보셨나요? 어쩌고 저쩌고 너무 맛있어요 어쩌고 길이를 어쩌고 저쩌고</p>
                 </div>
             </div>
 
             <!--완성 사진-->
             <div>
-                <div class="d-flex justify-content-start" style="margin-left: 20px;">
+                <div class="d-flex justify-content-start" style="margin-left: 20px; margin-bottom: 1px">
                     <h4>완성 사진</h4>
                 </div>
                 <div class="container text-center d-flex justify-content-start">
@@ -315,12 +316,23 @@
 
     </c:if>
   </div>-->
-
-    <div class="d-flex justify-content-end" style="margin-right: 10px;">
-        <a class="btn btn-primary up-son" href="#" role="button" style=" margin-right: 15px"><b>삭제</b></a>
-        <a class="btn btn-primary up-son" href="#" role="button"><b>레시피 수정</b></a>
+    <!--수정(관리자권한)-->
+    <div class="d-flex justify-content-end new-margin" style="margin-top: 30px;">
+        <a class="btn btn-primary but-off-color" href="#" role="button"
+           style=" margin-right: 15px; text-align: center; border-radius: 2em;"
+           onclick="return confirm('레시피 삭제하시겠습니까?')">
+            <b>삭제</b>
+        </a>
+        <a class="btn btn-primary but-off-color" href="#" role="button" style="border-radius: 2em;"
+           onclick="return confirm('레시피을 수정하시겠습니까?')">
+            <b>레시피 수정</b>
+        </a>
+<!--    </div>-->
+<!--    <div class="d-flex justify-content-end" style="margin-right: 10px;">-->
+<!--        <a class="btn btn-primary up-son" href="#" role="button" style=" margin-right: 15px"><b>삭제</b></a>-->
+<!--        <a class="btn btn-primary up-son" href="#" role="button"><b>레시피 수정</b></a>-->
+<!--    </div>-->
     </div>
-</div>
 <div style="margin-bottom: 6%;">
 
 </div>
