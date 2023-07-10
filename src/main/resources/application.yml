@@ -1,11 +1,11 @@
 server:
-  port: 8080
+  port: 8081
 
 
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:xe
+    url: jdbc:oracle:thin:@localhost:1521:XE
     username: C##EMPLOYEE
     password: EMPLOYEE
   servlet:
