@@ -274,14 +274,14 @@
             <div class="col-md-6" style="margin-left: 40px;">
                 <h4>레시피 꿀팁</h4>
 
-                <div class="col-md-8" style="margin: 10px; background-color: rgb(247, 245, 245); width: 100%; height: 37%">
+                <div class="col-md-8" style="margin: 10px; background-color: rgb(247, 245, 245); width: 95%; height: 84%">
                     <p>돈까스를 소금에 찍어 드셔보셨나요? 어쩌고 저쩌고 너무 맛있어요 어쩌고 길이를 어쩌고 저쩌고</p>
                 </div>
             </div>
 
             <!--완성 사진-->
-            <div>
-                <div class="d-flex justify-content-start" style="margin-left: 20px; margin-bottom: 1px">
+            <div style="margin-right: 10%">
+                <div class="d-flex justify-content-start" style="margin-left: 20px; margin-bottom: 0px">
                     <h4>완성 사진</h4>
                 </div>
                 <div class="container text-center d-flex justify-content-start">
@@ -340,15 +340,15 @@
 <hr>
 
 <!-- 코멘트 출력영역 시작 -->
-<c:forEach items="${rcList}" var="rcList">
+<!--<c:forEach items="${rcList}" var="rcList">-->
     <!-- 코멘트 한개 출력 -->
     <div id="oneComment">
         <div id="comment" class="row my-2">
-            <div id="comment-picture" class="col-md-2 d-none d-md-inline">
+            <div id="comment-picture" class="col-md-2 d-none d-md-inline" style="margin-top: 10px" >
                 <!-- 코맨트 사진영역 -->
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor"
-                     class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="70%" fill="currentColor"
+                     class="bi bi-person-bounding-box"  viewBox="0 0 16 16">
                     <path
                             d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -359,7 +359,7 @@
 
             <div id="commnet-contens" class="col-md-10">
                 <!-- 코멘트 내용 영역 -->
-                <div class="shadow-lg p-3 mb-5 bg-body rounded mt-4 text-justify" style="width: 90%;">
+                <div class="shadow-lg p-3 mb-5 bg-body rounded mt-4 text-justify" style="width: 90%; height: 50%">
                     <div id="comment-row" class="row">
                         <div id="comment-writer" class="col-md-10">
                             <h4>${rcList.memberName }</h4>
@@ -381,11 +381,11 @@
                         class="btn btn-outline-primary">수정</button>
                       <button
                         onclick="removeComment(${rcList.commentNo},${rcList.recipeNo} );"
-                        class="btn btn-outline-primary">삭제</button>
+                        class="btn btn-outline-primary">삭제</button>  -->
 
 
-                      </c:if>
-                        -->
+<!--                      </c:if>-->
+
 
 
                     </div>
@@ -395,8 +395,8 @@
         <!-- 코멘트 내용영역종료 -->
         <!-- 코멘트 작성영역 -->
 
-        <!-- 로그인 시에만 보임 -->
-        <!-- <c:if test="${loginUser != null}"> -->
+<!--         로그인 시에만 보임 -->
+<!--         <c:if test="${loginUser != null}">-->
 
         <form action="/recipe/commentWrite.do" method="post">
             <div id="comment-write-area" class="row">
@@ -406,7 +406,7 @@
                     <!-- 세션에서 사용자 id가지고 올것 -->
                     <div class="form-floating">
               <textarea name="commentContents" class="form-control" placeholder="Leave a comment here"
-                        id="floatingTextarea2" style="height: 100px; width: 100%;" required="required"></textarea>
+                        id="floatingTextarea2" style="height: 100px; width: 100%; resize: none"  required="required"></textarea>
                         <label for="floatingTextarea2">댓글을 등록해주세요</label>
                     </div>
                 </div>
@@ -419,7 +419,7 @@
 
             </div>
         </form>
-        <!-- </c:if> -->
+<!--         </c:if>-->
 
         <!-- 코멘트 작성영역 종료 -->
     </div>
