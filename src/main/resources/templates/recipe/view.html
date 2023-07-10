@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+
+<th:block layout:fragment="content">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>알고레</title>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" />
+
+    <style>
+        .recipTitle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+
+        .title {
+            position: relative;
+            width: 500px;
+            height: 50px;
+            margin: auto;
+        }
+
+        .profile-img img {
+            float: left;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+
+        }
+
+        .mainContent {
+            background-color: rgb(223, 222, 222);
+        }
+
+        .recipMain img {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .mainContent {
+            position: relative;
+
+        }
+
+        .col-md-6 img {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .main-recipe-intro {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+
+        #button-area {
+            float: right;
+        }
+
+        .fon-color {
+            color: #085A84;
+        }
+
+        .but-off-color {
+            background-color: #D8F0FF;
+            /*버튼테두리*/
+            border-color: #D8F0FF;
+            /*버튼*/
+            color: #085A84;
+            /*텍스트*/
+        }
+
+        .but-off-color:hover {
+            background-color: #99D3F8;
+            /*버튼테두리*/
+            border-color: #99D3F8;
+            /*버튼*/
+            color: #085A84;
+            /*텍스트*/
+        }
+
+        .up-son {
+            padding: 10px 15px 10px 15px;
+            background-color: #D8F0FF;
+            border-color: #D8F0FF;
+            border-radius: 2em;
+            color: #085A84;
+        }
+
+        .up-son:hover {
+            padding: 10px 15px 10px 15px;
+            background-color: #99D3F8;
+            border-color: #99D3F8;
+            border-radius: 2em;
+            color: #085A84;
+        }
+
+
+
+        /*미디어*/
+        @media (max-width : 500px) {
+
+            iframe {
+                height: auto;
+            }
+
+            #other-recipe-area {
+                display: none;
+            }
+
+            #article1 {
+
+                border-right-width: 0px;
+
+            }
+
+            #step-img-area {
+                padding: 0px;
+            }
+
+
+
+            #list-icon {
+                position: fixed;
+                top: 15%;
+                left: 6%;
+                z-index: 99;
+            }
+
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="write01" style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px;">
+    <!--레시피 제목-->
+    <div class="recipeTitle">
+        <div class="title">
+            <h1>레시피 제목 나오는 칸 </h1>
+        </div>
+    </div>
+
+    <!--레시피 작성자-->
+    <div id="recipe-writer" class="col-md-2 d-none d-md-inline">
+        <div class="shadow-none p-3 mb-5 bg-light rounded" style="height: 110px; width: 92%;">
+            <!--프로필 사진 영역-->
+            <div class="profile-img">
+                <div class="d-flex justify-content-center">
+                    <div id="recipe-writer-profile" class="col-md-10">
+                        <img src="/img/bariyado.jpg" alt="프로필사진">
+                        <h5 style="padding: 3px; margin-top: 10px;">작성자 닉네임나오는곳</h5>
+                        <h5 style="padding: 3px;">대충 날짜</h5>
+
+                    </div>
+                    <div class="views d-flex justify-content-center" style="padding: 1px;margin-top: 10px;">
+                        <img src="/img/viewicon.svg" style="border:none; background-color: transparent; width: 30px">
+                        <div class="d-flex justify-content-center" style="margin-top: 30px; margin-left: 20px">
+                        <h5>1000회</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--작성자 끝-->
+        <!--좋아요 즐겨찾기 공유 버튼-->
+        <div class="like" style="float: right; margin-right: 80px;">
+            <button class="likeButton" style="border:none; background-color: transparent;">
+                <img src="/img/likebtn.svg">
+            </button>
+            <button class="favoritesButton" style=" border:none; background-color: transparent;">
+                <img src="/img/bookbtn.svg" />
+            </button>
+            <button style=" border:none; background-color: transparent;">
+                <img src="/img/sharingbtn.svg" />
+            </button>
+        </div>
+
+        <!--메인요리 소개-->
+        <div id="main-area" class="col-md-12 row" style="margin:20px;">
+            <div class="row m-2" id="main-one-area">
+                <div class="col-md-6">
+                    <img id="main-img" src="/img/donkatu.jpg" style=" width:90%">
+
+                </div>
+                <div class="col-md-6" id="main-img-area" style="background-color: rgb(247, 245, 245); width: 40%;">
+                    <p>먼저 어쩌고 저쩌고 돈까스 어쩌고 저쩌고 아니 어쩌고</p>
+                </div>
+
+            </div>
+
+            <div class="category" style="margin:20px;">
+                <h4>카테고리 나오는 공간</h4>
+            </div>
+        </div>
+        <!-- 비디오 영역 -->
+        <div id="youtube-area" class="col-md-12 p-3" style="margin:30px;">
+            <h4>레시피 동영상</h5>
+                <!-- 비디오 주소를 입력했을때만-->
+                <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
+                <iframe width="800" height="500" src="https://www.youtube.com/embed/O-D7g3ajzRM" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+                </c:if>
+        </div>
+        <!--재료-->
+
+        <div id="material-area" class="m-3">
+            <h4>레시피 재료</h4>
+            <ul>
+                <c:forEach items="${rmList}" var="rmList">
+                    <li>재료: ${rmList.material}, 계량: ${rmList.amount}, 시세:1000원
+                </c:forEach>
+            </ul>
+            <ul>
+                <li>시세 기준 재료 예상 금액:10000원</li>
+            </ul>
+            <hr>
+        </div>
+        <!--레시피 순서영역 여러개가 나와야한다.-->
+        <div id="step-area" class="col-md-12 row" style="margin:20px;">
+            <h3>요리순서</h3>
+            <!-- <c:forEach items="${rsList }" var="rsList"> -->
+            <div class="row m-2" id="step-one-area">
+                <div class="col-md-6">
+                    <!-- <c:if test="${rsList.recipePicRename ne null }"> -->
+                    <!-- <img id="step-img"
+                   src="/resources/recipeImg/${rsList.recipePicRename }"> -->
+                    <img id="step-img" src="/img/donkatu.jpg" style=" width:90%">
+                    <!-- <br>
+                </c:if> -->
+                </div>
+                <div class="col-md-6" id="step-img-area" style="background-color: rgb(247, 245, 245); width: 40%;">
+                    <!-- <p>${rsList.recipeDescription }</p> -->
+                    <p>먼저 어쩌고 저쩌고 돈까스 어쩌고 저쩌고 아니 어쩌고</p>
+                </div>
+
+            </div>
+            <!-- <c:if test="${rsList.recipePicRename ne null || rsList.recipeDescription eq ''}">
+            <hr>
+          </c:if>
+          </c:forEach> -->
+        </div>
+        <!-- 순서영역 종료 -->
+
+        <!--요리 꿀팁-->
+        <div class="d-flex justify-content-center" style="width:1000px;">
+            <div class="col-md-6" style="margin-left: 30px;">
+                <h4>레시피 꿀팁</h4>
+
+                <div class="col-md-8" style="margin: 10px; background-color: rgb(247, 245, 245); width: 100%; height: 83%">
+                    <p>돈까스를 소금에 찍어 드셔보셨나요? 어쩌고 저쩌고 너무 맛있어요 어쩌고 길이를 어쩌고 저쩌고</p>
+                </div>
+            </div>
+
+            <!--완성 사진-->
+            <div>
+                <div class="d-flex justify-content-start" style="margin-left: 20px;">
+                    <h4>완성 사진</h4>
+                </div>
+                <div class="container text-center d-flex justify-content-start">
+                    <div class="row row-cols-2" style="height: 500px; width: 500px;">
+                        <div class="col">
+                            <img src="/img/donkatu.jpg" style="height: 200px; width: 200px;" />
+                        </div>
+                        <div class="col">
+                            <img src="/img/donkatu.jpg" style="height: 200px; width: 200px;" />
+                        </div>
+                        <div class="col">
+                            <img src="/img/donkatu.jpg" style="height: 200px; width: 200px;" />
+                        </div>
+                        <div class="col">
+                            <img src="/img/donkatu.jpg" style="height: 200px; width: 200px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div id="button-area" class="col-md-2" style="margin-right: 30px; ">
+    <c:if test="${loginUser.memberEmail==recipe.memberEmail || loginUser.adminCheck==true }"> -->
+    <!-- 버튼영역 작성자만 보여야함  -->
+    <!-- <button class="btn btn-primary up-son"
+    onclick="removeRecipe(${recipe.recipeNo });">삭제</button>
+    <button class="btn btn-primary up-son"
+      onclick="location.href='/recipe/modifyForm.do?recipeNo=${recipe.recipeNo }';">레시피 수정</button>
+
+    </c:if>
+  </div>-->
+
+    <div class="d-flex justify-content-end" style="margin-right: 10px;">
+        <a class="btn btn-primary up-son" href="#" role="button" style=" margin-right: 15px"><b>삭제</b></a>
+        <a class="btn btn-primary up-son" href="#" role="button"><b>레시피 수정</b></a>
+    </div>
+</div>
+<div style="margin-bottom: 6%;">
+
+</div>
+
+<hr>
+
+<!-- 코멘트 출력영역 시작 -->
+<c:forEach items="${rcList}" var="rcList">
+    <!-- 코멘트 한개 출력 -->
+    <div id="oneComment">
+        <div id="comment" class="row my-2">
+            <div id="comment-picture" class="col-md-2 d-none d-md-inline">
+                <!-- 코맨트 사진영역 -->
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor"
+                     class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                    <path
+                            d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                </svg>
+
+            </div>
+            <!-- 코멘트 사진 영역 종료 -->
+
+            <div id="commnet-contens" class="col-md-10">
+                <!-- 코멘트 내용 영역 -->
+                <div class="shadow-lg p-3 mb-5 bg-body rounded mt-4 text-justify" style="width: 90%;">
+                    <div id="comment-row" class="row">
+                        <div id="comment-writer" class="col-md-10">
+                            <h4>${rcList.memberName }</h4>
+                        </div>
+                        <div id="comment-button" class="col-md-2" style="text-align: right">
+                        </div>
+
+                    </div>
+                    <div id="comment-text-area">
+                        <span>${rcList.commentDate }</span> <br>
+                        <p>${rcList.commentContents }</p>
+                    </div>
+                    <div id="comment-delmodi-buttom-area" style="text-align: right">
+
+                        <!-- 관리자 작성자만 보임 -->
+                        <!-- <c:if test= "${loginUser != null }">
+                      <c:if test="${(loginUser.memberEmail == rcList.memberEmail)&& loginUser.adminCheck==false}">
+                      <button type="button" onclick="modifyViewOn(this);"
+                        class="btn btn-outline-primary">수정</button>
+                      <button
+                        onclick="removeComment(${rcList.commentNo},${rcList.recipeNo} );"
+                        class="btn btn-outline-primary">삭제</button>
+
+
+                      </c:if>
+                        -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 코멘트 내용영역종료 -->
+        <!-- 코멘트 작성영역 -->
+
+        <!-- 로그인 시에만 보임 -->
+        <!-- <c:if test="${loginUser != null}"> -->
+
+        <form action="/recipe/commentWrite.do" method="post">
+            <div id="comment-write-area" class="row">
+                <input type="hidden" value="${loginUser.memberEmail }" name="memberEmail"> <input type="hidden"
+                                                                                                  value="${recipe.recipeNo }" name="recipeNo">
+                <div id="comment-textarea" class="col-md-11">
+                    <!-- 세션에서 사용자 id가지고 올것 -->
+                    <div class="form-floating">
+              <textarea name="commentContents" class="form-control" placeholder="Leave a comment here"
+                        id="floatingTextarea2" style="height: 100px; width: 100%;" required="required"></textarea>
+                        <label for="floatingTextarea2">댓글을 등록해주세요</label>
+                    </div>
+                </div>
+
+                <div id="comment-button-area" class="col-md-1">
+                    <input type="submit" value="등록" style="height: 100%;" class="btn btn-outline-primary">
+                </div>
+
+
+
+            </div>
+        </form>
+        <!-- </c:if> -->
+
+        <!-- 코멘트 작성영역 종료 -->
+    </div>
+</body>
+
+</html>
