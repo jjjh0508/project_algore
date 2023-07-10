@@ -16,7 +16,7 @@ spring:
       location:  #?? ??
   devtools:
     restart:
-      enabled: false
+      enabled: true
     livereload:
       enabled: true
   freemarker:
