@@ -15,6 +15,12 @@
         <result property="recipeCreateDate" column="RECIPE_CREATE_DATE"/>
         <result property="recipeIntro" column="RECIPE_INTRO"/>
         <result property="tip" column="TIP"/>
+        <result property="youtube" column="RECIPE_VIDEO_LINK"/>
+        <result property="mainFileName" column="MAIN_PHOTO"/>
+        <result property="mainPath" column="PHOTO_PATH"/>
+        <result property="proFileName" column="FILE_NAME"/>
+        <result property="proFilePath" column="FILE_PATH"/>
+        <result property="recipeWriter" column="ID"/>
     </resultMap>
 
 
@@ -28,10 +34,17 @@
             R.RECIPE_VIEWS,
             R.RECIPE_CREATE_DATE,
             R.RECIPE_INTRO,
-            R.TIP
+            R.TIP ,
+            R.MAIN_PHOTO,
+            R.PHOTO_PATH,
+            R.RECIPE_VIDEO_LINK,
+            P.FILE_NAME,
+            P.FILE_PATH,
+            M.ID
         FROM RECIPE R
                  JOIN MEMBER M ON (M.MEM_NUM = R.MEM_NUM)
                  JOIN RECIPE_CATEGORY C ON (C.CATEGORY_NUM = R.CATEGORY_NUM)
+                 JOIN PROFILE P ON (M.MEM_NUM = P.MEM_NUM)
         WHERE R.RECIPE_NUM=#{ recipeNum }
         AND RECIPE_STATUS='Y'
     </select>

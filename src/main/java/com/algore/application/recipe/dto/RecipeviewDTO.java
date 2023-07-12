@@ -15,14 +15,19 @@ public class RecipeviewDTO {
 
     private String tip;
 
-    private String youtube= "https://www.youtube.com/embed/O-D7g3ajzRM";
+    private String youtube;
 
+    private String mainFileName;
+    private String mainPath;
 
+    private String proFileName;
+    private String proFilePath;
+    private String recipeWriter;
 
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, Date recipeCreateDate, String recipeIntro, String tip) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String proFileName, String proFilePath, String recipeWriter) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
@@ -31,8 +36,45 @@ public class RecipeviewDTO {
         this.recipeCreateDate = recipeCreateDate;
         this.recipeIntro = recipeIntro;
         this.tip = tip;
+        this.youtube = youtube;
+        this.mainFileName = mainFileName;
+        this.mainPath = mainPath;
+        this.proFileName = proFileName;
+        this.proFilePath = proFilePath;
+        this.recipeWriter = recipeWriter;
     }
 
+    public void setProFileName(String proFileName) {
+        this.proFileName = proFileName;
+    }
+
+    public void setProFilePath(String proFilePath) {
+        this.proFilePath = proFilePath;
+    }
+
+    public String getProFileName() {
+        return proFileName;
+    }
+
+    public String getProFilePath() {
+        return proFilePath;
+    }
+
+    public String getMainFileName() {
+        return mainFileName;
+    }
+
+    public String getMainPath() {
+        return mainPath;
+    }
+
+    public void setMainFileName(String mainFileName) {
+        this.mainFileName = mainFileName;
+    }
+
+    public void setMainPath(String mainPath) {
+        this.mainPath = mainPath;
+    }
 
     public void setRecipeNum(int recipeNum) {
         this.recipeNum = recipeNum;
@@ -105,6 +147,7 @@ public class RecipeviewDTO {
     public String getTip() {
         return tip;
     }
+
     @Override
     public String toString() {
         return "RecipeviewDTO{" +
@@ -116,7 +159,20 @@ public class RecipeviewDTO {
                 ", recipeCreateDate=" + recipeCreateDate +
                 ", recipeIntro='" + recipeIntro + '\'' +
                 ", tip='" + tip + '\'' +
+                ", youtube='" + youtube + '\'' +
+                ", mainFileName='" + mainFileName + '\'' +
+                ", mainPath='" + mainPath + '\'' +
+                ", proFileName='" + proFileName + '\'' +
+                ", proFilePath='" + proFilePath + '\'' +
+                ", recipeWriter='" + recipeWriter + '\'' +
                 '}';
     }
 
+    public void setRecipeWriter(String recipeWriter) {
+        this.recipeWriter = recipeWriter;
+    }
+
+    public String getRecipeWriter() {
+        return recipeWriter;
+    }
 }

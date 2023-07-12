@@ -175,7 +175,7 @@
                 <!--프로필 사진 영역-->
                 <div class="profile-img">
                     <div class="d-flex justify-content-start">
-                        <img src="/img/bariyado.jpg" alt="프로필사진" style="margin-top: 22px; margin-left: 20px;">
+                        <img th:src=${recipevlew.proFilePath}+${recipevlew.proFileName} alt="프로필사진" style="margin-top: 22px; margin-left: 20px;">
                         <div id="recipe-writer-profile" style="margin-top: 33px; margin-left: 20px;">
                             <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
                             <h6 style="padding: 3px;" th:text="${recipevlew.recipeCreateDate}">대충 날짜</h6>
@@ -210,7 +210,7 @@
             <div id="main-area" class="row" style="margin-top: 100px;">
                 <div class="row d-flex justify-content-between" id="main-one-area">
                     <div class="col-md-6">
-                        <img id="main-img" src="/upload/basic/donpa.jpg" style=" width:500px; border-radius: 2em;">
+                        <img th:src="${recipevlew.mainPath}+${recipevlew.mainFileName}" id="main-img" style=" width:500px; border-radius: 2em;">
                     </div>
                     <div class="col-md-6" id="main-img-area"
                          style="background-color: rgb(247, 245, 245); border-radius: 2em;">
@@ -227,13 +227,13 @@
             <div id="youtube-area" class="" style="margin-top:50px; margin-left: 20px;">
                 <h5>레시피 동영상</h5>
                 <!-- 비디오 주소를 입력했을때만-->
-                <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
-                <iframe width="1040px" height="600px" src="https://www.youtube.com/embed/-2rr_j_U4eo"
+                <th:block th:if="${recipevlew.youtube != null}">
+                <iframe width="1040px" height="600px" th:src="${recipevlew.youtube}"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                </c:if>
+                </th:block>
             </div>
             <!--재료-->
 
@@ -330,6 +330,7 @@ onclick="removeRecipe(${recipe.recipeNo });">삭제</button>
 </c:if>
 </div>-->
         <!--수정(관리자권한)-->
+        <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">
         <div class="d-flex justify-content-end new-margin" style="margin-top: 30px; margin-right: 25px;">
             <a class="btn btn-primary but-off-color" href="#" role="button"
                style=" margin-right: 15px; text-align: center; border-radius: 2em;"
@@ -340,16 +341,12 @@ onclick="removeRecipe(${recipe.recipeNo });">삭제</button>
                onclick="return confirm('레시피을 수정하시겠습니까?')">
                 <b>레시피 수정</b>
             </a>
-            <!--    </div>-->
-            <!--    <div class="d-flex justify-content-end" style="margin-right: 10px;">-->
-            <!--        <a class="btn btn-primary up-son" href="#" role="button" style=" margin-right: 15px"><b>삭제</b></a>-->
-            <!--        <a class="btn btn-primary up-son" href="#" role="button"><b>레시피 수정</b></a>-->
-            <!--    </div>-->
+
         </div>
         <div style="margin-bottom: 6%;">
 
         </div>
-
+        </th:block>
         <hr style="margin-bottom: 30px;">
 
         <!-- 코멘트 출력영역 시작 -->
