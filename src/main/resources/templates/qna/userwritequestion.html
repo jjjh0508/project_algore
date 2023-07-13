@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            * {
+                box-sizing: border-box;
+
+            }
+
+            a {
+                text-decoration: none
+            }
+
+            #test {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+
+            .buttonss {
+                margin-top: 5%;
+                height: 80px;
+                width: 160px;
+                border-radius: 1.5em;
+                float: right;
+                margin-right: -30px;
+                font-weight: bold;
+
+
+            }
+
+            .buttonssWrite {
+                margin-top: 5%;
+                width: 150px;
+                float: right;
+                border-radius: 1.5em;
+                font-weight: bold;
+                font-size: 20px;
+
+            }
+
+
+            .buttonssFront {
+                margin-top: 5%;
+                height: 80px;
+                width: 160px;
+                border-radius: 1.5em;
+                float: left;
+                font-weight: bold;
+                font-size: 20px;
+
+            }
+
+            /* q&a2.html */
+            .form {
+                font-size: 20px;
+                margin: 20%;
+
+            }
+
+            .theadLabel {
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .input-box-sty {
+                border: 2px solid;
+                border-color: #085A8430;
+                font-size: 15px;
+            }
+
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+                padding-left: 10px;
+                padding-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+    <!--52_1_QnA_사용자_게시글작성-->
+    <main class="write01"
+          style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px;">
+        <div class="container-fluid modifys d-flex justify-content-start" style="margin-top: 50px;">
+            <div class="container text-center">
+                <!--제목 영역-->
+                <div class="row row-cols-auto" style="margin-top: 40px;">
+                    <!--제목-->
+                    <div class="col-1-sm-3 p-2"
+                         style="width: 10%; border-radius: 2em; font-size: 20px; background: #208BCE;">
+                        <label for="floatingInput" style="color: #F8FCFF; font-size: 18px;">제목</label>
+                    </div>
+                    <!--제목 입력-->
+                    <div class="col" style="width: 90%;">
+                        <input type="text" class="form-control pla-col input-box-sty" name="recipeName"
+                               style=" border-radius: 2em;" placeholder="제목을 입력해 주세요."/>
+                    </div>
+                </div>
+                <!--내용 영역-->
+                <div class="row row-cols-auto" style="margin-top: 20px;">
+                    <!--내용-->
+                    <div class="col-1-sm-3 p-4 "
+                         style="width: 10%; border-radius: 1em; font-size: 20px; background: #208BCE; color: #F8FCFF; font-size: 18px;">
+                        문의<br>내용
+                    </div>
+                    <!--내용 입력-->
+                    <div class="col" style=" width: 90%;">
+                            <textarea class="form-control pla-col input-box-sty"
+                                      style="height: 200px; resize: none; border-radius: 1em;"
+                                      placeholder="내용을 입력해 주세요."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end" style="margin-top: 50px; margin-right: 40px;">
+            <div class="">
+                <button type="button" class="btn btn-outline-primary but-off-color" onclick="home()">
+                    이전
+                </button>
+            </div>
+            <div style="margin-left: 30px;">
+                <button type="button" class="btn btn-outline-primary but-off-color"
+                        onclick="return confirm('등록 하시겠습니까?')">
+                    글등록
+                </button>
+            </div>
+        </div>
+    </main>
+    <script>
+        //이전 버튼 클릭 시 main 화면으로 이동
+        function home() {
+            window.location.assign("http://localhost:8081/Q&Aquestion/q&aMain");
+        }
+    </script>
+    </body>
+</th:block>
+</html>
