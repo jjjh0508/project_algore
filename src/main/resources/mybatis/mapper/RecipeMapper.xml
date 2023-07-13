@@ -107,4 +107,13 @@
         WHERE C.RECIPE_NUM=#{recipeNum}
 
     </select>
+
+    <update id="viewCount">
+        UPDATE RECIPE
+        SET RECIPE_VIEWS=RECIPE_VIEWS+1
+        WHERE RECIPE_NUM = #{recipeNum}
+    </update>
+
+
+
 </mapper>

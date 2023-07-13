@@ -37,4 +37,9 @@ public class RecipeService {
         List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum,name);
         return commentReadDTOList;
     }
+
+    public int viewCount(int recipeNum) {
+        int result = mapper.viewCount(recipeNum);
+        return result;
+    }
 }

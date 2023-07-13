@@ -342,7 +342,7 @@
         <hr style="margin-bottom: 30px;">
 
         <!-- 코멘트 출력영역 시작 -->
-
+        <article id="reply-area">
         <th:block th:if="${commentRead}!=null" }>
             <div th:each="comment:${commentRead}">
                 <!-- 코멘트 한개 출력 -->
@@ -422,13 +422,59 @@
                                class="btn btn-outline-primary but-off-color">
                     </div>
                 </div>
+                <!-- 코멘트 페이지 영역  테스트-->
+<!--                <div id="page-area" style="text-align:center">-->
+
+
+<!--                    <div id="app" class="container">-->
+<!--                        <ul class="page">-->
+<!--                            &lt;!&ndash; 1페이지 아닐때만 &ndash;&gt;-->
+<!--                            <c:if test="${startNavi ne 1 && startNavi > 0}">-->
+<!--                                <li class="page__btn">-->
+<!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${startNavi-1 }#reply-area"> < </a>-->
+<!--                                </li>-->
+<!--                            </c:if>-->
+
+<!--                            <c:forEach var="p" begin="${startNavi }" end="${endNavi }">-->
+
+<!--                                <c:if test="${currentPage == p}">-->
+<!--                                    <li class="page__numbers active">${p }</li>-->
+<!--                                </c:if>-->
+<!--                                <c:if test="${currentPage ne p}">-->
+<!--                                    <li class="page__numbers"><a-->
+<!--                                            href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${p }#reply-area">${p }</a></li>-->
+<!--                                </c:if>-->
+<!--                            </c:forEach>-->
+
+
+
+<!--                            &lt;!&ndash; 마지막페이지 아닐때만 &ndash;&gt;-->
+<!--                            <c:if test="${endNavi < maxPage }">-->
+<!--                                <li class="page__btn">-->
+<!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${endNavi+1 }#reply-area"> > </a>-->
+<!--                                </li>-->
+<!--                            </c:if>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+
+
+
+
+
+<!--                </div>-->
+
+<!--                 코멘트 페이지 영역 종료-->
             </form>
 
         </th:block>
+        </article>
+
         <!-- 코멘트 작성영역 종료 -->
         </div>
     </main>
-
     </body>
+
 </th:block>
+
 </html>

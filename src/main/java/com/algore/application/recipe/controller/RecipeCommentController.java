@@ -21,22 +21,24 @@ public class RecipeCommentController {
 
     @PostMapping("/regist")
     public ModelAndView recipeComment(ModelAndView mv, CommentInsertDTO commentInsertDTO, HttpServletRequest req, Authentication authentication){
-        String backUrl = req.getHeader("referer");
+//        String backUrl = req.getHeader("referer"); //에러남
+//        System.out.println(backUrl);
+        int recipeNum = commentInsertDTO.getRecipeNum();
         if(authentication.getName()!=null){
             int result = recipeCommentService.registComment(commentInsertDTO);
             if(result>0){
-                mv.setViewName(backUrl);
-                mv.addObject("message", "등록 성공했습니다..");
+                mv.setViewName("redirect:/recipe/view/"+recipeNum);
+//                mv.addObject("commentmessage", "등록 성공했습니다..");
                 return mv;
             }else {
-                mv.setViewName(backUrl);
-                mv.addObject("message", "등록 실패했습니다..");
+                mv.setViewName("redirect:/recipe/view/"+recipeNum);
+//                mv.addObject("commentmessage", "등록 실패했습니다..");
                 return mv;
             }
 
         }else {
-            mv.setViewName(backUrl);
-            mv.addObject("message", "로그인한 유저만 작성 가능합니다.");
+            mv.setViewName("/common/login");
+            mv.addObject("commentmessage", "로그인한 유저만 작성 가능합니다.");
             return mv;
         }
 
