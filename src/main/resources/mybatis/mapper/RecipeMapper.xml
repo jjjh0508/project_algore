@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.algore.application.recipe.dao.RecipeViewMapper">
+
+
+    <resultMap id="recipeDetailViewMap" type="com.algore.application.recipe.dto.RecipeviewDTO">
+        <id property="recipeNum" column="RECIPE_NUM"/>
+        <result property="memName" column="NICKNAME"/>
+        <result property="category" column="CATEGORY"/>
+        <result property="recipeTitle" column="RECIPE_TITLE"/>
+        <result property="recipeViews" column="RECIPE_VIEWS"/>
+        <result property="recipeCreateDate" column="RECIPE_CREATE_DATE"/>
+        <result property="recipeIntro" column="RECIPE_INTRO"/>
+        <result property="tip" column="TIP"/>
+        <result property="youtube" column="RECIPE_VIDEO_LINK"/>
+        <result property="mainFileName" column="MAIN_PHOTO"/>
+        <result property="mainPath" column="PHOTO_PATH"/>
+        <result property="proFileName" column="FILE_NAME"/>
+        <result property="proFilePath" column="FILE_PATH"/>
+        <result property="recipeWriter" column="ID"/>
+    </resultMap>
+
+
+
+    <select id="DetailView"  resultMap="recipeDetailViewMap">
+        SELECT
+            R.RECIPE_NUM,
+            M.NICKNAME ,
+            C.CATEGORY,
+            R.RECIPE_TITLE,
+            R.RECIPE_VIEWS,
+            R.RECIPE_CREATE_DATE,
+            R.RECIPE_INTRO,
+            R.TIP ,
+            R.MAIN_PHOTO,
+            R.PHOTO_PATH,
+            R.RECIPE_VIDEO_LINK,
+            P.FILE_NAME,
+            P.FILE_PATH,
+            M.ID
+        FROM RECIPE R
+                 JOIN MEMBER M ON (M.MEM_NUM = R.MEM_NUM)
+                 JOIN RECIPE_CATEGORY C ON (C.CATEGORY_NUM = R.CATEGORY_NUM)
+                 JOIN PROFILE P ON (M.MEM_NUM = P.MEM_NUM)
+        WHERE R.RECIPE_NUM=#{ recipeNum }
+        AND RECIPE_STATUS='Y'
+    </select>
+
+
+
+    <resultMap id="recipeOrderMap" type="com.algore.application.recipe.dto.RecipeOrderDTO">
+        <id property="rpNum" column="RP_NUM"/>
+        <result property="recipe_num" column="RECIPE_NUM"/>
+        <result property="content" column="RP_CONTENT"/>
+        <result property="fileName" column="RP_FILE_NAME"/>
+        <result property="path" column="RP_PATH"/>
+    </resultMap>
+
+    <select id="recipeOrder" resultMap="recipeOrderMap">
+        SELECT
+            RP_NUM,
+            RECIPE_NUM,
+            RP_CONTENT,
+            RP_FILE_NAME,
+            RP_PATH
+        FROM RECIPE_PROCEDURE
+        WHERE RECIPE_NUM=#{ recipeNum }
+    </select>
+
+</mapper>
