@@ -1,5 +1,6 @@
 package com.algore.application.recipe.dao;
 
+import com.algore.application.recipe.dto.CommentReadDTO;
 import com.algore.application.recipe.dto.RecipeOrderDTO;
 import com.algore.application.recipe.dto.RecipePhotoDTO;
 import com.algore.application.recipe.dto.RecipeviewDTO;
@@ -14,4 +15,6 @@ public interface RecipeViewMapper {
     List<RecipeOrderDTO> recipeOrder(int recipeNum);
 
     List<RecipePhotoDTO> recipPhoto(int recipeNum);
+
+    List<CommentReadDTO> commentRead(int recipeNum, String name);
 }
