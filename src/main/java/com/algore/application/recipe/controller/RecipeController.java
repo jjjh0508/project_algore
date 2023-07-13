@@ -1,6 +1,7 @@
 package com.algore.application.recipe.controller;
 
 import com.algore.application.recipe.dto.RecipeOrderDTO;
+import com.algore.application.recipe.dto.RecipePhotoDTO;
 import com.algore.application.recipe.dto.RecipeviewDTO;
 import com.algore.application.recipe.service.RecipeService;
 import org.springframework.security.core.Authentication;
@@ -25,10 +26,11 @@ public class RecipeController {
 
     @GetMapping("/view/{recipeNum}")
     public ModelAndView recipeDetailView(ModelAndView mv, @PathVariable("recipeNum") int recipeNum , Authentication authentication){
+        
         RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipeNum);
-        System.out.println(authentication.getName());
-        System.out.println(recipeviewDTO.getRecipeWriter());
         List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipeNum);
+        List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipeNum);
+        mv.addObject("recipPhoto",recipePhotoDTOList);
         mv.addObject("recipevlew",recipeviewDTO);
         mv.addObject("recipeOrderList",recipeOrderList);
         mv.setViewName("/recipe/view");

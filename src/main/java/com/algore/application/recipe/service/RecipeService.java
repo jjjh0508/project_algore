@@ -2,6 +2,7 @@ package com.algore.application.recipe.service;
 
 import com.algore.application.recipe.dao.RecipeViewMapper;
 import com.algore.application.recipe.dto.RecipeOrderDTO;
+import com.algore.application.recipe.dto.RecipePhotoDTO;
 import com.algore.application.recipe.dto.RecipeviewDTO;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class RecipeService {
     public List<RecipeOrderDTO> recipeOrder(int recipeNum) {
 
         List<RecipeOrderDTO>recipeOrderDTOList = mapper.recipeOrder(recipeNum);
-        System.out.println(recipeOrderDTOList+"확인");
         return recipeOrderDTOList;
+    }
+
+    public List<RecipePhotoDTO> recipPhoto(int recipeNum) {
+        List<RecipePhotoDTO>recipePhotoDTOList = mapper.recipPhoto(recipeNum);
+        return recipePhotoDTOList;
     }
 }

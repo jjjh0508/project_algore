@@ -70,4 +70,18 @@
         WHERE RECIPE_NUM=#{ recipeNum }
     </select>
 
+    <resultMap id="recipPhotoMap" type="com.algore.application.recipe.dto.RecipePhotoDTO">
+        <id property="photoNum" column="PHOTO_NUMBER"/>
+        <result property="recipeFileName" column="RECIPE_FILE_NAME"/>
+        <result property="recipePhotoPath" column="RECIPE_PATH"/>
+    </resultMap>
+
+    <select id="recipPhoto" resultMap="recipPhotoMap">
+        SELECT
+            P.PHOTO_NUMBER ,
+            P.RECIPE_FILE_NAME,
+            P.RECIPE_PATH
+         FROM RECIPE_PHOTO P
+        JOIN RECIPE R ON(R.RECIPE_NUM =P.RECIPE_NUM)
+    </select>
 </mapper>

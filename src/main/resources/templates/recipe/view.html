@@ -257,7 +257,7 @@
                 <div class="row m-2" id="step-one-area">
                     <div class="col-md-6 d-flex justify-content-between">
 
-                        <img id="step-img" th:src=${recipe.path}+${recipe.fileName} style=" width:500px; border-radius: 2em;">
+                        <img id="step-img" th:src="${recipe.path}+${recipe.fileName}" style=" width:500px; border-radius: 2em;">
 
                     </div>
                     <div class="col-md-6" id="step-img-area"
@@ -292,27 +292,39 @@
                         <h4>완성 사진</h4>
                     </div>
                     <div>
+
                         <div class="d-flex justify-content-between" style="">
+                            <th:block th:if="${recipPhoto[0]!=null}">
                             <div class="col">
-                                <img src="/img/donkatu.jpg"
+                                <img th:src="${recipPhoto[0].recipePhotoPath}+${recipPhoto[0].recipeFileName}"
                                      style="height: 250px; width: 250px; border-radius: 2em;" />
                             </div>
+                            </th:block>
+                            <th:block th:if="${recipPhoto[1]!=null}">
                             <div class="col">
-                                <img src="/img/donkatu.jpg"
+                                <img th:src="${recipPhoto[1].recipePhotoPath}+${recipPhoto[1].recipeFileName}"
                                      style="height: 250px; width: 250px; margin-left: 15px; border-radius: 2em;" />
                             </div>
+                            </th:block>
                         </div>
+
                         <div class="d-flex justify-content-between" style="margin-top: 15px;">
+                            <th:block th:if="${recipPhoto[2]!=null}">
                             <div class="col">
-                                <img src="/img/donkatu.jpg"
+                                <img th:src="${recipPhoto[2].recipePhotoPath}+${recipPhoto[2].recipeFileName}"
                                      style="height: 250px; width: 250px; border-radius: 2em;" />
                             </div>
+                            </th:block>
+                            <th:block th:if="${recipPhoto[3]!=null}">
                             <div class="col">
-                                <img src="/img/donkatu.jpg"
+                                <img th:src="${recipPhoto[3].recipePhotoPath}+${recipPhoto[3].recipeFileName}"
                                      style="height: 250px; width: 250px; margin-left: 15px; border-radius: 2em;" />
                             </div>
+                            </th:block>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
