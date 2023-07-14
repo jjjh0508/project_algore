@@ -1,6 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-</beans>
+<mapper namespace="com.algore.application.qna.dao.QuestionMapper">
+    <resultMap id="questionMap" type="com.algore.application.qna.dto.QuestionDTO">
+        <id property="qNumber" column="Q_NUMBER"/>
+        <result property="qTitle" column="QUE_TITLE"/>
+        <result property="nickname" column="NICKNAME"/>
+        <result property="qContent" column="QUE_CONTENT"/>
+        <result property="qDate" column="QUE_DATE"/>
+        <result property="status" column="A_STATUS"/>
+
+    </resultMap>
+
+
+    <select id="questionAll" resultMap="questionMap">
+        SELECT
+            Q.Q_NUMBER,
+            M.NICKNAME ,
+            U.QUE_TITLE,
+            U.QUE_DATE ,
+            A.A_STATUS
+        FROM QNA Q
+                 JOIN QUESTION U ON (Q.Q_NUMBER = U.Q_NUMBER)
+                 JOIN ANSWER A ON (A.Q_NUMBER= Q.Q_NUMBER)
+                 JOIN MEMBER M on (Q.MEM_NUM = M.MEM_NUM)
+    </select>
+
+
+</mapper>
