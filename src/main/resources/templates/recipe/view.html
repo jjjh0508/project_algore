@@ -5,6 +5,20 @@
 
 <th:block layout:fragment="content">
 
+    <script th:inline="javascript">
+        function clip(){
+            var url = '';
+            var textarea = document.createElement("textarea");
+            document.body.appendChild(textarea);
+            url = window.location.href;
+            textarea.value = url;
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("링크가 복사되었습니다.")
+        };
+    </script>
+    
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,15 +198,15 @@
             <!--작성자 끝-->
             <!--좋아요 즐겨찾기 공유 버튼-->
             <div class="like" style="float: right; margin-right: 20px; margin-top: 25px;">
-                <button class="likeButton" style="border:none; background-color: transparent;">
-                    <img src="/img/likebtn.svg">
-                </button>
-                <button class="favoritesButton" style=" border:none; background-color: transparent;">
-                    <img src="/img/bookbtn.svg"/>
-                </button>
-                <button style=" border:none; background-color: transparent;">
-                    <img src="/img/sharingbtn.svg"/>
-                </button>
+<!--                <button class="likeButton" style="border:none; background-color: transparent;">-->
+<!--                    <img src="/img/likebtn.svg">-->
+<!--                </button>-->
+<!--                <button class="favoritesButton" style=" border:none; background-color: transparent;">-->
+<!--                    <img src="/img/bookbtn.svg"/>-->
+<!--                </button>-->
+
+                    <img src="/img/sharingbtn.svg" onclick="clip()"/>
+
             </div>
 
             <!--메인요리 소개-->
@@ -476,5 +490,6 @@
     </body>
 
 </th:block>
+
 
 </html>

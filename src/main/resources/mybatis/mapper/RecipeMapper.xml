@@ -105,6 +105,7 @@
          LEFT JOIN PROFILE P ON(M.MEM_NUM=P.MEM_NUM)
          JOIN RECIPE R ON (R.RECIPE_NUM = C.RECIPE_NUM)
         WHERE C.RECIPE_NUM=#{recipeNum}
+        ORDER BY C_DATE ASC
 
     </select>
 
