@@ -6,8 +6,8 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: C##EMPLOYEE
-    password: EMPLOYEE
+    username: C##ALGORE
+    password: ALGORE
   servlet:
     multipart:
       enabled: true
@@ -29,7 +29,7 @@ spring:
     check-template-location: true
   web:
     resources:
-      static-locations: classpath:/upload/
+      static-locations: classpath:/static/upload/
 
 image:
   image-dir: src/main/resources
