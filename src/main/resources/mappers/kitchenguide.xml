@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 매퍼 연결 -->
+<mapper namespace="com.algore.application.kitchenguide.dao.KitchenguideMapper">
+    <resultMap id="trimPost" type="com.algore.application.kitchenguide.dto.TrimDTO">
+        <!--TrimDTO-->
+        <id property="trimNum" column="TRIM_NUM"/>
+        <result property="trimTitle" column="TRIM_TITLE"/>
+        <result property="trimDetail" column="TRIM_DETAIL"/>
+        <result property="trimViews" column="TRIM_VIEWS"/>
+        <result property="trimVideoLink" column="TRIM_VIDEO_LINK"/>
+        <!--TrimProcedureDTO-->
+        <result property="tpStepNum" column="TP_STEP_NUM"/>
+        <result property="tpFileName" column="TP_FILE_NAME"/>
+        <result property="tpDetail" column="TP_DETAIL"/>
+        <result property="tpPath" column="TP_PATH"/>
+    </resultMap>
+    <select id="readPost" resultMap="trimPost">
+        SELECT
+               T.TRIM_NUM,
+               T.TRIM_TITLE,
+               T.TRIM_DETAIL,
+               T.TRIM_VIEWS,
+               T.TRIM_VIDEO_LINK,
+               TP.TP_STEP_NUM,
+               TP.TP_FILE_NAME,
+               TP.TP_DETAIL,
+               TP.TP_PATH
+          FROM TRIM T
+          JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
+         WHERE T.TRIM_NUM = #{trimNum}
+    </select>
+</mapper>
