@@ -24,10 +24,10 @@ public class LoginTestMapper {
         list.add(new SimpleGrantedAuthority("ADMIN"));
         list.add(new SimpleGrantedAuthority("USER"));
         // DB에서 조회한 결과가 있다고 가정함
-        if(username.equals("user@gmail.com")){
+        if(username.equals("user2@gmail.com")){
             String pass = passwordEncoder.encode("pass");
 
-            authUserDTO = new AuthUserDTO(1, "user@gmail.com", pass, list);
+            authUserDTO = new AuthUserDTO(1, "user2@gmail.com", pass, list);
         }
         return authUserDTO;
     }

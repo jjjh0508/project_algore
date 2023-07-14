@@ -70,4 +70,50 @@
         WHERE RECIPE_NUM=#{ recipeNum }
     </select>
 
+    <resultMap id="recipPhotoMap" type="com.algore.application.recipe.dto.RecipePhotoDTO">
+        <id property="photoNum" column="PHOTO_NUMBER"/>
+        <result property="recipeFileName" column="RECIPE_FILE_NAME"/>
+        <result property="recipePhotoPath" column="RECIPE_PATH"/>
+    </resultMap>
+
+    <select id="recipPhoto" resultMap="recipPhotoMap">
+        SELECT
+            P.PHOTO_NUMBER ,
+            P.RECIPE_FILE_NAME,
+            P.RECIPE_PATH
+         FROM RECIPE_PHOTO P
+        JOIN RECIPE R ON(R.RECIPE_NUM =P.RECIPE_NUM)
+    </select>
+
+    <resultMap id="commentReadMap" type="com.algore.application.recipe.dto.CommentReadDTO">
+        <result property="memNickName" column="NICKNAME"/>
+        <result property="conutent" column="C_CONTENT"/>
+        <result property="creatDate" column="C_DATE"/>
+        <result property="profileName" column="FILE_NAME"/>
+        <result property="profilePath" column="FILE_PATH"/>
+    </resultMap>
+    <select id="commentRead" resultMap="commentReadMap">
+        SELECT
+               M.NICKNAME,
+               C.C_CONTENT,
+               C.C_DATE,
+               P.FILE_NAME ,
+               P.FILE_PATH
+
+         FROM R_COMMENT C
+         JOIN MEMBER M ON(M.MEM_NUM=C.MEM_NUM)
+         LEFT JOIN PROFILE P ON(M.MEM_NUM=P.MEM_NUM)
+         JOIN RECIPE R ON (R.RECIPE_NUM = C.RECIPE_NUM)
+        WHERE C.RECIPE_NUM=#{recipeNum}
+
+    </select>
+
+    <update id="viewCount">
+        UPDATE RECIPE
+        SET RECIPE_VIEWS=RECIPE_VIEWS+1
+        WHERE RECIPE_NUM = #{recipeNum}
+    </update>
+
+
+
 </mapper>
