@@ -33,8 +33,8 @@ public class RecipeService {
         return recipePhotoDTOList;
     }
 
-    public List<CommentReadDTO> commentRead(int recipeNum, String name) {
-        List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum,name);
+    public List<CommentReadDTO> commentRead(int recipeNum) {
+        List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum);
         return commentReadDTOList;
     }
 

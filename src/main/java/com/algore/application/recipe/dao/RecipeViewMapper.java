@@ -16,7 +16,7 @@ public interface RecipeViewMapper {
 
     List<RecipePhotoDTO> recipPhoto(int recipeNum);
 
-    List<CommentReadDTO> commentRead(int recipeNum, String name);
+    List<CommentReadDTO> commentRead(int recipeNum);
 
     int viewCount(int recipeNum);
 }

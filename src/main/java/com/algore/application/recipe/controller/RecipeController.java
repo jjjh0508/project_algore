@@ -32,7 +32,7 @@ public class RecipeController {
         RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipeNum);
         List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipeNum);
         List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipeNum);
-        List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipeNum, authentication.getName());
+        List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipeNum);
 
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipPhoto", recipePhotoDTOList);
