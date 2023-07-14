@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            a {
+                color: #085A84;
+                text-decoration: none
+            }
+
+            header a {
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            .form-floating.col-sm-8 {
+                font-size: 20px;
+                margin-left: 10%;
+                display: inline-block;
+                color: #085A84;
+            }
+
+
+            .btn_area {
+                text-align: center;
+                padding: 30px;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+            }
+
+            .border-none:focus {
+                box-shadow: none !important;
+                outline: none !important;
+                border: 1px solid #ced4da;
+            }
+        </style>
+    </head>
+    <body>
+    <!-- 공지사항 상세페이지-->
+    <div>
+        <div class="" style="max-width: 700px; margin: 0 auto; padding-left:10px; padding-right: 10px; ">
+            <div class="form-floating w-100 ">
+                <input type="text" class="form-control border-none" id="floatingTextarea2" name="recipeName" readonly
+                       value="공지 제목이 나오는 부분">
+            </div>
+            <div class="form-floating w-100" style="margin-top: 30px;">
+                <textarea class="form-control border-none" placeholder="Leave a comment here" id="floatingTextarea2"
+                          style="height: 200px;  resize: none;" readonly> 공지 내용이 나오는 부분
+                    </textarea>
+            </div>
+            <!--수정, 등록 버튼-->
+            <div class="btn_area d-flex justify-content-end new-margin" style="text-align: center;">
+                <button type="button" class="btn btn-outline-primary but-off-color" style="margin-right: 10px;"
+                        onclick="return confirm('수정하시겠습니까?')">
+                    <a href="등록페이지.html">수정</a></button>
+                <button type="button" class="btn btn-outline-primary but-off-color"
+                        onclick="return confirm('삭제하시겠습니까?')">
+                    <a href="목록조회페이지.html">삭제</a></button>
+            </div>
+        </div>
+    </div>
+    </body>
+</th:block>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            header a {
+                text-decoration: none
+            }
+
+            a {
+                color: #085A84;
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            thead {
+
+                background-color: #208BCE;
+                text-align: center;
+            }
+
+            tbody {
+                background-color: #F8FCFF;
+                text-align: center;
+            }
+
+            .table {
+                width: 100%;
+            }
+
+            .table-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            .fon-color {
+                color: #085A84;
+            }
+
+            .tr-col {
+                color: #F8FCFF;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+            }
+
+            .input-box-sty {
+                margin-top: 10px;
+                border: 2px solid;
+                border-color: #085A8430;
+                font-size: 15px;
+            }
+
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
+
+            .border-none:focus {
+                box-shadow: none !important;
+                outline: none !important;
+                border: 1px solid #ced4da;
+            }
+        </style>
+    </head>
+    <body>
+    <!--50_0_QnA_관리자_메인페이지-->
+    <main class="write01"
+          style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px;">
+        <!--사용자 전용 버튼-->
+        <div class="d-flex justify-content-end">
+            <a href="#">
+                <button type="button" class="btn btn-outline-secondary"
+                        style="height: 50px; width: 150px; border-radius: 1.3em; float: right;">
+                    <b>질문 작성하기</b>
+                </button>
+            </a>
+        </div>
+        <!--게시글 영역-->
+        <div class="table-container" style="margin-top: 50px;">
+            <table class="table">
+                <!--공지 영역 상단바-->
+                <thead>
+                <tr class="tr-col" style="height: 50px; vertical-align: middle;">
+                    <th>No</th>
+                    <th>글제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>답변상태</th>
+                </tr>
+                </thead>
+                <!--게시글1 _ 이 부분이 반복...삽입 되어야 함....!!!-->
+                <tbody>
+                <tr class="fon-color">
+                    <td>1</td>
+                    <td>
+                        <a href="QnA 상세페이지.html">
+                            <b>집에 가고싶은데</b>
+                        </a>
+                    </td>
+                    <td>nonno</td>
+                    <td>2023.06.06</td>
+                    <td>미완료</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script>
+        //글작성 이동 코드
+        function newWrite() {
+            window.location.assign("http://localhost:8081/Q&Aquestion/q&a02")
+        }
+    </script>
+    </body>
+</th:block>
+</html>
