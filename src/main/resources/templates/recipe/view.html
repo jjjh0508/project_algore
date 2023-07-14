@@ -177,13 +177,30 @@
                 <!--프로필 사진 영역-->
                 <div class="profile-img">
                     <div class="d-flex justify-content-start">
+                        <th:block th:if="${recipevlew.proFilePath!=null}">
                         <img th:src=${recipevlew.proFilePath}+${recipevlew.proFileName} alt="프로필사진"
                              style="margin-top: 22px; margin-left: 20px;">
                         <div id="recipe-writer-profile" style="margin-top: 33px; margin-left: 20px;">
                             <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
                             <h6 style="padding: 3px;" th:text="${recipevlew.recipeCreateDate}">대충 날짜</h6>
                         </div>
+                        </th:block>
+                        <th:block th:if="${recipevlew.proFilePath==null}">
+                            <div class="profile-img">
+                                <div class="d-flex justify-content-start">
+                                    <img src="/img/profileicon.svg" alt="프로필사진"
+                                         style="margin-top: 22px; margin-left: 20px;">
+                                    <div id="recipe-writer-profile2" style="margin-top: 33px; margin-left: 20px;">
+                                        <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
+                                        <h6 style="padding: 3px;" th:text="${recipevlew.recipeCreateDate}">대충 날짜</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </th:block>
+
+
                     </div>
+
                 </div>
                 <!--조회수-->
                 <div class="views d-flex justify-content-end" style="padding-right: 30px;">
@@ -294,6 +311,7 @@
 
                 <!--완성 사진-->
                 <div>
+                    <th:block th:if="${recipPhoto.size()>0}">
                     <div class="d-flex justify-content-start" style="">
                         <h4>완성 사진</h4>
                     </div>
@@ -330,7 +348,7 @@
                         </div>
 
                     </div>
-
+                    </th:block>
                 </div>
             </div>
         </div>
