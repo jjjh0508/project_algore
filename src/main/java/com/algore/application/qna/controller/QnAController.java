@@ -14,9 +14,11 @@ import java.util.List;
 public class QnAController {
 
     private final QuestionService main;
+    private final QuestionService detail;
 
-    public QnAController(QuestionService main) {
+    public QnAController(QuestionService main, QuestionService detail) {
         this.main = main;
+        this.detail = detail;
     }
 
     @GetMapping("/main")
@@ -30,10 +32,12 @@ public class QnAController {
 
         return mv;
     }
-
     @GetMapping("/read")
-    public String read() {
-        return "qna/read";
+    public ModelAndView read(ModelAndView mv) {
+        List<QuestionDTO> lists = detail.detaileRead();
+        mv.addObject("detailList", lists);
+        mv.setViewName("qna/read");
+        return mv;
     }
 
     @GetMapping("/adminwriteanswer")

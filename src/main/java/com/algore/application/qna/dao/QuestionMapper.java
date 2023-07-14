@@ -10,5 +10,9 @@ import java.util.List;
 public interface QuestionMapper {
     List<QuestionDTO> questionAll();
 
+    List<QuestionDTO> detailAll();
+
+
+
 
 }
