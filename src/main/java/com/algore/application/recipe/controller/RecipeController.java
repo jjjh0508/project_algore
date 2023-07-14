@@ -24,15 +24,15 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/view/{recipeNum}")
-    public ModelAndView recipeDetailView(ModelAndView mv, @PathVariable("recipeNum") int recipeNum,
+    @GetMapping("/view")
+    public ModelAndView recipeDetailView(ModelAndView mv, int recipe,
                                          Authentication authentication, HttpServletRequest request,
                                          HttpServletResponse response) {
-        viewCount(request, response, recipeNum);
-        RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipeNum);
-        List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipeNum);
-        List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipeNum);
-        List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipeNum);
+        viewCount(request, response, recipe);
+        RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
+        List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipe);
+        List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
+        List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
 
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipPhoto", recipePhotoDTOList);
@@ -42,6 +42,9 @@ public class RecipeController {
         mv.setViewName("/recipe/view");
         return mv;
     }
+
+    @GetMapping("/write")
+    public void write(){};
 
     private void viewCount(HttpServletRequest request,
                            HttpServletResponse response, int recipeNum) {

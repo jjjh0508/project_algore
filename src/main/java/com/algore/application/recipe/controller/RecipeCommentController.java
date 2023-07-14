@@ -25,15 +25,15 @@ public class RecipeCommentController {
 //        System.out.println(backUrl);
         int recipeNum = commentInsertDTO.getRecipeNum();
 
-        System.out.println(commentInsertDTO.getUserId());
+//        System.out.println(commentInsertDTO.getUserId());
         if(authentication.getName()!=null){
             int result = recipeCommentService.registComment(commentInsertDTO);
             if(result>0){
-                mv.setViewName("redirect:/recipe/view/"+recipeNum);
+                mv.setViewName("redirect:/recipe/view?recipe="+recipeNum);
 //                mv.addObject("commentmessage", "등록 성공했습니다..");
                 return mv;
             }else {
-                mv.setViewName("redirect:/recipe/view/"+recipeNum);
+                mv.setViewName("redirect:/recipe/view?recipe="+recipeNum);
 //                mv.addObject("commentmessage", "등록 실패했습니다..");
                 return mv;
             }
