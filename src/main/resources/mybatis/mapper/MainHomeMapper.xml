@@ -31,4 +31,17 @@
 
 
     </select>
+
+
+    <select id="searchRecipe" parameterType="String" resultMap="mainViewMap">
+        SELECT
+            RECIPE_NUM,
+            RECIPE_TITLE,
+            RECIPE_VIEWS,
+            MAIN_PHOTO,
+            PHOTO_PATH
+        FROM RECIPE
+        WHERE RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'    ]]>
+        AND ROWNUM <![CDATA[ < 12]]>
+    </select>
 </mapper>

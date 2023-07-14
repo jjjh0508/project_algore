@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface MainviewMapper {
     List<MainViewDTO> mainView();
+
+    List<MainViewDTO> searchRecipe(String recipeName);
 }
