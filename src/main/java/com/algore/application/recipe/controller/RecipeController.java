@@ -34,7 +34,7 @@ public class RecipeController {
         List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
         List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
         System.out.println(recipePhotoDTOList);
-        for (RecipePhotoDTO recipePhotoDTO: recipePhotoDTOList) {
+        for (RecipePhotoDTO recipePhotoDTO : recipePhotoDTOList) {
             System.out.println(recipePhotoDTO);
         }
         mv.addObject("commentRead", commentReadDTOList);
@@ -45,6 +45,52 @@ public class RecipeController {
         mv.setViewName("/recipe/view");
         return mv;
     }
+
+    @GetMapping("/modify")
+    public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
+        try {
+            String name = recipeService.modifyName(recipe);
+            System.out.println(name + authentication.getName());
+            if (!authentication.getName().equals(name)) {
+                //작성자만 수정가능
+                mv.addObject("message", "작성자만 수정 가능합니다.");
+                mv.setViewName("/common/error");
+                return mv;
+            }
+            RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
+            List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipe);
+            List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
+            mv.addObject("recipPhoto", recipePhotoDTOList);
+            mv.addObject("recipevlew", recipeviewDTO);
+            mv.addObject("recipeOrderList", recipeOrderList);
+            mv.setViewName("/recipe/modify");
+        } catch (Exception e) {
+            mv.addObject("message", e.getMessage());
+            mv.setViewName("/common/error");
+        }
+
+        return mv;
+    }
+
+    @GetMapping("/delete")
+    public ModelAndView recipeDelete(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
+        try {
+            String name = recipeService.modifyName(recipe);
+            System.out.println(name + authentication.getName());
+            if (!authentication.getName().equals(name)) {
+                //작성자만 삭제가능
+                mv.addObject("message", "작성자만 삭제 가능합니다.");
+                mv.setViewName("/common/error");
+                return mv;
+            }
+            int result = recipeService.recipeDelete(recipe);
+            mv.setViewName("redirect:/home/?page=1");
+            return mv;
+        } catch (Exception e) {
+            return mv;
+        }
+    }
+
 
 
     private void viewCount(HttpServletRequest request,
@@ -70,7 +116,7 @@ public class RecipeController {
             }
         } else {
             recipeService.viewCount(recipeNum);
-            Cookie newCookie = new Cookie("recipeView","[" + recipeNum + "]");
+            Cookie newCookie = new Cookie("recipeView", "[" + recipeNum + "]");
             newCookie.setPath("/");
             newCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(newCookie);

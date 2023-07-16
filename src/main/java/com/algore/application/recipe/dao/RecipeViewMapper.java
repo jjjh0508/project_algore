@@ -19,4 +19,8 @@ public interface RecipeViewMapper {
     List<CommentReadDTO> commentRead(int recipeNum);
 
     int viewCount(int recipeNum);
+
+    String modifyName(int recipeNum);
+
+    int recipeDelete(int recipe);
 }

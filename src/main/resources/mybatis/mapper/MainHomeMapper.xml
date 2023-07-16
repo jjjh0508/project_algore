@@ -20,6 +20,7 @@
             MAIN_PHOTO,
             PHOTO_PATH
         FROM recipe
+        WHERE RECIPE_STATUS='Y'
         ORDER BY RECIPE_VIEWS  DESC
         OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
 

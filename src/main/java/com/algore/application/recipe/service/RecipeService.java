@@ -42,4 +42,14 @@ public class RecipeService {
         int result = mapper.viewCount(recipeNum);
         return result;
     }
+
+    public String modifyName(int recipeNum) {
+        String name = mapper.modifyName(recipeNum);
+        return name;
+    }
+
+    public int recipeDelete(int recipe) {
+        int result = mapper.recipeDelete(recipe);
+        return result;
+    }
 }

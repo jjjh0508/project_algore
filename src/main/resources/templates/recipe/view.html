@@ -356,12 +356,12 @@
 
         <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">
             <div class="d-flex justify-content-end new-margin" style="margin-top: 30px; margin-right: 25px;">
-                <a class="btn btn-primary but-off-color" href="#" role="button"
+                <a class="btn btn-primary but-off-color" th:href="@{/recipe/delete(recipe=${recipevlew.recipeNum})}" role="button"
                    style=" margin-right: 15px; text-align: center; border-radius: 2em;"
                    onclick="return confirm('레시피 삭제하시겠습니까?')">
                     <b>삭제</b>
                 </a>
-                <a class="btn btn-primary but-off-color" href="#" role="button" style="border-radius: 2em;"
+                <a class="btn btn-primary but-off-color" th:href="@{/recipe/modify(recipe=${recipevlew.recipeNum})}" role="button" style="border-radius: 2em;"
                    onclick="return confirm('레시피을 수정하시겠습니까?')">
                     <b>레시피 수정</b>
                 </a>

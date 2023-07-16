@@ -116,6 +116,18 @@
         WHERE RECIPE_NUM = #{recipeNum}
     </update>
 
+    <select id="modifyName">
+        SELECT
+            M.ID
+            FROM MEMBER M
+            JOIN RECIPE R ON (M.MEM_NUM = R.MEM_NUM)
+        WHERE R.RECIPE_NUM =#{recipeNum}
+    </select>
 
+    <update id="recipeDelete">
+        UPDATE RECIPE
+        SET RECIPE_STATUS ='N' , RECIPE_DEL_DATE=SYSDATE
+        WHERE RECIPE_NUM = #{recipe}
 
+    </update>
 </mapper>
