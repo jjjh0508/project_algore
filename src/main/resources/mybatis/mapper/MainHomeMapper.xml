@@ -20,6 +20,7 @@
             MAIN_PHOTO,
             PHOTO_PATH
         FROM recipe
+        WHERE RECIPE_STATUS ='Y'
         ORDER BY RECIPE_VIEWS  DESC
         OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
 
@@ -27,23 +28,11 @@
     </select>
 
 
-<<<<<<< HEAD
-    <select id="searchRecipe" parameterType="String" resultMap="mainViewMap">
-        SELECT
-            RECIPE_NUM,
-            RECIPE_TITLE,
-            RECIPE_VIEWS,
-            MAIN_PHOTO,
-            PHOTO_PATH
-        FROM RECIPE
-        WHERE RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'    ]]>
-        AND ROWNUM <![CDATA[ < 12]]>
-=======
     <select id="allcnt">
     SELECT
         count(*)
         FROM RECIPE
     WHERE RECIPE_STATUS ='Y'
->>>>>>> f50c9103cdddebbd6df0a81796ce072c28286e67
+
     </select>
 </mapper>

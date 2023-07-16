@@ -4,17 +4,15 @@ import com.algore.application.home.dto.MainViewDTO;
 import com.algore.application.home.dto.Pagination;
 import com.algore.application.home.service.HomeService;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 
-=======
+import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> f50c9103cdddebbd6df0a81796ce072c28286e67
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 @RestController

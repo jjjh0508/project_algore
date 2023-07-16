@@ -8,5 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface SearchMapper {
-    List<SearchDTO> searchRecipe(String recipeName);
+    List<SearchDTO> searchRecipe(String recipeName,int startIndex ,int pageSiz,int page);
+
+    int searchCnt(String recipeName);
 }

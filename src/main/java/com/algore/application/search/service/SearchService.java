@@ -16,8 +16,13 @@ public class SearchService {
         this.mapper = mapper;
     }
 
-    public List<SearchDTO> searchRecipe(String recipeName) {
-        List<SearchDTO> mainViewDTOList = mapper.searchRecipe(recipeName);
+    public List<SearchDTO> searchRecipe(String recipeName, int startIndex ,int pageSiz,int page) {
+        List<SearchDTO> mainViewDTOList = mapper.searchRecipe(recipeName,startIndex,pageSiz,page);
         return mainViewDTOList;
+    }
+
+    public int searchCnt(String recipeName) {
+        int totaListCnt = mapper.searchCnt(recipeName);
+        return totaListCnt;
     }
 }

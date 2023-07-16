@@ -21,13 +21,10 @@ public class HomeService {
         return mainViewDTOList;
     }
 
-<<<<<<< HEAD
 
-=======
     public int allcnt() {
         int totaListCnt = mapper.allcnt();
         return totaListCnt;
     }
->>>>>>> f50c9103cdddebbd6df0a81796ce072c28286e67
 
 }
