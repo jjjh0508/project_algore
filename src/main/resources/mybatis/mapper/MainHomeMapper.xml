@@ -12,27 +12,22 @@
     </resultMap>
 
     <select id="mainView" resultMap="mainViewMap">
-        SELECT
 
-        RECIPE_NUM,
-        RECIPE_TITLE,
-        RECIPE_VIEWS,
-        MAIN_PHOTO,
-        PHOTO_PATH
-        FROM (SELECT
-        RECIPE_NUM,
-        RECIPE_TITLE,
-        RECIPE_VIEWS,
-        MAIN_PHOTO,
-        PHOTO_PATH
-        FROM RECIPE
-        ORDER BY RECIPE_VIEWS DESC)
-        WHERE ROWNUM <![CDATA[ < 5 ]]>
+        SELECT
+            RECIPE_NUM,
+            RECIPE_TITLE,
+            RECIPE_VIEWS,
+            MAIN_PHOTO,
+            PHOTO_PATH
+        FROM recipe
+        ORDER BY RECIPE_VIEWS  DESC
+        OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
 
 
     </select>
 
 
+<<<<<<< HEAD
     <select id="searchRecipe" parameterType="String" resultMap="mainViewMap">
         SELECT
             RECIPE_NUM,
@@ -43,5 +38,12 @@
         FROM RECIPE
         WHERE RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'    ]]>
         AND ROWNUM <![CDATA[ < 12]]>
+=======
+    <select id="allcnt">
+    SELECT
+        count(*)
+        FROM RECIPE
+    WHERE RECIPE_STATUS ='Y'
+>>>>>>> f50c9103cdddebbd6df0a81796ce072c28286e67
     </select>
 </mapper>
