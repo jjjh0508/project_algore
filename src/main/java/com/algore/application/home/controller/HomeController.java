@@ -6,12 +6,13 @@ import com.algore.application.home.service.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Controller
+@RestController
 public class HomeController {
     private final HomeService homeService;
 
@@ -27,20 +28,6 @@ public class HomeController {
         return mv;
     }
 
-    @GetMapping("/*/search")
-    public ModelAndView searchRecipe(ModelAndView mv, String recipeName, HttpServletRequest request) {
-        System.out.println(request.getParameter("recipeName"));
-        List<MainViewDTO> mainViewDTOList = homeService.searchRecipe(request.getParameter("recipeName"));
-
-        for (MainViewDTO asd: mainViewDTOList) {
-            System.out.println(asd);
-        }
-        mv.addObject("mainHomeList",mainViewDTOList);
-
-
-        mv.setViewName("/home");
-        return mv;
-    }
 
 
 }

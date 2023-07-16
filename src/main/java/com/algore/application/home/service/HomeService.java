@@ -22,8 +22,5 @@ public class HomeService {
     }
 
 
-    public List<MainViewDTO> searchRecipe(String recipeName) {
-        List<MainViewDTO> mainViewDTOList = mapper.searchRecipe(recipeName);
-        return mainViewDTOList;
-    }
+
 }
