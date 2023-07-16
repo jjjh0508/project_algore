@@ -32,6 +32,7 @@ public class QnAController {
 
         return mv;
     }
+
     @GetMapping("/read")
     public ModelAndView read(ModelAndView mv) {
         List<QuestionDTO> lists = detail.detaileRead();

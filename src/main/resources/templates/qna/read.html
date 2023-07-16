@@ -103,13 +103,13 @@
                     <!--제목-->
                     <div class="col-1-sm-3 p-2"
                          style="width: 10%; border-radius: 2em; font-size: 20px; background: #D6F2FF;">
-                        <label style="color: #085A84; height: 50px; padding-top: 10px; font-size: 18px;"><div th:text="${detailList}"></div></label>
+                        <label style="color: #085A84; height: 50px; padding-top: 10px; font-size: 18px;">닉네임</label>
                     </div>
                     <!--제목 입력-->
                     <div class="col" style="width: 90%; text-align: left;">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">
-                        dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: auto; padding: 12px 20px 10px 20px;">
+                            <span th:text="${detailList[0].nickname}"></span>
+                        </p>
                     </div>
                 </div>
 
@@ -123,8 +123,9 @@
                     </div>
                     <!--제목 입력-->
                     <div class="col" style="width: 90%; text-align: left;">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">
+                            <span th:text="${detailList[0].qTitle}"></span>
+                        </p>
                     </div>
                 </div>
                 <!--내용 영역-->
@@ -136,8 +137,9 @@
                     </div>
                     <!--내용 입력-->
                     <div class="col" style="width: 90%; text-align: left;" id="#">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 200px; padding: 15px 20px 10px 20px;">dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: 200px; padding: 15px 20px 10px 20px;">
+                           <span th:text="${detailList[0].qContent}"></span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -166,7 +168,7 @@
     <script>
         //이전 버튼 클릭 시 main 화면으로 이동
         function home() {
-            window.location.assign("http://localhost:8081/Q&Aquestion/q&aMain");
+            window.location.assign("http://localhost:8081/qna/main");
         }
     </script>
     </body>

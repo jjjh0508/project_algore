@@ -24,7 +24,7 @@ public class QuestionService {
 
     //상세화면 서비스
     public List<QuestionDTO> detaileRead(){
-        List<QuestionDTO> allDetail = detailMapper.detailAll();
+        List<QuestionDTO> allDetail = detailMapper.detaileRead();
 
         return allDetail;
     }

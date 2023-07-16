@@ -28,7 +28,7 @@
                  JOIN MEMBER M on (Q.MEM_NUM = M.MEM_NUM)
     </select>
     
-    <select id="detaileRead" resultMap="detailMap">
+    <select id="detaileRead" resultMap="questionMap">
     SELECT
         M.NICKNAME ,
         U.QUE_TITLE,
