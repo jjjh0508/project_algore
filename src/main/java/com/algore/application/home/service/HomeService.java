@@ -15,8 +15,14 @@ public class HomeService {
         this.mapper = mapper;
     }
 
-    public List<MainViewDTO> mainView() {
-        List<MainViewDTO> mainViewDTOList = mapper.mainView();
+    public List<MainViewDTO> mainView(int startIndex, int pageSiz , int page) {
+        List<MainViewDTO> mainViewDTOList = mapper.mainView(startIndex, pageSiz ,page);
         return mainViewDTOList;
     }
+
+    public int allcnt() {
+        int totaListCnt = mapper.allcnt();
+        return totaListCnt;
+    }
+
 }

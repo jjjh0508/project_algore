@@ -12,23 +12,25 @@
     </resultMap>
 
     <select id="mainView" resultMap="mainViewMap">
+
         SELECT
+            RECIPE_NUM,
+            RECIPE_TITLE,
+            RECIPE_VIEWS,
+            MAIN_PHOTO,
+            PHOTO_PATH
+        FROM recipe
+        ORDER BY RECIPE_VIEWS  DESC
+        OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
 
-        RECIPE_NUM,
-        RECIPE_TITLE,
-        RECIPE_VIEWS,
-        MAIN_PHOTO,
-        PHOTO_PATH
-        FROM (SELECT
-        RECIPE_NUM,
-        RECIPE_TITLE,
-        RECIPE_VIEWS,
-        MAIN_PHOTO,
-        PHOTO_PATH
+
+    </select>
+
+
+    <select id="allcnt">
+    SELECT
+        count(*)
         FROM RECIPE
-        ORDER BY RECIPE_VIEWS DESC)
-        WHERE ROWNUM <![CDATA[ < 5 ]]>
-
-
+    WHERE RECIPE_STATUS ='Y'
     </select>
 </mapper>

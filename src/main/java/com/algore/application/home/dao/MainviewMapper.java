@@ -7,5 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface MainviewMapper {
-    List<MainViewDTO> mainView();
+    List<MainViewDTO> mainView(int startIndex , int pageSiz, int page);
+
+    int allcnt();
 }
