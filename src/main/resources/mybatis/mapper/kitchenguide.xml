@@ -24,6 +24,13 @@
         WHERE T.TRIM_NUM = #{trimNum}
         AND TRIM_STATUS = 'Y'
     </select>
+    <!--메인화면-->
+    <select id="mainPost" resultMap="trimPost">
+        SELECT
+        T.TRIM_TITLE
+        FROM TRIM T
+        WHERE TRIM_STATUS = 'Y'
+    </select>
 
     <!--TrimProcedureDTO (read)-->
     <resultMap id="trimprocedurePost" type="com.algore.application.kitchenguide.dto.TrimProcedureDTO">

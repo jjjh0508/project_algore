@@ -44,4 +44,9 @@ public class KitchenguideService {
         int result = mapper.viewCount(trimNum);
         return trimNum;
     }
+
+    public List<TrimDTO> mainPost() { //메인화면
+        List<TrimDTO> dtomainList = mapper.mainPost();
+        return dtomainList;
+    }
 }

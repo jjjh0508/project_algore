@@ -28,14 +28,21 @@ public class KitchenguideController {
     }
 
     @GetMapping("/mainview")
-    public String mainview() {
-        return "/kitchenguide/mainview";
+    public ModelAndView mainview(ModelAndView mv, HttpServletRequest request/*요청*/, HttpServletResponse response) {
+
+        List<TrimDTO> dtomainList = kitchenguideService.mainPost();
+
+        mv.addObject("dtomainList", dtomainList); //메인사진, 제목 가져오기
+
+        mv.setViewName("/kitchenguide/mainview");
+        return mv;
     }
 
 
     @GetMapping("/trimread/{trimNum}") //사용자가 get 방식으로 /kitchenguide/trimread를 요청할 경우 실행, {동적으로 바뀔 수 있는 값}
     public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/, HttpServletRequest request/*요청*/, HttpServletResponse response/*응답*/) {
 
+        /* 조회수 */
         viewCount(request, response, trimNum);
 
         /* Service 로직에서 불러오기 */
