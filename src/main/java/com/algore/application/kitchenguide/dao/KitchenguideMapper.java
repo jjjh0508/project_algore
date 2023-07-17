@@ -9,5 +9,7 @@ import java.util.List;
 @Mapper //데이터베이스 쿼리 짜주는 역할
 public interface KitchenguideMapper {
 
-    List<TrimDTO> readPost();
+    TrimDTO readTrim/*mapper.xml id랑 매핑*/(int trimNum); //손질법 제목, 내용, 동영상URL
+    List<TrimProcedureDTO>/*mapper.xml id랑 매핑*/ readPost(int trimNum); //손질 순서
+
 }
