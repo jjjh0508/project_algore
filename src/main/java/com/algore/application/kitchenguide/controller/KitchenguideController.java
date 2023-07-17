@@ -50,10 +50,10 @@ public class KitchenguideController {
         return "kitchenguide/trimwrite";
     }
 
+    // 경로 수정해주기 redirect:
     @PostMapping("/trimwrite")
     public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, HttpServletRequest req){
 
-        System.out.println(trimDTO);
         String backUrl = req.getHeader("Referer");
 
         int result = kitchenguideService.insertPost(trimDTO);
@@ -62,10 +62,10 @@ public class KitchenguideController {
 
         if (result > 0) {
             mv.addObject("message", "등록이 완료되었습니다.");
-            mv.setViewName("redirect:/kitchenguide/trimread");
+            mv.setViewName("redirect:");
         }else {
             mv.addObject("message", "등록에 실패하였습니다.");
-            mv.setViewName("redirect:"); // 수정하기
+            mv.setViewName("redirect:");
         }
         return mv;
     }

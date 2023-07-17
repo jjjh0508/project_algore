@@ -39,24 +39,18 @@
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
 
-
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
-        INTO TRIM T
+        INTO TRIM
         (
-        #{trimNum} AS T.TRIM_NUM,
-        #{trimTitle} AS T.TRIM_TITLE,
-        #{trimDetail} AS T.TRIM_DETAIL,
-        #{trimVideoLink} AS T.TRIM_VIDEO_LINK
-        )(
-        SELECT
-            TP.TP_STEP_NUM,
-            T.TRIM_NUM,
-            TP.TP_FILE_NAME,
-            TP.TP_DETAIL,
-            TP.TP_PATH
-        FROM TRIM T
-        JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
-        );
+        TRIM_NUM, TRIM_TITLE, TRIM_DETAIL, TRIM_VIEWS, TRIM_VIDEO_LINK
+        ) VALUES(
+        SEQ_TRIM_NUM.NEXTVAL,
+        #{trimTitle},
+        #{trimDetail},
+        0,
+        #{trimVideoLink}
+        )
     </insert>
+
 </mapper>
