@@ -74,7 +74,7 @@
                     <i class="bi bi-three-dots-vertical" style="font-size: 18px"></i>
                     <label style="font-size: 17px; margin-left: 10px;"><b>손질 제목</b></label>
                 </div>
-                <input type="text" name="trimTitle" class="pla-col form-control input-box-sty" id="formGroupExampleInput"
+                <input name="trimTitle" type="text" class="pla-col form-control input-box-sty" id="formGroupExampleInput"
                        placeholder="제목을 입력해 주세요."/>
             </div>
             <!--손질 내용-->
@@ -113,14 +113,14 @@
                         <label class="input-file-button float-start">
                             <img class="detailImg" width="400px" height="270px"
                                  style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;">
-                            <input type="file" name="recipePicture" class="isFile" style="display: none"
+                            <input type="file" name="tpFileName" class="isFile" style="display: none"
                                    accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
                         </label>
                     </div>
                     <!--요리순서 설명-->
                     <div class="form-floating" style="margin-top: 10px; margin-left: 35px; ">
                         <textarea class="form-control input-box-sty" placeholder="" id="floatingTextarea"
-                                  name="recipeDescription"
+                                  name="tpDetail"
                                   style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
                         <label for="floatingTextarea" class="mt-3 pla-col mb-3"
                                style="font-size: 17px; margin-left: 10px;">설명을

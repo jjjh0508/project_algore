@@ -64,4 +64,17 @@
         )
     </insert>
 
+    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
+        INSERT
+        INTO TRIM_PROCEDURE
+        (
+        TP_STEP_NUM, TRIM_NUM, TP_FILE_NAME, TP_DETAIL, TP_PATH
+        ) VALUES (
+        SEQ_TP_STEP_NUM.NEXTVAL,
+        #{trimNum},
+        #{tpFileName},
+        #{tpDetail},
+        #{tpPath}
+        );
+    </insert>
 </mapper>
