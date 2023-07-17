@@ -46,7 +46,7 @@ public class KitchenguideController {
 
     @GetMapping("/trimwrite")
     public String trimwrite() {
-        return "/kitchenguide/trimwrite";
+        return "kitchenguide/trimwrite";
     }
 
     @PostMapping("/trimwrite")
