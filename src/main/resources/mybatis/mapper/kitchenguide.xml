@@ -39,6 +39,13 @@
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
 
+    <!--조회수-->
+    <update id="viewCount">
+        UPDATE TRIM
+        SET TRIM_VIEWS = TRIM_VIEWS+1
+        WHERE TRIM_NUM = #{trimNum}
+    </update>
+    
 
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
