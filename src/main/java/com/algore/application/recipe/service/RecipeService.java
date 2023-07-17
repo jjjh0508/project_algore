@@ -33,13 +33,23 @@ public class RecipeService {
         return recipePhotoDTOList;
     }
 
-    public List<CommentReadDTO> commentRead(int recipeNum, String name) {
-        List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum,name);
+    public List<CommentReadDTO> commentRead(int recipeNum) {
+        List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum);
         return commentReadDTOList;
     }
 
     public int viewCount(int recipeNum) {
         int result = mapper.viewCount(recipeNum);
+        return result;
+    }
+
+    public String modifyName(int recipeNum) {
+        String name = mapper.modifyName(recipeNum);
+        return name;
+    }
+
+    public int recipeDelete(int recipe) {
+        int result = mapper.recipeDelete(recipe);
         return result;
     }
 }

@@ -1,0 +1,11 @@
+header a {
+    text-decoration: none
+}
+
+.sear-btn {
+    font-family: Inter;
+    font-size: 20px;
+    letter-spacing: 0;
+    font-weight: bold;
+    color: #208BCE;
+}
