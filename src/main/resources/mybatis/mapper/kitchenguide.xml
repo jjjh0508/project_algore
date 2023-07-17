@@ -17,7 +17,8 @@
         SELECT
         T.TRIM_TITLE,
         T.TRIM_DETAIL,
-        T.TRIM_VIDEO_LINK
+        T.TRIM_VIDEO_LINK,
+        TRIM_VIEWS
         FROM TRIM T
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
