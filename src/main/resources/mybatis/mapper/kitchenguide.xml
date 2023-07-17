@@ -30,6 +30,7 @@
         <result property="tpDetail" column="TP_DETAIL"/>
         <result property="tpPath" column="TP_PATH"/>
     </resultMap>
+
     <select id="readPost" resultMap="trimprocedurePost">
         SELECT
         TP.TP_DETAIL,
@@ -39,23 +40,16 @@
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
 
+
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
         INTO TRIM T
         (
-<<<<<<< HEAD
         #{trimNum} AS T.TRIM_NUM,
         #{trimTitle} AS T.TRIM_TITLE,
         #{trimDetail} AS T.TRIM_DETAIL,
         #{trimViews} AS T.TRIM_VIEWS,
         #{trimVideoLink} AS T.TRIM_VIDEO_LINK
-=======
-            #{T.TRIM_NUM},
-            #{T.TRIM_TITLE},
-            #{T.TRIM_DETAIL},
-            #{T.TRIM_VIEWS},
-            #{T.TRIM_VIDEO_LINK}
->>>>>>> 137a59c264f3f2c5a1006822e675157e8d692a1f
         )(
         SELECT
             TP.TP_STEP_NUM,
@@ -67,11 +61,27 @@
         JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
         );
     </insert>
-<<<<<<< HEAD
-=======
-    <insert id="insertPost" parameterMap="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
 
-    </insert>
-
->>>>>>> 137a59c264f3f2c5a1006822e675157e8d692a1f
+<!--    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >-->
+<!--        INSERT-->
+<!--        INTO TRIM T-->
+<!--        (-->
+<!--            #{T.TRIM_NUM},-->
+<!--            #{T.TRIM_TITLE},-->
+<!--            #{T.TRIM_DETAIL},-->
+<!--            #{T.TRIM_VIEWS},-->
+<!--            #{T.TRIM_VIDEO_LINK}-->
+<!--        )(-->
+<!--        SELECT-->
+<!--            TP.TP_STEP_NUM,-->
+<!--            T.TRIM_NUM,-->
+<!--            TP.TP_FILE_NAME,-->
+<!--            TP.TP_DETAIL,-->
+<!--            TP.TP_PATH-->
+<!--        FROM TRIM T-->
+<!--        JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)-->
+<!--        );-->
+<!--    </insert>-->
+<!--    <insert id="insertPost" parameterMap="com.algore.application.kitchenguide.dto.TrimProcedureDTO">-->
+<!--    </insert>-->
 </mapper>

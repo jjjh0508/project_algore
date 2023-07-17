@@ -22,7 +22,6 @@ public class KitchenguideController {
 
 
     private final KitchenguideService kitchenguideService;
-    public KitchenguideController(KitchenguideService kitchenguideService) {
     public KitchenguideController(KitchenguideService kitchenguideService) { /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
         this.kitchenguideService = kitchenguideService;
     }
@@ -37,7 +36,7 @@ public class KitchenguideController {
     public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum,
                                  Authentication authentication, HttpServletRequest request,
                                  HttpServletRequest response) {
-        List<TrimDTO> procedure = kitchenguideService.readPost();
+        List<TrimDTO> procedure = kitchenguideService.readPost(trimNum);
 
         mv.setViewName("kitchenguide/trimread"); //응답할 뷰의 경로 설정
         mv.addObject("변수이름", "데이터 값"); //데이터 전송("변수이름", "데이터 값");
