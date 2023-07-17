@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -21,8 +22,8 @@ public class KitchenguideController {
 
 
     private final KitchenguideService kitchenguideService;
-    /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
     public KitchenguideController(KitchenguideService kitchenguideService) {
+    public KitchenguideController(KitchenguideService kitchenguideService) { /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
         this.kitchenguideService = kitchenguideService;
     }
 

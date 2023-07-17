@@ -5,53 +5,73 @@
 
 <!-- 매퍼 연결 -->
 <mapper namespace="com.algore.application.kitchenguide.dao.KitchenguideMapper">
+    <!--TrimDTO (read)-->
     <resultMap id="trimPost" type="com.algore.application.kitchenguide.dto.TrimDTO">
-        <!--TrimDTO-->
         <id property="trimNum" column="TRIM_NUM"/>
         <result property="trimTitle" column="TRIM_TITLE"/>
         <result property="trimDetail" column="TRIM_DETAIL"/>
         <result property="trimViews" column="TRIM_VIEWS"/>
         <result property="trimVideoLink" column="TRIM_VIDEO_LINK"/>
-        <!--TrimProcedureDTO-->
-        <result property="tpStepNum" column="TP_STEP_NUM"/>
+    </resultMap>
+    <select id="readTrim" resultMap="trimPost">
+        SELECT
+        T.TRIM_TITLE,
+        T.TRIM_DETAIL,
+        T.TRIM_VIDEO_LINK
+        FROM TRIM T
+        WHERE T.TRIM_NUM = #{trimNum}
+    </select>
+
+    <!--TrimProcedureDTO (read)-->
+    <resultMap id="trimprocedurePost" type="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
+        <id property="tpStepNum" column="TP_STEP_NUM"/>
+        <result property="trimNum" column="TRIM_NUM"/>
         <result property="tpFileName" column="TP_FILE_NAME"/>
         <result property="tpDetail" column="TP_DETAIL"/>
         <result property="tpPath" column="TP_PATH"/>
     </resultMap>
-    <select id="readPost" resultMap="trimPost">
+    <select id="readPost" resultMap="trimprocedurePost">
         SELECT
-               T.TRIM_NUM,
-               T.TRIM_TITLE,
-               T.TRIM_DETAIL,
-               T.TRIM_VIEWS,
-               T.TRIM_VIDEO_LINK,
-               TP.TP_STEP_NUM,
-               TP.TP_FILE_NAME,
-               TP.TP_DETAIL,
-               TP.TP_PATH
-          FROM TRIM T
-          JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
-         WHERE T.TRIM_NUM = #{trimNum}
+        TP.TP_DETAIL,
+        TP.TP_PATH
+        FROM TRIM T
+        JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
+        WHERE T.TRIM_NUM = #{trimNum}
     </select>
 
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
         INTO TRIM T
         (
+<<<<<<< HEAD
         #{trimNum} AS T.TRIM_NUM,
         #{trimTitle} AS T.TRIM_TITLE,
         #{trimDetail} AS T.TRIM_DETAIL,
         #{trimViews} AS T.TRIM_VIEWS,
         #{trimVideoLink} AS T.TRIM_VIDEO_LINK
+=======
+            #{T.TRIM_NUM},
+            #{T.TRIM_TITLE},
+            #{T.TRIM_DETAIL},
+            #{T.TRIM_VIEWS},
+            #{T.TRIM_VIDEO_LINK}
+>>>>>>> 137a59c264f3f2c5a1006822e675157e8d692a1f
         )(
         SELECT
-        TP.TP_STEP_NUM,
-        T.TRIM_NUM,
-        TP.TP_FILE_NAME,
-        TP.TP_DETAIL,
-        TP.TP_PATH
+            TP.TP_STEP_NUM,
+            T.TRIM_NUM,
+            TP.TP_FILE_NAME,
+            TP.TP_DETAIL,
+            TP.TP_PATH
         FROM TRIM T
         JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
         );
     </insert>
+<<<<<<< HEAD
+=======
+    <insert id="insertPost" parameterMap="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
+
+    </insert>
+
+>>>>>>> 137a59c264f3f2c5a1006822e675157e8d692a1f
 </mapper>

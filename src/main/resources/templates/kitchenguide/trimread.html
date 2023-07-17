@@ -62,6 +62,36 @@
                 color: #085A8485;
                 font-size: 15px;
             }
+
+            /*미디어*/
+            @media (max-width: 500px) {
+
+                iframe {
+                    height: auto;
+                }
+
+                #other-recipe-area {
+                    display: none;
+                }
+
+                #article1 {
+
+                    border-right-width: 0px;
+
+                }
+
+                #step-img-area {
+                    padding: 0px;
+                }
+
+
+                #list-icon {
+                    position: fixed;
+                    top: 15%;
+                    left: 6%;
+                    z-index: 99;
+                }
+            }
         </style>
     </head>
     <body>
@@ -70,8 +100,9 @@
          style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 70px;">
         <!--레시피 제목-->
         <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
+            <!--DTO-trimNum 손질번호 불러오기-->
             <div class="title" style="margin-bottom: 15px;">
-                <h2><b>레시피 제목 나오는 칸</b></h2>
+                <h2><b class="fon-color" th:text="${trimDTO.trimTitle}"></b></h2>
             </div>
             <div style="text-align: right; margin-right: 30px;">조회수</div>
         </div>
@@ -81,17 +112,19 @@
             <div style="margin-top: 30px;">
                 <!-- 비디오 주소를 입력했을때만-->
                 <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
-                <iframe width="980px" height="500" src="https://www.youtube.com/embed/O-D7g3ajzRM"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                </iframe>
-                </c:if>
+                <th:block th:if="${trimDTO.trimVideoLink != null}">
+                    <iframe width="980px" height="500" th:src="${trimDTO.trimVideoLink}"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </th:block>
             </div>
         </div>
         <!-- 손질 방법 소개 내용 출력-->
         <div class="form-floating">
-            <textarea class="form-control input-box-sty border-none" id="floatingTextarea2"
+            <textarea th:text="${trimDTO.trimDetail}" class="form-control input-box-sty border-none"
+                      id="floatingTextaread2"
                       style="height: 200px; resize: none" readonly></textarea>
         </div>
 
@@ -102,18 +135,22 @@
             <label style="font-size: 17px;"><b>손질 순서</b></label>
         </div>
         <!--손질 순서 영역1-->
-        <div class="d-flex justify-content-center" id="main-one-area" style="margin-top: 10px;">
-            <!--손질 순서 사진-->
-            <div>
-                <img src="images/떡볶이1.png" class="img-thumbnail input-box-sty"
-                     style="height: 200px; width: 370px; margin-right: 30px;">
-            </div>
-            <!--손질 순서 내용-->
-            <div class="form-floating">
-                        <textarea class="form-control input-box-sty border-none" id="floatingTextarea2"
+        <!--블럭 리스트 형태로 값 가져오기-->
+        <th:block th:each="List:${procedureList}">
+            <div class="d-flex justify-content-center" id="main-one-area" style="margin-top: 10px;">
+                <!--손질 순서 사진-->
+                <div>
+                    <img th:src="${List.tpPath}" class="img-thumbnail input-box-sty"
+                         style="height: 200px; width: 370px; margin-right: 30px;">
+                </div>
+                <!--손질 순서 내용-->
+                <div class="form-floating">
+                        <textarea th:text="${List.tpDetail}" class="form-control input-box-sty border-none"
+                                  id="floatingTextarea2"
                                   style="height:200px; width: 580px; resize: none" readonly></textarea>
+                </div>
             </div>
-        </div>
+        </th:block>
 
         <!--수정(관리자권한)-->
         <div class="d-flex justify-content-end new-margin" style="margin-top: 30px;">

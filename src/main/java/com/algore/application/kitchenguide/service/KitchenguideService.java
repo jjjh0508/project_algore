@@ -10,16 +10,21 @@ import java.util.List;
 @Service //어노테이션을 붙이지 않을 경우 bean으로 등록해주지 않음
 public class KitchenguideService {
 
-    private final KitchenguideMapper kitchenguideMapper;
-    /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
+    private final KitchenguideMapper mapper;
+    public KitchenguideService(KitchenguideMapper mapper) {
+        /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
+        this.mapper = mapper;
+    }
 
-    public KitchenguideService(KitchenguideMapper kitchenguideMapper) {
-        this.kitchenguideMapper = kitchenguideMapper;
+    public TrimDTO readTrim(int trimNum/*게시글번호*/) {
+        /* mapper 연결하여 dto 값 받아오기 */
+        TrimDTO trimDTO = mapper.readTrim(trimNum); //매퍼호출
+        return trimDTO;
     }
 
     /**/
-    public List<TrimDTO> readPost() {
-        List<TrimDTO> procedure = kitchenguideMapper.readPost();
+    public List<TrimProcedureDTO> readPost(int trimNum) {
+        List<TrimProcedureDTO> procedure = mapper.readPost(trimNum);
         return procedure;
     }
 
@@ -28,7 +33,7 @@ public class KitchenguideService {
         int result = 0;
 
         try {
-            result = kitchenguideMapper.insertPost(trimDTO);
+            result = mapper.insertPost(trimDTO);
         } catch (Exception e){
             e.printStackTrace();
         }
