@@ -29,17 +29,14 @@ public class KitchenguideService {
     }
 
 
-<<<<<<< HEAD
-=======
     public int insertPost(TrimDTO trimDTO) {
         int result = 0;
 
         try {
-            result = kitchenguideMapper.insertPost(trimDTO);
+            result = mapper.insertPost(trimDTO);
         } catch (Exception e){
             e.printStackTrace();
         }
         return result;
     }
->>>>>>> e4475e2649dbfcbfa0c307cc7ece4e5cbdd7192b
 }
