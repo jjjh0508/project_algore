@@ -58,7 +58,7 @@ public class KitchenguideController {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("recipeView")) {
+                if (cookie.getName().equals("view")) {
                     oldCookie = cookie;
                 }
             }
@@ -74,7 +74,7 @@ public class KitchenguideController {
             }
         } else {
             kitchenguideService.viewCount(trimNum);
-            Cookie newCookie = new Cookie("recipeView", "[" + trimNum + "]");
+            Cookie newCookie = new Cookie("view", "[" + trimNum + "]");
             newCookie.setPath("/");
             newCookie.setMaxAge(60 * 60 * 24);
             response.addCookie(newCookie);

@@ -17,7 +17,8 @@
         SELECT
         T.TRIM_TITLE,
         T.TRIM_DETAIL,
-        T.TRIM_VIDEO_LINK
+        T.TRIM_VIDEO_LINK,
+        T.TRIM_VIEWS
         FROM TRIM T
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
@@ -38,6 +39,14 @@
         JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
+
+    <!--조회수-->
+    <update id="viewCount">
+        UPDATE TRIM
+        SET TRIM_VIEWS = TRIM_VIEWS+1
+        WHERE TRIM_NUM = #{trimNum}
+    </update>
+
 
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
