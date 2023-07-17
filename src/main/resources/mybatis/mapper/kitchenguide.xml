@@ -30,7 +30,6 @@
         <result property="tpDetail" column="TP_DETAIL"/>
         <result property="tpPath" column="TP_PATH"/>
     </resultMap>
-
     <select id="readPost" resultMap="trimprocedurePost">
         SELECT
         TP.TP_DETAIL,

@@ -33,14 +33,15 @@ public class KitchenguideController {
 
 
     @GetMapping("/trimread/{trimNum}")
-    public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum,
-                                 Authentication authentication, HttpServletRequest request,
-                                 HttpServletRequest response) {
-        List<TrimDTO> procedure = kitchenguideService.readPost(trimNum);
+    public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum, HttpServletRequest request, HttpServletResponse response) {
+
+        TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
+        List<TrimProcedureDTO> procedureList = kitchenguideService.readPost(trimNum);
+
+        mv.addObject("trimDTO", trimDTO); //데이터 전송("변수이름", "데이터 값");
+        mv.addObject("procedureList", procedureList); //데이터 전송("변수이름", "데이터 값");
 
         mv.setViewName("kitchenguide/trimread"); //응답할 뷰의 경로 설정
-        mv.addObject("변수이름", "데이터 값"); //데이터 전송("변수이름", "데이터 값");
-
         return mv; //ModelAndView 객체 반환
     }
 
