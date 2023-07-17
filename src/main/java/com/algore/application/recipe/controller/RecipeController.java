@@ -33,7 +33,6 @@ public class RecipeController {
         List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipe);
         List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
         List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
-        System.out.println(recipePhotoDTOList);
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipPhoto", recipePhotoDTOList);
         mv.addObject("recipevlew", recipeviewDTO);

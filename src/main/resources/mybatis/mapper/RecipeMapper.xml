@@ -92,7 +92,8 @@
         <result property="creatDate" column="C_DATE"/>
         <result property="profileName" column="FILE_NAME"/>
         <result property="profilePath" column="FILE_PATH"/>
-    </resultMap>
+     </resultMap>
+
     <select id="commentRead" resultMap="commentReadMap">
         SELECT
                M.NICKNAME,

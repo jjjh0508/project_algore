@@ -131,7 +131,7 @@
         <form action="/recipe/regist.do" method="post" enctype="multipart/form-data">
           <!--대표사진등록-->
           <label  class="form-label fon-color"
-                 style="margin-top: 30px; margin-left: 10px;">
+                  style="margin-top: 30px; margin-left: 10px;">
             <h6><b>대표사진</b></h6>
           </label>
           <div class="align-items-center">
@@ -153,15 +153,15 @@
             <select class="form-select fon-color input-box-sty pla-col" id="" name="recipeCategory" required
                     style="width: 400px; border-radius: 1em;">
               <option selected disabled value="">음식 카테고리</option>
-              <option value="vegetarian">채식</option>
-              <option value="korean">한식</option>
-              <option value="Western">양식</option>
-              <option value="Western">일식</option>
-              <option value="Western">중식</option>
-              <option value="Western">퓨전</option>
-              <option value="flour">분식</option>
-              <option value="snack">안주</option>
-              <option value="dessert">간식</option>
+              <option value="채식" th:if="${recipevlew.category=='채식'}" selected>채식</option>
+              <option value="한식" th:if="${recipevlew.category=='한식'}" selected>한식</option>
+              <option value="양식" th:if="${recipevlew.category=='양식'}" selected>양식</option>
+              <option value="일식" th:if="${recipevlew.category=='일식'}" selected>일식</option>
+              <option value="중식" th:if="${recipevlew.category=='중식'}" selected>중식</option>
+              <option value="퓨전" th:if="${recipevlew.category=='퓨전'}" selected>퓨전</option>
+              <option value="분식" th:if="${recipevlew.category=='분식'}" selected>분식</option>
+              <option value="안식" th:if="${recipevlew.category=='안주'}" selected>안주</option>
+              <option value="간식" th:if="${recipevlew.category=='간식'}" selected>간식</option>
             </select>
             <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>
             <br>
@@ -174,8 +174,8 @@
           <div class="mb-3 pla-col" style="margin-top: 30px;">
             <label for="exampleFormControlInput1" class="form-label fon-color" style="margin-left: 10px;"><b>레시피
               제목</b></label>
-            <input type="email" class="form-control pla-col input-box-sty" id="exampleFormControlInput1"
-                   style="border-radius: 1em;" placeholder="레시피 제목을 입력하세요.">
+            <input  th:value="${recipevlew.recipeTitle}" type="recipeTitle" class="form-control pla-col input-box-sty" id="exampleFormControlInput1"
+                    style="border-radius: 1em;" placeholder="레시피 제목을 입력하세요." >
           </div>
         </div>
         <!--레시피 소개-->
@@ -184,15 +184,15 @@
             <h6 style="color: #085A84; margin-left: 10px;"><b>레시피 소개</b></h6>
           </label>
           <textarea class="form-control pla-col input-box-sty ma-2-pla" placeholder="레시피 소개를 입력하세요."
-                    id="floatingTextarea2" name="recipeDescription"
-                    style="height: 310px; resize: none; border-radius: 1.5em;" maxlength="100"></textarea>
+                    id="floatingTextarea" name="recipeDescription"
+                    style="height: 310px; resize: none; border-radius: 1.5em;" maxlength="100" th:text="${recipevlew.recipeTitle}"></textarea>
         </div>
       </div>
     </div>
     <!--동영상-->
     <div class="exampleFormControlInput1 fon-colorss fon-color" style="margin-top: 15px;">
       <h6 style="margin-left: 10px;"><b>동영상 링크 첨부</b></h6>
-      <input type="text" class="form-control input-box-sty pla-col" id="" name="recipeVideo" onblur="isYoutube()"
+      <input th:value="${recipevlew.youtube}" type="text" class="form-control input-box-sty pla-col" id="" name="recipeVideo" onblur="isYoutube()"
              placeholder="youtube.com" style="margin-top: 15px; border-radius: 1em;">
     </div>
     <!--재료라벨-->
@@ -332,35 +332,45 @@
 
     <!--요리순서-->
     <div>
-      <div Id="REdetail" class="REdetailC d-flex justify-content-center">
-        <!-- 이미지 미리보기 이미지 파일 -->
-        <div class="align-items-center" style="margin-top: 15px;">
-          <label class="input-file-button float-start">
-            <img class="detailImg" width="400px" height="270px"
-                 style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;">
-            <input type="file" name="recipePicture" class="isFile" style="display: none"
-                   accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-          </label>
-        </div>
-        <!--요리순서 설명-->
-        <div style="margin-top: 10px; margin-left: 35px; ">
-                <textarea class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea2"
-                          name="recipeDescription"
-                          style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
-        </div>
-        <!-- 설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
-        <input type="text" name="recipeDescription" value="ab22bb" style="display: none">
-        <!-- 삭제 -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
-             viewBox="0 0 16 16" type="button" onclick="removeDe()">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path
-                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-        </svg>
-      </div>
+      <th:block th:each="recipeOrder:${recipeOrderList}">
+        <div Id="REdetail" class="REdetailC d-flex justify-content-center">
+          <!-- 이미지 미리보기 이미지 파일 -->
 
+          <div class="align-items-center" style="margin-top: 15px;">
+            <label class="input-file-button float-start">
+              <img class="detailImg" width="400px" height="270px"
+                   style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;"th:src="${recipeOrder.path}+${recipeOrder.fileName}">
+              <input type="file" name="recipePicture" class="isFile" style="display: none"
+                     accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+            </label>
+          </div>
+          <!--요리순서 설명-->
+          <div style="margin-top: 10px; margin-left: 35px; ">
+                <textarea  class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
+                           name="recipeDescription"
+                           style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
+          </div>
+
+          <!-- 설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
+          <input type="text" name="recipeDescription" value="ab22bb" style="display: none">
+          <!-- 삭제 -->
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
+               viewBox="0 0 16 16" type="button" onclick="removeDe()">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path
+                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </div>
+      </th:block>
       <span id="addplace"></span>
     </div>
+
+
+
+
+
+
     <!--추가 버튼-->
     <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
       <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
@@ -377,7 +387,7 @@
         <div class="">
                 <textarea class="form-control input-box-sty" placeholder="요리 꿀팁을 작성하세요." id="floatingTextarea2"
                           name="recipeDescription"
-                          style="height: 420px; width: 400px; margin-top: 10px; resize: none; border-radius: 2em;"></textarea>
+                          style="height: 420px; width: 400px; margin-top: 10px; resize: none; border-radius: 2em;" th:text="${recipevlew.tip}"></textarea>
         </div>
       </div>
       <!-- 완성 사진 영역 -->
@@ -388,15 +398,33 @@
         </div>
         <div>
           <div class="d-flex justify-content-center">
+            <th:block th:if="${recipeOrderList[0].fileName==null}">
             <!--사진1-->
             <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
               <label class="input-file-button">
+
                 <img class="detailImg mx-auto" width="250px" height="200px"
-                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"/>
                 <input type="file" name="recipePicture" class="isFile" style="display: none"
                        accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
               </label>
             </div>
+            </th:block>
+
+            <th:block th:if="${recipeOrderList[0].fileName!=null}">
+              <!--사진1-->
+              <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
+                <label class="input-file-button">
+
+                  <img th:src="${recipeOrderList[0].path}+${recipeOrderList[0].fileName}" class="detailImg mx-auto" width="250px" height="200px"
+                       style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"/>
+                  <input type="file" name="recipePicture" class="isFile" style="display: none"
+                         accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+                </label>
+              </div>
+            </th:block>
+
+            <th:block th:if="${recipeOrderList[1].fileName==null}">
             <!--사진2-->
             <div class="col">
               <label class="input-file-button" style="margin-bottom: 10px;">
@@ -406,9 +434,29 @@
                        accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
               </label>
             </div>
+            </th:block>
+
+            <th:block th:if="${recipeOrderList[1].fileName!=null}">
+              <!--사진2-->
+              <div class="col">
+                <label class="input-file-button" style="margin-bottom: 10px;">
+                  <img th:src="${recipeOrderList[1].path}+${recipeOrderList[1].fileName}" class="detailImg mx-auto" width="250px" height="200px"
+                       style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; margin-right: 100p; border-radius: 30px;">
+                  <input type="file" name="recipePicture" class="isFile" style="display: none"
+                         accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+                </label>
+              </div>
+            </th:block>
+
+
+
+
+
           </div>
+
           <div class="d-flex justify-content-center">
             <!--사진3-->
+            <th:block th:if="${recipeOrderList[2].fileName==null}">
             <div class="col" style="margin-right: 20px;">
               <label class="input-file-button">
                 <img class="detailImg mx-auto" width="250px" height="200px"
@@ -417,7 +465,26 @@
                        accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
               </label>
             </div>
+
+            </th:block>
+
+
+            <th:block th:if="${recipeOrderList[2].fileName!=null}">
+              <div class="col" style="margin-right: 20px;">
+                <label class="input-file-button">
+                  <img th:src="${recipeOrderList[2].path}+${recipeOrderList[2].fileName}" class="detailImg mx-auto" width="250px" height="200px"
+                       style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                  <input type="file" name="recipePicture" class="isFile" style="display: none"
+                         accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+                </label>
+              </div>
+
+            </th:block>
+
+
+
             <!--사진4-->
+            <th:block th:if="${recipeOrderList[3].fileName==null}">
             <div class="col">
               <label class="input-file-button">
                 <img class="detailImg mx-auto" width="250px" height="200px"
@@ -426,8 +493,26 @@
                        accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
               </label>
             </div>
+            </th:block>
+
+            <th:block th:if="${recipeOrderList[3].fileName!=null}">
+              <div class="col">
+                <label class="input-file-button">
+                  <img th:src="${recipeOrderList[3].path}+${recipeOrderList[3].fileName}" class="detailImg mx-auto" width="250px" height="200px"
+                       style="background-color: #D8F0FF70; border-radius: 10px; margin-top: 10px; border-radius: 30px;">
+                  <input type="file" name="recipePicture" class="isFile" style="display: none"
+                         accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+                </label>
+              </div>
+            </th:block>
+
+
+
           </div>
+
         </div>
+
+
       </div>
     </div>
     <div class="" style="margin-right: 18px; margin-top: 10px;">
@@ -441,7 +526,7 @@
   </main>
   </div>
 
-  <script>
+  <script th:inline="javascript">
 
     var greenForm = document.querySelector('#REgreen');
     var addgreen = document.querySelector('#REgreenC');
@@ -451,9 +536,8 @@
       if (count <= 20) {
         addgreen.append(greenForm.cloneNode(true));
         document.querySelectorAll('.REgreenC')[document
-                .querySelectorAll('.REgreenC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
-        document.querySelectorAll('.REgreenC')[document
-                .querySelectorAll('.REgreenC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
+                .querySelectorAll('.REgreenC').length - 1].childNodes[3].value = "";
+        document.querySelectorAll('.REgreenC')[document.querySelectorAll('.REgreenC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
 
         count++;
       }
@@ -470,17 +554,18 @@
 
     var detailForm = document.querySelector('#REdetail');
     var addplace = document.querySelector('#addplace');
-    var count = 20;
+    var count = 10;
 
     function addDe() {
       if (count <= 20) {
-        addplace.appendChild(detailForm.cloneNode(true));
-        document.querySelectorAll('.REdetailC')[document
-                .querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
-        document.querySelectorAll('.REdetailC')[document
-                .querySelectorAll('.REdetailC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
-
         count++;
+        // 요리 순서 추가버튼
+        addplace.appendChild(detailForm.cloneNode(true));
+        document.querySelectorAll('.REdetailC')[document.querySelectorAll('.REdetailC').length -1].childNodes[1].childNodes[1].childNodes[2].value="";
+
+        document.querySelectorAll('.REdetailC')[document.querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].childNodes[3].src='';
+
+
       }
 
     }
