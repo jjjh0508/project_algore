@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+<!--전체가입 회원조회-->
+<th:block layout:fragment="content">
+  <table>
+    <tr th:each="user : ${userList}">
+      <td th:text="${user.MEM_NUM}">회원번호</td>
+      <td th:text="${user.NAME}">회원이름</td>
+      <td th:text="${user.ID}">회원아이디</td>
+      <td th:text="${user.NICKNAME}">회원닉네임</td>
+      <td th:text="${user.PASSWORD}">비밀번호</td>
+      <td th:text="${user.BIRTH}">생년월일</td>
+      <td th:text="${user.EMAIL}">email</td>
+    </tr>
+  </table>
+<!--    <button onclick="Location.href='/user/login'">로그인</button>-->
+</th:block>
+</html>

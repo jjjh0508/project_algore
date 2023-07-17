@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.algore.application.user.dao.UserMemberMapper">
+
+    <resultMap id="userMemberDTO" type="com.algore.application.user.dto.UserMemberDTO">
+        <id property="MEM_NUM" column="MEM_NUM"/>
+        <result property="NAME" column="NAME"/>
+        <result property="ID" column="ID"/>
+        <result property="NICKNAME" column="NICKNAME"/>
+        <result property="PASSWORD" column="PASSWORD"/>
+        <result property="BIRTH" column="BIRTH"/>
+        <result property="EMAIL" column="EMAIL"/>
+        <result property="ADMIN" column="ADMIN"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="userMemberDTO">
+        SELECT
+               MEM_NUM,
+               NAME,
+               ID,
+               NICKNAME,
+               PASSWORD,
+               BIRTH,
+               EMAIL,
+               ADMIN
+        FROM MEMBER
+    </select>
+
+
+    <insert id="registUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">
+        INSERT
+        INTO MEMBER()
+        VALUES
+            (
+                SEQ_MEM_NUM.NEXTVAL,
+                #{ memNum },
+                #{ name },
+                #{ id },
+                #{ nickName },
+                #{ passWord },
+                #{ birth },
+                #{ email },
+                #{ admin }
+                SYSDATE,
+                'N'
+            )
+    </insert>
+
+<!--    <update id="reqistUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">-->
+<!--        UPDATE MEMBER()-->
+<!--        SET-->
+<!--            MEM_NUM =''-->
+<!--            NAME=''-->
+<!--            ID=''-->
+<!--            NICKNAME=''-->
+<!--            PASSWORD=''-->
+<!--            BIRTH=''-->
+<!--            EMAIL=''-->
+<!--        WHERE MEMBER-->
+<!--    </update>-->
+
+
+</mapper>

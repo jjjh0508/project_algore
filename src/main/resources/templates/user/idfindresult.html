@@ -68,10 +68,10 @@
         }
     </style>
 </head>
+
 <body>
 <!--11_1_아이디찾기결과-->
-<main class="write01"
-      style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 250px;">
+<main class="write01" style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 250px;">
     <div class="text-center">
         <div class="form-signin mx-auto" style="width: 400px; text-align: center;">
             <form th:action="@{/common/login}" method="post">
@@ -82,9 +82,8 @@
                     <table>
                         <td>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control w-60" id="username" name="username"
-                                       placeholder="id"
-                                       style="resize: none;" readonly>
+                                <input type="text" class="form-control w-60" id="username1" name="username"
+                                       placeholder="id" style="resize: none;" readonly>
                             </div>
                         </td>
                         <td>
@@ -96,7 +95,7 @@
                     <table>
                         <!--ooo입니다-->
                         <td>
-                            <div th: class="form-floating mb-3">
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control " id="username" name="username" placeholder="id"
                                        style="resize: none;" readonly>
                             </div>
