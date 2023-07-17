@@ -12,6 +12,7 @@
         <result property="trimDetail" column="TRIM_DETAIL"/>
         <result property="trimViews" column="TRIM_VIEWS"/>
         <result property="trimVideoLink" column="TRIM_VIDEO_LINK"/>
+        <result property="trimStatus" column="TRIM_STATUS"/>
     </resultMap>
     <select id="readTrim" resultMap="trimPost">
         SELECT
@@ -21,6 +22,7 @@
         T.TRIM_VIEWS
         FROM TRIM T
         WHERE T.TRIM_NUM = #{trimNum}
+        AND TRIM_STATUS = 'Y'
     </select>
 
     <!--TrimProcedureDTO (read)-->
