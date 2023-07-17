@@ -592,8 +592,10 @@
     var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/i;
     var fileSize;
 
+
     function checkMainPic() {
-      if (imgFile[0].value == "") {
+      const MainPhoto= [[${recipevlew.mainFileName}]];
+      if (imgFile[0].value == "" && MainPhoto==null) {
         alert("대표 이미지를 넣어주세요.");
       }
     };
@@ -623,6 +625,17 @@
 
     };
 
+
+    var youUrl = /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
+    function isYoutube(){
+      var youtube = document.querySelector('[name="${recipevlew.youtube}"]');
+      if(!youUrl.test(youtube.value)){
+        alert("유튜브 주소는 embed이 포함된 고유주소로 입력해주세요")
+        youtube.value="";
+
+      }
+
+    }
   </script>
   </body>
 </th:block>
