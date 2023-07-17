@@ -39,5 +39,31 @@
         WHERE T.TRIM_NUM = #{trimNum}
     </select>
 
+<<<<<<< HEAD
 
+=======
+    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
+        INSERT
+        INTO TRIM T
+        (
+        #{T.TRIM_NUM},
+        #{T.TRIM_TITLE},
+        #{T.TRIM_DETAIL},
+        #{T.TRIM_VIEWS},
+        #{T.TRIM_VIDEO_LINK}
+        )(
+        SELECT
+        TP.TP_STEP_NUM,
+        T.TRIM_NUM,
+        TP.TP_FILE_NAME,
+        TP.TP_DETAIL,
+        TP.TP_PATH
+        FROM TRIM T
+        JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
+        );
+    </insert>
+    <insert id="insertPost" parameterMap="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
+
+    </insert>
+>>>>>>> e4475e2649dbfcbfa0c307cc7ece4e5cbdd7192b
 </mapper>
