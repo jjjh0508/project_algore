@@ -22,4 +22,16 @@ public class KitchenguideService {
         List<TrimDTO> procedure = kitchenguideMapper.readPost();
         return procedure;
     }
+
+
+    public int insertPost(TrimDTO trimDTO) {
+        int result = 0;
+
+        try {
+            result = kitchenguideMapper.insertPost(trimDTO);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface KitchenguideMapper {
 
     List<TrimDTO> readPost();
+
+    int insertPost(TrimDTO trimDTO);
 }
