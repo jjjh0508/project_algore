@@ -6,16 +6,18 @@ public class TrimDTO {
     private String trimDetail; //손질내용
     private int trimViews; //조회수
     private String trimVideoLink; //동영상링크
+    private String trimStatus; // 상태
 
     public TrimDTO() {
     }
 
-    public TrimDTO(int trimNum, String trimTitle, String trimDetail, int trimViews, String trimVideoLink) {
+    public TrimDTO(int trimNum, String trimTitle, String trimDetail, int trimViews, String trimVideoLink, String trimStatus) {
         this.trimNum = trimNum;
         this.trimTitle = trimTitle;
         this.trimDetail = trimDetail;
         this.trimViews = trimViews;
         this.trimVideoLink = trimVideoLink;
+        this.trimStatus = trimStatus;
     }
 
     public int getTrimNum() {
@@ -58,6 +60,14 @@ public class TrimDTO {
         this.trimVideoLink = trimVideoLink;
     }
 
+    public String getTrimStatus() {
+        return trimStatus;
+    }
+
+    public void setTrimStatus(String trimStatus) {
+        this.trimStatus = trimStatus;
+    }
+
     @Override
     public String toString() {
         return "TrimDTO{" +
@@ -66,6 +76,7 @@ public class TrimDTO {
                 ", trimDetail='" + trimDetail + '\'' +
                 ", trimViews=" + trimViews +
                 ", trimVideoLink='" + trimVideoLink + '\'' +
+                ", trimStatus='" + trimStatus + '\'' +
                 '}';
     }
 }
