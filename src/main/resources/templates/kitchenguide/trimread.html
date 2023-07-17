@@ -104,7 +104,9 @@
             <div class="title" style="margin-bottom: 15px;">
                 <h2><b class="fon-color" th:text="${trimDTO.trimTitle}"></b></h2>
             </div>
-            <div style="text-align: right; margin-right: 30px;">조회수</div>
+            <!--조회수 값 받아오기-->
+            <div style="text-align: right; margin-right: 30px;">
+            <h6 th:text="${trimDTO.trimViews}+회"></h6></div>
         </div>
         <hr>
         <!-- 비디오 영역 -->

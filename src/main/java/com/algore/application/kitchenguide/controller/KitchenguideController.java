@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import javax.servlet.http.HttpServletResponse;
@@ -32,17 +33,52 @@ public class KitchenguideController {
     }
 
 
-    @GetMapping("/trimread/{trimNum}")
-    public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum, HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping("/trimread/{trimNum}") //사용자가 get 방식으로 /kitchenguide/trimread를 요청할 경우 실행, {동적으로 바뀔 수 있는 값}
+    public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/, HttpServletRequest request/*요청*/, HttpServletResponse response/*응답*/) {
 
+        viewCount(request, response, trimNum);
+
+        /* Service 로직에서 불러오기 */
         TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
         List<TrimProcedureDTO> procedureList = kitchenguideService.readPost(trimNum);
 
-        mv.addObject("trimDTO", trimDTO); //데이터 전송("변수이름", "데이터 값");
-        mv.addObject("procedureList", procedureList); //데이터 전송("변수이름", "데이터 값");
+        /* 데이터 전송("변수이름", "데이터 값");
+        *  html 문서에서 타임리프 ${변수이름.dto(필드}이름}  ->  이렇게 사용하기 */
+        mv.addObject("trimDTO", trimDTO); //손질법 제목, 내용, 동영상URl
+        mv.addObject("procedureList", procedureList); //손질법 순서
 
-        mv.setViewName("kitchenguide/trimread"); //응답할 뷰의 경로 설정
+        mv.setViewName("kitchenguide/trimread"); //응답할 뷰의 경로 설정 (리턴 값)
         return mv; //ModelAndView 객체 반환
+    }
+
+    private void viewCount(HttpServletRequest request, HttpServletResponse response, int trimNum) {
+
+        Cookie oldCookie = null;
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("recipeView")) {
+                    oldCookie = cookie;
+                }
+            }
+        }
+
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + trimNum + "]")) {
+                kitchenguideService.viewCount(trimNum);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + trimNum + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(60 * 60 * 24);
+                response.addCookie(oldCookie);
+            }
+        } else {
+            kitchenguideService.viewCount(trimNum);
+            Cookie newCookie = new Cookie("recipeView", "[" + trimNum + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(newCookie);
+        }
     }
 
     @GetMapping("/trimwrite")
