@@ -130,7 +130,7 @@
       <div class="d-flex justify-content-center">
         <form action="/recipe/regist.do" method="post" enctype="multipart/form-data">
           <!--대표사진등록-->
-          <label for="validationCustom04" class="form-label fon-color"
+          <label  class="form-label fon-color"
                  style="margin-top: 30px; margin-left: 10px;">
             <h6><b>대표사진</b></h6>
           </label>
@@ -138,15 +138,15 @@
             <!--사진등록 및 경로-->
             <label class="input-file-button float-start" for="input-file"
                    style="width: 400px; height: 300px; background-color: #D8F0FF70; border-radius: 30px;">
-              <img id="output" class="" width="400px" height="300px"
-                   style="background-color: D8F0FF70; border-radius: 30px; margin-right: 20px; ">
+              <img th:src="${recipevlew.mainPath}+${recipevlew.mainFileName}"  id="output" class="" width="400px" height="300px"
+                   style="background-color: #D8F0FF70; border-radius: 30px; margin-right: 20px;">
             </label>
             <input type="file" id="input-file" style="display: none;" accept="image/jpeg, image/png, image/jpg"
                    name="mainPicture" class="isFile" onchange="loadFile(event)" required="required"/>
           </div>
           <!--카테고리-->
           <div>
-            <label for="validationCustom04" class="form-label fon-color"
+            <label class="form-label fon-color"
                    style="margin-top: 40px; margin-left: 10px;">
               <h6><b>카테고리</b></h6>
             </label>
