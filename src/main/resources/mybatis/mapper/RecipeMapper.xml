@@ -117,7 +117,7 @@
         WHERE RECIPE_NUM = #{recipeNum}
     </update>
 
-    <select id="modifyName">
+    <select id="getUserName">
         SELECT
             M.ID
             FROM MEMBER M

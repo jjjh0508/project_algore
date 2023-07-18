@@ -20,7 +20,7 @@ public interface RecipeViewMapper {
 
     int viewCount(int recipeNum);
 
-    String modifyName(int recipeNum);
+    String getUserName(int recipeNum);
 
     int recipeDelete(int recipe);
 }

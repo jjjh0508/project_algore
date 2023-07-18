@@ -11,7 +11,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -30,13 +32,10 @@ public class RecipeController {
                                          HttpServletResponse response) {
         viewCount(request, response, recipe);
         RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
-        List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipe);
-        List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
         List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
         mv.addObject("commentRead", commentReadDTOList);
-        mv.addObject("recipPhoto", recipePhotoDTOList);
         mv.addObject("recipevlew", recipeviewDTO);
-        mv.addObject("recipeOrderList", recipeOrderList);
+
 
         mv.setViewName("/recipe/view");
         return mv;
@@ -45,7 +44,7 @@ public class RecipeController {
     @GetMapping("/modify")
     public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
-            String name = recipeService.modifyName(recipe);
+            String name = recipeService.getUserName(recipe);
             System.out.println(name + authentication.getName());
             if (!authentication.getName().equals(name)) {
                 //작성자만 수정가능
@@ -54,11 +53,7 @@ public class RecipeController {
                 return mv;
             }
             RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
-            List<RecipeOrderDTO> recipeOrderList = recipeService.recipeOrder(recipe);
-            List<RecipePhotoDTO> recipePhotoDTOList = recipeService.recipPhoto(recipe);
-            mv.addObject("recipPhoto", recipePhotoDTOList);
             mv.addObject("recipevlew", recipeviewDTO);
-            mv.addObject("recipeOrderList", recipeOrderList);
             mv.setViewName("/recipe/modify");
         } catch (Exception e) {
             mv.addObject("message", e.getMessage());
@@ -68,11 +63,33 @@ public class RecipeController {
         return mv;
     }
 
+    @PostMapping("/modifyform")
+    public String modifyRecipe(ModelAndView mv,  RecipeviewDTO recipeviewDTO, List<RecipeOrderDTO> recipeOrderList,List<RecipePhotoDTO> recipePhotoDTOList,HttpServletRequest request) {
+        System.out.println(recipeviewDTO.getRecipeNum());
+        System.out.println(recipeviewDTO.getRecipeTitle());
+        System.out.println(recipeviewDTO.getCategory());
+        for (RecipeOrderDTO orderDTO:recipeOrderList) {
+            System.out.println(orderDTO);
+        }
+
+        System.out.println();
+
+
+        return "왜 안돼";
+    }
+
+
+
+
+
+
+
     @GetMapping("/delete")
     public ModelAndView recipeDelete(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
-            String name = recipeService.modifyName(recipe);
-            System.out.println(name + authentication.getName());
+
+
+            String name = recipeService.getUserName(recipe);
             if (!authentication.getName().equals(name)) {
                 //작성자만 삭제가능
                 mv.addObject("message", "작성자만 삭제 가능합니다.");

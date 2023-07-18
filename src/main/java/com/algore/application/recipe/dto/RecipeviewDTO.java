@@ -1,6 +1,9 @@
 package com.algore.application.recipe.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
+import java.util.List;
 
 public class RecipeviewDTO {
     private int recipeNum;
@@ -24,10 +27,14 @@ public class RecipeviewDTO {
     private String proFilePath;
     private String recipeWriter;
 
+    private MultipartFile mainInputFile;
+    private List<RecipePhotoDTO> recipePhotoDTOList;
+    private List<RecipeOrderDTO> recipeOrderList;
+
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String proFileName, String proFilePath, String recipeWriter) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String proFileName, String proFilePath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
@@ -42,6 +49,25 @@ public class RecipeviewDTO {
         this.proFileName = proFileName;
         this.proFilePath = proFilePath;
         this.recipeWriter = recipeWriter;
+        this.mainInputFile = mainInputFile;
+        this.recipePhotoDTOList = recipePhotoDTOList;
+        this.recipeOrderList = recipeOrderList;
+    }
+
+    public List<RecipePhotoDTO> getRecipePhotoDTOList() {
+        return recipePhotoDTOList;
+    }
+
+    public void setRecipePhotoDTOList(List<RecipePhotoDTO> recipePhotoDTOList) {
+        this.recipePhotoDTOList = recipePhotoDTOList;
+    }
+
+    public List<RecipeOrderDTO> getRecipeOrderList() {
+        return recipeOrderList;
+    }
+
+    public void setRecipeOrderList(List<RecipeOrderDTO> recipeOrderList) {
+        this.recipeOrderList = recipeOrderList;
     }
 
     public void setProFileName(String proFileName) {
@@ -148,6 +174,22 @@ public class RecipeviewDTO {
         return tip;
     }
 
+    public MultipartFile getMainInputFile() {
+        return mainInputFile;
+    }
+
+    public void setMainInputFile(MultipartFile mainInputFile) {
+        this.mainInputFile = mainInputFile;
+    }
+
+    public void setRecipeWriter(String recipeWriter) {
+        this.recipeWriter = recipeWriter;
+    }
+
+    public String getRecipeWriter() {
+        return recipeWriter;
+    }
+
     @Override
     public String toString() {
         return "RecipeviewDTO{" +
@@ -165,14 +207,9 @@ public class RecipeviewDTO {
                 ", proFileName='" + proFileName + '\'' +
                 ", proFilePath='" + proFilePath + '\'' +
                 ", recipeWriter='" + recipeWriter + '\'' +
+                ", mainInputFile=" + mainInputFile +
+                ", recipePhotoDTOList=" + recipePhotoDTOList +
+                ", recipeOrderList=" + recipeOrderList +
                 '}';
-    }
-
-    public void setRecipeWriter(String recipeWriter) {
-        this.recipeWriter = recipeWriter;
-    }
-
-    public String getRecipeWriter() {
-        return recipeWriter;
     }
 }
