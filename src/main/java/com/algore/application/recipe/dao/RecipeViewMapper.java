@@ -22,4 +22,10 @@ public interface RecipeViewMapper {
     int recipeDelete(int recipe);
 
     int writeRecipe(RecipeWriteDTO recipeWriteDTO);
+
+    int modifyRecipe(RecipeviewDTO recipeviewDTO);
+
+    void orderDelete(int recipeNum);
+
+    int modifyOrder(List<RecipeOrderDTO> recipeOrderDTOS);
 }

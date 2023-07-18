@@ -120,7 +120,7 @@
   </head>
   <!--21_0_레시피_작성-->
   <body>
-  <form action="/recipe/modifyform"  th:object="${recipevlew}" method="post" enctype="multipart/form-data">
+  <form action="/recipe/modifyform"  id="insert" th:object="${recipevlew}" method="post" enctype="multipart/form-data">
 
     <main class="write01"
           style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 100px;">
@@ -149,8 +149,10 @@
               </label>
               <input type="file" id="input-file" style="display: none;" accept="image/jpeg, image/png, image/jpg"
                      name="mainPicture" class="isFile" onchange="loadFile(event)" th:field="${recipevlew.mainInputFile}"/>
-              <input type="hidden" name="mainPicRename" th:value="${recipevlew.mainFileName }">
-              <input type="hidden" name="mainPic" th:value="${recipevlew.mainPath }">
+              <input type="hidden" th:field="${recipevlew.mainFileName}">
+              <input type="hidden" th:field="${recipevlew.mainPath}">
+
+
 
 
           </div>
@@ -161,17 +163,17 @@
                 <h6><b>카테고리</b></h6>
               </label>
               <select class="form-select fon-color input-box-sty pla-col" name="category" required
-                      style="width: 400px; border-radius: 1em;" th:field="${recipevlew.category}">
+                      style="width: 400px; border-radius: 1em;" th:field="${recipevlew.categoryNum}">
                 <option selected disabled value="">음식 카테고리</option>
-                <option value="채식"  th:selected="${recipevlew.category=='채식'}">채식</option>
-                <option value="한식"  th:selected="${recipevlew.category=='한식'}">한식</option>
-                <option value="양식"  th:selected="${recipevlew.category=='양식'}">양식</option>
-                <option value="일식"  th:selected="${recipevlew.category=='일식'}">일식</option>
-                <option value="중식"  th:selected="${recipevlew.category=='중식'}">중식</option>
-                <option value="퓨전"  th:selected="${recipevlew.category=='퓨전'}">퓨전</option>
-                <option value="분식"  th:selected="${recipevlew.category=='분식'}">분식</option>
-                <option value="안식"  th:selected="${recipevlew.category=='안주'}">안주</option>
-                <option value="간식"  th:selected="${recipevlew.category=='간식'}">간식</option>
+                <option value="1"  th:selected="${recipevlew.category=='양식'}">양식</option>
+                <option value="2"  th:selected="${recipevlew.category=='한식'}">한식</option>
+                <option value="3"  th:selected="${recipevlew.category=='채식'}">채식</option>
+                <option value="4"  th:selected="${recipevlew.category=='일식'}">일식</option>
+                <option value="5"  th:selected="${recipevlew.category=='중식'}">중식</option>
+                <option value="6"  th:selected="${recipevlew.category=='퓨전'}">퓨전</option>
+                <option value="7"  th:selected="${recipevlew.category=='분식'}">분식</option>
+                <option value="8"  th:selected="${recipevlew.category=='안주'}">안주</option>
+                <option value="9"  th:selected="${recipevlew.category=='간식'}">간식</option>
               </select>
               <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>
               <br>
@@ -329,10 +331,12 @@
               </div>
               <span id="addgreen"></span>
             </div>
+
+
           </div>
           <!--재료 추가 버튼-->
           <div class="d-grid gap-1 col-12 mx-auto" style="margin-top: 10px;">
-            <button class="btn btn-primary but-off-color" onclick="addGr()">추가</button>
+            <button type="button" class="btn btn-primary but-off-color" onclick="addGr()">추가</button>
           </div>
         </div>
       </div>
@@ -352,18 +356,16 @@
                 <img class="detailImg" width="400px" height="270px"
                      style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;" th:src="${recipeOrder.path}+${recipeOrder.fileName}">
                 <input type="file" name="recipePicture" class="isFile" style="display: none"
-                       accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+                       accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);" th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].oprderInputFile}">
                 <input type="hidden" name="orderPhoto" >
               </label>
             </div>
             <!--요리순서 설명-->
             <div style="margin-top: 10px; margin-left: 35px; ">
-                <textarea name="content" th:value="${recipeOrder.content}" class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
+                <textarea th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].content}"  class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
                           style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
             </div>
-            <!-- 설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
-<!--            <input type="text" name="recipeDescription" value="ab22bb" style="display: none">-->
-            <!-- 삭제 -->
+<!--             설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
                  viewBox="0 0 16 16" type="button" onclick="removeDe()">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -623,6 +625,7 @@
                 .querySelectorAll('.REgreenC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
         document.querySelectorAll('.REgreenC')[document
                 .querySelectorAll('.REgreenC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
+
 
         count++;
       }

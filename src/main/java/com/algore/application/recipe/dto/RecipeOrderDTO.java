@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class RecipeOrderDTO {
     private int rpNum;
-    private int recipe_num;
+    private int recipeNum;
     private String content;
     private String fileName;
     private String path;
@@ -13,9 +13,9 @@ public class RecipeOrderDTO {
     public RecipeOrderDTO() {
     }
 
-    public RecipeOrderDTO(int rpNum, int recipe_num, String content, String fileName, String path, MultipartFile oprderInputFile) {
+    public RecipeOrderDTO(int rpNum, int recipeNum, String content, String fileName, String path, MultipartFile oprderInputFile) {
         this.rpNum = rpNum;
-        this.recipe_num = recipe_num;
+        this.recipeNum = recipeNum;
         this.content = content;
         this.fileName = fileName;
         this.path = path;
@@ -26,44 +26,40 @@ public class RecipeOrderDTO {
         return rpNum;
     }
 
+    public void setRpNum(int rpNum) {
+        this.rpNum = rpNum;
+    }
+
+    public int getRecipeNum() {
+        return recipeNum;
+    }
+
+    public void setRecipeNum(int recipeNum) {
+        this.recipeNum = recipeNum;
+    }
+
     public String getContent() {
         return content;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPrNum(int rpNum) {
-        this.rpNum = rpNum;
     }
 
     public void setContent(String content) {
         this.content = content;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public int getRecipe_num() {
-        return recipe_num;
-    }
-
-    public void setRecipe_num(int recipe_num) {
-        this.recipe_num = recipe_num;
-    }
-
-    public void setRpNum(int rpNum) {
-        this.rpNum = rpNum;
     }
 
     public MultipartFile getOprderInputFile() {
@@ -78,7 +74,7 @@ public class RecipeOrderDTO {
     public String toString() {
         return "RecipeOrderDTO{" +
                 "rpNum=" + rpNum +
-                ", recipe_num=" + recipe_num +
+                ", recipeNum=" + recipeNum +
                 ", content='" + content + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", path='" + path + '\'' +

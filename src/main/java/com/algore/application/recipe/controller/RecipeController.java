@@ -7,16 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -38,25 +34,30 @@ public class RecipeController {
         List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipevlew", recipeviewDTO);
-
+        List<RecipeOrderDTO> recipeOrderDTOS = recipeviewDTO.getRecipeOrderList();
+        for (RecipeOrderDTO orderDTO : recipeOrderDTOS) {
+            System.out.println(orderDTO);
+        }
 
         mv.setViewName("/recipe/view");
         return mv;
     }
 
     @GetMapping("/regist")
-    public String write(){ return "recipe/write"; }
+    public String write() {
+        return "recipe/write";
+    }
 
     @PostMapping(value = "/regist")
-    public ModelAndView writeReci(ModelAndView model, RecipeWriteDTO recipeWriteDTO){
+    public ModelAndView writeReci(ModelAndView model, RecipeWriteDTO recipeWriteDTO) {
 
         int result = recipeService.writeRecipe(recipeWriteDTO);
 
         String path = "";
-        if(result > 0 ){
+        if (result > 0) {
             model.addObject("message", "등록이 완료되었습니다.");
             model.setViewName("redirect:/view");
-        }else{
+        } else {
             model.addObject("message", "등록에 실패하였습니다.");
             model.setViewName("redirect:/");
         }
@@ -65,10 +66,11 @@ public class RecipeController {
     }
 
     @GetMapping("/file")
-    public void goFile(){}
+    public void goFile() {
+    }
 
     @PostMapping("/file")
-    public ModelAndView RecipePhoto(@ModelAttribute RecipePhotoWriteDTO recipePhotoWrite, HttpServletRequest request){
+    public ModelAndView RecipePhoto(@ModelAttribute RecipePhotoWriteDTO recipePhotoWrite, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
 
         String backUrl = request.getHeader("Refere");
@@ -76,20 +78,20 @@ public class RecipeController {
         MultipartFile fileOne = recipePhotoWrite.getRecipePhotoPath();
         String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf("."));
 
-        if(!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".bmp"))){
+        if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".bmp"))) {
             modelAndView.addObject("message", "이미지가 아닙니다.");
             modelAndView.setViewName(backUrl);
 
             return modelAndView;
         }
 
-        if(recipePhotoWrite.getRecipePhotoPath() != null){
+        if (recipePhotoWrite.getRecipePhotoPath() != null) {
             String originFilePath = "\\upload\\basic\\";
             String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static" + originFilePath;
 
             File originDirectory = new File(path);
 
-            if(!originDirectory.exists()){
+            if (!originDirectory.exists()) {
                 originDirectory.mkdirs();
             }
 
@@ -101,7 +103,7 @@ public class RecipeController {
                 e.printStackTrace();
             }
             modelAndView.addObject("message", "파일 저장에 성공하였습니다.");
-        }else{
+        } else {
             modelAndView.addObject("message", "파일 저장에 실패하였습니다.");
             return modelAndView;
         }
@@ -115,7 +117,6 @@ public class RecipeController {
     public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
             String name = recipeService.getUserName(recipe);
-            System.out.println(name + authentication.getName());
             if (!authentication.getName().equals(name)) {
                 //작성자만 수정가능
                 mv.addObject("message", "작성자만 수정 가능합니다.");
@@ -134,24 +135,18 @@ public class RecipeController {
     }
 
     @PostMapping("/modifyform")
-    public String modifyRecipe(ModelAndView mv,  RecipeviewDTO recipeviewDTO, List<RecipeOrderDTO> recipeOrderList,List<RecipePhotoDTO> recipePhotoDTOList,HttpServletRequest request) {
-        System.out.println(recipeviewDTO.getRecipeNum());
-        System.out.println(recipeviewDTO.getRecipeTitle());
-        System.out.println(recipeviewDTO.getCategory());
-        for (RecipeOrderDTO orderDTO:recipeOrderList) {
-            System.out.println(orderDTO);
+    public ModelAndView modifyRecipe(ModelAndView mv, RecipeviewDTO recipeviewDTO, HttpServletRequest request) {
+        int result = recipeService.modifyRecipe(recipeviewDTO);
+        if (result > 0) {
+            System.out.println("테스트");
+            mv.setViewName("redirect:/recipe/view?recipe=" + recipeviewDTO.getRecipeNum());
+        } else {
+            mv.addObject("message", "수정 실패하였습니다.");
+            mv.setViewName("/common/error");
         }
 
-        System.out.println();
-
-
-        return "왜 안돼";
+        return mv;
     }
-
-
-
-
-
 
 
     @GetMapping("/delete")
@@ -173,7 +168,6 @@ public class RecipeController {
             return mv;
         }
     }
-
 
 
     private void viewCount(HttpServletRequest request,

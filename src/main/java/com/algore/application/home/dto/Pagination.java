@@ -2,7 +2,7 @@ package com.algore.application.home.dto;
 
 public class Pagination {
     /** 1. 페이지 당 보여지는 게시글의 최대 개수 **/
-    private int pageSize = 4;
+    private int pageSize = 16;
 
     /** 2. 페이징된 버튼의 블럭당 최대 개수 **/
     private int blockSize = 5;

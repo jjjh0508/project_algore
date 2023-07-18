@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.sql.Date;
 import java.util.List;
 
+
 public class RecipeviewDTO {
     private int recipeNum;
     private String memName;
@@ -12,6 +13,7 @@ public class RecipeviewDTO {
     private String recipeTitle;
     private String recipeViews;
 
+    private String categoryNum;
     private Date recipeCreateDate;
 
     private String recipeIntro;
@@ -19,12 +21,15 @@ public class RecipeviewDTO {
     private String tip;
 
     private String youtube;
-
+    private String proFileName;  //프로필 파일이름
+    private String proFilePath;  //프로필 파일 위치
     private String mainFileName;
     private String mainPath;
 
-    private String proFileName;
-    private String proFilePath;
+    private String newMainFileName;
+    private String newMainPath;
+
+
     private String recipeWriter;
 
     private MultipartFile mainInputFile;
@@ -34,24 +39,35 @@ public class RecipeviewDTO {
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String proFileName, String proFilePath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String proFileName, String proFilePath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
         this.recipeTitle = recipeTitle;
         this.recipeViews = recipeViews;
+        this.categoryNum = categoryNum;
         this.recipeCreateDate = recipeCreateDate;
         this.recipeIntro = recipeIntro;
         this.tip = tip;
         this.youtube = youtube;
         this.mainFileName = mainFileName;
         this.mainPath = mainPath;
+        this.newMainFileName = newMainFileName;
+        this.newMainPath = newMainPath;
         this.proFileName = proFileName;
         this.proFilePath = proFilePath;
         this.recipeWriter = recipeWriter;
         this.mainInputFile = mainInputFile;
         this.recipePhotoDTOList = recipePhotoDTOList;
         this.recipeOrderList = recipeOrderList;
+    }
+
+    public String getCategoryNum() {
+        return categoryNum;
+    }
+
+    public void setCategoryNum(String categoryNum) {
+        this.categoryNum = categoryNum;
     }
 
     public List<RecipePhotoDTO> getRecipePhotoDTOList() {
@@ -190,6 +206,22 @@ public class RecipeviewDTO {
         return recipeWriter;
     }
 
+    public String getNewMainPath() {
+        return newMainPath;
+    }
+
+    public void setNewMainPath(String newMainPath) {
+        this.newMainPath = newMainPath;
+    }
+
+    public String getNewMainFileName() {
+        return newMainFileName;
+    }
+
+    public void setNewMainFileName(String newMainFileName) {
+        this.newMainFileName = newMainFileName;
+    }
+
     @Override
     public String toString() {
         return "RecipeviewDTO{" +
@@ -198,12 +230,15 @@ public class RecipeviewDTO {
                 ", category='" + category + '\'' +
                 ", recipeTitle='" + recipeTitle + '\'' +
                 ", recipeViews='" + recipeViews + '\'' +
+                ", categoryNum='" + categoryNum + '\'' +
                 ", recipeCreateDate=" + recipeCreateDate +
                 ", recipeIntro='" + recipeIntro + '\'' +
                 ", tip='" + tip + '\'' +
                 ", youtube='" + youtube + '\'' +
                 ", mainFileName='" + mainFileName + '\'' +
                 ", mainPath='" + mainPath + '\'' +
+                ", newMainFileName='" + newMainFileName + '\'' +
+                ", newMainPath='" + newMainPath + '\'' +
                 ", proFileName='" + proFileName + '\'' +
                 ", proFilePath='" + proFilePath + '\'' +
                 ", recipeWriter='" + recipeWriter + '\'' +
