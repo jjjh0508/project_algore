@@ -35,7 +35,7 @@
         WHERE TRIM_STATUS = 'Y'
     </select>
     <!--게시글 삭제-->
-    <update id="">
+    <update id="deleteTrimPost">
         UPDATE TRIM
         SET TRIM_STATUS = 'N'
         WHERE TRIM_NUM = #{trimNum}
