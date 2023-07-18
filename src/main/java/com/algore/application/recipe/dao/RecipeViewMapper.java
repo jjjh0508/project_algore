@@ -1,9 +1,6 @@
 package com.algore.application.recipe.dao;
 
-import com.algore.application.recipe.dto.CommentReadDTO;
-import com.algore.application.recipe.dto.RecipeOrderDTO;
-import com.algore.application.recipe.dto.RecipePhotoDTO;
-import com.algore.application.recipe.dto.RecipeviewDTO;
+import com.algore.application.recipe.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,4 +20,6 @@ public interface RecipeViewMapper {
     String modifyName(int recipeNum);
 
     int recipeDelete(int recipe);
+
+    int writeRecipe(RecipeWriteDTO recipeWriteDTO);
 }

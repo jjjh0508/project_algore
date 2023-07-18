@@ -1,10 +1,7 @@
 package com.algore.application.recipe.service;
 
 import com.algore.application.recipe.dao.RecipeViewMapper;
-import com.algore.application.recipe.dto.CommentReadDTO;
-import com.algore.application.recipe.dto.RecipeOrderDTO;
-import com.algore.application.recipe.dto.RecipePhotoDTO;
-import com.algore.application.recipe.dto.RecipeviewDTO;
+import com.algore.application.recipe.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,4 +49,16 @@ public class RecipeService {
         int result = mapper.recipeDelete(recipe);
         return result;
     }
+
+    public int writeRecipe(RecipeWriteDTO recipeWriteDTO) {
+
+        int result = 0;
+        try{
+            result = mapper.writeRecipe(recipeWriteDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
+
