@@ -1,11 +1,9 @@
 package com.algore.application.kitchenguide.controller;
 
 
-import com.algore.application.employee.dto.InputContentDTO;
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -114,12 +113,11 @@ public class KitchenguideController {
         return mv;
     }
 
-//    @GetMapping("/file")
-//    public void goFile(){}
-//
-//     수정하기
+    @GetMapping("/file")
+    public void goFile(){}
+
 //    @PostMapping("/file")
-//    public ModelAndView insertFile(@ModelAttribute ??? dto?, HttpServletRequest request){
+//    public ModelAndView insertFile(@ModelAttribute InputDTO input, HttpServletRequest request) {
 //        // 파일을 입력 받고 해당 파일을 로컬에 저장한 뒤 저장된 경로를 데이터 베이스에 저장한 다음 해당 포스팅을 불러올때 이미지 경로에 경로를 넣어준다
 //        ModelAndView modelAndView = new ModelAndView();
 //
@@ -127,35 +125,48 @@ public class KitchenguideController {
 //        String backUrl = request.getHeader("Refere");
 //
 //        // 파일 확장자 가져오기
-//        MultipartFile fileOne = ????.getInputFile();
+//        MultipartFile fileOne = input.getInputFile();
 //        String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf(","));
 //
 //        // 파일 확장자가 이미지 확장자가 아닌 경우
-//        if(!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg"))){
+//        if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg"))) {
 //            modelAndView.addObject("messege", "이미지가 아닙니다");
 //            modelAndView.setViewName(backUrl);
 //
 //            return modelAndView;
 //        }
 //
-//        if(??.getInputFile() != null){
-//            String originFilePath = "\\upload\\basic";
+//        // 업로드 된 파일이 존재하는 경우
+//        if (input.getInputFile() != null) {
+//            String originFilePath = "\\upload\\basic"; // 원본 파일이 저장될 폴더의 상대 경로
 //            String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static" + originFilePath; // 프로그램 내부 경로
 //
 //            File originDirectory = new File(path);
 //
-//            if(!originDirectory.exists()){ // 해당 경로의 폴더가 없는 경우
-//                originDirectory.mkdirs();  // 해당 폴더를 만들어
+//            if (!originDirectory.exists()) { // 해당 경로의 폴더가 없는 경우
+//                originDirectory.mkdirs();  // 폴더가 존재하지 않는 경우에만 폴더 생성
 //            }
 //
 //            // 파일명 변경
 //
-//            // 파일 저장경로에 파일 이름 추가
-//            path += ??.getInputFile().getOriginFilename();
+//            /* 파일 저장경로에 파일 이름 추가
+//            *  최종 파일 저장 경로에 업*/
+//            path += input.getInputFile().getOriginalFilename();
 //
 //            // 파일 저장
-//
+//            try {
+//                /* 업로드된 파일을 최종 파일 저장 경로에 저장*/
+//                input.getInputFile().transferTo(new File(path));
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            modelAndView.addObject("message", "파일 저장 성공");
+//        } else {
+//            modelAndView.addObject("message", "파일 저장 실패");
+//            return  modelAndView;
 //        }
+//        modelAndView.setViewName("index");
+//
+//        return modelAndView;
 //    }
-
 }
