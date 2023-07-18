@@ -5,7 +5,7 @@
 
 <!-- 매퍼 연결 -->
 <mapper namespace="com.algore.application.kitchenguide.dao.KitchenguideMapper">
-    <!--TrimDTO (read)-->
+    <!--TrimDTO-->
     <resultMap id="trimPost" type="com.algore.application.kitchenguide.dto.TrimDTO">
         <id property="trimNum" column="TRIM_NUM"/>
         <result property="trimTitle" column="TRIM_TITLE"/>
@@ -14,6 +14,7 @@
         <result property="trimVideoLink" column="TRIM_VIDEO_LINK"/>
         <result property="trimStatus" column="TRIM_STATUS"/>
     </resultMap>
+    <!--게시글 조회(read)-->
     <select id="readTrim" resultMap="trimPost">
         SELECT
         T.TRIM_TITLE,
@@ -24,14 +25,21 @@
         WHERE T.TRIM_NUM = #{trimNum}
         AND TRIM_STATUS = 'Y'
     </select>
-
     <!--메인화면-->
     <select id="mainPost" resultMap="trimPost">
         SELECT
-        T.TRIM_TITLE
+        T.TRIM_NUM,
+        T.TRIM_TITLE,
+        T.TRIM_VIDEO_LINK
         FROM TRIM T
         WHERE TRIM_STATUS = 'Y'
     </select>
+    <!--게시글 삭제-->
+    <update id="">
+        UPDATE TRIM
+        SET TRIM_STATUS = 'N'
+        WHERE TRIM_NUM = #{trimNum}
+    </update>
 
     <!--TrimProcedureDTO (read)-->
     <resultMap id="trimprocedurePost" type="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
@@ -56,7 +64,6 @@
         SET TRIM_VIEWS = TRIM_VIEWS+1
         WHERE TRIM_NUM = #{trimNum}
     </update>
-
     <!--TrimDTO (write)-->
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT

@@ -23,6 +23,7 @@ public class KitchenguideController {
 
 
     private final KitchenguideService kitchenguideService;
+
     public KitchenguideController(KitchenguideService kitchenguideService) { /*final은 기본값이 없기 때문에 초기화를 통해 값을 등록해 주어야함*/
         this.kitchenguideService = kitchenguideService;
     }
@@ -50,7 +51,7 @@ public class KitchenguideController {
         List<TrimProcedureDTO> procedureList = kitchenguideService.readPost(trimNum);
 
         /* 데이터 전송("변수이름", "데이터 값");
-        *  html 문서에서 타임리프 ${변수이름.dto(필드}이름}  ->  이렇게 사용하기 */
+         *  html 문서에서 타임리프 ${변수이름.dto(필드}이름}  ->  이렇게 사용하기 */
         mv.addObject("trimDTO", trimDTO); //손질법 제목, 내용, 동영상URl
         mv.addObject("procedureList", procedureList); //손질법 순서
 
@@ -95,7 +96,7 @@ public class KitchenguideController {
 
     // 경로 수정해주기 redirect:
     @PostMapping("/trimwrite")
-    public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, HttpServletRequest req){
+    public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, HttpServletRequest req) {
 
         String backUrl = req.getHeader("Referer");
 
@@ -106,7 +107,7 @@ public class KitchenguideController {
         if (result > 0) {
             mv.addObject("message", "등록이 완료되었습니다.");
             mv.setViewName("redirect:kitchenguide/trimread");
-        }else {
+        } else {
             mv.addObject("message", "등록에 실패하였습니다.");
             mv.setViewName("redirect:kitchenguide/trimread");
         }

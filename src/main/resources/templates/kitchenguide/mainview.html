@@ -103,7 +103,7 @@
                 <div class="conbox con2">
                     <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
                     <div class="d-flex justify-content-end">
-                        <a href="/02_키친가이드_손질법_게시글작성.html">
+                        <a href="/kitchenguide/trimwrite">
                             <button type="button" class="btn btn-outline-secondary"
                                     style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
                                 <b>글
@@ -114,15 +114,18 @@
                     <div class="container text-center">
                         <div class="row row-cols-4">
                             <th:block th:each="main:${dtomainList}">
-<!--                                전체 값 보여주기 <p th:text="${main}"></p>-->
+                                <!--                                전체 값 보여주기 <p th:text="${main}"></p>-->
                                 <a th:href="'/kitchenguide/trimread/'+${main.trimNum}">
                                     <!--사진-->
                                     <div>
                                         <img th:src="'https://img.youtube.com/vi/' + ${main.trimVideoLink} + '/maxresdefault.jpg'"
-                                              style="height: 250px; width: 250px; padding: 10px 10px 10px 10px; background-color: #D8F0FF;"/>
+                                             style="height: 250px; width: 250px; padding: 10px 10px 10px 10px; background-color: #D8F0FF;"/>
                                     </div>
                                     <!--제목-->
-                                    <div class="col fon-color" th:text="${main.trimTitle}" style="margin-top: 12px; margin-bottom: 50px; font-size: 15px; font-weight: bold;">Column</div>
+                                    <div class="col fon-color" th:text="${main.trimTitle}"
+                                         style="margin-top: 12px; margin-bottom: 50px; font-size: 15px; font-weight: bold;">
+                                        Column
+                                    </div>
                                 </a>
                             </th:block>
                         </div>
@@ -138,6 +141,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </main>
     </body>
 </th:block>
