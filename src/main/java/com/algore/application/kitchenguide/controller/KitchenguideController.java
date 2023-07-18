@@ -27,7 +27,7 @@ public class KitchenguideController {
         this.kitchenguideService = kitchenguideService;
     }
 
-    @GetMapping("/mainview")
+    @GetMapping("/mainview") //메인 화면
     public ModelAndView mainview(ModelAndView mv, HttpServletRequest request/*요청*/, HttpServletResponse response) {
 
         List<TrimDTO> dtomainList = kitchenguideService.mainPost();
@@ -35,6 +35,16 @@ public class KitchenguideController {
         mv.addObject("dtomainList", dtomainList); //메인사진, 제목 가져오기
 
         mv.setViewName("/kitchenguide/mainview");
+        return mv;
+    }
+
+    @GetMapping("/delete/{trimNum}") //손질법 게시글 삭제
+    public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int deleteNum/*손질번호*/) {
+
+        System.out.println("con t : " + deleteNum);
+        int deleted = kitchenguideService.deleteTrimPost(deleteNum);
+
+        mv.setViewName("redirect:/kitchenguide/mainview");
         return mv;
     }
 
