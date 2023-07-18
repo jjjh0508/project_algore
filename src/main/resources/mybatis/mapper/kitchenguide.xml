@@ -27,7 +27,9 @@
     <!--메인화면-->
     <select id="mainPost" resultMap="trimPost">
         SELECT
-        T.TRIM_TITLE
+        T.TRIM_NUM,
+        T.TRIM_TITLE,
+        T.TRIM_VIDEO_LINK
         FROM TRIM T
         WHERE TRIM_STATUS = 'Y'
     </select>
@@ -57,31 +59,31 @@
     </update>
 
 
-    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
-        INSERT
-        INTO TRIM
-        (
-        TRIM_NUM, TRIM_TITLE, TRIM_DETAIL, TRIM_VIEWS, TRIM_VIDEO_LINK
-        ) VALUES(
-        SEQ_TRIM_NUM.NEXTVAL,
-        #{trimTitle},
-        #{trimDetail},
-        0,
-        #{trimVideoLink}
-        )
-    </insert>
+<!--    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >-->
+<!--        INSERT-->
+<!--        INTO TRIM-->
+<!--        (-->
+<!--        TRIM_NUM, TRIM_TITLE, TRIM_DETAIL, TRIM_VIEWS, TRIM_VIDEO_LINK-->
+<!--        ) VALUES(-->
+<!--        SEQ_TRIM_NUM.NEXTVAL,-->
+<!--        #{trimTitle},-->
+<!--        #{trimDetail},-->
+<!--        0,-->
+<!--        #{trimVideoLink}-->
+<!--        )-->
+<!--    </insert>-->
 
-    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
-        INSERT
-        INTO TRIM_PROCEDURE
-        (
-        TP_STEP_NUM, TRIM_NUM, TP_FILE_NAME, TP_DETAIL, TP_PATH
-        ) VALUES (
-        SEQ_TP_STEP_NUM.NEXTVAL,
-        #{trimNum},
-        #{tpFileName},
-        #{tpDetail},
-        #{tpPath}
-        );
-    </insert>
+<!--    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">-->
+<!--        INSERT-->
+<!--        INTO TRIM_PROCEDURE-->
+<!--        (-->
+<!--        TP_STEP_NUM, TRIM_NUM, TP_FILE_NAME, TP_DETAIL, TP_PATH-->
+<!--        ) VALUES (-->
+<!--        SEQ_TP_STEP_NUM.NEXTVAL,-->
+<!--        #{trimNum},-->
+<!--        #{tpFileName},-->
+<!--        #{tpDetail},-->
+<!--        #{tpPath}-->
+<!--        );-->
+<!--    </insert>-->
 </mapper>

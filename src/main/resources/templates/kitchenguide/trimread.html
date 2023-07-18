@@ -114,8 +114,8 @@
             <div style="margin-top: 30px;">
                 <!-- 비디오 주소를 입력했을때만-->
                 <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
-                <th:block th:if="${trimDTO.trimVideoLink != null}">
-                    <iframe width="980px" height="500" th:src="${trimDTO.trimVideoLink}"
+                <th:block th:if="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink != null}">
+                    <iframe width="980px" height="500" th:src="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink}"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>

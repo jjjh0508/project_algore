@@ -47,6 +47,10 @@
                 cursor: pointer;
             }
 
+            .fon-color {
+                color: #085A84;
+            }
+
             input[type="radio"]:checked + label {
                 background: #84D9FF;
                 color: #085A84;
@@ -98,67 +102,42 @@
                 <!--손질법-->
                 <div class="conbox con2">
                     <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
-                    <a href="/02_키친가이드_손질법_게시글작성.html">
+                    <div class="d-flex justify-content-end">
+                        <a href="/02_키친가이드_손질법_게시글작성.html">
+                            <button type="button" class="btn btn-outline-secondary"
+                                    style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
+                                <b>글
+                                    작성하기</b></button>
+                        </a>
+                    </div>
+                    <!--게시글 영역-->
+                    <div class="container text-center">
+                        <div class="row row-cols-4">
+                            <th:block th:each="main:${dtomainList}">
+<!--                                전체 값 보여주기 <p th:text="${main}"></p>-->
+                                <a th:href="'/kitchenguide/trimread/'+${main.trimNum}">
+                                    <!--사진-->
+                                    <div>
+                                        <img th:src="'https://img.youtube.com/vi/' + ${main.trimVideoLink} + '/maxresdefault.jpg'"
+                                              style="height: 250px; width: 250px; padding: 10px 10px 10px 10px; background-color: #D8F0FF;"/>
+                                    </div>
+                                    <!--제목-->
+                                    <div class="col fon-color" th:text="${main.trimTitle}" style="margin-top: 12px; margin-bottom: 50px; font-size: 15px; font-weight: bold;">Column</div>
+                                </a>
+                            </th:block>
+                        </div>
+                    </div>
+
+                    <!--보관법-->
+                    <div class="conbox con3">
+                        <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
                         <button type="button" class="btn btn-outline-secondary"
                                 style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px;">
                             <b>글
                                 작성하기</b></button>
-                    </a>
-                    <!--게시글 영역-->
-                    <th:block th:each="main:${dtomainList}">
-                        <table class="table01"
-                               style=" text-align: center; table-layout: fixed; width: 96%; margin: 0px 2% 0px 2%">
-                            <tr style="height: 270px;">
-                                <br>
-                                <td>
-                                    <!--사진--><a href="#"><img src="images/떡볶이1.png"
-                                                              style="height: 250px; width: 250px;"></a>
-                                </td>
-                                <td>
-                                    <!--사진-->
-                                    <a href="#"><img src="images/떡볶이2.png" style="height: 250px; width: 250px;"></a>
-                                </td>
-                                <td>
-                                    <!--사진-->
-                                    <a href="#"><img src="images/떡볶이3.png" style="height: 250px; width: 250px;"></a>
-                                </td>
-                                <td>
-                                    <!--사진-->
-                                    <a href="#"><img src="images/떡볶이1.png" style="height: 250px; width: 250px;"></a>
-                                </td>
-                            </tr>
-                            <tr style="height: 20px" >
-                                <td th:text="${main.trimTitle}">
-                                    <!--제목-->
-                                    <a style="color: #08507D;"><b>게시글 제목1</b></a>
-                                </td>
-                                <td>
-                                    <!--제목-->
-                                    <a href="#" style="color: #08507D;"><b>게시글 제목2</b></a>
-                                </td>
-                                <td>
-                                    <!--제목-->
-                                    <a href="#" style="color: #08507D;"><b>게시글 제목3</b></a>
-                                </td>
-                                <td>
-                                    <!--제목-->
-                                    <a href="#" style="color: #08507D;"><b>게시글 제목4</b></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </th:block>
-                </div>
-
-                <!--보관법-->
-                <div class="conbox con3">
-                    <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
-                    <button type="button" class="btn btn-outline-secondary"
-                            style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px;">
-                        <b>글
-                            작성하기</b></button>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
     </body>
 </th:block>
