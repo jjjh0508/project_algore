@@ -4,6 +4,7 @@ import com.algore.application.kitchenguide.dao.KitchenguideMapper;
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,14 +29,20 @@ public class KitchenguideService {
         return procedure;
     }
 
-
+    @Transactional
     public int insertPost(TrimDTO trimDTO) {
-        int result = 0;
+        /* 손질법 등록
+        *  손질법순서 등록*/
 
-        try {
-            result = mapper.insertPost(trimDTO);
-        } catch (Exception e){
-            e.printStackTrace();
+        /* KitchenguideMapper에 있는 insertPost (Trim 테이블에 있는 값 넣어주기)를
+        *  result에 실행결과 담기 1 : 성공 0 : 실패 */
+        int result = mapper.insertTrim(trimDTO);
+
+
+        if(result > 0){
+            /* result가 0보다 클때 (즉 손질법이 등록되었을때) */
+            /* 손질법순서 등록*/
+//            result = mapper.insertTrimProduce(trimProcedureDTO);
         }
         return result;
     }
