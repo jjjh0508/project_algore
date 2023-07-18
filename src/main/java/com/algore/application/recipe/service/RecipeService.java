@@ -16,19 +16,14 @@ public class RecipeService {
 
     public RecipeviewDTO DetailView(int recipeNum){
         RecipeviewDTO recipeviewDTO = mapper.DetailView(recipeNum);
+        List<RecipeOrderDTO>recipeOrderDTOList = mapper.recipeOrder(recipeNum);
+        List<RecipePhotoDTO>recipePhotoDTOList = mapper.recipPhoto(recipeNum);
+        recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
+        recipeviewDTO.setRecipeOrderList(recipeOrderDTOList);
         return recipeviewDTO;
     }
 
-    public List<RecipeOrderDTO> recipeOrder(int recipeNum) {
 
-        List<RecipeOrderDTO>recipeOrderDTOList = mapper.recipeOrder(recipeNum);
-        return recipeOrderDTOList;
-    }
-
-    public List<RecipePhotoDTO> recipPhoto(int recipeNum) {
-        List<RecipePhotoDTO>recipePhotoDTOList = mapper.recipPhoto(recipeNum);
-        return recipePhotoDTOList;
-    }
 
     public List<CommentReadDTO> commentRead(int recipeNum) {
         List<CommentReadDTO>  commentReadDTOList = mapper.commentRead(recipeNum);
@@ -40,8 +35,8 @@ public class RecipeService {
         return result;
     }
 
-    public String modifyName(int recipeNum) {
-        String name = mapper.modifyName(recipeNum);
+    public String getUserName(int recipeNum) {
+        String name = mapper.getUserName(recipeNum);
         return name;
     }
 

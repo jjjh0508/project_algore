@@ -21,11 +21,10 @@ public class RecipeCommentController {
 
     @PostMapping("/regist")
     public ModelAndView recipeComment(ModelAndView mv, CommentInsertDTO commentInsertDTO, HttpServletRequest req, Authentication authentication){
-//        String backUrl = req.getHeader("referer"); //에러남
-//        System.out.println(backUrl);
+
         int recipeNum = commentInsertDTO.getRecipeNum();
 
-//        System.out.println(commentInsertDTO.getUserId());
+
         if(authentication.getName()!=null){
             int result = recipeCommentService.registComment(commentInsertDTO);
             if(result>0){

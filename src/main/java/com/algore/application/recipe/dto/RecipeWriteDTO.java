@@ -2,7 +2,7 @@ package com.algore.application.recipe.dto;
 
 public class RecipeWriteDTO {
 
-    private String memName; //닉네임
+    private String nickName; //닉네임
     private String mainPhoto; //메인사진 파일명
     private String photoPath; //메인사진 저장경로
     private String category; //카테고리명
@@ -22,25 +22,153 @@ public class RecipeWriteDTO {
     public RecipeWriteDTO() {
     }
 
-    public RecipeWriteDTO(String memName, String mainPhoto, String photoPath, String category, String recipeTitle, String recipeIntro, String recipeVideoLink, String ingName, String weigh, String riUnit, String rpFileName, String rpPath, String rpContent, String tip, String recipeFileName, String recipePath) {
-        this.memName = memName;
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
         this.mainPhoto = mainPhoto;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getRecipeTitle() {
+        return recipeTitle;
+    }
+
+    public void setRecipeTitle(String recipeTitle) {
         this.recipeTitle = recipeTitle;
+    }
+
+    public String getRecipeIntro() {
+        return recipeIntro;
+    }
+
+    public void setRecipeIntro(String recipeIntro) {
         this.recipeIntro = recipeIntro;
+    }
+
+    public String getRecipeVideoLink() {
+        return recipeVideoLink;
+    }
+
+    public void setRecipeVideoLink(String recipeVideoLink) {
         this.recipeVideoLink = recipeVideoLink;
+    }
+
+    public String getIngName() {
+        return ingName;
+    }
+
+    public void setIngName(String ingName) {
         this.ingName = ingName;
+    }
+
+    public String getWeigh() {
+        return weigh;
+    }
+
+    public void setWeigh(String weigh) {
         this.weigh = weigh;
+    }
+
+    public String getRiUnit() {
+        return riUnit;
+    }
+
+    public void setRiUnit(String riUnit) {
         this.riUnit = riUnit;
+    }
+
+    public String getRpFileName() {
+        return rpFileName;
+    }
+
+    public void setRpFileName(String rpFileName) {
         this.rpFileName = rpFileName;
+    }
+
+    public String getRpPath() {
+        return rpPath;
+    }
+
+    public void setRpPath(String rpPath) {
         this.rpPath = rpPath;
+    }
+
+    public String getRpContent() {
+        return rpContent;
+    }
+
+    public void setRpContent(String rpContent) {
         this.rpContent = rpContent;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
         this.tip = tip;
+    }
+
+    public String getRecipeFileName() {
+        return recipeFileName;
+    }
+
+    public void setRecipeFileName(String recipeFileName) {
         this.recipeFileName = recipeFileName;
+    }
+
+    public String getRecipePath() {
+        return recipePath;
+    }
+
+    public void setRecipePath(String recipePath) {
         this.recipePath = recipePath;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "RecipeWriteDTO{" +
+                "nickName='" + nickName + '\'' +
+                ", mainPhoto='" + mainPhoto + '\'' +
+                ", photoPath='" + photoPath + '\'' +
+                ", category='" + category + '\'' +
+                ", recipeTitle='" + recipeTitle + '\'' +
+                ", recipeIntro='" + recipeIntro + '\'' +
+                ", recipeVideoLink='" + recipeVideoLink + '\'' +
+                ", ingName='" + ingName + '\'' +
+                ", weigh='" + weigh + '\'' +
+                ", riUnit='" + riUnit + '\'' +
+                ", rpFileName='" + rpFileName + '\'' +
+                ", rpPath='" + rpPath + '\'' +
+                ", rpContent='" + rpContent + '\'' +
+                ", tip='" + tip + '\'' +
+                ", recipeFileName='" + recipeFileName + '\'' +
+                ", recipePath='" + recipePath + '\'' +
+                '}';
+    }
 }
