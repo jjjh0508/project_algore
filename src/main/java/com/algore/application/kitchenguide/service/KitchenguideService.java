@@ -40,6 +40,7 @@ public class KitchenguideService {
         return result;
     }
 
+
     public int viewCount(int trimNum) {
         int result = mapper.viewCount(trimNum);
         return trimNum;

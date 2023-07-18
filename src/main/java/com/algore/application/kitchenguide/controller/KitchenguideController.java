@@ -108,7 +108,7 @@ public class KitchenguideController {
             mv.setViewName("redirect:kitchenguide/trimread");
         }else {
             mv.addObject("message", "등록에 실패하였습니다.");
-            mv.setViewName("redirect:");
+            mv.setViewName("redirect:kitchenguide/trimread");
         }
         return mv;
     }

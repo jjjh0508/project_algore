@@ -24,6 +24,7 @@
         WHERE T.TRIM_NUM = #{trimNum}
         AND TRIM_STATUS = 'Y'
     </select>
+
     <!--메인화면-->
     <select id="mainPost" resultMap="trimPost">
         SELECT
@@ -56,7 +57,7 @@
         WHERE TRIM_NUM = #{trimNum}
     </update>
 
-
+    <!--TrimDTO (write)-->
     <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
         INSERT
         INTO TRIM
@@ -71,17 +72,18 @@
         )
     </insert>
 
-    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
-        INSERT
-        INTO TRIM_PROCEDURE
-        (
-        TP_STEP_NUM, TRIM_NUM, TP_FILE_NAME, TP_DETAIL, TP_PATH
-        ) VALUES (
-        SEQ_TP_STEP_NUM.NEXTVAL,
-        #{trimNum},
-        #{tpFileName},
-        #{tpDetail},
-        #{tpPath}
-        );
-    </insert>
+    <!--TrimProcedureDTO (write) id 수정해주기!!!!!!!!!!!!!!!-->
+<!--    <insert id="insertPost" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">-->
+<!--        INSERT-->
+<!--          INTO TRIM_PROCEDURE-->
+<!--          (-->
+<!--            TP_STEP_NUM, TRIM_NUM, TP_FILE,NAME, TP_DETAIL, TP_PATH-->
+<!--          )VALUES(-->
+<!--          SEQ_TP_STEP_NUM.NEXTVAL,-->
+<!--          (SELECT MAX(#{trimNum}) FROM TRIM),-->
+<!--          #{tpFileName},-->
+<!--          #{tpDetail},-->
+<!--          #{tpPath}-->
+<!--          )-->
+<!--    </insert>-->
 </mapper>

@@ -15,6 +15,7 @@ public interface KitchenguideMapper {
 
     int insertPost(TrimDTO trimDTO);
 
+
     int viewCount/*mapper.xml id랑 매핑*/(int trimNum); // 조회수
 
     List<TrimDTO> mainPost(); //메인화면
