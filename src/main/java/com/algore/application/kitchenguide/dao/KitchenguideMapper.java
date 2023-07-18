@@ -13,7 +13,10 @@ public interface KitchenguideMapper {
     TrimDTO readTrim/*mapper.xml id랑 매핑*/(int trimNum); //손질법 제목, 내용, 동영상URL
     List<TrimProcedureDTO>/*mapper.xml id랑 매핑*/ readPost(int trimNum); //손질 순서
 
-    int insertPost(TrimDTO trimDTO);
+    // xml 매칭 insertPost Trim테이블에서 값 넣어주기 int?
+    int insertTrim(TrimDTO trimDTO);
+
+    int insertTrimProduce(TrimProcedureDTO trimProcedureDTO);
 
 
     int viewCount/*mapper.xml id랑 매핑*/(int trimNum); // 조회수

@@ -6,14 +6,11 @@ import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -105,13 +102,11 @@ public class KitchenguideController {
 
     // 경로 수정해주기 redirect:
     @PostMapping("/trimwrite")
-    public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, HttpServletRequest req) {
+    public ModelAndView insertTrim(ModelAndView mv, HttpServletRequest req) {
+        System.out.println(req.getParameter("trimTitle"));
+//        int result = kitchenguideService.insertPost(trimDTO);
+        int result = 0;
 
-        String backUrl = req.getHeader("Referer");
-
-        int result = kitchenguideService.insertPost(trimDTO);
-
-        String path = " ";
 
         if (result > 0) {
             mv.addObject("message", "등록이 완료되었습니다.");
@@ -123,9 +118,9 @@ public class KitchenguideController {
         return mv;
     }
 
-    @GetMapping("/file")
-    public void goFile(){}
-
+//    @GetMapping("/file")
+//    public void goFile(){}
+//
 //    @PostMapping("/file")
 //    public ModelAndView insertFile(@ModelAttribute InputDTO input, HttpServletRequest request) {
 //        // 파일을 입력 받고 해당 파일을 로컬에 저장한 뒤 저장된 경로를 데이터 베이스에 저장한 다음 해당 포스팅을 불러올때 이미지 경로에 경로를 넣어준다
