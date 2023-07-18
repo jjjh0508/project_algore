@@ -51,10 +51,8 @@ public class KitchenguideService {
         return dtomainList;
     }
 
-    public int deleteTrimPost(int deleteNum) {
-        System.out.println("trimNum : " + deleteNum);
-        int deleted = mapper.deleteTrimPost(deleteNum); //매퍼호출
-
-        return deleted;
+    public int deleteTrimPost(int trimNum) {
+        int deleted = mapper.deleteTrimPost(trimNum); //매퍼호출
+        return trimNum;
     }
 }

@@ -39,11 +39,13 @@ public class KitchenguideController {
     }
 
     @GetMapping("/delete/{trimNum}") //손질법 게시글 삭제
-    public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int deleteNum/*손질번호*/) {
+    public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
 
-        System.out.println("con t : " + deleteNum);
-        int deleted = kitchenguideService.deleteTrimPost(deleteNum);
+        /* th:href="'/kitchenguide/delete/'+${trimNum}"에서 받아온 trimNum 값 int에 넣어주기...
+        * 타고타고 넘어가서 xml 파일에 trimNum 값으로 넣어준다...*/
+        int delete = kitchenguideService.deleteTrimPost(trimNum);
 
+        /* 삭제 후 손질 법 메인화면으로 복귀 */
         mv.setViewName("redirect:/kitchenguide/mainview");
         return mv;
     }

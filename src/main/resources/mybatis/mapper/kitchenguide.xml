@@ -33,6 +33,7 @@
         T.TRIM_VIDEO_LINK
         FROM TRIM T
         WHERE TRIM_STATUS = 'Y'
+        ORDER BY T.TRIM_NUM DESC
     </select>
     <!--게시글 삭제-->
     <update id="deleteTrimPost">
