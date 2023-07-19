@@ -73,7 +73,7 @@ public class RecipeController {
 
         String backUrl = request.getHeader("Refere");
 
-        MultipartFile fileOne = recipePhotoWrite.getRecipePhotoPath();
+        MultipartFile fileOne = recipePhotoWrite.getRecipePhotoWriteInput();
         String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf("."));
 
         if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".bmp"))) {
@@ -93,10 +93,10 @@ public class RecipeController {
                 originDirectory.mkdirs();
             }
 
-            path += recipePhotoWrite.getRecipePhotoPath().getOriginalFilename();
+            path += recipePhotoWrite.getRecipePhotoWriteInput().getOriginalFilename();
 
             try {
-                recipePhotoWrite.getRecipePhotoPath().transferTo(new File(path));
+                recipePhotoWrite.getRecipePhotoWriteInput().transferTo(new File(path));
             } catch (IOException e) {
                 e.printStackTrace();
             }
