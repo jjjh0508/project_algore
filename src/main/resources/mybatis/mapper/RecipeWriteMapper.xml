@@ -4,51 +4,97 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.algore.application.recipe.dao.RecipeViewMapper">
-
+<select id="recipeCategory" parameterMap="recipeCategoryMap">
+    SELECT CATEGORY_NUM,
+           CATEGORY
+      FROM RECIPE_CATEGORY
+</select>
+    
 <insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
-    INSERT
-    INTO RECIPE
-    VALUES (
-    #{ nickName },
-    #{ mainPhoto },
-    #{ photoPath },
-    #{ category },
-    #{ recipeTitle },
-    #{ recipeIntro },
-    #{ recipeVideoLink },
-    #{ ingName },
-    #{ weigh },
-    #{ riUnit },
-    #{ rpFileName },
-    #{ rpPath },
-    #{ rpContent },
-    #{ tip },
-    #{ recipeFileName },
-    #{ recipePath }
-    )
-    SELECT
-    M.NICKNAME,
-    R.MAIN_PHOTO,
-    R.PHOTO_PATH,
-    RC.CATEGORY,
-    R.RECIPE_TITLE,
-    R.RECIPE_INTRO,
-    R.RECIPE_VIDEO_LINK,
-    I.ING_NAME,
-    RI.WEIGH,
-    RI.RI_UNIT,
-    RP.RP_FILE_NAME,
-    RP.RP_CONTENT,
-    R.TIP,
-    RPH.RECIPE_FILE_NAME,
-    RPH.RECIPE_PATH
-    FROM  RECIPE R
-    JOIN  MEMBER M ON (M.MEM_NUM = R.MEM_NUM)
-    JOIN  RECIPE_CATEGORY RC ON (RC.CATEGORY_NUM = R.CATEGOTY_NUM)
-    JOIN  RECIPE_INGREDIENT RI ON (RI.RECIPE_NUM = R.RECIPE_NUM)
-    JOIN  INGREDIENT I ON (I.ING_NUM = RI.ING_NUM)
-    JOIN  RECIPE_PROCEDURE RP ON (RP.RECIPE_NUM = R.RECIPE_NUM)
-    JOIN  RECIPE_PHOTO RPH ON (RPH.RECIPE_NUM = R.RECIPE_NUM);
-
+    INSERT INTO RECIPE
+    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
+    VALUES (SEQ_RECIPE_NUM.NEXTVAL,
+            #{memNum},
+            #{mainPhoto},
+            #{categoryNum},
+            #{photoPath},
+            #{recipeTitle},
+            #{recipeIntro},
+            #{recipeVideoLink},
+            #{tip},
+            SYSDATE
+            )
 </insert>
+
+
+
+    <insert id="modifyPhoto" parameterType="java.util.List">
+        INSERT INTO RECIPE_PHOTO
+        (PHOTO_NUMBER , RECIPE_NUM , RECIPE_FILE_NAME , RECIPE_PATH)
+        SELECT SEQ_PHOTO_NUMBER.NEXTVAL , A.* FROM(
+        <foreach item="item" collection="list" separator="UNION ALL">
+            SELECT  #{item.recipeNum} AS  RECIPE_NUM ,
+            #{item.recipeFileName } AS RECIPE_FILE_NAME ,
+            #{item.recipePhotoPath } AS RECIPE_PATH
+            FROM DUAL
+        </foreach> )A
+
+    </insert>
+
+    <insert id = "ingredient">
+        INSERT INTO INGREDIENT
+        (ING_NUM, ING_NAME, ING_PRICE, CATEGORY, ING_UNIT)
+        VALUES (
+                #{ ingNum },
+                #{ ingName },
+                #{ ingPrice },
+                #{ category },
+                #{ ingUnit }
+               )
+    </insert>
+
+    <insert id = "member">
+        INSERT INTO MEMBER
+        (MEM_NUM, NICKNAME)
+        VALUES (
+                #{ memNum },
+                #{ nickname }
+               )
+    </insert>
+
+
+    
+    <insert id = "recipeIngredient">
+        INSERT INTO RECIPE_INGREDIENT
+        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)
+        VALUES (
+                #{ ingNum },
+                #{ recipeNum },
+                #{ weigh },
+                #{ riUnit }
+               )
+    </insert>
+
+    <insert id = "recipePhotoWrite">
+        INSERT INTO RECIPE_PHOTO
+        (PHOTO_NUMBER, RECIPE_NUM, RECIPE_FILE_NAME, RECIPE_PATH)
+        VALUES (
+                #{ photoNumber },
+                #{ recipeNum },
+                #{ recipeFileName },
+                #{ recipePath }
+               )
+    </insert>
+
+    <insert id="recipeProcedure">
+        INSERT INTO RECIPE_PROCEDURE
+        (RP_NUM, RECIPE_NUM, RP_FILE_NAME, RP_CONTENT, RP_PATH)
+        VALUES (
+                #{ rpNum },
+                #{ recipeNum },
+                #{ rpFileName },
+                #{ rpContent },
+                #{ rpPath}
+               )
+    </insert>
 </mapper>

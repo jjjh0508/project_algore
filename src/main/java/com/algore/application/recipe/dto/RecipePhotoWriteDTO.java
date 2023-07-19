@@ -4,25 +4,37 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class RecipePhotoWriteDTO {
 
-    private int photoNum;
-    private String recipeFileName;
-    private MultipartFile recipePhotoPath;
+    private int photoNumber; // 사진번호
+    private int recipeNum; // 레시피 번호
+    private String recipeFileName; // 파일명
+    private String recipePhotoPath; // 저장경로
+    private MultipartFile recipePhotoWriteInput; // 파일
 
     public RecipePhotoWriteDTO() {
     }
 
-    public RecipePhotoWriteDTO(int photoNum, String recipeFileName, MultipartFile recipePhotoPath) {
-        this.photoNum = photoNum;
+    public RecipePhotoWriteDTO(int photoNumber, int recipeNum, String recipeFileName, String recipePhotoPath, MultipartFile recipePhotoWriteInput) {
+        this.photoNumber = photoNumber;
+        this.recipeNum = recipeNum;
         this.recipeFileName = recipeFileName;
         this.recipePhotoPath = recipePhotoPath;
+        this.recipePhotoWriteInput = recipePhotoWriteInput;
     }
 
-    public int getPhotoNum() {
-        return photoNum;
+    public int getPhotoNumber() {
+        return photoNumber;
     }
 
-    public void setPhotoNum(int photoNum) {
-        this.photoNum = photoNum;
+    public void setPhotoNumber(int photoNumber) {
+        this.photoNumber = photoNumber;
+    }
+
+    public int getRecipeNum() {
+        return recipeNum;
+    }
+
+    public void setRecipeNum(int recipeNum) {
+        this.recipeNum = recipeNum;
     }
 
     public String getRecipeFileName() {
@@ -33,20 +45,30 @@ public class RecipePhotoWriteDTO {
         this.recipeFileName = recipeFileName;
     }
 
-    public MultipartFile getRecipePhotoPath() {
+    public String getRecipePhotoPath() {
         return recipePhotoPath;
     }
 
-    public void setRecipePhotoPath(MultipartFile recipePhotoPath) {
+    public void setRecipePhotoPath(String recipePhotoPath) {
         this.recipePhotoPath = recipePhotoPath;
+    }
+
+    public MultipartFile getRecipePhotoWriteInput() {
+        return recipePhotoWriteInput;
+    }
+
+    public void setRecipePhotoWriteInput(MultipartFile recipePhotoWriteInput) {
+        this.recipePhotoWriteInput = recipePhotoWriteInput;
     }
 
     @Override
     public String toString() {
         return "RecipePhotoWriteDTO{" +
-                "photoNum=" + photoNum +
+                "photoNumber=" + photoNumber +
+                ", recipeNum=" + recipeNum +
                 ", recipeFileName='" + recipeFileName + '\'' +
-                ", recipePhotoPath=" + recipePhotoPath +
+                ", recipePhotoPath='" + recipePhotoPath + '\'' +
+                ", recipePhotoWriteInput=" + recipePhotoWriteInput +
                 '}';
     }
 }
