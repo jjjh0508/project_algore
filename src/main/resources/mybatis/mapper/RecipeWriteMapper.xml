@@ -26,6 +26,33 @@
 <!--            )-->
 <!--</insert>-->
 
+    <resultMap id="categoryMap" type="com.algore.application.recipe.dto.RecipeCategoryDTO">
+        <id property="categoryNum" column="CATEGORY_NUM"/>
+        <result property="category" column="CATEGORY"/>
+    </resultMap>
+
+<select id="readcategory" resultMap="categoryMap">
+    SELECT CATEGORY_NUM,
+           CATEGORY
+      FROM RECIPE_CATEGORY
+</select>
+    
+<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
+    INSERT INTO RECIPE
+    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
+    VALUES (SEQ_RECIPE_NUM.NEXTVAL,
+            #{memNum},
+            #{mainPhoto},
+            #{categoryNum},
+            #{photoPath},
+            #{recipeTitle},
+            #{recipeIntro},
+            #{recipeVideoLink},
+            #{tip},
+            SYSDATE
+            )
+</insert>
+
 
 
 <!--    <insert id="modifyPhoto" parameterType="java.util.List">-->

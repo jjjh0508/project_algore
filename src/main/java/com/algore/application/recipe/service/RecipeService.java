@@ -49,6 +49,8 @@ public class RecipeService {
         return result;
     }
 
+
+
     public int writeRecipe(RecipeWriteDTO recipeWriteDTO) {
 
         int result = 0;
@@ -162,6 +164,12 @@ public class RecipeService {
             return 0;
         }
         return result;
+    }
+
+    public List<RecipeCategoryDTO> readcategory() {
+
+        List<RecipeCategoryDTO> recipecategory = mapper.readcategory();
+        return recipecategory;
     }
 }
 
