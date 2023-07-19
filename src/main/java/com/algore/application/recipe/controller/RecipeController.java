@@ -42,8 +42,17 @@ public class RecipeController {
     }
 
     @GetMapping("/regist")
-    public String write() {
-        return "recipe/write";
+    public ModelAndView writeForm(ModelAndView mv, Authentication authentication) {
+       List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
+        for (RecipeCategoryDTO recipecategoryy: recipecategory
+             ) {
+            System.out.println(recipecategoryy);
+
+        }
+
+        mv.addObject("categoryList", recipecategory);
+        mv.setViewName("/recipe/regist");
+        return mv;
     }
 
     @PostMapping(value = "/regist")
