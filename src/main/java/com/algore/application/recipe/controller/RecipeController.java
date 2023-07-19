@@ -34,10 +34,8 @@ public class RecipeController {
         List<CommentReadDTO> commentReadDTOList = recipeService.commentRead(recipe);
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipevlew", recipeviewDTO);
-        List<RecipeOrderDTO> recipeOrderDTOS = recipeviewDTO.getRecipeOrderList();
-        for (RecipeOrderDTO orderDTO : recipeOrderDTOS) {
-            System.out.println(orderDTO);
-        }
+        List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
+
 
         mv.setViewName("/recipe/view");
         return mv;
@@ -116,14 +114,30 @@ public class RecipeController {
     @GetMapping("/modify")
     public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
+
             String name = recipeService.getUserName(recipe);
+
+            System.out.println(authentication.getDetails());
+            System.out.println(authentication.isAuthenticated());
+            System.out.println(authentication.getPrincipal());
+            System.out.println(authentication.getAuthorities());
+
             if (!authentication.getName().equals(name)) {
                 //작성자만 수정가능
                 mv.addObject("message", "작성자만 수정 가능합니다.");
                 mv.setViewName("/common/error");
                 return mv;
             }
+
             RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
+            List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
+            if(recipePhotoDTOList.isEmpty()){
+                for(int i=0;i<4;i++){
+                    recipePhotoDTOList.add(new RecipePhotoDTO());
+                }
+                recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
+            }
+
             mv.addObject("recipevlew", recipeviewDTO);
             mv.setViewName("/recipe/modify");
         } catch (Exception e) {
@@ -137,8 +151,8 @@ public class RecipeController {
     @PostMapping("/modifyform")
     public ModelAndView modifyRecipe(ModelAndView mv, RecipeviewDTO recipeviewDTO, HttpServletRequest request) {
         int result = recipeService.modifyRecipe(recipeviewDTO);
+
         if (result > 0) {
-            System.out.println("테스트");
             mv.setViewName("redirect:/recipe/view?recipe=" + recipeviewDTO.getRecipeNum());
         } else {
             mv.addObject("message", "수정 실패하였습니다.");

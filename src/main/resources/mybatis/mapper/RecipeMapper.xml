@@ -149,6 +149,10 @@
         WHERE RECIPE_NUM=#{recipeNum}
     </delete>
 
+    <delete id="photoDelete">
+        DELETE FROM RECIPE_PHOTO
+        WHERE RECIPE_NUM=#{recipeNum}
+    </delete>
 
 
     <insert id="modifyOrder" parameterType="java.util.List">
@@ -162,6 +166,20 @@
 
         </foreach>)A
 
+    </insert>
+
+
+    <insert id="modifyPhoto" parameterType="java.util.List">
+        INSERT INTO RECIPE_PHOTO
+        (PHOTO_NUMBER , RECIPE_NUM , RECIPE_FILE_NAME , RECIPE_PATH)
+        SELECT SEQ_PHOTO_NUMBER.NEXTVAL , A.* FROM(
+            <foreach item="item" collection="list" separator="UNION ALL">
+                SELECT  #{item.recipeNum} AS  RECIPE_NUM ,
+                        #{item.recipeFileName ,jdbcType=VARCHAR} AS RECIPE_FILE_NAME ,
+                        #{item.recipePhotoPath ,jdbcType=VARCHAR } AS RECIPE_PATH
+                FROM DUAL
+            </foreach> )A
 
     </insert>
+
 </mapper>

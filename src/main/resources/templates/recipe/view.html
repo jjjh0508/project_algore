@@ -6,7 +6,7 @@
 <th:block layout:fragment="content">
 
     <script th:inline="javascript">
-        function clip(){
+        function clip() {
             var url = '';
             var textarea = document.createElement("textarea");
             document.body.appendChild(textarea);
@@ -178,12 +178,12 @@
                 <div class="profile-img">
                     <div class="d-flex justify-content-start">
                         <th:block th:if="${recipevlew.proFilePath!=null}">
-                        <img th:src=${recipevlew.proFilePath}+${recipevlew.proFileName} alt="프로필사진"
-                             style="margin-top: 22px; margin-left: 20px;">
-                        <div id="recipe-writer-profile" style="margin-top: 33px; margin-left: 20px;">
-                            <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
-                            <h6 style="padding: 3px;" th:text="${recipevlew.recipeCreateDate}">대충 날짜</h6>
-                        </div>
+                            <img th:src=${recipevlew.proFilePath}+${recipevlew.proFileName} alt="프로필사진"
+                                 style="margin-top: 22px; margin-left: 20px;">
+                            <div id="recipe-writer-profile" style="margin-top: 33px; margin-left: 20px;">
+                                <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
+                                <h6 style="padding: 3px;" th:text="${recipevlew.recipeCreateDate}">대충 날짜</h6>
+                            </div>
                         </th:block>
                         <th:block th:if="${recipevlew.proFilePath==null}">
                             <div class="profile-img">
@@ -215,14 +215,14 @@
             <!--작성자 끝-->
             <!--좋아요 즐겨찾기 공유 버튼-->
             <div class="like" style="float: right; margin-right: 20px; margin-top: 25px;">
-<!--                <button class="likeButton" style="border:none; background-color: transparent;">-->
-<!--                    <img src="/img/likebtn.svg">-->
-<!--                </button>-->
-<!--                <button class="favoritesButton" style=" border:none; background-color: transparent;">-->
-<!--                    <img src="/img/bookbtn.svg"/>-->
-<!--                </button>-->
+                <!--                <button class="likeButton" style="border:none; background-color: transparent;">-->
+                <!--                    <img src="/img/likebtn.svg">-->
+                <!--                </button>-->
+                <!--                <button class="favoritesButton" style=" border:none; background-color: transparent;">-->
+                <!--                    <img src="/img/bookbtn.svg"/>-->
+                <!--                </button>-->
 
-                    <img src="/img/sharingbtn.svg" onclick="clip()"/>
+                <img src="/img/sharingbtn.svg" onclick="clip()"/>
 
             </div>
 
@@ -310,57 +310,83 @@
                 </div>
 
                 <div>
-                    <th:block th:if="${recipevlew.recipePhotoDTOList.size()>0}">
-                    <div class="d-flex justify-content-start" style="">
-                        <h4>완성 사진</h4>
-                    </div>
-                    <div>
+
+                        <div class="d-flex justify-content-start" style="">
+                            <h4>완성 사진</h4>
+                        </div>
+                    <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList)}">
 
                         <div class="d-flex justify-content-between" style="">
-                            <th:block th:if="${recipevlew.recipePhotoDTOList[0]!=null}">
+                            <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
                                 <div class="col">
                                     <img th:src="${recipevlew.recipePhotoDTOList[0].recipePhotoPath}+${recipevlew.recipePhotoDTOList[0].recipeFileName}"
                                          style="height: 250px; width: 250px; border-radius: 2em;"/>
                                 </div>
                             </th:block>
-                            <th:block th:if="${recipevlew.recipePhotoDTOList[1]!=null}">
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
+                                <div class="col">
+                                </div>
+                            </th:block>
+
+
+                            <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[1].recipeFileName)}">
                                 <div class="col">
                                     <img th:src="${recipevlew.recipePhotoDTOList[1].recipePhotoPath}+${recipevlew.recipePhotoDTOList[1].recipeFileName}"
                                          style="height: 250px; width: 250px; margin-left: 15px; border-radius: 2em;"/>
                                 </div>
                             </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[1].recipeFileName)}">
+                                <div class="col">
+                                </div>
+                            </th:block>
+
+
                         </div>
 
                         <div class="d-flex justify-content-between" style="margin-top: 15px;">
-                            <th:block th:if="${recipevlew.recipePhotoDTOList[2]!=null}">
+                            <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[2].recipeFileName)}">
                                 <div class="col">
                                     <img th:src="${recipevlew.recipePhotoDTOList[2].recipePhotoPath}+${recipevlew.recipePhotoDTOList[2].recipeFileName}"
                                          style="height: 250px; width: 250px; border-radius: 2em;"/>
                                 </div>
                             </th:block>
-                            <th:block th:if="${recipevlew.recipePhotoDTOList[3]!=null}">
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[2].recipeFileName)}">
+                                <div class="col">
+                                </div>
+                            </th:block>
+                            <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[3].recipeFileName)}">
                                 <div class="col">
                                     <img th:src="${recipevlew.recipePhotoDTOList[3].recipePhotoPath}+${recipevlew.recipePhotoDTOList[3].recipeFileName}"
                                          style="height: 250px; width: 250px; margin-left: 15px; border-radius: 2em;"/>
                                 </div>
                             </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[3].recipeFileName)}">
+                                <div class="col">
+                                </div>
+                            </th:block>
+
                         </div>
 
-                    </div>
+
                     </th:block>
                 </div>
+
             </div>
         </div>
 
 
         <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">
             <div class="d-flex justify-content-end new-margin" style="margin-top: 30px; margin-right: 25px;">
-                <a class="btn btn-primary but-off-color" th:href="@{/recipe/delete(recipe=${recipevlew.recipeNum})}" role="button"
+                <a class="btn btn-primary but-off-color" th:href="@{/recipe/delete(recipe=${recipevlew.recipeNum})}"
+                   role="button"
                    style=" margin-right: 15px; text-align: center; border-radius: 2em;"
                    onclick="return confirm('레시피 삭제하시겠습니까?')">
                     <b>삭제</b>
                 </a>
-                <a class="btn btn-primary but-off-color" th:href="@{/recipe/modify(recipe=${recipevlew.recipeNum})}" role="button" style="border-radius: 2em;"
+                <a class="btn btn-primary but-off-color" th:href="@{/recipe/modify(recipe=${recipevlew.recipeNum})}"
+                   role="button" style="border-radius: 2em;"
                    onclick="return confirm('레시피을 수정하시겠습니까?')">
                     <b>레시피 수정</b>
                 </a>
@@ -374,131 +400,129 @@
 
         <!-- 코멘트 출력영역 시작 -->
         <article id="reply-area">
-        <th:block th:if="${commentRead}!=null" }>
-            <div th:each="comment:${commentRead}">
-                <!-- 코멘트 한개 출력 -->
-                <div id="oneComment">
-                    <div id="comment" class="d-flex justify-content-center">
-                        <th:block th:if="${comment.profileName!=null}">
-                        <div id="comment-picture1" class="col-md-2 d-none d-md-inline" style="margin-top: 10px;">
-                            <!-- 코맨트 사진영역 -->
-                            <img th:if="${comment.profilePath!=null} and ${comment.profileName!=null}"  th:src="${comment.profilePath}+${comment.profileName}"
-                                  width="100px" height="120px"
-                                 fill="currentColor"
-                                 class="bi bi-person-bounding-box" viewBox="0 0 16 16"
-                                 style="border-radius: 2em;margin-left: 20%"/>
-                        </div>
-                        </th:block>
-                        <th:block th:if="${comment.profileName==null}">
-                            <div id="comment-picture2" class="col-md-2 d-none d-md-inline" style="margin-top: 10px;">
-                                <!-- 코맨트 사진영역 -->
-                                <img   src="/img/profileicon.svg"
-                                     width="100px" height="120px"
-                                     fill="currentColor"
-                                     class="bi bi-person-bounding-box" viewBox="0 0 16 16"
-                                     style="border-radius: 2em;margin-left: 20%"/>
-                            </div>
-                        </th:block>
-                        <!-- 코멘트 사진 영역 종료 -->
+            <th:block th:if="${commentRead}!=null" }>
+                <div th:each="comment:${commentRead}">
+                    <!-- 코멘트 한개 출력 -->
+                    <div id="oneComment">
+                        <div id="comment" class="d-flex justify-content-center">
+                            <th:block th:if="${comment.profileName!=null}">
+                                <div id="comment-picture1" class="col-md-2 d-none d-md-inline"
+                                     style="margin-top: 10px;">
+                                    <!-- 코맨트 사진영역 -->
+                                    <img th:if="${comment.profilePath!=null} and ${comment.profileName!=null}"
+                                         th:src="${comment.profilePath}+${comment.profileName}"
+                                         width="100px" height="120px"
+                                         fill="currentColor"
+                                         class="bi bi-person-bounding-box" viewBox="0 0 16 16"
+                                         style="border-radius: 2em;margin-left: 20%"/>
+                                </div>
+                            </th:block>
+                            <th:block th:if="${comment.profileName==null}">
+                                <div id="comment-picture2" class="col-md-2 d-none d-md-inline"
+                                     style="margin-top: 10px;">
+                                    <!-- 코맨트 사진영역 -->
+                                    <img src="/img/profileicon.svg"
+                                         width="100px" height="120px"
+                                         fill="currentColor"
+                                         class="bi bi-person-bounding-box" viewBox="0 0 16 16"
+                                         style="border-radius: 2em;margin-left: 20%"/>
+                                </div>
+                            </th:block>
+                            <!-- 코멘트 사진 영역 종료 -->
 
-                        <div id="commnet-contens" class="col-md-10">
-                            <!-- 코멘트 내용 영역 -->
-                            <div class="shadow-lg bg-body text-justify"
-                                 style="width: 850px; height: 120px; margin-top: 10px; border-radius: 2em;">
-                                <div id="comment-row" class="row" style="padding: 20px 20px 0px 20px;">
-                                    <div id="comment-writer" class="col-md-10">
-                                        <h5 th:text="${comment.memNickName}">작성자나오는 곳</h5>
+                            <div id="commnet-contens" class="col-md-10">
+                                <!-- 코멘트 내용 영역 -->
+                                <div class="shadow-lg bg-body text-justify"
+                                     style="width: 850px; height: 120px; margin-top: 10px; border-radius: 2em;">
+                                    <div id="comment-row" class="row" style="padding: 20px 20px 0px 20px;">
+                                        <div id="comment-writer" class="col-md-10">
+                                            <h5 th:text="${comment.memNickName}">작성자나오는 곳</h5>
+                                        </div>
+                                        <div id="comment-button" class="col-md-2" style="text-align: right">
+                                        </div>
+
                                     </div>
-                                    <div id="comment-button" class="col-md-2" style="text-align: right">
+                                    <div id="comment-text-area" style="margin-left: 30px;">
+                                        <span th:text="${comment.creatDate}">작성 날짜 나오는곳</span> <br>
+                                        <p th:text="${comment.conutent}">댓글 나오는곳</p>
+                                    </div>
+                                    <div id="comment-delmodi-buttom-area" style="text-align: right">
                                     </div>
 
-                                </div>
-                                <div id="comment-text-area" style="margin-left: 30px;">
-                                    <span th:text="${comment.creatDate}">작성 날짜 나오는곳</span> <br>
-                                    <p th:text="${comment.conutent}">댓글 나오는곳</p>
-                                </div>
-                                <div id="comment-delmodi-buttom-area" style="text-align: right">
                                 </div>
 
                             </div>
 
                         </div>
 
+                        <!-- 코멘트 내용영역종료 -->
                     </div>
-
-                    <!-- 코멘트 내용영역종료 -->
                 </div>
-            </div>
-        </th:block>
-        <!--코멘트 작성구역-->
-        <th:block th:if="${#authentication.name!=null}">
-            <form action="/comment/regist" method="post" style="margin-top: 50px;">
-                <div id="comment-write-area" class="d-flex justify-content-center">
-                    <div style="margin-right: 30px;">
-                        <input type="hidden" th:value="${#authentication.name}" name="userId">
-                        <input type="hidden" th:value="${recipevlew.recipeNum}" name="recipeNum">
-                        <div id="comment-textarea" class="col-md-11">
+            </th:block>
+            <!--코멘트 작성구역-->
+            <th:block th:if="${#authentication.name!=null}">
+                <form action="/comment/regist" method="post" style="margin-top: 50px;">
+                    <div id="comment-write-area" class="d-flex justify-content-center">
+                        <div style="margin-right: 30px;">
+                            <input type="hidden" th:value="${#authentication.name}" name="userId">
+                            <input type="hidden" th:value="${recipevlew.recipeNum}" name="recipeNum">
+                            <div id="comment-textarea" class="col-md-11">
 
-                            <div class="form-floating">
+                                <div class="form-floating">
                                     <textarea name="conutent" class="form-control"
                                               placeholder="Leave a comment here" id="floatingTextarea2"
                                               style="height: 100px; width: 900px; resize: none;  border-radius: 2em;"
                                               required="required"></textarea>
-                                <label for="floatingTextarea2" style="padding-left: 25px;">댓글을 등록해주세요</label>
+                                    <label for="floatingTextarea2" style="padding-left: 25px;">댓글을 등록해주세요</label>
+                                </div>
                             </div>
                         </div>
+                        <div id="comment-button-area" class="col-md-1">
+                            <input type="submit" value="등록" style="width: 70px; height: 100%; border-radius: 2em;"
+                                   class="btn btn-outline-primary but-off-color">
+                        </div>
                     </div>
-                    <div id="comment-button-area" class="col-md-1">
-                        <input type="submit" value="등록" style="width: 70px; height: 100%; border-radius: 2em;"
-                               class="btn btn-outline-primary but-off-color">
-                    </div>
-                </div>
-                <!-- 코멘트 페이지 영역  테스트-->
-<!--                <div id="page-area" style="text-align:center">-->
+                    <!-- 코멘트 페이지 영역  테스트-->
+                    <!--                <div id="page-area" style="text-align:center">-->
 
 
-<!--                    <div id="app" class="container">-->
-<!--                        <ul class="page">-->
-<!--                            &lt;!&ndash; 1페이지 아닐때만 &ndash;&gt;-->
-<!--                            <c:if test="${startNavi ne 1 && startNavi > 0}">-->
-<!--                                <li class="page__btn">-->
-<!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${startNavi-1 }#reply-area"> < </a>-->
-<!--                                </li>-->
-<!--                            </c:if>-->
+                    <!--                    <div id="app" class="container">-->
+                    <!--                        <ul class="page">-->
+                    <!--                            &lt;!&ndash; 1페이지 아닐때만 &ndash;&gt;-->
+                    <!--                            <c:if test="${startNavi ne 1 && startNavi > 0}">-->
+                    <!--                                <li class="page__btn">-->
+                    <!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${startNavi-1 }#reply-area"> < </a>-->
+                    <!--                                </li>-->
+                    <!--                            </c:if>-->
 
-<!--                            <c:forEach var="p" begin="${startNavi }" end="${endNavi }">-->
+                    <!--                            <c:forEach var="p" begin="${startNavi }" end="${endNavi }">-->
 
-<!--                                <c:if test="${currentPage == p}">-->
-<!--                                    <li class="page__numbers active">${p }</li>-->
-<!--                                </c:if>-->
-<!--                                <c:if test="${currentPage ne p}">-->
-<!--                                    <li class="page__numbers"><a-->
-<!--                                            href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${p }#reply-area">${p }</a></li>-->
-<!--                                </c:if>-->
-<!--                            </c:forEach>-->
-
-
-
-<!--                            &lt;!&ndash; 마지막페이지 아닐때만 &ndash;&gt;-->
-<!--                            <c:if test="${endNavi < maxPage }">-->
-<!--                                <li class="page__btn">-->
-<!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${endNavi+1 }#reply-area"> > </a>-->
-<!--                                </li>-->
-<!--                            </c:if>-->
-<!--                        </ul>-->
-<!--                    </div>-->
+                    <!--                                <c:if test="${currentPage == p}">-->
+                    <!--                                    <li class="page__numbers active">${p }</li>-->
+                    <!--                                </c:if>-->
+                    <!--                                <c:if test="${currentPage ne p}">-->
+                    <!--                                    <li class="page__numbers"><a-->
+                    <!--                                            href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${p }#reply-area">${p }</a></li>-->
+                    <!--                                </c:if>-->
+                    <!--                            </c:forEach>-->
 
 
+                    <!--                            &lt;!&ndash; 마지막페이지 아닐때만 &ndash;&gt;-->
+                    <!--                            <c:if test="${endNavi < maxPage }">-->
+                    <!--                                <li class="page__btn">-->
+                    <!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${endNavi+1 }#reply-area"> > </a>-->
+                    <!--                                </li>-->
+                    <!--                            </c:if>-->
+                    <!--                        </ul>-->
+                    <!--                    </div>-->
 
 
+                    <!--                </div>-->
 
+                    <!--                 코멘트 페이지 영역 종료-->
+                </form>
 
-<!--                </div>-->
-
-<!--                 코멘트 페이지 영역 종료-->
-            </form>
-
-        </th:block>
+            </th:block>
         </article>
 
         <!-- 코멘트 작성영역 종료 -->

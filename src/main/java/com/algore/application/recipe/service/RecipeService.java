@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,12 +62,15 @@ public class RecipeService {
 
     public int modifyRecipe(RecipeviewDTO recipeviewDTO) {
         int result = 0;
+
         try {
             //대표사진 업로드 로직
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
             MultipartFile mainFile = recipeviewDTO.getMainInputFile();
             String mainFilename = mainFile.getOriginalFilename();
             String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+            //파일 이름이 널이 아닐때 만 실행
+
             if (!mainFile.isEmpty()) {
                 File profileFile = new File(root + recipeviewDTO.getMainFileName());
                 System.out.println(profileFile);
@@ -74,7 +78,6 @@ public class RecipeService {
                     profileFile.delete();
                 }
                 //이름 중복 해결하기 위해서 시간으로 이름 교체
-
                 String mainfileName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "."
                         + mainFilename.substring(mainFilename.lastIndexOf(".") + 1);
 
@@ -82,25 +85,22 @@ public class RecipeService {
                 //교체한 이름 DTO에 세팅
                 recipeviewDTO.setMainFileName(mainfileName);
                 recipeviewDTO.setMainPath("/upload/basic/");
-
-
             }
+
 
 //            요리 순서 로직
             List<RecipeOrderDTO> recipeOrderDTOS = recipeviewDTO.getRecipeOrderList();
-
             for (int i = 0; i < recipeOrderDTOS.size(); i++) {
                 recipeOrderDTOS.get(i).setRecipeNum(recipeviewDTO.getRecipeNum());
                 String orderName = recipeOrderDTOS.get(i).getOprderInputFile().getOriginalFilename();
                 if (orderName != null && !orderName.equals("")) {
-
                     File file = new File(root + "\\" + recipeOrderDTOS.get(i).getFileName()); // 이미 저장한 파일이름 가져오기
 
                     if (file.exists()) { // 파일 있는지 확인
                         file.delete(); // 파일 이 있으면 삭제하기
                     }
 
-                    // 다 지우고 재업로드 로직
+                    // list에 파일 이름 다시 등록해주기
                     // 파일 이름 안겹치게 하기
                     String newOrderFileName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "." + orderName.substring(orderName.lastIndexOf(".") + 1);
 
@@ -110,20 +110,47 @@ public class RecipeService {
 
                 }
 
+            }
+            //완성 사진 로직
+            List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
+
+            //완성 사진 사이즈 만큼 반복
+            for (int i = 0; i < recipePhotoDTOList.size(); i++) {
+                //레시피 넘버 세팅
+                recipePhotoDTOList.get(i).setRecipeNum(recipeviewDTO.getRecipeNum());
+
+                //등록된 파일의 이름을 가져오기
+                String photoName = recipePhotoDTOList.get(i).getPhotoInputFile().getOriginalFilename();
+                //등록된 파일이 있는지 검사
+                if (photoName != null && !photoName.equals("")) {
+
+                    //등록된 파일이 있으면 기존에 있던 파일 삭제해주고 이름 바꿔주기
+                    File file = new File(root + "//" + recipePhotoDTOList.get(i).getRecipeFileName());
+                    if (file.exists()) { //파일이 있으면
+                        file.delete(); //삭제 해주기
+                    }
+                    //list에 파일 이름 다시 등록해주기
+                    String newPhotoName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "." + photoName.substring(photoName.lastIndexOf(".") + 1);
+                    recipePhotoDTOList.get(i).getPhotoInputFile().transferTo(new File(root + "\\" + newPhotoName));
+                    recipePhotoDTOList.get(i).setRecipePhotoPath(("/upload/basic/"));
+                    recipePhotoDTOList.get(i).setRecipeFileName(newPhotoName);
+                }
 
 
             }
-            for (RecipeOrderDTO orderDTO : recipeOrderDTOS) {
-                System.out.println(orderDTO);
-            }
-            mapper.orderDelete(recipeviewDTO.getRecipeNum());
-            System.out.println("이제 될듯?");
 
+            for (RecipePhotoDTO recipePhotoDTO: recipePhotoDTOList) {
+                System.out.println(recipePhotoDTO);
+            }
+
+
+            int orderDelete = mapper.orderDelete(recipeviewDTO.getRecipeNum());
+            int photoDelete = mapper.photoDelete(recipeviewDTO.getRecipeNum());
             int orderResult = mapper.modifyOrder(recipeOrderDTOS);
-
+            int photoResult = mapper.modifyPhoto(recipePhotoDTOList);
             int recipeResult = mapper.modifyRecipe(recipeviewDTO);
-            System.out.println("여기도 문제인가");
-            if (orderResult > 0 && recipeResult > 0) {
+
+            if (recipeResult > 0) {
                 System.out.println("성공");
                 result = 1;
             }
