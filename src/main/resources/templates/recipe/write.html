@@ -153,24 +153,24 @@
                            style="margin-top: 40px; margin-left: 10px;">
                         <h6><b>카테고리</b></h6>
                     </label>
-                    <select class="form-select fon-color input-box-sty pla-col" name="recipeCategory" required
-                            style="width: 400px; border-radius: 1em;" th:field="${recipeWrite.category}">
-                        <option selected disabled value="">음식 카테고리</option>
-                            <option th:each="category : ${categoryList}"
-                                th:value="ㅊ"
-                            </option>
+<!--                    <select class="form-select fon-color input-box-sty pla-col" name="recipeCategory" required-->
+<!--                            style="width: 400px; border-radius: 1em;" >-->
+<!--                        <option selected disabled value="">음식 카테고리</option>-->
+<!--&lt;!&ndash;                            <option th:each="category : ${categoryList}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                th:value="ㅊ"&ndash;&gt;-->
+<!--                            </option>-->
 
-                        <option value="채식"  th:selected="${recipeWrite.category=='채식'}">채식</option>
-                        <option value="한식"  th:selected="${recipeWrite.category=='한식'}">한식</option>
-                        <option value="양식"  th:selected="${recipeWrite.category=='양식'}">양식</option>
-                        <option value="일식"  th:selected="${recipeWrite.category=='일식'}">일식</option>
-                        <option value="중식"  th:selected="${recipeWrite.category=='중식'}">중식</option>
-                        <option value="퓨전"  th:selected="${recipeWrite.category=='퓨전'}">퓨전</option>
-                        <option value="분식"  th:selected="${recipeWrite.category=='분식'}">분식</option>
-                        <option value="안식"  th:selected="${recipeWrite.category=='안주'}">안주</option>
-                        <option value="간식"  th:selected="${recipeWrite.category=='간식'}">간식</option>
-                    </select>
-                    <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>
+<!--                        <option value="채식"  th:selected="${recipeWrite.category=='채식'}">채식</option>-->
+<!--                        <option value="한식"  th:selected="${recipeWrite.category=='한식'}">한식</option>-->
+<!--                        <option value="양식"  th:selected="${recipeWrite.category=='양식'}">양식</option>-->
+<!--                        <option value="일식"  th:selected="${recipeWrite.category=='일식'}">일식</option>-->
+<!--                        <option value="중식"  th:selected="${recipeWrite.category=='중식'}">중식</option>-->
+<!--                        <option value="퓨전"  th:selected="${recipeWrite.category=='퓨전'}">퓨전</option>-->
+<!--                        <option value="분식"  th:selected="${recipeWrite.category=='분식'}">분식</option>-->
+<!--                        <option value="안식"  th:selected="${recipeWrite.category=='안주'}">안주</option>-->
+<!--                        <option value="간식"  th:selected="${recipeWrite.category=='간식'}">간식</option>-->
+<!--                    </select>-->
+<!--                    <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>-->
                     <br>
                 </div>
             </div>

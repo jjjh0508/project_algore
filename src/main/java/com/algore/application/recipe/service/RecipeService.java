@@ -65,7 +65,7 @@ public class RecipeService {
 
         try {
             //대표사진 업로드 로직
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
             MultipartFile mainFile = recipeviewDTO.getMainInputFile();
             String mainFilename = mainFile.getOriginalFilename();
             String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
@@ -116,6 +116,7 @@ public class RecipeService {
 
             //완성 사진 사이즈 만큼 반복
             for (int i = 0; i < recipePhotoDTOList.size(); i++) {
+                System.out.println(i);
                 //레시피 넘버 세팅
                 recipePhotoDTOList.get(i).setRecipeNum(recipeviewDTO.getRecipeNum());
 
@@ -123,7 +124,7 @@ public class RecipeService {
                 String photoName = recipePhotoDTOList.get(i).getPhotoInputFile().getOriginalFilename();
                 //등록된 파일이 있는지 검사
                 if (photoName != null && !photoName.equals("")) {
-
+                    System.out.println(photoName);
                     //등록된 파일이 있으면 기존에 있던 파일 삭제해주고 이름 바꿔주기
                     File file = new File(root + "//" + recipePhotoDTOList.get(i).getRecipeFileName());
                     if (file.exists()) { //파일이 있으면
@@ -131,9 +132,11 @@ public class RecipeService {
                     }
                     //list에 파일 이름 다시 등록해주기
                     String newPhotoName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "." + photoName.substring(photoName.lastIndexOf(".") + 1);
+                    System.out.println(newPhotoName);
                     recipePhotoDTOList.get(i).getPhotoInputFile().transferTo(new File(root + "\\" + newPhotoName));
                     recipePhotoDTOList.get(i).setRecipePhotoPath(("/upload/basic/"));
                     recipePhotoDTOList.get(i).setRecipeFileName(newPhotoName);
+                    System.out.println(newPhotoName);
                 }
 
 

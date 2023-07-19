@@ -418,8 +418,7 @@
 
 
                 <!-- 완성 사진 영역 -->
-                <th:block
-                        th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList)}">
+                <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList)}">
                     <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">
                         <!--완성 사진-->
                         <div style="margin: 20px 12px 0px 12px;">
@@ -427,8 +426,7 @@
                         </div>
 
                         <div class="row row-cols-2">
-                            <th:block
-                                    th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
+                            <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
                                 <!--사진1-->
                                 <div class="col">
                                     <label class="input-file-button">
@@ -559,78 +557,7 @@
                     </div>
                 </th:block>
             </div>
-            <!--비어 있으면-->
 
-<!--            <th:block-->
-<!--                    th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList)}">-->
-<!--                <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">-->
-<!--                    &lt;!&ndash;완성 사진&ndash;&gt;-->
-<!--                    <div style="margin: 20px 12px 0px 12px;">-->
-<!--                        <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>완성 사진</b></label>-->
-<!--                    </div>-->
-
-<!--                    <div class="row row-cols-2">-->
-
-<!--                        <div class="col">-->
-<!--                            <label class="input-file-button">-->
-<!--                                <img class="detailImg mx-auto" width="250px" height="200px"-->
-<!--                                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
-<!--                                <input type="hidden"-->
-<!--                                       th:field="${recipevlew.recipePhotoDTOList[__${0}__].recipeFileName}">-->
-<!--                            </label>-->
-<!--                        </div>-->
-
-
-<!--                        &lt;!&ndash;사진2&ndash;&gt;-->
-
-
-<!--                        <div class="col">-->
-<!--                            <label class="input-file-button">-->
-<!--                                <img class="detailImg mx-auto" width="250px" height="200px"-->
-<!--                                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
-<!--                                <input type="file" name="recipePicture" class="isFile" style="display: none"-->
-<!--                                       accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
-<!--                                       th:field="${recipevlew.recipePhotoDTOList[__${1}__].photoInputFile}">-->
-<!--                            </label>-->
-<!--                        </div>-->
-
-
-<!--                        &lt;!&ndash;사진3&ndash;&gt;-->
-
-
-<!--                        <div class="col">-->
-
-
-<!--                            <div class="col">-->
-<!--                                <label class="input-file-button">-->
-<!--                                    <img class="detailImg mx-auto" width="250px" height="200px"-->
-<!--                                         style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
-<!--                                    <input type="file" name="recipePicture" class="isFile" style="display: none"-->
-<!--                                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
-<!--                                           th:field="${recipevlew.recipePhotoDTOList[__${2}__].photoInputFile}">-->
-<!--                                </label>-->
-<!--                            </div>-->
-
-
-<!--                            &lt;!&ndash;사진4&ndash;&gt;-->
-
-
-<!--                            <div class="col">-->
-<!--                                <label class="input-file-button">-->
-<!--                                    <img class="detailImg mx-auto" width="250px" height="200px"-->
-<!--                                         style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
-<!--                                    <input type="file" name="recipePicture" class="isFile" style="display: none"-->
-<!--                                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
-<!--                                           th:field="${recipevlew.recipePhotoDTOList[__${3}__].photoInputFile}">-->
-<!--                                </label>-->
-<!--                            </div>-->
-
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    </div>-->
-<!--            </th:block>-->
-<!--            </div>-->
 
 
             <div class="" style="margin-right: 18px; margin-top: 10px;">
