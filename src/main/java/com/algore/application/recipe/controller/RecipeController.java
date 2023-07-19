@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,9 +44,9 @@ public class RecipeController {
 
     @GetMapping("/regist")
     public ModelAndView writeForm(ModelAndView mv, Authentication authentication) {
-       List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
-        for (RecipeCategoryDTO recipecategoryy: recipecategory
-             ) {
+        List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
+        for (RecipeCategoryDTO recipecategoryy : recipecategory
+        ) {
             System.out.println(recipecategoryy);
 
         }
@@ -123,7 +124,7 @@ public class RecipeController {
     @GetMapping("/modify")
     public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
-
+            List<RecipeCategoryDTO> recipeCategoryDTO = recipeService.readcategory();
             String name = recipeService.getUserName(recipe);
 
             System.out.println(authentication.getDetails());
@@ -140,13 +141,13 @@ public class RecipeController {
 
             RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
             List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
-            if(recipePhotoDTOList.isEmpty()){
-                for(int i=0;i<4;i++){
+            if (recipePhotoDTOList.isEmpty()) {
+                for (int i = 0; i < 4; i++) {
                     recipePhotoDTOList.add(new RecipePhotoDTO());
                 }
                 recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
             }
-
+            mv.addObject("recipeCategory", recipeCategoryDTO);
             mv.addObject("recipevlew", recipeviewDTO);
             mv.setViewName("/recipe/modify");
         } catch (Exception e) {

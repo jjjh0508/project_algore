@@ -118,7 +118,6 @@ public class RecipeService {
 
             //완성 사진 사이즈 만큼 반복
             for (int i = 0; i < recipePhotoDTOList.size(); i++) {
-                System.out.println(i);
                 //레시피 넘버 세팅
                 recipePhotoDTOList.get(i).setRecipeNum(recipeviewDTO.getRecipeNum());
 
@@ -144,15 +143,19 @@ public class RecipeService {
 
             }
 
-            for (RecipePhotoDTO recipePhotoDTO: recipePhotoDTOList) {
-                System.out.println(recipePhotoDTO);
-            }
+                System.out.println(recipeviewDTO.getCategoryNum());
+                System.out.println(recipeviewDTO.getCategory());
+
 
 
             int orderDelete = mapper.orderDelete(recipeviewDTO.getRecipeNum());
+
             int photoDelete = mapper.photoDelete(recipeviewDTO.getRecipeNum());
+
             int orderResult = mapper.modifyOrder(recipeOrderDTOS);
+
             int photoResult = mapper.modifyPhoto(recipePhotoDTOList);
+
             int recipeResult = mapper.modifyRecipe(recipeviewDTO);
 
             if (recipeResult > 0) {

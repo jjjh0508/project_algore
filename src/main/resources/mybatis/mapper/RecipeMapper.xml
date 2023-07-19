@@ -21,6 +21,7 @@
         <result property="proFileName" column="FILE_NAME"/>
         <result property="proFilePath" column="FILE_PATH"/>
         <result property="recipeWriter" column="ID"/>
+        <result property="categoryNum" column="CATEGORY_NUM"/>
     </resultMap>
 
 
@@ -40,7 +41,8 @@
             R.RECIPE_VIDEO_LINK,
             P.FILE_NAME,
             P.FILE_PATH,
-            M.ID
+            M.ID,
+            R.CATEGORY_NUM
         FROM RECIPE R
                  JOIN MEMBER M ON (M.MEM_NUM = R.MEM_NUM)
                  JOIN RECIPE_CATEGORY C ON (C.CATEGORY_NUM = R.CATEGORY_NUM)
@@ -140,7 +142,6 @@
             RECIPE_MODI_DATE = SYSDATE , TIP=#{tip} , RECIPE_VIDEO_LINK=#{youtube},
             PHOTO_PATH=#{mainPath}  , MAIN_PHOTO =#{mainFileName}
         WHERE RECIPE_NUM = #{recipeNum}
-
     </update>
 
 

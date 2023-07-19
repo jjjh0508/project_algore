@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8080
 
 
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: ALGORE
+    username: C##ALGORE
     password: ALGORE
   servlet:
     multipart:
