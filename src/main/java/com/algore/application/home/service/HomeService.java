@@ -2,6 +2,7 @@ package com.algore.application.home.service;
 
 import com.algore.application.home.dao.MainviewMapper;
 import com.algore.application.home.dto.MainViewDTO;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class HomeService {
         List<MainViewDTO> mainViewDTOList = mapper.mainView(startIndex, pageSiz ,page);
         return mainViewDTOList;
     }
+
 
     public int allcnt() {
         int totaListCnt = mapper.allcnt();

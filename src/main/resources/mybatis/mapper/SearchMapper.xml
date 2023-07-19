@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.algore.application.search.dao.SearchMapper">
+    <resultMap id="searchMap" type="com.algore.application.search.dto.SearchDTO">
+        <id property="recipeNum" column="RECIPE_NUM"/>
+        <result property="recipeTitle" column="RECIPE_TITLE"/>
+        <result property="views" column="RECIPE_VIEWS"/>
+        <result property="fileName" column="MAIN_PHOTO"/>
+        <result property="filePath" column="PHOTO_PATH"/>
+    </resultMap>
+
+
+
+
+<select id="searchRecipe" resultMap="searchMap">
+    SELECT
+    RECIPE_NUM,
+    RECIPE_TITLE,
+    RECIPE_VIEWS,
+    MAIN_PHOTO,
+    PHOTO_PATH
+    FROM RECIPE
+    WHERE RECIPE_STATUS ='Y' AND RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'  ]]>
+     ORDER BY RECIPE_VIEWS  DESC
+    OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
+</select>
+
+
+
+
+<select id="searchCnt" parameterType="String">
+    SELECT
+        COUNT(*)
+
+    FROM RECIPE
+    WHERE  RECIPE_STATUS ='Y' AND RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'    ]]>
+</select>
+</mapper>

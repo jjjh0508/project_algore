@@ -33,5 +33,6 @@
         count(*)
         FROM RECIPE
     WHERE RECIPE_STATUS ='Y'
+
     </select>
 </mapper>
