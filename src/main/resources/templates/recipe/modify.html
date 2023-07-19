@@ -5,709 +5,759 @@
 
 <th:block layout:fragment="content">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>알고레</title>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>알고레</title>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+              crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+                crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}"/>
 
-    <style>
-      a {
-        text-decoration: none
-      }
+        <style>
+            a {
+                text-decoration: none
+            }
 
-      .sear-btn {
-        font-family: Inter;
-        font-size: 20px;
-        letter-spacing: 0;
-        font-weight: bold;
-        color: #208BCE;
-      }
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
 
-      .new-margin {
-        margin-top: 30px;
-      }
+            .new-margin {
+                margin-top: 30px;
+            }
 
-      .fon-color {
-        color: #085A84;
-      }
+            .fon-color {
+                color: #085A84;
+            }
 
-      .but-off-color {
-        background-color: #D8F0FF;
-        /*버튼테두리*/
-        border-color: #D8F0FF;
-        /*버튼*/
-        color: #085A84;
-        /*텍스트*/
-        padding: 10px 15px 10px 15px;
-        border-radius: 2em;
-      }
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
 
-      .but-off-color:hover {
-        background-color: #99D3F8;
-        /*버튼테두리*/
-        border-color: #99D3F8;
-        /*버튼*/
-        color: #085A84;
-        /*텍스트*/
-        padding: 10px 15px 10px 15px;
-        border-radius: 2em;
-      }
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
 
-      .input-box-sty {
-        margin-top: 10px;
-        border: 2px solid;
-        border-color: #085A8485;
-        font-size: 15px;
-      }
+            .input-box-sty {
+                margin-top: 10px;
+                border: 2px solid;
+                border-color: #085A8485;
+                font-size: 15px;
+            }
 
-      .input-box-sty::placeholder {
-        color: #085A8485;
-        font-size: 15px;
-      }
+            .input-box-sty::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
 
-      .pla-col {
-        color: #085A84;
-      }
+            .pla-col {
+                color: #085A84;
+            }
 
-      .pla-col::placeholder {
-        color: #085A8485;
-        font-size: 15px;
-      }
-
-
-      .ma-2-pla::placeholder {
-        margin-top: 50px;
-      }
-
-      /*미디어*/
-      @media (max-width: 500px) {
-
-        iframe {
-          height: auto;
-        }
-
-        #other-recipe-area {
-          display: none;
-        }
-
-        #article1 {
-
-          border-right-width: 0px;
-
-        }
-
-        #step-img-area {
-          padding: 0px;
-        }
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
 
 
-        #list-icon {
-          position: fixed;
-          top: 15%;
-          left: 6%;
-          z-index: 99;
-        }
-      }
-    </style>
-  </head>
-  <!--21_0_레시피_작성-->
-  <body>
-  <form action="/recipe/modifyform"  th:object="${recipevlew}" method="post" enctype="multipart/form-data">
+            .ma-2-pla::placeholder {
+                margin-top: 50px;
+            }
 
-    <main class="write01"
-          style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 100px;">
-      <!--레시피 제목-->
-      <input type="hidden" name="recipeNum" th:field="${recipevlew.recipeNum}">
-      <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
-        <div class="title fon-color" style="margin-bottom: 15px;">
-          <h3><b>레시피 수정</b></h3>
-        </div>
-        <hr class="fon-color" style="margin-top: 30px;">
-      </div>
-      <div class="d-flex justify-content-between">
-        <div class="d-flex justify-content-center">
-          <div>
-            <!--대표사진등록-->
-            <label id="validationCustom04" for="validationCustom04" class="form-label fon-color"
-                   style="margin-top: 30px; margin-left: 10px;">
-              <h6><b>대표사진</b></h6>
-            </label>
-            <div class="align-items-center">
-              <!--사진등록 및 경로-->
-              <label class="input-file-button float-start" for="input-file"
-                     style="width: 400px; height: 300px; background-color: #D8F0FF70; border-radius: 30px;">
-                <img th:src="${recipevlew.mainPath}+${recipevlew.mainFileName}" id="output" class="" width="400px" height="300px"
-                     style="background-color: #D8F0FF70; border-radius: 30px; margin-right: 20px; ">
-              </label>
-              <input type="file" id="input-file" style="display: none;" accept="image/jpeg, image/png, image/jpg"
-                     name="mainPicture" class="isFile" onchange="loadFile(event)" th:field="${recipevlew.mainInputFile}"/>
-              <input type="hidden" name="mainPicRename" th:value="${recipevlew.mainFileName }">
-              <input type="hidden" name="mainPic" th:value="${recipevlew.mainPath }">
+            /*미디어*/
+            @media (max-width: 500px) {
+
+                iframe {
+                    height: auto;
+                }
+
+                #other-recipe-area {
+                    display: none;
+                }
+
+                #article1 {
+
+                    border-right-width: 0px;
+
+                }
+
+                #step-img-area {
+                    padding: 0px;
+                }
 
 
-          </div>
-            <!--카테고리-->
-            <div>
-              <label for="validationCustom04" class="form-label fon-color"
-                     style="margin-top: 40px; margin-left: 10px;">
-                <h6><b>카테고리</b></h6>
-              </label>
-              <select class="form-select fon-color input-box-sty pla-col" name="category" required
-                      style="width: 400px; border-radius: 1em;" th:field="${recipevlew.category}">
-                <option selected disabled value="">음식 카테고리</option>
-                <option value="채식"  th:selected="${recipevlew.category=='채식'}">채식</option>
-                <option value="한식"  th:selected="${recipevlew.category=='한식'}">한식</option>
-                <option value="양식"  th:selected="${recipevlew.category=='양식'}">양식</option>
-                <option value="일식"  th:selected="${recipevlew.category=='일식'}">일식</option>
-                <option value="중식"  th:selected="${recipevlew.category=='중식'}">중식</option>
-                <option value="퓨전"  th:selected="${recipevlew.category=='퓨전'}">퓨전</option>
-                <option value="분식"  th:selected="${recipevlew.category=='분식'}">분식</option>
-                <option value="안식"  th:selected="${recipevlew.category=='안주'}">안주</option>
-                <option value="간식"  th:selected="${recipevlew.category=='간식'}">간식</option>
-              </select>
-              <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>
-              <br>
+                #list-icon {
+                    position: fixed;
+                    top: 15%;
+                    left: 6%;
+                    z-index: 99;
+                }
+            }
+        </style>
+    </head>
+    <!--21_0_레시피_작성-->
+    <body>
+    <form action="/recipe/modifyform" id="insert" th:object="${recipevlew}" method="post" enctype="multipart/form-data">
+
+        <main class="write01"
+              style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 100px;">
+            <!--레시피 제목-->
+            <input type="hidden" name="recipeNum" th:field="${recipevlew.recipeNum}">
+            <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
+                <div class="title fon-color" style="margin-bottom: 15px;">
+                    <h3><b>레시피 수정</b></h3>
+                </div>
+                <hr class="fon-color" style="margin-top: 30px;">
             </div>
-          </div>
-        </div>
-        <div style="width: 520px;">
-          <!--레시피 제목-->
-          <div>
-            <div class="mb-3 pla-col" style="margin-top: 30px;">
-              <label  for="exampleFormControlInput1" class="form-label fon-color" style="margin-left: 10px;"><b>레시피
-                제목</b></label>
-              <input  th:value="${recipevlew.recipeTitle}" type="text" class="form-control pla-col input-box-sty" id="exampleFormControlInput1"
-                      style="border-radius: 1em;" placeholder="레시피 제목을 입력하세요." name="recipeTitle">
-            </div>
-          </div>
-          <!--레시피 소개-->
-          <div>
-            <label for="validationCustom04" class="form-label" style="margin-top: 9px;">
-              <h6 style="color: #085A84; margin-left: 10px;"><b>레시피 소개</b></h6>
-            </label>
-            <textarea name="recipeIntro" th:field="${recipevlew.recipeIntro}"  class="form-control pla-col input-box-sty ma-2-pla" placeholder="레시피 소개를 입력하세요."
-                      id="floatingTextarea1"
-                      style="height: 310px; resize: none; border-radius: 1.5em;" maxlength="100"  ></textarea>
-          </div>
-        </div>
-      </div>
-      <!--동영상-->
-      <div class="exampleFormControlInput1 fon-colorss fon-color" style="margin-top: 15px;">
-        <h6 style="margin-left: 10px;"><b>동영상 링크 첨부</b></h6>
-        <input  type="text" class="form-control input-box-sty pla-col" id=""  th:field="${recipevlew.youtube}"  onblur="isYoutube()"
-               placeholder="youtube.com" style="margin-top: 15px; border-radius: 1em;">
-
-      </div>
-      <!--재료라벨-->
-      <div style="margin: 30px 12px 0px 12px;">
-        <label id= "floatingInput" for="floatingInput" class="fon-colors" style="color: #085A84;"><b>재료</b></label>
-      </div>
-      <!--재료-->
-      <div class="d-flex justify-content-between">
-        <!--재료입력-->
-
-        <div>
-          <div id="REgreenC">
-            <!--재료입력1-->
             <div class="d-flex justify-content-between">
-              <!-- 재료명-->
-              <div class="form-floating fon-colors" style="margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" id="floatingInput5" maxlength="10" name="material"
-                       style=" width: 300px; border-radius: 1.5em;">
-                <label for="floatingInput5"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
-              </div>
-              <!--계량-->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" id="floatingInput4" maxlength="5" name="amount"
-                       style="border-radius: 1.5em;">
-                <label for="floatingInput4"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
-              </div>
-              <!-- 단위 -->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <select class="form-select input-box-sty" name="recipeunit"
-                        style="border-radius: 1.5em; color: #085A84;">
-                  <option value="kg">kg</option>
-                  <option value="korean">g</option>
-                  <option value="korean">ml</option>
-                  <option value="korean">L</option>
-                  <option value="korean">컵</option>
-                  <option value="korean">T</option>
-                </select>
-              </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-pin-angle" viewBox="0 0 16 16">
-                  <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146zm.122 2.112v-.002.002zm0-.002v.002a.5.5 0 0 1-.122.51L6.293 6.878a.5.5 0 0 1-.511.12H5.78l-.014-.004a4.507 4.507 0 0 0-.288-.076 4.922 4.922 0 0 0-.765-.116c-.422-.028-.836.008-1.175.15l5.51 5.509c.141-.34.177-.753.149-1.175a4.924 4.924 0 0 0-.192-1.054l-.004-.013v-.001a.5.5 0 0 1 .12-.512l3.536-3.535a.5.5 0 0 1 .532-.115l.096.022c.087.017.208.034.344.034.114 0 .23-.011.343-.04L9.927 2.028c-.029.113-.04.23-.04.343a1.779 1.779 0 0 0 .062.46z"/>
-                </svg>
-              </div>
-            </div>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <!--대표사진등록-->
+                        <label id="validationCustom04" for="validationCustom04" class="form-label fon-color"
+                               style="margin-top: 30px; margin-left: 10px;">
+                            <h6><b>대표사진</b></h6>
+                        </label>
+                        <div class="align-items-center">
+                            <!--사진등록 및 경로-->
+                            <label class="input-file-button float-start" for="input-file"
+                                   style="width: 400px; height: 300px; background-color: #D8F0FF70; border-radius: 30px;">
+                                <img th:src="${recipevlew.mainPath}+${recipevlew.mainFileName}" id="output" class=""
+                                     width="400px" height="300px"
+                                     style="background-color: #D8F0FF70; border-radius: 30px; margin-right: 20px; ">
+                            </label>
+                            <input type="file" id="input-file" style="display: none;"
+                                   accept="image/jpeg, image/png, image/jpg"
+                                   name="mainPicture" class="isFile" onchange="loadFile(event)"
+                                   th:field="${recipevlew.mainInputFile}"/>
+                            <input type="hidden" th:field="${recipevlew.mainFileName}">
+                            <input type="hidden" th:field="${recipevlew.mainPath}">
 
-            <!--재료입력2-->
+
+                        </div>
+                        <!--카테고리-->
+                        <div>
+                            <label for="validationCustom04" class="form-label fon-color"
+                                   style="margin-top: 40px; margin-left: 10px;">
+                                <h6><b>카테고리</b></h6>
+                            </label>
+                            <select class="form-select fon-color input-box-sty pla-col" name="category" required
+                                    style="width: 400px; border-radius: 1em;" th:field="${recipevlew.categoryNum}">
+                                <option selected disabled value="">음식 카테고리</option>
+                                <option value="1" th:selected="${recipevlew.category=='양식'}">양식</option>
+                                <option value="2" th:selected="${recipevlew.category=='한식'}">한식</option>
+                                <option value="3" th:selected="${recipevlew.category=='채식'}">채식</option>
+                                <option value="4" th:selected="${recipevlew.category=='일식'}">일식</option>
+                                <option value="5" th:selected="${recipevlew.category=='중식'}">중식</option>
+                                <option value="6" th:selected="${recipevlew.category=='퓨전'}">퓨전</option>
+                                <option value="7" th:selected="${recipevlew.category=='분식'}">분식</option>
+                                <option value="8" th:selected="${recipevlew.category=='안주'}">안주</option>
+                                <option value="9" th:selected="${recipevlew.category=='간식'}">간식</option>
+                            </select>
+                            <div class="invalid-feedback fon-color">카테고리를 선택하세요</div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 520px;">
+                    <!--레시피 제목-->
+                    <div>
+                        <div class="mb-3 pla-col" style="margin-top: 30px;">
+                            <label for="exampleFormControlInput1" class="form-label fon-color"
+                                   style="margin-left: 10px;"><b>레시피
+                                제목</b></label>
+                            <input th:value="${recipevlew.recipeTitle}" type="text"
+                                   class="form-control pla-col input-box-sty" id="exampleFormControlInput1"
+                                   style="border-radius: 1em;" placeholder="레시피 제목을 입력하세요." name="recipeTitle">
+                        </div>
+                    </div>
+                    <!--레시피 소개-->
+                    <div>
+                        <label for="validationCustom04" class="form-label" style="margin-top: 9px;">
+                            <h6 style="color: #085A84; margin-left: 10px;"><b>레시피 소개</b></h6>
+                        </label>
+                        <textarea name="recipeIntro" th:field="${recipevlew.recipeIntro}"
+                                  class="form-control pla-col input-box-sty ma-2-pla" placeholder="레시피 소개를 입력하세요."
+                                  id="floatingTextarea1"
+                                  style="height: 310px; resize: none; border-radius: 1.5em;" maxlength="100"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!--동영상-->
+            <div class="exampleFormControlInput1 fon-colorss fon-color" style="margin-top: 15px;">
+                <h6 style="margin-left: 10px;"><b>동영상 링크 첨부</b></h6>
+                <input type="text" class="form-control input-box-sty pla-col" id="" th:field="${recipevlew.youtube}"
+                       onblur="isYoutube()"
+                       placeholder="youtube.com" style="margin-top: 15px; border-radius: 1em;">
+
+            </div>
+            <!--재료라벨-->
+            <div style="margin: 30px 12px 0px 12px;">
+                <label id="floatingInput" for="floatingInput" class="fon-colors"
+                       style="color: #085A84;"><b>재료</b></label>
+            </div>
+            <!--재료-->
             <div class="d-flex justify-content-between">
-              <!-- 재료명-->
-              <div class="form-floating fon-colors" style="margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" id="floatingInput1" maxlength="10" name="material"
-                       style=" width: 300px; border-radius: 1.5em;">
-                <label for="floatingInput1"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
-              </div>
-              <!--계량-->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" id="floatingInput2" maxlength="5" name="amount"
-                       style="border-radius: 1.5em;">
-                <label for="floatingInput2"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
-              </div>
-              <!-- 단위 -->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <select class="form-select input-box-sty" name="recipeunit"
-                        style="border-radius: 1.5em; color: #085A84;">
-                  <option value="kg">kg</option>
-                  <option value="korean">g</option>
-                  <option value="korean">ml</option>
-                  <option value="korean">L</option>
-                  <option value="korean">컵</option>
-                  <option value="korean">T</option>
-                </select>
-              </div>
-              <!--압정 아이콘-->
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-pin-angle" viewBox="0 0 16 16">
-                  <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146zm.122 2.112v-.002.002zm0-.002v.002a.5.5 0 0 1-.122.51L6.293 6.878a.5.5 0 0 1-.511.12H5.78l-.014-.004a4.507 4.507 0 0 0-.288-.076 4.922 4.922 0 0 0-.765-.116c-.422-.028-.836.008-1.175.15l5.51 5.509c.141-.34.177-.753.149-1.175a4.924 4.924 0 0 0-.192-1.054l-.004-.013v-.001a.5.5 0 0 1 .12-.512l3.536-3.535a.5.5 0 0 1 .532-.115l.096.022c.087.017.208.034.344.034.114 0 .23-.011.343-.04L9.927 2.028c-.029.113-.04.23-.04.343a1.779 1.779 0 0 0 .062.46z"/>
-                </svg>
-              </div>
+                <!--재료입력-->
+
+                <div>
+                    <div id="REgreenC">
+                        <!--재료입력1-->
+                        <div class="d-flex justify-content-between">
+                            <!-- 재료명-->
+                            <div class="form-floating fon-colors" style="margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" id="floatingInput5" maxlength="10"
+                                       name="material"
+                                       style=" width: 300px; border-radius: 1.5em;">
+                                <label for="floatingInput5"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
+                            </div>
+                            <!--계량-->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" id="floatingInput4" maxlength="5"
+                                       name="amount"
+                                       style="border-radius: 1.5em;">
+                                <label for="floatingInput4"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
+                            </div>
+                            <!-- 단위 -->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <select class="form-select input-box-sty" name="recipeunit"
+                                        style="border-radius: 1.5em; color: #085A84;">
+                                    <option value="kg">kg</option>
+                                    <option value="korean">g</option>
+                                    <option value="korean">ml</option>
+                                    <option value="korean">L</option>
+                                    <option value="korean">컵</option>
+                                    <option value="korean">T</option>
+                                </select>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-pin-angle" viewBox="0 0 16 16">
+                                    <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146zm.122 2.112v-.002.002zm0-.002v.002a.5.5 0 0 1-.122.51L6.293 6.878a.5.5 0 0 1-.511.12H5.78l-.014-.004a4.507 4.507 0 0 0-.288-.076 4.922 4.922 0 0 0-.765-.116c-.422-.028-.836.008-1.175.15l5.51 5.509c.141-.34.177-.753.149-1.175a4.924 4.924 0 0 0-.192-1.054l-.004-.013v-.001a.5.5 0 0 1 .12-.512l3.536-3.535a.5.5 0 0 1 .532-.115l.096.022c.087.017.208.034.344.034.114 0 .23-.011.343-.04L9.927 2.028c-.029.113-.04.23-.04.343a1.779 1.779 0 0 0 .062.46z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!--재료입력2-->
+                        <div class="d-flex justify-content-between">
+                            <!-- 재료명-->
+                            <div class="form-floating fon-colors" style="margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" id="floatingInput1" maxlength="10"
+                                       name="material"
+                                       style=" width: 300px; border-radius: 1.5em;">
+                                <label for="floatingInput1"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
+                            </div>
+                            <!--계량-->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" id="floatingInput2" maxlength="5"
+                                       name="amount"
+                                       style="border-radius: 1.5em;">
+                                <label for="floatingInput2"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
+                            </div>
+                            <!-- 단위 -->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <select class="form-select input-box-sty" name="recipeunit"
+                                        style="border-radius: 1.5em; color: #085A84;">
+                                    <option value="kg">kg</option>
+                                    <option value="korean">g</option>
+                                    <option value="korean">ml</option>
+                                    <option value="korean">L</option>
+                                    <option value="korean">컵</option>
+                                    <option value="korean">T</option>
+                                </select>
+                            </div>
+                            <!--압정 아이콘-->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-pin-angle" viewBox="0 0 16 16">
+                                    <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146zm.122 2.112v-.002.002zm0-.002v.002a.5.5 0 0 1-.122.51L6.293 6.878a.5.5 0 0 1-.511.12H5.78l-.014-.004a4.507 4.507 0 0 0-.288-.076 4.922 4.922 0 0 0-.765-.116c-.422-.028-.836.008-1.175.15l5.51 5.509c.141-.34.177-.753.149-1.175a4.924 4.924 0 0 0-.192-1.054l-.004-.013v-.001a.5.5 0 0 1 .12-.512l3.536-3.535a.5.5 0 0 1 .532-.115l.096.022c.087.017.208.034.344.034.114 0 .23-.011.343-.04L9.927 2.028c-.029.113-.04.23-.04.343a1.779 1.779 0 0 0 .062.46z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!--재료입력3-->
+                        <div Id="REgreen" class="REgreenC d-flex justify-content-between">
+                            <!-- 재료명-->
+                            <div class="form-floating fon-colors" style="margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" maxlength="10" name="material"
+                                       style=" width: 300px; border-radius: 1.5em;">
+                                <label for="floatingInput"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
+                            </div>
+                            <!--계량-->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <input type="text" class="form-control input-box-sty" maxlength="5" name="amount"
+                                       style="border-radius: 1.5em;">
+                                <label for="floatingInput"
+                                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
+                            </div>
+                            <!-- 단위 -->
+                            <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
+                                <select class="form-select input-box-sty" name="recipeunit"
+                                        style="border-radius: 1.5em; color: #085A84;">
+                                    <option value="kg">kg</option>
+                                    <option value="korean">g</option>
+                                    <option value="korean">ml</option>
+                                    <option value="korean">L</option>
+                                    <option value="korean">컵</option>
+                                    <option value="korean">T</option>
+                                </select>
+                            </div>
+                            <!--삭제 버튼-->
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-x-circle" viewBox="0 0 16 16" type="button" onclick="removeGr()">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+
+                            </div>
+                            <span id="addgreen"></span>
+                        </div>
+
+
+                    </div>
+                    <!--재료 추가 버튼-->
+                    <div class="d-grid gap-1 col-12 mx-auto" style="margin-top: 10px;">
+                        <button type="button" class="btn btn-primary but-off-color" onclick="addGr()">추가</button>
+                    </div>
+                </div>
             </div>
 
-            <!--재료입력3-->
-            <div Id="REgreen" class="REgreenC d-flex justify-content-between">
-              <!-- 재료명-->
-              <div class="form-floating fon-colors" style="margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" maxlength="10" name="material"
-                       style=" width: 300px; border-radius: 1.5em;">
-                <label for="floatingInput"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
-              </div>
-              <!--계량-->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <input type="text" class="form-control input-box-sty" maxlength="5" name="amount"
-                       style="border-radius: 1.5em;">
-                <label for="floatingInput"
-                       style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
-              </div>
-              <!-- 단위 -->
-              <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                <select class="form-select input-box-sty" name="recipeunit"
-                        style="border-radius: 1.5em; color: #085A84;">
-                  <option value="kg">kg</option>
-                  <option value="korean">g</option>
-                  <option value="korean">ml</option>
-                  <option value="korean">L</option>
-                  <option value="korean">컵</option>
-                  <option value="korean">T</option>
-                </select>
-              </div>
-              <!--삭제 버튼-->
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-x-circle" viewBox="0 0 16 16" type="button" onclick="removeGr()">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                  <path
-                          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-
-              </div>
-              <span id="addgreen"></span>
+            <!--요리순서 라벨-->
+            <div style="margin-top: 30px;">
+                <label for="floatingInput" style="color: #085A84; margin-left: 10px;"><b>요리순서</b></label>
             </div>
-          </div>
-          <!--재료 추가 버튼-->
-          <div class="d-grid gap-1 col-12 mx-auto" style="margin-top: 10px;">
-            <button class="btn btn-primary but-off-color" onclick="addGr()">추가</button>
-          </div>
-        </div>
-      </div>
 
-      <!--요리순서 라벨-->
-      <div style="margin-top: 30px;">
-        <label for="floatingInput" style="color: #085A84; margin-left: 10px;"><b>요리순서</b></label>
-      </div>
+            <!--      요리순서-->
+            <th:block th:each="recipeOrder:${recipevlew.recipeOrderList}">
+                <div Id="REdetail" class="REdetailC d-flex justify-content-center">
+                    <!-- 이미지 미리보기 이미지 파일 -->
+                    <div class="align-items-center" style="margin-top: 15px;">
+                        <label class="input-file-button float-start">
+                            <img class="detailImg" width="400px" height="270px"
+                                 style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;"
+                                 th:src="${recipeOrder.path}+${recipeOrder.fileName}">
+                            <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                   accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                   th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].oprderInputFile}">
+                            <input type="hidden"
+                                   th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].path}">
+                            <input type="hidden"
+                                   th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].fileName}">
 
-<!--      요리순서-->
-      <div>
-        <th:block th:each="recipeOrder:${recipevlew.recipeOrderList}" >
-          <div Id="REdetail" class="REdetailC d-flex justify-content-center">
-            <!-- 이미지 미리보기 이미지 파일 -->
-            <div class="align-items-center" style="margin-top: 15px;">
-              <label class="input-file-button float-start">
-                <img class="detailImg" width="400px" height="270px"
-                     style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;" th:src="${recipeOrder.path}+${recipeOrder.fileName}">
-                <input type="file" name="recipePicture" class="isFile" style="display: none"
-                       accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                <input type="hidden" name="orderPhoto" >
-              </label>
-            </div>
-            <!--요리순서 설명-->
-            <div style="margin-top: 10px; margin-left: 35px; ">
-                <textarea name="content" th:value="${recipeOrder.content}" class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
+                        </label>
+                    </div>
+                    <!--요리순서 설명-->
+                    <div style="margin-top: 10px; margin-left: 35px; ">
+                <textarea th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].content}" name="content"
+                          class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
                           style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
+                    </div>
+
+                    <input type="text" value="ab22bb" style="display: none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-x-circle"
+                         viewBox="0 0 16 16" type="button" onclick="removeDe()">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </div>
+            </th:block>
+
+            <span id="addplace"></span>
+
+            <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
+                <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
             </div>
-            <!-- 설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
-<!--            <input type="text" name="recipeDescription" value="ab22bb" style="display: none">-->
-            <!-- 삭제 -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
-                 viewBox="0 0 16 16" type="button" onclick="removeDe()">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-          </div>
-        </th:block>
-          <span id="addplace"></span>
-      </div>
 
-      <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
-        <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
-      </div>
-
-      <div class="d-flex justify-content-start" style="margin-top: 10px;">
-        <!--요리 꿀팁 영역-->
-        <div class="" style="margin-top: 10px;">
-          <!--요리 꿀팁-->
-          <div style="margin: 20px 0px 0px 0px;">
-            <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>요리 꿀팁</b></label>
-          </div>
-          <!--요리 꿀팁 텍스트박스-->
-          <div class="">
+            <div class="d-flex justify-content-start" style="margin-top: 10px;">
+                <!--요리 꿀팁 영역-->
+                <div class="" style="margin-top: 10px;">
+                    <!--요리 꿀팁-->
+                    <div style="margin: 20px 0px 0px 0px;">
+                        <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>요리 꿀팁</b></label>
+                    </div>
+                    <!--요리 꿀팁 텍스트박스-->
+                    <div class="">
                 <textarea class="form-control input-box-sty" placeholder="요리 꿀팁을 작성하세요." id="floatingTextarea2"
                           name="recipeDescription"
-                          style="height: 420px; width: 400px; margin-top: 10px; resize: none; border-radius: 2em;" th:field="${recipevlew.tip}"></textarea>
-          </div>
-        </div>
-
-
-        <!-- 완성 사진 영역 -->
-        <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">
-          <!--완성 사진-->
-          <div style="margin: 20px 12px 0px 12px;">
-            <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>완성 사진</b></label>
-          </div>
-          <div class="d-flex justify-content-center">
-
-            <th:block th:if="${recipevlew.recipePhotoDTOList.size()>0}">
-              <th:block th:if="${recipevlew.recipePhotoDTOList[0].recipeFileName==null}">
-                <!--사진1-->
-                <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
-                  <label class="input-file-button">
-                    <img class="detailImg mx-auto" width="250px" height="200px"
-                         style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                    <input type="file" name="recipePicture" class="isFile" style="display: none"
-                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                  </label>
-                </div>
-              </th:block>
-
-              <th:block th:if="${recipevlew.recipePhotoDTOList[0].recipeFileName!=null}">
-                <!--사진1-->
-                <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
-                  <label class="input-file-button">
-                    <img  th:src="${recipevlew.recipePhotoDTOList[0].recipePhotoPath}+${recipevlew.recipePhotoDTOList[0].recipeFileName}" class="detailImg mx-auto" width="250px" height="200px"
-                          style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                    <input type="file" name="recipePicture" class="isFile" style="display: none"
-                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                  </label>
-                </div>
-              </th:block>
-
-              <th:block th:if="${recipevlew.recipePhotoDTOList[0].recipeFileName==null}">
-                <!--사진1-->
-                <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
-                  <label class="input-file-button">
-                    <img  class="detailImg mx-auto" width="250px" height="200px"
-                          style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                    <input type="file" name="recipePicture" class="isFile" style="display: none"
-                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                  </label>
-                </div>
-              </th:block>
-
-
-
-              <!--사진2-->
-
-
-              <th:block th:if="${recipevlew.recipePhotoDTOList[1].recipeFileName==null}">
-                <div class="col">
-                  <label class="input-file-button" style="margin-bottom: 10px;">
-                    <img class="detailImg mx-auto" width="250px" height="200px"
-                         style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; margin-right: 100px; border-radius: 30px;">
-                    <input type="file" name="recipePicture" class="isFile" style="display: none"
-                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-
-                  </label>
-                </div>
-              </th:block>
-              <th:block th:if="${recipevlew.recipePhotoDTOList[1].recipeFileName!=null}">
-                <div class="col">
-                  <label class="input-file-button" style="margin-bottom: 10px;">
-                    <img th:src="${recipevlew.recipePhotoDTOList[1].recipePhotoPath}+${recipevlew.recipePhotoDTOList[1].recipeFileName}" class="detailImg mx-auto" width="250px" height="200px"
-                         style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; margin-right: 100px; border-radius: 30px;">
-                    <input type="file" name="recipePicture" class="isFile" style="display: none"
-                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                    <input type="hidden" name="recipePicture" th:value="${recipevlew.recipePhotoDTOList[1].recipeFileName}">
-                  </label>
-                </div>
-              </th:block>
-
-
-
-
-
-
-                <!--사진3-->
-                <th:block th:if="${recipevlew.recipePhotoDTOList[2].recipeFileName==null}">
-                  <div class="d-flex justify-content-center">
-                  <div class="col" style="margin-right: 20px;">
-                    <label class="input-file-button">
-                      <img class="detailImg mx-auto" width="250px" height="200px"
-                           style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                      <input type="file" name="recipePicture" class="isFile" style="display: none"
-                             accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                    </label>
-                  </div>
-                  </div>
-                </th:block>
-
-                <th:block th:if="${recipevlew.recipePhotoDTOList[2].recipeFileName!=null}">
-                  <div class="col" style="margin-right: 20px;">
-                    <label class="input-file-button">
-                      <img th:src="${recipevlew.recipePhotoDTOList[2].recipePhotoPath}+${recipevlew.recipePhotoDTOList[2].recipeFileName}"  class="detailImg mx-auto" width="250px" height="200px"
-                           style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                      <input type="file" name="recipePicture" class="isFile" style="display: none"
-                             accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      <input type="hidden" name="recipePicture" th:value="${recipevlew.recipePhotoDTOList[2].recipeFileName}">
-                    </label>
-                  </div>
-
-                </th:block>
-
-                <!--사진4-->
-                <th:block th:if="${recipevlew.recipePhotoDTOList[3].recipeFileName==null}">
-                  <div class="col">
-                    <label class="input-file-button">
-                      <img class="detailImg mx-auto" width="250px" height="200px"
-                           style="background-color: #D8F0FF70; border-radius: 10px; margin-top: 10px; border-radius: 30px;">
-                      <input type="file" name="recipePicture" class="isFile" style="display: none"
-                             accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                    </label>
-                  </div>
-                </th:block>
-
-                <th:block th:if="${recipevlew.recipePhotoDTOList[3].recipeFileName!=null}">
-                  <div class="col">
-                    <label class="input-file-button">
-                      <img th:src="${recipevlew.recipePhotoDTOList[3].recipePhotoPath}+${recipevlew.recipePhotoDTOList[3].recipeFileName}" class="detailImg mx-auto" width="250px" height="200px"
-                           style="background-color: #D8F0FF70; border-radius: 10px; margin-top: 10px; border-radius: 30px;">
-                      <input type="file" name="recipePicture" class="isFile" style="display: none"
-                             accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      <input type="hidden" name="recipePicture" th:value="${recipevlew.recipePhotoDTOList[3].recipeFileName}">
-                    </label>
-                  </div>
-
-                </th:block>
-
-            </th:block>
-              </div>
-
-
-
-
-            <th:block th:unless="${recipevlew.recipePhotoDTOList==null}">
-              <!-- 완성 사진 영역 -->
-              <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">
-                <!--완성 사진-->
-                <div style="margin: 20px 12px 0px 12px;">
-
-                </div>
-                <div>
-                  <div class="d-flex justify-content-center">
-                    <!--사진1-->
-                    <div class="col" style="margin-right: 20px; margin-bottom: 10px;">
-                      <label class="input-file-button">
-                        <img class="detailImg mx-auto" width="250px" height="200px"
-                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                        <input type="file" name="recipePicture" class="isFile" style="display: none"
-                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      </label>
+                          style="height: 420px; width: 400px; margin-top: 10px; resize: none; border-radius: 2em;"
+                          th:field="${recipevlew.tip}"></textarea>
                     </div>
-                    <!--사진2-->
-                    <div class="col">
-                      <label class="input-file-button" style="margin-bottom: 10px;">
-                        <img class="detailImg mx-auto" width="250px" height="200px"
-                             style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; margin-right: 100px; border-radius: 30px;">
-                        <input type="file" name="recipePicture" class="isFile" style="display: none"
-                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      </label>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <!--사진3-->
-                    <div class="col" style="margin-right: 20px;">
-                      <label class="input-file-button">
-                        <img class="detailImg mx-auto" width="250px" height="200px"
-                             style="background-color: #D8F0FF70; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
-                        <input type="file" name="recipePicture" class="isFile" style="display: none"
-                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      </label>
-                    </div>
-                    <!--사진4-->
-                    <div class="col">
-                      <label class="input-file-button">
-                        <img class="detailImg mx-auto" width="250px" height="200px"
-                             style="background-color: #D8F0FF70; border-radius: 10px; margin-top: 10px; border-radius: 30px;">
-                        <input type="file" name="recipePicture" class="isFile" style="display: none"
-                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
-                      </label>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </th:block>
 
 
+                <!-- 완성 사진 영역 -->
+                <th:block
+                        th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList)}">
+                    <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">
+                        <!--완성 사진-->
+                        <div style="margin: 20px 12px 0px 12px;">
+                            <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>완성 사진</b></label>
+                        </div>
+
+                        <div class="row row-cols-2">
+                            <th:block
+                                    th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
+                                <!--사진1-->
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"
+                                             th:src="${recipevlew.recipePhotoDTOList[0].recipePhotoPath}+${recipevlew.recipePhotoDTOList[0].recipeFileName}">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${0}__].photoInputFile}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${0}__].recipePhotoPath}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${0}__].recipeFileName}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[0].recipeFileName)}">
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${0}__].photoInputFile}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <!--사진2-->
+                            <th:block
+                                    th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[1].recipeFileName)}">
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"
+                                             th:src="${recipevlew.recipePhotoDTOList[1].recipePhotoPath}+${recipevlew.recipePhotoDTOList[1].recipeFileName}">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${1}__].photoInputFile}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${1}__].recipePhotoPath}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${1}__].recipeFileName}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[1].recipeFileName)}">
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${1}__].photoInputFile}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${1}__].recipeFileName}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <!--사진3-->
+                            <th:block
+                                    th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[2].recipeFileName)}">
+
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"
+                                             th:src="${recipevlew.recipePhotoDTOList[2].recipePhotoPath}+${recipevlew.recipePhotoDTOList[2].recipeFileName}">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${2}__].photoInputFile}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${2}__].recipePhotoPath}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${2}__].recipeFileName}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[2].recipeFileName)}">
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${2}__].photoInputFile}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <!--사진5-->
+                            <th:block
+                                    th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList[3].recipeFileName)}">
+
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;"
+                                             th:src="${recipevlew.recipePhotoDTOList[3].recipePhotoPath}+${recipevlew.recipePhotoDTOList[3].recipeFileName}">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${3}__].photoInputFile}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${3}__].recipePhotoPath}">
+                                        <input type="hidden"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${3}__].recipeFileName}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                            <th:block th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList[3].recipeFileName)}">
+                                <div class="col">
+                                    <label class="input-file-button">
+                                        <img class="detailImg mx-auto" width="250px" height="200px"
+                                             style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">
+                                        <input type="file" name="recipePicture" class="isFile" style="display: none"
+                                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
+                                               th:field="${recipevlew.recipePhotoDTOList[__${3}__].photoInputFile}">
+                                    </label>
+                                </div>
+                            </th:block>
+
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <!--비어 있으면-->
+
+<!--            <th:block-->
+<!--                    th:if="${#strings.isEmpty(recipevlew.recipePhotoDTOList)}">-->
+<!--                <div class="container text-align" style="margin-left: 30px; margin-top: 8px;">-->
+<!--                    &lt;!&ndash;완성 사진&ndash;&gt;-->
+<!--                    <div style="margin: 20px 12px 0px 12px;">-->
+<!--                        <label for="floatingInput" style="margin-left: 10px; color: #085A84;"><b>완성 사진</b></label>-->
+<!--                    </div>-->
+
+<!--                    <div class="row row-cols-2">-->
+
+<!--                        <div class="col">-->
+<!--                            <label class="input-file-button">-->
+<!--                                <img class="detailImg mx-auto" width="250px" height="200px"-->
+<!--                                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
+<!--                                <input type="hidden"-->
+<!--                                       th:field="${recipevlew.recipePhotoDTOList[__${0}__].recipeFileName}">-->
+<!--                            </label>-->
+<!--                        </div>-->
 
 
-
-          </div>
-        </div>
-      </div>
-
-      <div class="" style="margin-right: 18px; margin-top: 10px;">
-        <!--등록 버튼-->
-        <button type="submit"  class="btn btn-primary but-off-color" style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 30px" role="button"
-                onclick="return confirm('레시피를 수정하시겠습니까?')">
-          <b>레시피 수정</b>
-        </button>
-        <!-- 취소 버튼 -->
-        <a class="btn btn-primary but-off-color" href="/home" role="button"
-           style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 30px;" onclick="return confirm('레시피 수정을 취소하시겠습니까?')">
-          <b>취소</b>
-        </a>
-
-      </div>
-      </div>
-    </main>
-
-  </form>
-  </div>
-
-  <script>
-
-    var greenForm = document.querySelector('#REgreen');
-    var addgreen = document.querySelector('#REgreenC');
-    var count = 3;
-
-    function addGr() {
-      if (count <= 20) {
-        addgreen.append(greenForm.cloneNode(true));
-        document.querySelectorAll('.REgreenC')[document
-                .querySelectorAll('.REgreenC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
-        document.querySelectorAll('.REgreenC')[document
-                .querySelectorAll('.REgreenC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
-
-        count++;
-      }
-    }
-
-    function removeGr() {
-      var greenFormClass = document.querySelectorAll('.REgreenC');
-      if (count > 1) {
-        greenFormClass[greenFormClass.length - 1].remove();
-        count--;
-      }
-    }
+<!--                        &lt;!&ndash;사진2&ndash;&gt;-->
 
 
-    var detailForm = document.querySelector('#REdetail');
-    var addplace = document.querySelector('#addplace');
-    var count = 20;
+<!--                        <div class="col">-->
+<!--                            <label class="input-file-button">-->
+<!--                                <img class="detailImg mx-auto" width="250px" height="200px"-->
+<!--                                     style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
+<!--                                <input type="file" name="recipePicture" class="isFile" style="display: none"-->
+<!--                                       accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
+<!--                                       th:field="${recipevlew.recipePhotoDTOList[__${1}__].photoInputFile}">-->
+<!--                            </label>-->
+<!--                        </div>-->
 
-    function addDe() {
-      if (count <= 20) {
-        addplace.appendChild(detailForm.cloneNode(true));
-        document.querySelectorAll('.REdetailC')[document
-                .querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
-        document.querySelectorAll('.REdetailC')[document
-                .querySelectorAll('.REdetailC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
 
-        count++;
-      }
+<!--                        &lt;!&ndash;사진3&ndash;&gt;-->
 
-    }
 
-    function removeDe() {
-      var detailFormClass = document.querySelectorAll('.REdetailC');
-      if (count > 1) {
-        detailFormClass[detailFormClass.length - 1].remove();
-        count--;
-      }
+<!--                        <div class="col">-->
 
-    }
 
-    function loadFile(event) {
-      var output = document.getElementById('output');
-      output.src = URL.createObjectURL(event.target.files[0]);
-      output.onload = function () {
-        URL.revokeObjectURL(output.src)
-      };
-      imgCheck()
-    };
+<!--                            <div class="col">-->
+<!--                                <label class="input-file-button">-->
+<!--                                    <img class="detailImg mx-auto" width="250px" height="200px"-->
+<!--                                         style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
+<!--                                    <input type="file" name="recipePicture" class="isFile" style="display: none"-->
+<!--                                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
+<!--                                           th:field="${recipevlew.recipePhotoDTOList[__${2}__].photoInputFile}">-->
+<!--                                </label>-->
+<!--                            </div>-->
 
-    var imgFile = document.querySelectorAll('.isFile');
-    var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/i;
-    var fileSize;
 
-    function checkMainPic() {
-      if (imgFile[0].value == "") {
-        alert("대표 이미지를 넣어주세요.");
-      }
-    };
+<!--                            &lt;!&ndash;사진4&ndash;&gt;-->
 
-    function imgCheck() {
-      for (var i = 0; i < imgFile.length; i++) {
-        if (imgFile[i].value != "") {
 
-          if (!imgFile[i].value.match(fileForm)) {
-            alert("이미지 파일만 업로드 가능합니다.");
-            imgFile[i].value = "";
-          }
+<!--                            <div class="col">-->
+<!--                                <label class="input-file-button">-->
+<!--                                    <img class="detailImg mx-auto" width="250px" height="200px"-->
+<!--                                         style="background-color: #D8F0FF70;; border-radius: 10px;  margin-top: 10px; border-radius: 30px;">-->
+<!--                                    <input type="file" name="recipePicture" class="isFile" style="display: none"-->
+<!--                                           accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"-->
+<!--                                           th:field="${recipevlew.recipePhotoDTOList[__${3}__].photoInputFile}">-->
+<!--                                </label>-->
+<!--                            </div>-->
+
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    </div>-->
+<!--            </th:block>-->
+<!--            </div>-->
+
+
+            <div class="" style="margin-right: 18px; margin-top: 10px;">
+                <!--등록 버튼-->
+                <button type="submit" class="btn btn-primary but-off-color"
+                        style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 30px"
+                        role="button"
+                        onclick="return confirm('레시피를 수정하시겠습니까?')">
+                    <b>레시피 수정</b>
+                </button>
+                <!-- 취소 버튼 -->
+                <a class="btn btn-primary but-off-color" href="/home" role="button"
+                   style="float: right; margin-right: 10px; margin-top: 20px; margin-bottom: 30px;"
+                   onclick="return confirm('레시피 수정을 취소하시겠습니까?')">
+                    <b>취소</b>
+                </a>
+
+            </div>
+
+            </div>
+            </div>
+        </main>
+
+    </form>
+    </div>
+
+    <script th:inline="javascript" th:object="${recipevlew.recipeOrderList}">
+
+        var greenForm = document.querySelector('#REgreen');
+        var addgreen = document.querySelector('#REgreenC');
+        var count = 3;
+
+        function addGr() {
+            if (count <= 20) {
+                addgreen.append(greenForm.cloneNode(true));
+                document.querySelectorAll('.REgreenC')[document
+                    .querySelectorAll('.REgreenC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
+                document.querySelectorAll('.REgreenC')[document
+                    .querySelectorAll('.REgreenC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
+
+
+                count++;
+            }
         }
-      }
-    };
 
-    function imgView(obj) {
+        function removeGr() {
+            var greenFormClass = document.querySelectorAll('.REgreenC');
+            if (count > 1) {
+                greenFormClass[greenFormClass.length - 1].remove();
+                count--;
+            }
+        }
+    </script>
+    <script th:inline="javascript">
+        var detailForm = document.querySelector('#REdetail');
+        var addplace = document.querySelector('#addplace');
+        var count = 20;
 
-      var imgid = obj.previousElementSibling;
+        function addDe() {
+            if (count <= 20) {
+                addplace.appendChild(detailForm.cloneNode(true));
+                document.querySelectorAll('.REdetailC')[document
+                    .querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
+                document.querySelectorAll('.REdetailC')[document
+                    .querySelectorAll('.REdetailC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
 
-      imgid.src = URL.createObjectURL(event.target.files[0]);
-      imgid.onload = function () {
-        URL.revokeObjectURL(imgid.src)
-      }
+                count++;
+            }
 
-      imgCheck()
+        }
 
-    };
+        function removeDe() {
+            var detailFormClass = document.querySelectorAll('.REdetailC');
+            if (count > 1) {
+                detailFormClass[detailFormClass.length - 1].remove();
+                count--;
+            }
 
-  </script>
-  </body>
+        }
+    </script>
+
+    <script th:inline="javascript">
+        function loadFile(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src)
+            };
+            imgCheck()
+        };
+
+        var imgFile = document.querySelectorAll('.isFile');
+        var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/i;
+        var fileSize;
+
+        function checkMainPic() {
+            if (imgFile[0].value == "") {
+                alert("대표 이미지를 넣어주세요.");
+            }
+        };
+
+        function imgCheck() {
+            for (var i = 0; i < imgFile.length; i++) {
+                if (imgFile[i].value != "") {
+
+                    if (!imgFile[i].value.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        imgFile[i].value = "";
+                    }
+                }
+            }
+        };
+
+        function imgView(obj) {
+
+            var imgid = obj.previousElementSibling;
+
+            imgid.src = URL.createObjectURL(event.target.files[0]);
+            imgid.onload = function () {
+                URL.revokeObjectURL(imgid.src)
+            }
+
+            imgCheck()
+
+        };
+
+    </script>
+    </body>
 </th:block>
 </html>

@@ -53,7 +53,7 @@
 
     <resultMap id="recipeOrderMap" type="com.algore.application.recipe.dto.RecipeOrderDTO">
         <id property="rpNum" column="RP_NUM"/>
-        <result property="recipe_num" column="RECIPE_NUM"/>
+        <result property="recipeNum" column="RECIPE_NUM"/>
         <result property="content" column="RP_CONTENT"/>
         <result property="fileName" column="RP_FILE_NAME"/>
         <result property="path" column="RP_PATH"/>
@@ -131,4 +131,55 @@
         WHERE RECIPE_NUM = #{recipe}
 
     </update>
+
+
+
+    <update id="modifyRecipe" parameterType="com.algore.application.recipe.dto.RecipeviewDTO">
+        UPDATE RECIPE
+        SET RECIPE_INTRO =#{recipeIntro} , RECIPE_TITLE=#{recipeTitle} , CATEGORY_NUM=#{categoryNum},
+            RECIPE_MODI_DATE = SYSDATE , TIP=#{tip} , RECIPE_VIDEO_LINK=#{youtube},
+            PHOTO_PATH=#{mainPath}  , MAIN_PHOTO =#{mainFileName}
+        WHERE RECIPE_NUM = #{recipeNum}
+
+    </update>
+
+
+    <delete id="orderDelete">
+        DELETE FROM RECIPE_PROCEDURE
+        WHERE RECIPE_NUM=#{recipeNum}
+    </delete>
+
+    <delete id="photoDelete">
+        DELETE FROM RECIPE_PHOTO
+        WHERE RECIPE_NUM=#{recipeNum}
+    </delete>
+
+
+    <insert id="modifyOrder" parameterType="java.util.List">
+        INSERT INTO RECIPE_PROCEDURE
+            (RP_NUM,RECIPE_NUM, RP_CONTENT,RP_FILE_NAME,RP_PATH)
+        SELECT SEQ_RP_NUM.NEXTVAL, A.* FROM(
+        <foreach item="item" collection="list" separator="UNION ALL ">
+            SELECT #{item.recipeNum} AS  RECIPE_NUM , #{item.content} AS RP_CONTENT ,
+                   #{item.fileName} AS RP_FILE_NAME , #{item.path} AS RP_PATH
+            FROM DUAL
+
+        </foreach>)A
+
+    </insert>
+
+
+    <insert id="modifyPhoto" parameterType="java.util.List">
+        INSERT INTO RECIPE_PHOTO
+        (PHOTO_NUMBER , RECIPE_NUM , RECIPE_FILE_NAME , RECIPE_PATH)
+        SELECT SEQ_PHOTO_NUMBER.NEXTVAL , A.* FROM(
+            <foreach item="item" collection="list" separator="UNION ALL">
+                SELECT  #{item.recipeNum} AS  RECIPE_NUM ,
+                        #{item.recipeFileName ,jdbcType=VARCHAR} AS RECIPE_FILE_NAME ,
+                        #{item.recipePhotoPath ,jdbcType=VARCHAR } AS RECIPE_PATH
+                FROM DUAL
+            </foreach> )A
+
+    </insert>
+
 </mapper>
