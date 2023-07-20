@@ -88,9 +88,9 @@ public class RecipeService {
         return result;
     }
 
-    public List<RecipeCategoryDTO> readcategory() {
+    public List<RecipeCategoryDTO> readCategory() {
 
-        List<RecipeCategoryDTO> recipecategory = mapper.readcategory();
+        List<RecipeCategoryDTO> recipecategory = mapper.readCategory();
         return recipecategory;
     }
 }

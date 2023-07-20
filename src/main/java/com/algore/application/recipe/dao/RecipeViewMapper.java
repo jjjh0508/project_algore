@@ -33,5 +33,5 @@ public interface RecipeViewMapper {
 
     int photoDelete(int recipeNum);
 
-    List<RecipeCategoryDTO> readcategory();
+    List<RecipeCategoryDTO> readCategory();
 }

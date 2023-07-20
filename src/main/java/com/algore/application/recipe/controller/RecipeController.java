@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,15 +47,22 @@ public class RecipeController {
         List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
         for (RecipeCategoryDTO recipecategoryy : recipecategory) {
             System.out.println(recipecategoryy);
+    public ModelAndView writeForm(ModelAndView mv, Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
 
+        List<RecipeCategoryDTO> recipeCategory = recipeService.readCategory();
+
+        for (RecipeCategoryDTO Category: recipeCategory
+             ) {
+            System.out.println(Category);
         }
+        mv.addObject("CategoryList", new RecipeCategoryDTO());
+        mv.addObject("recipeCategory", recipeCategory);
 
-        mv.addObject("categoryList", recipecategory);
-        mv.setViewName("/recipe/regist");
+        mv.setViewName("/recipe/write");
         return mv;
     }
 
-    @PostMapping(value = "/regist")
+    @PostMapping( "/registform")
     public ModelAndView writeReci(ModelAndView model, RecipeWriteDTO recipeWriteDTO) {
 
         int result = recipeService.writeRecipe(recipeWriteDTO);
@@ -143,8 +149,8 @@ public class RecipeController {
 
             RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
             List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
-            if (recipePhotoDTOList.isEmpty()) {
-                for (int i = 0; i < 4; i++) {
+            if(recipePhotoDTOList.isEmpty()){
+                for(int i=0;i<4;i++){
                     recipePhotoDTOList.add(new RecipePhotoDTO());
                 }
                 recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
