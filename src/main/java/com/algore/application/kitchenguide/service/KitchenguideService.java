@@ -19,13 +19,13 @@ public class KitchenguideService {
 
     public TrimDTO readTrim(int trimNum/*게시글번호*/) {
         /* mapper 연결하여 dto 값 받아오기 */
-        TrimDTO trimDTO = mapper.readTrim(trimNum); //매퍼호출
+        TrimDTO trimDTO = mapper.trimPostRead(trimNum); //매퍼호출
         return trimDTO;
     }
 
     /**/
     public List<TrimProcedureDTO> readPost(int trimNum) {
-        List<TrimProcedureDTO> procedure = mapper.readPost(trimNum);
+        List<TrimProcedureDTO> procedure = mapper.trimProPostRead(trimNum);
         return procedure;
     }
 
@@ -48,18 +48,18 @@ public class KitchenguideService {
     }
 
 
-    public int viewCount(int trimNum) {
-        int result = mapper.viewCount(trimNum);
+    public int trimPostViewCount(int trimNum) {
+        int result = mapper.trimPostViewCount(trimNum);
         return trimNum;
     }
 
     public List<TrimDTO> mainPost() { //메인화면
-        List<TrimDTO> dtomainList = mapper.mainPost();
+        List<TrimDTO> dtomainList = mapper.trimPostMain();
         return dtomainList;
     }
 
     public int deleteTrimPost(int trimNum) {
-        int deleted = mapper.deleteTrimPost(trimNum); //매퍼호출
+        int deleted = mapper.trimPostDelete(trimNum); //매퍼호출
         return trimNum;
     }
 }

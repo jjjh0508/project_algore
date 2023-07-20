@@ -35,6 +35,22 @@ public class KitchenguideController {
         return mv;
     }
 
+    @GetMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한)
+    public ModelAndView trimupdate(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+
+        /* Service 로직에서 불러오기 */
+        TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
+        List<TrimProcedureDTO> procedureList = kitchenguideService.readPost(trimNum);
+
+        /* 데이터 전송("변수이름", "데이터 값");
+         *  html 문서에서 타임리프 ${변수이름.dto(필드}이름}  ->  이렇게 사용하기 */
+        mv.addObject("trimDTO", trimDTO); //손질법 제목, 내용, 동영상URl
+        mv.addObject("procedureList", procedureList); //손질법 순서
+
+        mv.setViewName("/kitchenguide/trimupdate"); //응답할 뷰의 경로 설정 (리턴 값)
+        return mv;
+    }
+
     @GetMapping("/delete/{trimNum}") //손질법 게시글 삭제
     public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int deleteNum/*손질번호*/) {
 
@@ -50,7 +66,7 @@ public class KitchenguideController {
     public ModelAndView trimread(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/, HttpServletRequest request/*요청*/, HttpServletResponse response/*응답*/) {
 
         /* 조회수 */
-        viewCount(request, response, trimNum);
+        trimPostViewCount(request, response, trimNum);
 
         /* Service 로직에서 불러오기 */
         TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
@@ -65,7 +81,7 @@ public class KitchenguideController {
         return mv; //ModelAndView 객체 반환
     }
 
-    private void viewCount(HttpServletRequest request, HttpServletResponse response, int trimNum) {
+    private void trimPostViewCount(HttpServletRequest request, HttpServletResponse response, int trimNum) {
 
         Cookie oldCookie = null;
 
@@ -80,14 +96,14 @@ public class KitchenguideController {
 
         if (oldCookie != null) {
             if (!oldCookie.getValue().contains("[" + trimNum + "]")) {
-                kitchenguideService.viewCount(trimNum);
+                kitchenguideService.trimPostViewCount(trimNum);
                 oldCookie.setValue(oldCookie.getValue() + "_[" + trimNum + "]");
                 oldCookie.setPath("/");
                 oldCookie.setMaxAge(60 * 60 * 24);
                 response.addCookie(oldCookie);
             }
         } else {
-            kitchenguideService.viewCount(trimNum);
+            kitchenguideService.trimPostViewCount(trimNum);
             Cookie newCookie = new Cookie("view", "[" + trimNum + "]");
             newCookie.setPath("/");
             newCookie.setMaxAge(60 * 60 * 24);
