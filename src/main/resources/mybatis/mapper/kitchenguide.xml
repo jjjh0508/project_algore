@@ -82,6 +82,7 @@
             0,
             #{trimVideoLink}
         )
+        <foreach collection="list" item="" index="" open="" close="SELECT * FROM DUAL">
         INTO TRIM_PROCEDURE (
             TP_STEP_NUM,
             TRIM_NUM,
@@ -95,7 +96,7 @@
             'DKFAJLDJFLAJLFDJLJSFL',
             '/img/algorelogo.png'
         )
-        select * from dual;
+        </foreach>
     </insert>
 
     <!--TrimDTO (write)

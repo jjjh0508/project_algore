@@ -35,8 +35,15 @@ public class KitchenguideController {
         return mv;
     }
 
-    @GetMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한)
+    @GetMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한) - 페이지 수정 폼 컨트롤러
     public ModelAndView trimupdate(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+        
+        /* 파라미터를 넘겨주는 방법
+          1. @PathVariable 사용
+            -> (ex. localhost:8080/kitchenguide/trimupdate/1)의 형식
+            -> trimNum이라는 값을 매개변수로 넘겨 쿼리 스트링 형식이 아닌 특정 숫자 그 자체로의 조회
+          2. 쿼리 스트링 사용
+            -> (ex. localhost:8080/kitchenguide/trimupdate?trimNum=1)의 형식 */
 
         /* Service 로직에서 불러오기 */
         TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
@@ -55,11 +62,21 @@ public class KitchenguideController {
         return mv;
     }
 
-    @PostMapping("/trimupdatebutton/{trimNum}")
+    @PostMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한) - 수정 시 작동하는 컨트롤러
     public ModelAndView trimupdatepost(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
 
+        /* setter를 사용하여 값을 변경한 다음 덮어쓰는 방식*/
+        System.out.println("post/trimupdate controller 실행됨");
         /*Service 로직에서 불러오기*/
-        System.out.println("dfadfadsfasdf");
+        TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
+        trimDTO.setTrimTitle(trimDTO.getTrimTitle());
+        trimDTO.setTrimDetail(trimDTO.getTrimDetail());
+        trimDTO.setTrimVideoLink(trimDTO.getTrimVideoLink());
+//        trimDTO.setTrimProcedureDTOList(trimDTO.setTrimProcedureDTOList());
+
+        System.out.println(trimDTO.getTrimTitle());
+        System.out.println(trimDTO.getTrimDetail());
+        System.out.println(trimDTO.getTrimVideoLink());
 
 
         mv.setViewName("/kitchenguide/trimread/{trimNum}");
@@ -97,7 +114,7 @@ public class KitchenguideController {
     }
 
     private void trimPostViewCount(HttpServletRequest request, HttpServletResponse response, int trimNum) {
-
+        /* 조회수 */
         Cookie oldCookie = null;
 
         Cookie[] cookies = request.getCookies();
