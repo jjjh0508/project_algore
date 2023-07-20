@@ -206,7 +206,7 @@
             <!--동영상-->
             <div class="exampleFormControlInput1 fon-colorss fon-color" style="margin-top: 15px;">
                 <h6 style="margin-left: 10px;"><b>동영상 링크 첨부</b></h6>
-                <input type="text" class="form-control input-box-sty pla-col" id="" th:field="${recipevlew.youtube}"
+                <input type="text" class="form-control input-box-sty pla-col" id="" name="youtube" th:value="${recipevlew.youtube}"
                        onblur="isYoutube()"
                        placeholder="youtube.com" style="margin-top: 15px; border-radius: 1em;">
 
@@ -223,8 +223,10 @@
                 <div>
                     <div id="REgreenC">
                         <!--재료입력1-->
+                        <th:block th:each="Ingredient:${recipevlew.recipeIngredientDTOS}">
                         <div class="d-flex justify-content-between" >
                             <!-- 재료명-->
+
                             <div class="form-floating fon-colors" style="margin-top: 10px;">
                                 <input type="text" class="form-control input-box-sty" id="floatingInput5" maxlength="10"
                                        name="material"
@@ -327,6 +329,8 @@
                                     <option value="korean">T</option>
                                 </select>
                             </div>
+
+
                             <!--삭제 버튼-->
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -340,7 +344,7 @@
                             <span id="addgreen"></span>
                         </div>
 
-
+                        </th:block>
                     </div>
                     <!--재료 추가 버튼-->
                     <div class="d-grid gap-1 col-12 mx-auto" style="margin-top: 10px;">
@@ -713,11 +717,11 @@
         var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/i;
         var fileSize;
 
-        function checkMainPic() {
-            if (imgFile[0].value == "") {
-                alert("대표 이미지를 넣어주세요.");
-            }
-        };
+        // function checkMainPic() {
+        //     if (imgFile[0].value == "") {
+        //         alert("대표 이미지를 넣어주세요.");
+        //     }
+        // };
 
         function imgCheck() {
             for (var i = 0; i < imgFile.length; i++) {
@@ -743,6 +747,17 @@
             imgCheck()
 
         };
+
+        var youUrl = /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youtu.be)\/(watch|embed)?(\?v=|\/)?(\S+)?/g;
+        function isYoutube(){
+            var youtube = document.querySelector('[name="youtube"]');
+            console.log(youUrl)
+            if(!youUrl.test(youtube.value)){
+                alert("유튜브 주소는 embed이 포함된 고유주소로 입력해주세요")
+
+            }
+
+        }
 
     </script>
     </body>

@@ -23,8 +23,17 @@ public class RecipeService {
         RecipeviewDTO recipeviewDTO = mapper.DetailView(recipeNum);
         List<RecipeOrderDTO> recipeOrderDTOList = mapper.recipeOrder(recipeNum);
         List<RecipePhotoDTO> recipePhotoDTOList = mapper.recipPhoto(recipeNum);
+        List<RecipeIngredientDTO> recipeIngredientDTOS = mapper.recipeIngredient(recipeNum);
+        int allPrice =0;
+        for (RecipeIngredientDTO recipeIngredientDTO:recipeIngredientDTOS) {
+            allPrice += recipeIngredientDTO.getPrice();
+
+        }
+        recipeviewDTO.setAllPrice(allPrice);
+        recipeviewDTO.setRecipeIngredientDTOS(recipeIngredientDTOS);
         recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
         recipeviewDTO.setRecipeOrderList(recipeOrderDTOList);
+
         return recipeviewDTO;
     }
 
@@ -66,9 +75,6 @@ public class RecipeService {
         int result = 0;
 
 
-
-
-
         int orderDelete = mapper.orderDelete(recipeviewDTO.getRecipeNum());
 
         int photoDelete = mapper.photoDelete(recipeviewDTO.getRecipeNum());
@@ -88,7 +94,7 @@ public class RecipeService {
         return result;
     }
 
-    public List<RecipeCategoryDTO> readCategory() {
+    public List<RecipeCategoryDTO> readcategory() {
 
         List<RecipeCategoryDTO> recipecategory = mapper.readCategory();
         return recipecategory;

@@ -31,15 +31,19 @@ public class RecipeviewDTO {
 
     private String recipeWriter;
 
+    private int allPrice;
+
     private MultipartFile mainInputFile;
     private List<RecipePhotoDTO> recipePhotoDTOList;
     private List<RecipeOrderDTO> recipeOrderList;
 
     private List<ModifyRecipeOrder> modifyRecipeOrders;
+
+    private List<RecipeIngredientDTO> recipeIngredientDTOS;
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String proFileName, String proFilePath, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList, List<ModifyRecipeOrder> modifyRecipeOrders) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String proFileName, String proFilePath, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String recipeWriter, int allPrice, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList, List<ModifyRecipeOrder> modifyRecipeOrders, List<RecipeIngredientDTO> recipeIngredientDTOS) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
@@ -57,22 +61,32 @@ public class RecipeviewDTO {
         this.newMainFileName = newMainFileName;
         this.newMainPath = newMainPath;
         this.recipeWriter = recipeWriter;
+        this.allPrice = allPrice;
         this.mainInputFile = mainInputFile;
         this.recipePhotoDTOList = recipePhotoDTOList;
         this.recipeOrderList = recipeOrderList;
         this.modifyRecipeOrders = modifyRecipeOrders;
-    }
-
-    public String getCategoryNum() {
-        return categoryNum;
+        this.recipeIngredientDTOS = recipeIngredientDTOS;
     }
 
     public List<ModifyRecipeOrder> getModifyRecipeOrders() {
         return modifyRecipeOrders;
     }
 
+    public int getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(int allPrice) {
+        this.allPrice = allPrice;
+    }
+
     public void setModifyRecipeOrders(List<ModifyRecipeOrder> modifyRecipeOrders) {
         this.modifyRecipeOrders = modifyRecipeOrders;
+    }
+
+    public String getCategoryNum() {
+        return categoryNum;
     }
 
     public void setCategoryNum(String categoryNum) {
@@ -231,6 +245,14 @@ public class RecipeviewDTO {
         this.newMainFileName = newMainFileName;
     }
 
+    public List<RecipeIngredientDTO> getRecipeIngredientDTOS() {
+        return recipeIngredientDTOS;
+    }
+
+    public void setRecipeIngredientDTOS(List<RecipeIngredientDTO> recipeIngredientDTOS) {
+        this.recipeIngredientDTOS = recipeIngredientDTOS;
+    }
+
     @Override
     public String toString() {
         return "RecipeviewDTO{" +
@@ -251,9 +273,12 @@ public class RecipeviewDTO {
                 ", newMainFileName='" + newMainFileName + '\'' +
                 ", newMainPath='" + newMainPath + '\'' +
                 ", recipeWriter='" + recipeWriter + '\'' +
+                ", allPrice=" + allPrice +
                 ", mainInputFile=" + mainInputFile +
                 ", recipePhotoDTOList=" + recipePhotoDTOList +
                 ", recipeOrderList=" + recipeOrderList +
+                ", modifyRecipeOrders=" + modifyRecipeOrders +
+                ", recipeIngredientDTOS=" + recipeIngredientDTOS +
                 '}';
     }
 }

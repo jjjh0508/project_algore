@@ -183,4 +183,23 @@
 
     </insert>
 
+    <resultMap id="ingredientMap" type="com.algore.application.recipe.dto.RecipeIngredientDTO">
+        <result property="ingName" column="ING_NAME"/>
+        <result property="weigh" column="WEIGH"/>
+        <result property="riUnit" column="RI_UNIT"/>
+        <result property="price" column="ING_PRICE"/>
+    </resultMap>
+
+    <select id="recipeIngredient" resultMap="ingredientMap">
+        SELECT
+            I.ING_NAME ,
+            RI.WEIGH ,
+            U.RI_UNIT ,
+            I.ING_PRICE ,
+            RI.RI_UNIT_NUM
+        FROM RECIPE_INGREDIENT RI
+                 JOIN UNIT U ON(U.RI_UNIT_NUM = RI.RI_UNIT_NUM)
+                 JOIN INGREDIENT I ON(I.ING_NUM = RI.ING_NUM)
+        WHERE RECIPE_NUM = ${recipeNum}
+    </select>
 </mapper>
