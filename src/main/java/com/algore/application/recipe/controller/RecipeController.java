@@ -49,7 +49,6 @@ public class RecipeController {
         for (RecipeCategoryDTO Category: recipeCategory
              ) {
             System.out.println(Category);
-
         }
         mv.addObject("CategoryList", new RecipeCategoryDTO());
         mv.addObject("recipeCategory", recipeCategory);
