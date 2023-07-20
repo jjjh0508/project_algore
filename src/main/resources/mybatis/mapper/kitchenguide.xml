@@ -65,6 +65,7 @@
         SET TRIM_VIEWS = TRIM_VIEWS+1
         WHERE TRIM_NUM = #{trimNum}
     </update>
+
     <!--TrimDTO (write)
         TrimDTO를 매개변수로 받아서 trim 테이블에 값 넣어주기-->
     <insert id="insertTrim" parameterType="com.algore.application.kitchenguide.dto.TrimDTO" >
@@ -81,7 +82,8 @@
         )
     </insert>
 
-    <!--TrimProcedureDTO (write)-->
+    <!--TrimProcedureDTO (write)
+        TrimProcedureDTO를 매개변수로 받아서 trimProcedure 테이블에 값 넣어주기-->
     <insert id="insertTrimProduce" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
         INSERT
           INTO TRIM_PROCEDURE

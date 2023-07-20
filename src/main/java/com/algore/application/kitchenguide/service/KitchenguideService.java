@@ -29,19 +29,19 @@ public class KitchenguideService {
         return procedure;
     }
 
+    /* @Transactional : 스프링 프레임워크에서 제공하는 어노테이션, 데이터베이스 트랜잭션 관리를 위해서 사용 */
     @Transactional
-    public int insertPost(TrimDTO trimDTO) {
+    public int insertTrim(TrimDTO trimDTO) {
         /* 손질법 등록
-        *  손질법순서 등록*/
-
-        /* KitchenguideMapper에 있는 insertPost (Trim 테이블에 있는 값 넣어주기)를
-        *  result에 실행결과 담기 1 : 성공 0 : 실패 */
+        *  KitchenguideMapper에 있는 insertTrim (Trim 테이블에 있는 값 넣어주기)를
+        *  result에 실행 결과 담기 1 : 성공 0 : 실패 */
         int result = mapper.insertTrim(trimDTO);
 
-
         if(result > 0){
-            /* result가 0보다 클때 (즉 손질법이 등록되었을때) */
-            /* 손질법순서 등록*/
+            /* result가 0보다 클 때 (즉 손질법이 등록 되었을 때)
+            *
+            *  손질법순서 등록
+            *  result에 실행 결과 담기*/
 //            result = mapper.insertTrimProduce(trimProcedureDTO);
         }
         return result;

@@ -1,5 +1,7 @@
 package com.algore.application.kitchenguide.dto;
 
+import java.util.List;
+
 public class TrimDTO {
     private int trimNum; //손질번호
     private String trimTitle; //손질제목
@@ -7,17 +9,19 @@ public class TrimDTO {
     private int trimViews; //조회수
     private String trimVideoLink; //동영상링크
     private String trimStatus; // 상태
+    private List<TrimProcedureDTO> trimProcedureDTOList; // 손질법 순서
 
     public TrimDTO() {
     }
 
-    public TrimDTO(int trimNum, String trimTitle, String trimDetail, int trimViews, String trimVideoLink, String trimStatus) {
+    public TrimDTO(int trimNum, String trimTitle, String trimDetail, int trimViews, String trimVideoLink, String trimStatus, List<TrimProcedureDTO> trimProcedureDTOList) {
         this.trimNum = trimNum;
         this.trimTitle = trimTitle;
         this.trimDetail = trimDetail;
         this.trimViews = trimViews;
         this.trimVideoLink = trimVideoLink;
         this.trimStatus = trimStatus;
+        this.trimProcedureDTOList = trimProcedureDTOList;
     }
 
     public int getTrimNum() {
@@ -68,6 +72,14 @@ public class TrimDTO {
         this.trimStatus = trimStatus;
     }
 
+    public List<TrimProcedureDTO> getTrimProcedureDTOList() {
+        return trimProcedureDTOList;
+    }
+
+    public void setTrimProcedureDTOList(List<TrimProcedureDTO> trimProcedureDTOList) {
+        this.trimProcedureDTOList = trimProcedureDTOList;
+    }
+
     @Override
     public String toString() {
         return "TrimDTO{" +
@@ -77,6 +89,7 @@ public class TrimDTO {
                 ", trimViews=" + trimViews +
                 ", trimVideoLink='" + trimVideoLink + '\'' +
                 ", trimStatus='" + trimStatus + '\'' +
+                ", trimProcedureDTOList=" + trimProcedureDTOList +
                 '}';
     }
 }

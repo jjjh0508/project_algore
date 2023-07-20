@@ -36,13 +36,11 @@ public class KitchenguideController {
     }
 
     @GetMapping("/delete/{trimNum}") //손질법 게시글 삭제
-    public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+    public ModelAndView deleteTrimPost(ModelAndView mv, @PathVariable("trimNum") int deleteNum/*손질번호*/) {
 
-        /* th:href="'/kitchenguide/delete/'+${trimNum}"에서 받아온 trimNum 값 int에 넣어주기...
-        * 타고타고 넘어가서 xml 파일에 trimNum 값으로 넣어준다...*/
-        int delete = kitchenguideService.deleteTrimPost(trimNum);
+        System.out.println("con t : " + deleteNum);
+        int deleted = kitchenguideService.deleteTrimPost(deleteNum);
 
-        /* 삭제 후 손질 법 메인화면으로 복귀 */
         mv.setViewName("redirect:/kitchenguide/mainview");
         return mv;
     }
@@ -102,18 +100,35 @@ public class KitchenguideController {
         return "kitchenguide/trimwrite";
     }
 
-    // 경로 수정해주기 redirect:
+    /* HttpServletRequest : 현재 요청에 대한 정보를 담고 있는 HttpServletRequest 객체, 클라이언트의 요청 정보를 확인하거나 추가적인 작업을 수행할 수 있다
+    *  ModelAndView : Controller 처리 결과 후 응답할 view와 view에 전달할 값을 저장*/
     @PostMapping("/trimwrite")
-    public ModelAndView insertTrim(ModelAndView mv, HttpServletRequest req) {
-        System.out.println(req.getParameter("trimTitle"));
-//        int result = kitchenguideService.insertPost(trimDTO);
-        int result = 0;
+    public ModelAndView insertTrim(ModelAndView mv,TrimDTO trimDTO, HttpServletRequest req) {
+//        손질법 등록 확인
+//        System.out.println("trimNum");
+//        System.out.println("trimTitle");
+//        System.out.println("trimDetail");
+//        System.out.println("trimViews");
+//        System.out.println("trimVideoLink");
+//        System.out.println(trimDTO); // 제목, 내용, 동영상URL ok, (번호 : 0 , 조회수 : 0, 상태 : null x)
 
+        /* KitchenguideService에 있는 insertTrim (Trim 테이블에 있는 값 넣어주기)를
+         *  result에 실행 결과 담기 1 : 성공 0 : 실패*/
+        int result = kitchenguideService.insertTrim(trimDTO);
 
         if (result > 0) {
+            /* result가 0보다 클 때
+            *  mv.addObject, mv.setViewName 실행
+            *
+            *  view에 전달할 값 설정 (데이터 보낼 때)
+            *  mv.addObject("변수 이름", "데이터 값");
+            * */
             mv.addObject("message", "등록이 완료되었습니다.");
+            /* 응답할 view 이름 설정
+            *  mv.setViewName("뷰의 경로");*/
             mv.setViewName("redirect:kitchenguide/trimread");
         } else {
+            /* result가 0보다 크지 않을 때*/
             mv.addObject("message", "등록에 실패하였습니다.");
             mv.setViewName("redirect:kitchenguide/trimread");
         }
