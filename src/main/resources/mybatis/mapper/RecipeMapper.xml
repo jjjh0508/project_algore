@@ -168,7 +168,20 @@
         </foreach>)A
 
     </insert>
+    <update id="modifyIng" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+         INTO RECIPE_INGREDIENT
+        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT_NUM)
+        VALUES
 
+           ( #{item.ingNum},
+            #{item.recipeNum},
+            #{item.weigh},
+            #{item.riUnitNum}
+            )
+
+        </foreach>
+    </update>
 
     <insert id="modifyPhoto" parameterType="java.util.List">
         INSERT INTO RECIPE_PHOTO
@@ -183,14 +196,14 @@
 
     </insert>
 
-    <resultMap id="ingredientMap" type="com.algore.application.recipe.dto.RecipeIngredientDTO">
+    <resultMap id="RecipeingredientMap" type="com.algore.application.recipe.dto.RecipeIngredientDTO">
         <result property="ingName" column="ING_NAME"/>
         <result property="weigh" column="WEIGH"/>
         <result property="riUnit" column="RI_UNIT"/>
         <result property="price" column="ING_PRICE"/>
     </resultMap>
 
-    <select id="recipeIngredient" resultMap="ingredientMap">
+    <select id="recipeIngredient" resultMap="RecipeingredientMap">
         SELECT
             I.ING_NAME ,
             RI.WEIGH ,
@@ -202,4 +215,26 @@
                  JOIN INGREDIENT I ON(I.ING_NUM = RI.ING_NUM)
         WHERE RECIPE_NUM = ${recipeNum}
     </select>
+
+    <resultMap id="ingredientMap" type="com.algore.application.recipe.dto.IngredientDTO">
+        <result property="ingNum" column="ING_NUM"/>
+        <result property="ingName" column="ING_NAME"/>
+
+    </resultMap>
+
+
+    <select id="ingredienList" resultMap="ingredientMap">
+    SELECT
+        ING_NUM,
+        ING_NAME
+    FROM INGREDIENT
+    </select>
+
+<delete id="recipeIngDelete">
+    DELETE RECIPE_INGREDIENT
+    WHERE RECIPE_NUM= ${recipeNum}
+</delete>
+
+
+
 </mapper>

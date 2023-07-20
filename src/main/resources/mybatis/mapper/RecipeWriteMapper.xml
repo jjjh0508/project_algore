@@ -43,6 +43,27 @@
             SYSDATE
             )
 </insert>
+<select id="readCategory" resultMap="categoryMap">
+    SELECT CATEGORY_NUM,
+           CATEGORY
+      FROM RECIPE_CATEGORY
+</select>
+<!--    -->
+<!--<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">-->
+<!--    INSERT INTO RECIPE-->
+<!--    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)-->
+<!--    VALUES (SEQ_RECIPE_NUM.NEXTVAL,-->
+<!--            #{memNum},-->
+<!--            #{mainPhoto},-->
+<!--            #{photoPath},-->
+<!--            #{categoryNum},-->
+<!--            #{recipeTitle},-->
+<!--            #{recipeIntro},-->
+<!--            #{recipeVideoLink},-->
+<!--            #{tip},-->
+<!--            SYSDATE-->
+<!--            )-->
+<!--</insert>-->
 
 <!--    <insert id="recipeIngredient" parameterType="java.util.List">-->
 <!--        INSERT INTO RECIPE_INGREDIENT-->

@@ -19,6 +19,13 @@ public class RecipeIngredientDTO {
     public RecipeIngredientDTO() {
     }
 
+    public RecipeIngredientDTO(int ingNum, int recipeNum, int weigh, int riUnitNum) {
+        this.ingNum = ingNum;
+        this.recipeNum = recipeNum;
+        this.weigh = weigh;
+        this.riUnitNum = riUnitNum;
+    }
+
     public RecipeIngredientDTO(int ingNum, int recipeNum, int weigh, String riUnit, int riUnitNum, String category, String ingName, int price, int allPrice) {
         this.ingNum = ingNum;
         this.recipeNum = recipeNum;

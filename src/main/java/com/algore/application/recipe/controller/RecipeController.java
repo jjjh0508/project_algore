@@ -137,9 +137,13 @@ public class RecipeController {
         @RequestParam("recipe") int recipe){
             try {
 
+
                 List<RecipeCategoryDTO> recipeCategoryDTO = recipeService.readcategory();
+
                 String name = recipeService.getUserName(recipe);
+
                 List<RecipeOrderDTO> newOrderDTO = new ArrayList<>();
+
                 System.out.println(authentication.getDetails());
                 System.out.println(authentication.isAuthenticated());
                 System.out.println(authentication.getPrincipal());
@@ -176,7 +180,11 @@ public class RecipeController {
         @ResponseBody
         public ModelAndView modifyRecipe (ModelAndView mv, RecipeviewDTO recipeviewDTO, HttpServletRequest
         request, @RequestParam(value = "oprderInputFile", required = false) List < MultipartFile > recipePicture,
-                                          @RequestParam(value = "orderContent", required = false) List < String > orderContent, RedirectAttributes rttr)
+                                          @RequestParam(value = "orderContent", required = false) List < String > orderContent,
+                                          @RequestParam(value = "ingName", required = false) int[] ingName,
+                                          @RequestParam(value = "weigh",required = false) String[] weigh,
+                                          @RequestParam(value ="riUnitNum",required = false ) int[] riUnitNum,
+                                          RedirectAttributes rttr)
         {
 
             try {
@@ -260,9 +268,23 @@ public class RecipeController {
 
                 }
 
-                for (ModifyRecipeOrder modifyRecipeOrder : modifyRecipeOrders) {
-                    System.out.println(modifyRecipeOrder);
+                //재료 로직
+
+                List<RecipeIngredientDTO> recipeIngredientDTOS = new ArrayList<>();
+                for (int i=0;i<ingName.length;i++ ){
+                    if(!(ingName[i] ==0)){
+                        recipeIngredientDTOS.add(new RecipeIngredientDTO(ingName[i],recipeNum,Integer.parseInt(weigh[i]),riUnitNum[i]));
+                        System.out.println(ingName[i]+"이름");
+                        System.out.println(weigh[i]+"용량");
+                        System.out.println(riUnitNum[i]+"단위");
+
+                    }
                 }
+
+                for (RecipeIngredientDTO recipeIngredientDTO:recipeIngredientDTOS) {
+                    System.out.println(recipeIngredientDTO);
+                }
+                recipeviewDTO.setRecipeIngredientDTOS(recipeIngredientDTOS);
                 recipeviewDTO.setModifyRecipeOrders(modifyRecipeOrders);
                 recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
                 int result = recipeService.modifyRecipe(recipeviewDTO);
