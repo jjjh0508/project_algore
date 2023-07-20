@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,20 +42,23 @@ public class RecipeController {
     }
 
     @GetMapping("/regist")
-    public ModelAndView writeForm(ModelAndView mv, Authentication authentication) {
-        List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
-        for (RecipeCategoryDTO recipecategoryy : recipecategory
-        ) {
-            System.out.println(recipecategoryy);
+    public ModelAndView writeForm(ModelAndView mv, Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+
+        List<RecipeCategoryDTO> recipeCategory = recipeService.readCategory();
+
+        for (RecipeCategoryDTO Category: recipeCategory
+             ) {
+            System.out.println(Category);
 
         }
+        mv.addObject("CategoryList", new RecipeCategoryDTO());
+        mv.addObject("recipeCategory", recipeCategory);
 
-        mv.addObject("categoryList", recipecategory);
-        mv.setViewName("/recipe/regist");
+        mv.setViewName("/recipe/write");
         return mv;
     }
 
-    @PostMapping(value = "/regist")
+    @PostMapping( "/registform")
     public ModelAndView writeReci(ModelAndView model, RecipeWriteDTO recipeWriteDTO) {
 
         int result = recipeService.writeRecipe(recipeWriteDTO);
@@ -73,58 +75,10 @@ public class RecipeController {
         return model;
     }
 
-    @GetMapping("/file")
-    public void goFile() {
-    }
-
-    @PostMapping("/file")
-    public ModelAndView RecipePhoto(@ModelAttribute RecipePhotoWriteDTO recipePhotoWrite, HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        String backUrl = request.getHeader("Refere");
-
-        MultipartFile fileOne = recipePhotoWrite.getRecipePhotoWriteInput();
-        String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf("."));
-
-        if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".bmp"))) {
-            modelAndView.addObject("message", "이미지가 아닙니다.");
-            modelAndView.setViewName(backUrl);
-
-            return modelAndView;
-        }
-
-        if (recipePhotoWrite.getRecipePhotoPath() != null) {
-            String originFilePath = "\\upload\\basic\\";
-            String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static" + originFilePath;
-
-            File originDirectory = new File(path);
-
-            if (!originDirectory.exists()) {
-                originDirectory.mkdirs();
-            }
-
-            path += recipePhotoWrite.getRecipePhotoWriteInput().getOriginalFilename();
-
-            try {
-                recipePhotoWrite.getRecipePhotoWriteInput().transferTo(new File(path));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            modelAndView.addObject("message", "파일 저장에 성공하였습니다.");
-        } else {
-            modelAndView.addObject("message", "파일 저장에 실패하였습니다.");
-            return modelAndView;
-        }
-        modelAndView.setViewName("index");
-
-        return modelAndView;
-
-    }
-
     @GetMapping("/modify")
     public ModelAndView modifyForm(ModelAndView mv, Authentication authentication, @RequestParam("recipe") int recipe) {
         try {
-            List<RecipeCategoryDTO> recipeCategoryDTO = recipeService.readcategory();
+
             String name = recipeService.getUserName(recipe);
 
             System.out.println(authentication.getDetails());
@@ -141,13 +95,13 @@ public class RecipeController {
 
             RecipeviewDTO recipeviewDTO = recipeService.DetailView(recipe);
             List<RecipePhotoDTO> recipePhotoDTOList = recipeviewDTO.getRecipePhotoDTOList();
-            if (recipePhotoDTOList.isEmpty()) {
-                for (int i = 0; i < 4; i++) {
+            if(recipePhotoDTOList.isEmpty()){
+                for(int i=0;i<4;i++){
                     recipePhotoDTOList.add(new RecipePhotoDTO());
                 }
                 recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
             }
-            mv.addObject("recipeCategory", recipeCategoryDTO);
+
             mv.addObject("recipevlew", recipeviewDTO);
             mv.setViewName("/recipe/modify");
         } catch (Exception e) {
