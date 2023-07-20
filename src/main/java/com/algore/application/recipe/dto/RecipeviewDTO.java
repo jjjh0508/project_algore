@@ -40,10 +40,12 @@ public class RecipeviewDTO {
     private List<ModifyRecipeOrder> modifyRecipeOrders;
 
     private List<RecipeIngredientDTO> recipeIngredientDTOS;
+
+    private List<IngredientDTO> ingredientDTOList;
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String proFileName, String proFilePath, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String recipeWriter, int allPrice, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList, List<ModifyRecipeOrder> modifyRecipeOrders, List<RecipeIngredientDTO> recipeIngredientDTOS) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String proFileName, String proFilePath, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String recipeWriter, int allPrice, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList, List<ModifyRecipeOrder> modifyRecipeOrders, List<RecipeIngredientDTO> recipeIngredientDTOS, List<IngredientDTO> ingredientDTOList) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
@@ -67,6 +69,7 @@ public class RecipeviewDTO {
         this.recipeOrderList = recipeOrderList;
         this.modifyRecipeOrders = modifyRecipeOrders;
         this.recipeIngredientDTOS = recipeIngredientDTOS;
+        this.ingredientDTOList = ingredientDTOList;
     }
 
     public List<ModifyRecipeOrder> getModifyRecipeOrders() {
@@ -83,6 +86,14 @@ public class RecipeviewDTO {
 
     public void setModifyRecipeOrders(List<ModifyRecipeOrder> modifyRecipeOrders) {
         this.modifyRecipeOrders = modifyRecipeOrders;
+    }
+
+    public List<IngredientDTO> getIngredientDTOList() {
+        return ingredientDTOList;
+    }
+
+    public void setIngredientDTOList(List<IngredientDTO> ingredientDTOList) {
+        this.ingredientDTOList = ingredientDTOList;
     }
 
     public String getCategoryNum() {
@@ -279,6 +290,7 @@ public class RecipeviewDTO {
                 ", recipeOrderList=" + recipeOrderList +
                 ", modifyRecipeOrders=" + modifyRecipeOrders +
                 ", recipeIngredientDTOS=" + recipeIngredientDTOS +
+                ", ingredientDTOList=" + ingredientDTOList +
                 '}';
     }
 }

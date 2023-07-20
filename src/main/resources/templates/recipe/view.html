@@ -274,12 +274,15 @@
             <div id="material-area" class="m-3" style="padding-top: 50px; padding-left: 20px;">
                 <h4>레시피 재료</h4>
                 <ul>
-                    <c:forEach items="${rmList}" var="rmList">
-                        <li>재료: ${rmList.material}, 계량: ${rmList.amount}, 시세:1000원
-                    </c:forEach>
+                    <th:block th:each="ingList:${recipevlew.recipeIngredientDTOS}" >
+                        <li> 재료 :  <p th:text="${ingList.ingName}"></p></li>
+                        <li> 계량: <p th:text="${ingList.weigh}+${ingList.riUnit}"></p></li>
+
+                        <li>묶음 시세기준 총 가격 : <p th:text="${recipevlew.allPrice}+원" ></p></li>
+                    </th:block>
                 </ul>
                 <ul>
-                    <li>시세 기준 재료 예상 금액:10000원</li>
+
                 </ul>
                 <hr style="margin-top: 30px;">
             </div>

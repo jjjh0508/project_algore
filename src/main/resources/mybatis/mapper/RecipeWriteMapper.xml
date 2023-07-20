@@ -15,37 +15,37 @@
            CATEGORY
       FROM RECIPE_CATEGORY
 </select>
-    
-<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
-    INSERT INTO RECIPE
-    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
-    VALUES (SEQ_RECIPE_NUM.NEXTVAL,
-            #{memNum},
-            #{mainPhoto},
-            #{photoPath},
-            #{categoryNum},
-            #{recipeTitle},
-            #{recipeIntro},
-            #{recipeVideoLink},
-            #{tip},
-            SYSDATE
-            )
-</insert>
+<!--    -->
+<!--<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">-->
+<!--    INSERT INTO RECIPE-->
+<!--    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)-->
+<!--    VALUES (SEQ_RECIPE_NUM.NEXTVAL,-->
+<!--            #{memNum},-->
+<!--            #{mainPhoto},-->
+<!--            #{photoPath},-->
+<!--            #{categoryNum},-->
+<!--            #{recipeTitle},-->
+<!--            #{recipeIntro},-->
+<!--            #{recipeVideoLink},-->
+<!--            #{tip},-->
+<!--            SYSDATE-->
+<!--            )-->
+<!--</insert>-->
 
-    <insert id="recipeIngredient" parameterType="java.util.List">
-        INSERT INTO RECIPE_INGREDIENT
-        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)
-        SELECT ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT
-          FROM(
-              <foreach collection="list" item="item" separator="UNION ALL">
-                  SELECT #{item.ingNum} AS ING_NUM,
-                         #{item.recipeNum} AS RECIPE_NUM,
-                         #{item.weigh} AS WEIGH,
-                         #{item.riUnit} AS RI_UNIT
-                  FROM DUAL
-              </foreach> ING
-              )
-    </insert>
+<!--    <insert id="recipeIngredient" parameterType="java.util.List">-->
+<!--        INSERT INTO RECIPE_INGREDIENT-->
+<!--        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)-->
+<!--        SELECT ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT-->
+<!--          FROM(-->
+<!--              <foreach collection="list" item="item" separator="UNION ALL">-->
+<!--                  SELECT #{item.ingNum} AS ING_NUM,-->
+<!--                         #{item.recipeNum} AS RECIPE_NUM,-->
+<!--                         #{item.weigh} AS WEIGH,-->
+<!--                         #{item.riUnit} AS RI_UNIT-->
+<!--                  FROM DUAL-->
+<!--              </foreach> ING-->
+<!--              )-->
+<!--    </insert>-->
 
 <!--    <insert id="recipeProcedure" parameterType="java.util.List">-->
 <!--    </insert>-->

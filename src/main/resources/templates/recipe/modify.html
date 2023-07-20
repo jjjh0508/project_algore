@@ -223,17 +223,28 @@
 
                 <div>
                     <th:block th:each="ingredient:${recipevlew.recipeIngredientDTOS}">
-                    <div id="REgreenC" class="REgreenC">
-                        <!--재료입력1-->
+                        <div id="REgreenC" class="REgreenC">
+                            <!--재료입력1-->
 
                             <div class="d-flex justify-content-between">
                                 <!-- 재료명-->
 
                                 <div class="form-floating fon-colors" style="margin-top: 10px;">
-                                    <input type="text" class="form-control input-box-sty" id="floatingInput5"
-                                           maxlength="10"
-                                           name="ingName" th:value="${ingredient.ingName}"
-                                           style=" width: 300px; border-radius: 1.5em;">
+
+                                    <select class="form-select input-box-sty" name="ingName"
+                                            style="border-radius: 1.5em; color: #085A84; width: 300px;" id="floatingInput5">
+                                        <option th:each="ing:${recipevlew.ingredientDTOList}" th:value="${ing.ingNum}"
+                                                th:selected="${recipevlew.ingredientDTOList[__${ingStat.index}__].ingNum}==${recipevlew.recipeIngredientDTOS[__${ingredientStat.index}__].ingNum}"
+                                                th:text="${ing.ingName}"
+
+
+                                        ></option>
+
+                                    </select>
+
+
+
+
                                     <label for="floatingInput5"
                                            style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
                                 </div>
@@ -275,9 +286,10 @@
                             </div>
 
 
-                        <span id="addgreen"></span>
-                    </div>
+
+                        </div>
                     </th:block>
+                    <span id="addgreen"></span>
                     <!--재료 추가 버튼-->
                     <div class="d-grid gap-1 col-12 mx-auto" style="margin-top: 10px;">
                         <button type="button" class="btn btn-primary but-off-color" onclick="addGr()">추가</button>
@@ -371,52 +383,51 @@
 
             <!--복사할 재료 -->
 
-            <div style="display: none">
+<!--            <div style="display: none" >-->
+<!--                <div id="RECIPEING" class="RECIPEING form-floating fon-colors" style="margin-top: 10px;">-->
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                        <div class="form-floating fon-colors" style="margin-top: 10px;">-->
+<!--                            <select class="form-select input-box-sty" -->
+<!--                                    style="border-radius: 1.5em; color: #085A84; width: 300px;" id="floatingInput7">-->
+<!--                                <option  th:each="ing:${recipevlew.ingredientDTOList}"-->
+<!--                                        th:text="${ing.ingName}" th:value="${ing.ingNum}"></option>-->
 
-                <div id="RECIPEING" class="RECIPEING form-floating fon-colors" style="margin-top: 10px;">
-                    <div class="d-flex justify-content-between">
-                        <div class="form-floating fon-colors" style="margin-top: 10px;">
-                            <input type="text" class="form-control input-box-sty" id="floatingInput6"
-                                   maxlength="10"
-                                   name="ingName"
-                                   style=" width: 300px; border-radius: 1.5em;">
-                            <label for="floatingInput5"
-                                   style="margin-top: 10px; margin-left: 5px; color: #085A84;">재료명</label>
-                        </div>
-                        <!--계량-->
-                        <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                            <input type="text" class="form-control input-box-sty" id="floatingInput7"
-                                   maxlength="5"
-                                   name="weigh"
-                                   style="border-radius: 1.5em;">
-                            <label for="floatingInput4"
-                                   style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>
-                        </div>
-                        <!-- 단위 -->
-                        <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                            <select class="form-select input-box-sty" name="riUnitNum"
-                                    style="border-radius: 1.5em; color: #085A84;">
-                                <option value="1">kg</option>
-                                <option value="2">g</option>
-                                <option value="3">ml</option>
-                                <option value="4">L</option>
-                                <option value="5">컵</option>
-                                <option value="6">T</option>
-                            </select>
-                        </div>
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;계량&ndash;&gt;-->
+<!--                        <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">-->
+<!--                            <input type="text" class="form-control input-box-sty" id="floatingInput8"-->
+<!--                                   maxlength="5"-->
+<!--                                   name="weigh"-->
+<!--                                   style="border-radius: 1.5em;">-->
+<!--                            <label for="floatingInput4"-->
+<!--                                   style="margin-top: 10px; margin-left: 5px; color: #085A84;">계량</label>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; 단위 &ndash;&gt;-->
+<!--                        <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">-->
+<!--                            <select class="form-select input-box-sty" name="riUnitNum"-->
+<!--                                    style="border-radius: 1.5em; color: #085A84;">-->
+<!--                                <option value="1">kg</option>-->
+<!--                                <option value="2">g</option>-->
+<!--                                <option value="3">ml</option>-->
+<!--                                <option value="4">L</option>-->
+<!--                                <option value="5">컵</option>-->
+<!--                                <option value="6">T</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
 
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-x-circle" viewBox="0 0 16 16" type="button" onclick="removeGrN()">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path
-                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                            </svg>
+<!--                        <div>-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
+<!--                                 class="bi bi-x-circle" viewBox="0 0 16 16" type="button" onclick="removeGrN()">-->
+<!--                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--                                <path-->
+<!--                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>-->
+<!--                            </svg>-->
 
-                        </div>
-                    </div>
-                </div>
-
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
                 <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
                     <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
@@ -582,7 +593,7 @@
                     </th:block>
                 </div>
 
-
+            </div>
                 <div class="" style="margin-right: 18px; margin-top: 10px;">
                     <!--등록 버튼-->
                     <button type="submit" class="btn btn-primary but-off-color"
@@ -609,15 +620,16 @@
 
     <script th:inline="javascript">
 
-        var greenForm = document.querySelector('#RECIPEING');
+        var greenForm = document.querySelector('#REgreenC');
         var addgreen = document.querySelector('#addgreen');
 
-        var countR = document.querySelectorAll('.RECIPEING').length + 2;
-        var countN = document.querySelectorAll('.REgreenC').length + 1;
+        var countR = document.querySelectorAll('.REgreenC').length + 1;
+        // var countN = document.querySelectorAll('.REgreenC').length + 1;
 
 
         function addGr() {
             if (countR <= 10) {
+                console.log()
                 addgreen.append(greenForm.cloneNode(true));
 
                 countR++;
@@ -627,12 +639,12 @@
 
         function removeGrr() {
             let greenFormClass = document.querySelectorAll('.REgreenC');
-            if(countN>2) {
+            if (countR > 2) {
                 greenFormClass[greenFormClass.length - 1].remove();
             }
 
             console.log(countN);
-            countN--
+            countR--
         }
 
         function removeGrN() {

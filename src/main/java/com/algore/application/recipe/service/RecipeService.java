@@ -24,16 +24,18 @@ public class RecipeService {
         List<RecipeOrderDTO> recipeOrderDTOList = mapper.recipeOrder(recipeNum);
         List<RecipePhotoDTO> recipePhotoDTOList = mapper.recipPhoto(recipeNum);
         List<RecipeIngredientDTO> recipeIngredientDTOS = mapper.recipeIngredient(recipeNum);
+        List<IngredientDTO> ingredientDTOList = mapper.ingredienList();
         int allPrice =0;
         for (RecipeIngredientDTO recipeIngredientDTO:recipeIngredientDTOS) {
             allPrice += recipeIngredientDTO.getPrice();
 
         }
+        System.out.println();
+        recipeviewDTO.setIngredientDTOList(ingredientDTOList);
         recipeviewDTO.setAllPrice(allPrice);
         recipeviewDTO.setRecipeIngredientDTOS(recipeIngredientDTOS);
-        recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
         recipeviewDTO.setRecipeOrderList(recipeOrderDTOList);
-
+        recipeviewDTO.setRecipePhotoDTOList(recipePhotoDTOList);
         return recipeviewDTO;
     }
 
@@ -74,16 +76,18 @@ public class RecipeService {
         System.out.println("여기");
         int result = 0;
 
-
+        int IngDelete =  mapper.recipeIngDelete(recipeviewDTO.getRecipeNum());
         int orderDelete = mapper.orderDelete(recipeviewDTO.getRecipeNum());
 
         int photoDelete = mapper.photoDelete(recipeviewDTO.getRecipeNum());
-
+        System.out.println("여기");
         int orderResult = mapper.modifyOrder(recipeviewDTO.getModifyRecipeOrders());
-
-        int photoResult = mapper.modifyPhoto(recipeviewDTO.getRecipePhotoDTOList());
+        System.out.println("여기");
+        int IngResult = mapper.modifyIng(recipeviewDTO.getRecipeIngredientDTOS());
+        System.out.println("여기");
 
         int recipeResult = mapper.modifyRecipe(recipeviewDTO);
+        int photoResult = mapper.modifyPhoto(recipeviewDTO.getRecipePhotoDTOList());
 
         if (recipeResult > 0) {
             System.out.println("성공");
