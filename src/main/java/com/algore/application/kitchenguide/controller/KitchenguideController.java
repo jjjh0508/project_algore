@@ -111,15 +111,15 @@ public class KitchenguideController {
         }
     }
 
-    @GetMapping("/trimwrite")
+    @GetMapping("/trimwrite") //사용자가 get 방식으로 /kitchenguide/trimwrite를 요청할 경우 실행
     public String trimwrite() {
         return "kitchenguide/trimwrite";
     }
 
     /* HttpServletRequest : 현재 요청에 대한 정보를 담고 있는 HttpServletRequest 객체, 클라이언트의 요청 정보를 확인하거나 추가적인 작업을 수행할 수 있다
     *  ModelAndView : Controller 처리 결과 후 응답할 view와 view에 전달할 값을 저장*/
-    @PostMapping("/trimwrite")
-    public ModelAndView insertTrim(ModelAndView mv,TrimDTO trimDTO, HttpServletRequest req) {
+    @PostMapping("/trimwrite") //사용자가 post 방식으로 /kitchenguide/trimwrite를 요청할 경우 실행
+    public ModelAndView insertTrim(ModelAndView mv,TrimDTO trimDTO) {
 //        손질법 등록 확인
 //        System.out.println("trimNum");
 //        System.out.println("trimTitle");
@@ -133,9 +133,8 @@ public class KitchenguideController {
         int result = kitchenguideService.insertTrim(trimDTO);
 
         if (result > 0) {
-            /* result가 0보다 클 때
-            *  mv.addObject, mv.setViewName 실행
-            *
+            /* 손질법 등록 성공
+            *  result가 0보다 클 때
             *  view에 전달할 값 설정 (데이터 보낼 때)
             *  mv.addObject("변수 이름", "데이터 값");
             * */
@@ -144,12 +143,15 @@ public class KitchenguideController {
             *  mv.setViewName("뷰의 경로");*/
             mv.setViewName("redirect:kitchenguide/trimread");
         } else {
-            /* result가 0보다 크지 않을 때*/
+            /* 손질법 등록 실패
+            * result가 0보다 크지 않을 때
+            * */
             mv.addObject("message", "등록에 실패하였습니다.");
             mv.setViewName("redirect:kitchenguide/trimread");
         }
         return mv;
     }
+
 
 //    @GetMapping("/file")
 //    public void goFile(){}
