@@ -74,12 +74,12 @@
       style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 250px;">
     <div class="text-center">
         <div class="form-signin mx-auto" style="width: 400px; margin-top: 8%; text-align: center;">
-            <form th:action="@{/common/login}" method="post">
+            <form th:action="@{/user/login}" method="post">
                 <!--LOGIN-->
                 <h1 class="h1 mb-5 fw-bold" style="color: #208BCE;">LOGIN</h1>
                 <!--아이디 입력-->
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="username" name="username" placeholder="id">
+                    <input type="text" class="form-control" id="username" name="username" value="id" placeholder="id">
                     <label for="username" style="font-size: 15px; color: #085A8470;">아이디</label>
                 </div>
                 <!--비밀번호 입력-->

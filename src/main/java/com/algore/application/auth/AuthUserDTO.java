@@ -1,86 +1,63 @@
 package com.algore.application.auth;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
-public class AuthUserDTO implements UserDetails   {
+public class AuthUserDTO implements UserDetails {
 
     // 회원 정보 데이터 필요
-    private int memberCode;
-    private String memberId;
-    private String memberPass;
-    private Collection<GrantedAuthority> role;
+    private int memNum; //로그인페이지 회원번호 식별
+
+    private String username; //로그인 아이디
+
+    private String password;  //로그인 비밀번호
+ 
+    private String nickName;
+    private String role;
+//    private ArrayList<GrantedAuthority> role;
+
 
     public AuthUserDTO() {
     }
 
-    public AuthUserDTO(int memberCode, String memberId, String memberPass, Collection<GrantedAuthority> role) {
-        this.memberCode = memberCode;
-        this.memberId = memberId;
-        this.memberPass = memberPass;
+    public AuthUserDTO(int memNum, String username, String password, String nickName, String role) {
+        this.memNum = memNum;
+        this.username = username;
+        this.password = password;
+        this.nickName = nickName;
         this.role = role;
     }
 
-    public int getMemberCode() {
-        return memberCode;
+    public int getMemNum() {
+        return memNum;
     }
 
-    public void setMemberCode(int memberCode) {
-        this.memberCode = memberCode;
+    public void setMemNum(int memNum) {
+        this.memNum = memNum;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public String getMemberPass() {
-        return memberPass;
-    }
-
-    public void setMemberPass(String memberPass) {
-        this.memberPass = memberPass;
-    }
-
-
-    @Override
-    public String toString() {
-        return "AuthUserDTO{" +
-                "memberCode=" + memberCode +
-                ", memberId='" + memberId + '\'' +
-                ", memberPass='" + memberPass + '\'' +
-                '}';
-    }
-
-    // userDtails 정보
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Collection<GrantedAuthority> authoriCollection = new ArrayList<>();
-//        // 사용자의 권한 목록을 String으로 가지고 있으며 구분은 ,로 하는 경우 ,를 기준으로 list를 만들어 권한 목록을 추가한다.
-//        for (String role : role.split(",")){
-//            authoriCollection.add(new SimpleGrantedAuthority(role));
-//        }
-//        System.out.println(authoriCollection);
-        // 권한 목록 전달
-        return this.role;
+        ArrayList<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+        authList.add(new SimpleGrantedAuthority(role));
+        return authList;
     }
 
     @Override
     public String getPassword() {
-        // 사용자의 비밀번호 매핑
-        return memberPass;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        // 사용자의 아이디 매핑
-        return memberId;
+        return username;
     }
 
     @Override
@@ -109,5 +86,36 @@ public class AuthUserDTO implements UserDetails   {
         // 사용가능한 계정인지 여부를 확인한다.
         // true면 사용가능
         return true;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthUserDTO{" +
+                "memNum=" + memNum +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

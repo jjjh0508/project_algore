@@ -1,16 +1,17 @@
 package com.algore.application.user.controller;
 
+import com.algore.application.auth.AuthenticationService;
+import com.algore.application.employee.dao.LoginTestMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
     @GetMapping("/login")
-    public String main(){
-        return "user/login";
+    public String main(){ return "user/login";
     }
 
     @GetMapping("/idfind")
@@ -44,6 +45,10 @@ public class UserController {
     @GetMapping("join")
     public String join() {
         return "user/join";
+    }
+    @GetMapping("/memberList")
+    public String memberList(){
+        return "user/memberList";
     }
 
 }
