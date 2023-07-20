@@ -34,11 +34,7 @@ public interface RecipeViewMapper {
     int writeRecipe(RecipeWriteDTO recipeWriteDTO);
     List<RecipeCategoryDTO> readCategory();
 
-<<<<<<< HEAD
-//    int recipeProcedure(RecipeProcedureDTO recipeProcedureDTO);
-
-
-=======
     List<RecipeIngredientDTO> recipeIngredient(int recipeNum);
->>>>>>> 202da24a6a1218bd898c7c8b5138a9a707efc29c
+
+    List<RecipeUnitDTO> readUnit();
 }

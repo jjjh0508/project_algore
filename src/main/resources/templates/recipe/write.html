@@ -222,14 +222,13 @@
                     </div>
                     <!-- 단위 -->
                     <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                        <select class="form-select input-box-sty" name="recipeunit"
+                        <select class="form-select input-box-sty" name="riUnit"
                                 style="border-radius: 1.5em; color: #085A84;">
-                            <option value="kg">kg</option>
-                            <option value="korean">g</option>
-                            <option value="korean">ml</option>
-                            <option value="korean">L</option>
-                            <option value="korean">컵</option>
-                            <option value="korean">T</option>
+                            <option selected disabled value="">단위</option>
+                            <option th:each="recipeUnit:${recipeUnit}"
+                                    th:value="${recipeUnit.riUnitNum}"
+                                    th:selected="${UnitList.riUnitNum}==${recipeUnit.riUnitNum}"
+                                    th:text="${recipeUnit.riUnit}"></option>
                         </select>
                     </div>
                     <div>
@@ -258,14 +257,14 @@
                     </div>
                     <!-- 단위 -->
                     <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                        <select class="form-select input-box-sty" name="recipeunit"
+                        <select class="form-select input-box-sty" name="riUnit"
                                 style="border-radius: 1.5em; color: #085A84;">
-                            <option value="kg">kg</option>
-                            <option value="korean">g</option>
-                            <option value="korean">ml</option>
-                            <option value="korean">L</option>
-                            <option value="korean">컵</option>
-                            <option value="korean">T</option>
+                            <option selected disabled value="">단위</option>
+                            <option th:each="recipeUnit:${recipeUnit}"
+                                    th:value="${recipeUnit.riUnitNum}"
+                                    th:selected="${UnitList.riUnitNum}==${recipeUnit.riUnitNum}"
+                                    th:text="${recipeUnit.riUnit}"></option>
+                        </select>
                         </select>
                     </div>
                     <!--압정 아이콘-->
@@ -295,14 +294,13 @@
                     </div>
                     <!-- 단위 -->
                     <div class="form-floating w-100" style="margin-left: 20px; margin-top: 10px;">
-                        <select class="form-select input-box-sty" name="recipeunit"
+                        <select class="form-select input-box-sty" name="riUnit"
                                 style="border-radius: 1.5em; color: #085A84;">
-                            <option value="kg">kg</option>
-                            <option value="korean">g</option>
-                            <option value="korean">ml</option>
-                            <option value="korean">L</option>
-                            <option value="korean">컵</option>
-                            <option value="korean">T</option>
+                            <option selected disabled value="">단위</option>
+                            <option th:each="recipeUnit:${recipeUnit}"
+                                    th:value="${recipeUnit.riUnitNum}"
+                                    th:selected="${UnitList.riUnitNum}==${recipeUnit.riUnitNum}"
+                                    th:text="${recipeUnit.riUnit}"></option>
                         </select>
                     </div>
                     <!--삭제 버튼-->

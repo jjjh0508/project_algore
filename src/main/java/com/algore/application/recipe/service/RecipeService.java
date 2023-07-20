@@ -99,5 +99,12 @@ public class RecipeService {
         List<RecipeCategoryDTO> recipecategory = mapper.readCategory();
         return recipecategory;
     }
+
+    public List<RecipeUnitDTO> readUnit() {
+
+        List<RecipeUnitDTO> recipeunit = mapper.readUnit();
+        System.out.println(recipeunit);
+        return recipeunit;
+    }
 }
 

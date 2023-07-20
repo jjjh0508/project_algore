@@ -45,24 +45,21 @@ public class RecipeController {
     }
 
     @GetMapping("/regist")
-    public ModelAndView writeForm(ModelAndView mv, Authentication authentication) {
-        List<RecipeCategoryDTO> recipecategory = recipeService.readcategory();
-        for (RecipeCategoryDTO recipecategoryy : recipecategory) {
-            System.out.println(recipecategoryy);
-        }
-        return mv;
-    }
         public ModelAndView writeForm (ModelAndView mv, Authentication authentication, HttpServletRequest
         request, HttpServletResponse response){
 
             List<RecipeCategoryDTO> recipeCategory = recipeService.readcategory();
-
-            for (RecipeCategoryDTO Category : recipeCategory
+            List<RecipeUnitDTO> recipeUnit = recipeService.readUnit();
+        System.out.println(".");
+            for (RecipeUnitDTO riUnit : recipeUnit
             ) {
-                System.out.println(Category);
+                System.out.println(riUnit);
             }
+        System.out.println(".....");
             mv.addObject("CategoryList", new RecipeCategoryDTO());
             mv.addObject("recipeCategory", recipeCategory);
+            mv.addObject("UnitList", new RecipeUnitDTO());
+            mv.addObject("recipeUnit", recipeUnit);
 
             mv.setViewName("/recipe/write");
             return mv;
