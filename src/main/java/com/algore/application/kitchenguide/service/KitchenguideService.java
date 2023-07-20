@@ -62,4 +62,9 @@ public class KitchenguideService {
         int deleted = mapper.trimPostDelete(trimNum); //매퍼호출
         return trimNum;
     }
+
+    public TrimDTO trimUpdatePost(int trimNum) {
+        TrimDTO trimDTO = mapper.trimPostUpdate(trimNum);
+        return trimDTO;
+    }
 }

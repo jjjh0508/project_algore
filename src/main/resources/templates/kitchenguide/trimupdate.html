@@ -65,7 +65,9 @@
         </style>
     </head>
     <body>
-    <form action="trimwrite" method="get">
+    <form th:action="'/kitchenguide/trimupdatebutton/'+${trimNum}" method="post">
+        <input type="hidden" name="_method" value="put/">
+        <input type="hidden" name="id" th:value="${trimDTO.trimNum}">
         <!--게시글 작성 시작-->
         <div class="write01" style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px;">
             <!--손질 제목-->

@@ -47,7 +47,22 @@ public class KitchenguideController {
         mv.addObject("trimDTO", trimDTO); //손질법 제목, 내용, 동영상URl
         mv.addObject("procedureList", procedureList); //손질법 순서
 
+        /*기존 값 읽어오는지 확인하기...*/
+        System.out.println("trimupdate Controller : " + trimDTO);
+        System.out.println("trimupdate Controller : " + procedureList);
+
         mv.setViewName("/kitchenguide/trimupdate"); //응답할 뷰의 경로 설정 (리턴 값)
+        return mv;
+    }
+
+    @PostMapping("/trimupdatebutton/{trimNum}")
+    public ModelAndView trimupdatepost(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+
+        /*Service 로직에서 불러오기*/
+        System.out.println("dfadfadsfasdf");
+
+
+        mv.setViewName("/kitchenguide/trimread/{trimNum}");
         return mv;
     }
 

@@ -25,4 +25,5 @@ public interface KitchenguideMapper {
 
     int trimPostDelete(int trimNum); //손질법 게시글 삭제
 
+    TrimDTO trimPostUpdate(int trimNum); //게시글 수정
 }
