@@ -23,9 +23,6 @@ public interface KitchenguideMapper {
 
     List<TrimDTO> trimPostMain(); //메인화면
 
-<<<<<<< HEAD
-    int deleteTrimPost(int deleteNum);
-=======
     int trimPostDelete(int trimNum); //손질법 게시글 삭제
->>>>>>> a28dc852ce4ddd1d2c693a4e24e61d2589d5cf31
+
 }
