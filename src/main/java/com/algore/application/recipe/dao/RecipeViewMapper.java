@@ -21,8 +21,6 @@ public interface RecipeViewMapper {
 
     int recipeDelete(int recipe);
 
-    int writeRecipe(RecipeWriteDTO recipeWriteDTO);
-
     int modifyRecipe(RecipeviewDTO recipeviewDTO);
 
     int orderDelete(int recipeNum);
@@ -33,7 +31,14 @@ public interface RecipeViewMapper {
 
     int photoDelete(int recipeNum);
 
+    int writeRecipe(RecipeWriteDTO recipeWriteDTO);
     List<RecipeCategoryDTO> readCategory();
 
+<<<<<<< HEAD
+//    int recipeProcedure(RecipeProcedureDTO recipeProcedureDTO);
+
+
+=======
     List<RecipeIngredientDTO> recipeIngredient(int recipeNum);
+>>>>>>> 202da24a6a1218bd898c7c8b5138a9a707efc29c
 }

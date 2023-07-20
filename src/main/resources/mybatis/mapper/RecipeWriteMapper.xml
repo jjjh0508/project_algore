@@ -18,12 +18,12 @@
     
 <insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
     INSERT INTO RECIPE
-    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
+    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
     VALUES (SEQ_RECIPE_NUM.NEXTVAL,
             #{memNum},
             #{mainPhoto},
-            #{categoryNum},
             #{photoPath},
+            #{categoryNum},
             #{recipeTitle},
             #{recipeIntro},
             #{recipeVideoLink},
@@ -32,19 +32,22 @@
             )
 </insert>
 
+    <insert id="recipeIngredient" parameterType="java.util.List">
+        INSERT INTO RECIPE_INGREDIENT
+        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)
+        SELECT ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT
+          FROM(
+              <foreach collection="list" item="item" separator="UNION ALL">
+                  SELECT #{item.ingNum} AS ING_NUM,
+                         #{item.recipeNum} AS RECIPE_NUM,
+                         #{item.weigh} AS WEIGH,
+                         #{item.riUnit} AS RI_UNIT
+                  FROM DUAL
+              </foreach> ING
+              )
+    </insert>
 
-
-<!--    <insert id="modifyPhoto" parameterType="java.util.List">-->
-<!--        INSERT INTO RECIPE_PHOTO-->
-<!--        (PHOTO_NUMBER , RECIPE_NUM , RECIPE_FILE_NAME , RECIPE_PATH)-->
-<!--        SELECT SEQ_PHOTO_NUMBER.NEXTVAL , A.* FROM(-->
-<!--        <foreach item="item" collection="list" separator="UNION ALL">-->
-<!--            SELECT  #{item.recipeNum} AS  RECIPE_NUM ,-->
-<!--            #{item.recipeFileName } AS RECIPE_FILE_NAME ,-->
-<!--            #{item.recipePhotoPath } AS RECIPE_PATH-->
-<!--            FROM DUAL-->
-<!--        </foreach> )A-->
-
+<!--    <insert id="recipeProcedure" parameterType="java.util.List">-->
 <!--    </insert>-->
 
 <!--    <insert id = "ingredient">-->
@@ -56,28 +59,6 @@
 <!--                #{ ingPrice },-->
 <!--                #{ category },-->
 <!--                #{ ingUnit }-->
-<!--               )-->
-<!--    </insert>-->
-
-<!--    <insert id = "member">-->
-<!--        INSERT INTO MEMBER-->
-<!--        (MEM_NUM, NICKNAME)-->
-<!--        VALUES (-->
-<!--                #{ memNum },-->
-<!--                #{ nickname }-->
-<!--               )-->
-<!--    </insert>-->
-
-
-<!--    -->
-<!--    <insert id = "recipeIngredient">-->
-<!--        INSERT INTO RECIPE_INGREDIENT-->
-<!--        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)-->
-<!--        VALUES (-->
-<!--                #{ ingNum },-->
-<!--                #{ recipeNum },-->
-<!--                #{ weigh },-->
-<!--                #{ riUnit }-->
 <!--               )-->
 <!--    </insert>-->
 
