@@ -9,7 +9,7 @@ public class TrimDTO {
     private int trimViews; //조회수
     private String trimVideoLink; //동영상링크
     private String trimStatus; // 상태
-    private List<TrimProcedureDTO> trimProcedureDTOList; // 손질법 순서 , XML 값 작성할때 힘듦,,,
+    private List<TrimProcedureDTO> trimProcedureDTOList; // 손질법 순서
 
     public TrimDTO() {
     }

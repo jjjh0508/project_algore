@@ -43,17 +43,17 @@ public class KitchenguideService {
              *
              *  손질법순서 등록 후 result에 실행 결과 담기
              * */
-            List<TrimProcedureDTO> trimProcedure = trimDTO.getTrimProcedureDTOList(); // 손질법 순서 객체 담고 있는 리스트 = trim 객체에서 손질법 순서(TrimProcedureDTO) 객체들을 가져오는 메서드
-            if (trimProcedure != null && !trimProcedure.isEmpty()) {
-                for (TrimProcedureDTO procedureDTO : trimProcedure) {
+            List<TrimProcedureDTO> trimProcedureDTOList = trimDTO.getTrimProcedureDTOList(); // 손질법 순서 객체 담고 있는 리스트 = trim 객체에서 손질법 순서(TrimProcedureDTO) 객체들을 가져오는 메서드
+            if (trimProcedureDTOList != null && !trimProcedureDTOList.isEmpty()) {
+                for (TrimProcedureDTO trimProcedure : trimProcedureDTOList) {
                     /* trimNum : 손질법과 손질법 순서를 연결하는 역할
                      *  result : 손질법 등록 결과로서 등록된 손질법의 번호 trimNum이 담겨 있다
                      *  등록된 손질법의 번호 가져와서 trimNum으로 설정
                      *
                      * 손질법 순서 객체의 trimNum을 손질법 등록 후에 발급받은 해당 손질법의 번호(result)로 설정
                      * */
-                    procedureDTO.setTrimNum(result);
-                    mapper.insertTrimProduce(trimProcedure);
+                    trimProcedure.setTrimNum(result);
+                    mapper.insertTrimProduce(trimProcedureDTOList);
                 }
             }
             return result;

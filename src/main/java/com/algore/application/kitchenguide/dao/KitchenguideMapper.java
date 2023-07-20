@@ -16,8 +16,7 @@ public interface KitchenguideMapper {
 
     int insertTrim(TrimDTO trimDTO); // xml id랑 매칭 시키기, insertTrim : Trim 테이블에서 값 넣어주기; 손질법 번호, 손질법 제목, 내용, 동영상URL
 
-    int insertTrimProduce(List<TrimProcedureDTO> trimProcedure); // xml id랑 매칭 시키기, insertTrimProduce : TrimProcedure 테이블에서 값 넣어주기; 손질 순서
-    //    int insertTrimProduce(TrimProcedureDTO trimProcedureDTO);
+     int insertTrimProduce(List<TrimProcedureDTO> trimProcedureDTOList); // xml id랑 매칭 시키기, insertTrimProduce : TrimProcedure 테이블에서 값 넣어주기; 손질 순서
 
     int trimPostViewCount/*mapper.xml id랑 매핑*/(int trimNum); // 조회수
 
@@ -26,4 +25,6 @@ public interface KitchenguideMapper {
     int trimPostDelete(int trimNum); //손질법 게시글 삭제
 
     TrimDTO trimPostUpdate(int trimNum); //게시글 수정
+
+
 }

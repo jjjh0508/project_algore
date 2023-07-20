@@ -116,17 +116,34 @@
 
     <!--TrimProcedureDTO (write)
         TrimProcedureDTO를 매개변수로 받아서 trimProcedure 테이블에 값 넣어주기-->
-    <insert id="insertTrimProduce" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">
+    <insert id="insertTrimProduce" parameterType="java.util.List">
         INSERT
           INTO TRIM_PROCEDURE
           (
             TP_STEP_NUM, TRIM_NUM, TP_FILE,NAME, TP_DETAIL, TP_PATH
-          )VALUES(
-          SEQ_TP_STEP_NUM.NEXTVAL,
-          (SELECT MAX(#{trimNum}) FROM TRIM),
-          #{tpFileName},
-          #{tpDetail},
-          #{tpPath}
           )
+          SELECT SEQ_TP_STEP_NUM.NEXTVAL, A * FROM(
+         <!--collection : 전달받은 인자 List or Array형태만 가능
+             item : 전달받은 인자 값
+             separator : 반복 되는 사이에 출력할 문자열-->
+          <foreach collection="List" item="item" separator="UNION ALL">
+              (SELECT MAX(#{trimNum} FROM TRIM),
+              #{item.tpFileName},
+              #{item.tpDetail},
+              #{item.tpPath}
+          </foreach>) A
     </insert>
+<!--    <insert id="insertTrimProduce" parameterType="com.algore.application.kitchenguide.dto.TrimProcedureDTO">-->
+<!--        INSERT-->
+<!--          INTO TRIM_PROCEDURE-->
+<!--          (-->
+<!--            TP_STEP_NUM, TRIM_NUM, TP_FILE,NAME, TP_DETAIL, TP_PATH-->
+<!--          )VALUES(-->
+<!--          SEQ_TP_STEP_NUM.NEXTVAL,-->
+<!--          (SELECT MAX(#{trimNum}) FROM TRIM),-->
+<!--          #{tpFileName},-->
+<!--          #{tpDetail},-->
+<!--          #{tpPath}-->
+<!--          )-->
+<!--    </insert>-->
 </mapper>
