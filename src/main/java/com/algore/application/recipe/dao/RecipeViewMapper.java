@@ -27,7 +27,7 @@ public interface RecipeViewMapper {
 
     int orderDelete(int recipeNum);
 
-    int modifyOrder(List<RecipeOrderDTO> recipeOrderDTOS);
+    int modifyOrder(List<ModifyRecipeOrder> modifyRecipeOrder);
 
     int modifyPhoto(List<RecipePhotoDTO> recipePhotoDTOList);
 

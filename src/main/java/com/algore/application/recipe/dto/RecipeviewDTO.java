@@ -29,17 +29,17 @@ public class RecipeviewDTO {
     private String newMainFileName;
     private String newMainPath;
 
-
     private String recipeWriter;
 
     private MultipartFile mainInputFile;
     private List<RecipePhotoDTO> recipePhotoDTOList;
     private List<RecipeOrderDTO> recipeOrderList;
 
+    private List<ModifyRecipeOrder> modifyRecipeOrders;
     public RecipeviewDTO() {
     }
 
-    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String proFileName, String proFilePath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList) {
+    public RecipeviewDTO(int recipeNum, String memName, String category, String recipeTitle, String recipeViews, String categoryNum, Date recipeCreateDate, String recipeIntro, String tip, String youtube, String proFileName, String proFilePath, String mainFileName, String mainPath, String newMainFileName, String newMainPath, String recipeWriter, MultipartFile mainInputFile, List<RecipePhotoDTO> recipePhotoDTOList, List<RecipeOrderDTO> recipeOrderList, List<ModifyRecipeOrder> modifyRecipeOrders) {
         this.recipeNum = recipeNum;
         this.memName = memName;
         this.category = category;
@@ -50,20 +50,29 @@ public class RecipeviewDTO {
         this.recipeIntro = recipeIntro;
         this.tip = tip;
         this.youtube = youtube;
+        this.proFileName = proFileName;
+        this.proFilePath = proFilePath;
         this.mainFileName = mainFileName;
         this.mainPath = mainPath;
         this.newMainFileName = newMainFileName;
         this.newMainPath = newMainPath;
-        this.proFileName = proFileName;
-        this.proFilePath = proFilePath;
         this.recipeWriter = recipeWriter;
         this.mainInputFile = mainInputFile;
         this.recipePhotoDTOList = recipePhotoDTOList;
         this.recipeOrderList = recipeOrderList;
+        this.modifyRecipeOrders = modifyRecipeOrders;
     }
 
     public String getCategoryNum() {
         return categoryNum;
+    }
+
+    public List<ModifyRecipeOrder> getModifyRecipeOrders() {
+        return modifyRecipeOrders;
+    }
+
+    public void setModifyRecipeOrders(List<ModifyRecipeOrder> modifyRecipeOrders) {
+        this.modifyRecipeOrders = modifyRecipeOrders;
     }
 
     public void setCategoryNum(String categoryNum) {
@@ -235,12 +244,12 @@ public class RecipeviewDTO {
                 ", recipeIntro='" + recipeIntro + '\'' +
                 ", tip='" + tip + '\'' +
                 ", youtube='" + youtube + '\'' +
+                ", proFileName='" + proFileName + '\'' +
+                ", proFilePath='" + proFilePath + '\'' +
                 ", mainFileName='" + mainFileName + '\'' +
                 ", mainPath='" + mainPath + '\'' +
                 ", newMainFileName='" + newMainFileName + '\'' +
                 ", newMainPath='" + newMainPath + '\'' +
-                ", proFileName='" + proFileName + '\'' +
-                ", proFilePath='" + proFilePath + '\'' +
                 ", recipeWriter='" + recipeWriter + '\'' +
                 ", mainInputFile=" + mainInputFile +
                 ", recipePhotoDTOList=" + recipePhotoDTOList +

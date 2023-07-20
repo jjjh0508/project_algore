@@ -121,7 +121,7 @@
     </head>
     <!--21_0_레시피_작성-->
     <body>
-    <form action="/recipe/modifyform" id="insert" th:object="${recipevlew}" method="post" enctype="multipart/form-data">
+    <form action="/recipe/modifyform" id="insert" th:object="${newOrder}" method="post" enctype="multipart/form-data">
 
         <main class="write01"
               style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 100px;">
@@ -223,7 +223,7 @@
                 <div>
                     <div id="REgreenC">
                         <!--재료입력1-->
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between" >
                             <!-- 재료명-->
                             <div class="form-floating fon-colors" style="margin-top: 10px;">
                                 <input type="text" class="form-control input-box-sty" id="floatingInput5" maxlength="10"
@@ -349,6 +349,7 @@
                 </div>
             </div>
 
+
             <!--요리순서 라벨-->
             <div style="margin-top: 30px;">
                 <label for="floatingInput" style="color: #085A84; margin-left: 10px;"><b>요리순서</b></label>
@@ -362,10 +363,12 @@
                         <label class="input-file-button float-start">
                             <img class="detailImg" width="400px" height="270px"
                                  style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;"
-                                 th:src="${recipeOrder.path}+${recipeOrder.fileName}">
-                            <input type="file" name="recipePicture" class="isFile" style="display: none"
-                                   accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);"
-                                   th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].oprderInputFile}">
+                                 th:src="${recipeOrder.path}+${recipeOrder.fileName}"
+                                 onerror="this.src='/img/file-upload.svg'"/>
+
+                            <input type="file" name="oprderInputFile" class="isFile" style="display: none"
+                                   accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+
                             <input type="hidden"
                                    th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].path}">
                             <input type="hidden"
@@ -375,12 +378,14 @@
                     </div>
                     <!--요리순서 설명-->
                     <div style="margin-top: 10px; margin-left: 35px; ">
-                <textarea th:field="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].content}" name="content"
-                          class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
+                <textarea th:text="${recipevlew.recipeOrderList[__${recipeOrderStat.index}__].content}"
+                          name="orderContent"
+                          class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea4"
                           style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
                     </div>
-
-                    <input type="text" value="ab22bb" style="display: none">
+                    <!--                    <input type="text" name="orderContent" value="ab22bb"-->
+                    <!--                           style="display: none">-->
+                    <!--                    <input type="text" value="ab22bb" style="display: none">-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-x-circle"
                          viewBox="0 0 16 16" type="button" onclick="removeDe()">
@@ -392,6 +397,52 @@
             </th:block>
 
             <span id="addplace"></span>
+
+            <!--복사할 엘리먼트-->
+
+            <div style="display: none">
+                <div id="REdetailD" class="REdetailD d-flex justify-content-center">
+                <div class="align-items-center" style="margin-top: 15px;">
+                    <label class="input-file-button float-start">
+                        <img class="detailImg" width="400px" height="270px"
+                             style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;"
+                            src="/img/file-upload.svg">
+
+                        <input type="file" name="oprderInputFile" class="isFile" style="display: none"
+                               accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+
+                    </label>
+                </div>
+                <!--요리순서 설명-->
+                <div style="margin-top: 10px; margin-left: 35px; ">
+                <textarea name="orderContent"
+                          class="form-control input-box-sty" placeholder="설명을 입력하세요." id="floatingTextarea3"
+                          style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
+                </div>
+                <!--                    <input type="text" name="orderContent" value="ab22bb"-->
+                <!--                           style="display: none">-->
+                <!--                    <input type="text" value="ab22bb" style="display: none">-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-x-circle"
+                     viewBox="0 0 16 16" type="button" onclick="removeDeP()">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
 
             <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
                 <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
@@ -608,25 +659,38 @@
         }
     </script>
     <script th:inline="javascript">
-        var detailForm = document.querySelector('#REdetail');
+        var detailForm = document.querySelector('#REdetailD');
+        // const testDiv = document.getElementById("node");
         var addplace = document.querySelector('#addplace');
-        var count = 20;
+
+
+        console.log(count);
+
+
+
 
         function addDe() {
             if (count <= 20) {
                 addplace.appendChild(detailForm.cloneNode(true));
-                document.querySelectorAll('.REdetailC')[document
-                    .querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
-                document.querySelectorAll('.REdetailC')[document
-                    .querySelectorAll('.REdetailC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
-
                 count++;
+
+
             }
 
         }
 
         function removeDe() {
             var detailFormClass = document.querySelectorAll('.REdetailC');
+            if (count > 1) {
+                detailFormClass[detailFormClass.length - 1].remove();
+                count--;
+            }
+
+        }
+
+
+        function removeDeP() {
+            var detailFormClass = document.querySelectorAll('.REdetailD');
             if (count > 1) {
                 detailFormClass[detailFormClass.length - 1].remove();
                 count--;
