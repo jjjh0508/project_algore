@@ -1,5 +1,7 @@
 package com.algore.application.kitchenguide.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class TrimProcedureDTO {
 
     private int tpStepNum; //단계번호
@@ -7,16 +9,18 @@ public class TrimProcedureDTO {
     private String tpFileName; //파일명
     private String tpDetail; //내용
     private String tpPath; //저장경로
+    private MultipartFile inputFile;
 
     public TrimProcedureDTO() {
     }
 
-    public TrimProcedureDTO(int tpStepNum, int trimNum, String tpFileName, String tpDetail, String tpPath) {
+    public TrimProcedureDTO(int tpStepNum, int trimNum, String tpFileName, String tpDetail, String tpPath, MultipartFile inputFile) {
         this.tpStepNum = tpStepNum;
         this.trimNum = trimNum;
         this.tpFileName = tpFileName;
         this.tpDetail = tpDetail;
         this.tpPath = tpPath;
+        this.inputFile = inputFile;
     }
 
     public int getTpStepNum() {
@@ -59,6 +63,14 @@ public class TrimProcedureDTO {
         this.tpPath = tpPath;
     }
 
+    public MultipartFile getInputFile() {
+        return inputFile;
+    }
+
+    public void setInputFile(MultipartFile inputFile) {
+        this.inputFile = inputFile;
+    }
+
     @Override
     public String toString() {
         return "TrimProcedureDTO{" +
@@ -67,7 +79,7 @@ public class TrimProcedureDTO {
                 ", tpFileName='" + tpFileName + '\'' +
                 ", tpDetail='" + tpDetail + '\'' +
                 ", tpPath='" + tpPath + '\'' +
+                ", inputFile=" + inputFile +
                 '}';
     }
-
 }

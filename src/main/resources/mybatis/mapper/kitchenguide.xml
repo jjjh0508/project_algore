@@ -126,7 +126,8 @@
           SELECT SEQ_TP_STEP_NUM.NEXTVAL, A * FROM(
          <!--collection : 전달받은 인자 List or Array형태만 가능
              item : 전달받은 인자 값
-             separator : 반복 되는 사이에 출력할 문자열-->
+             separator : 반복 되는 사이에 출력할 문자열
+             UNION ALL : 여러 쿼리문들을 합쳐서 하나의 쿼리문으로 만들어주는 방법 (중복된 값 모두 보여줌)-->
           <foreach collection="List" item="item" separator="UNION ALL">
               (SELECT MAX(#{trimNum} FROM TRIM),
               #{item.tpFileName},

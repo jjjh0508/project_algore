@@ -24,7 +24,7 @@ public class KitchenguideService {
         return trimDTO;
     }
 
-    /**/
+
     public List<TrimProcedureDTO> readPost(int trimNum) {
         List<TrimProcedureDTO> procedure = mapper.trimProPostRead(trimNum);
         return procedure;
@@ -60,8 +60,6 @@ public class KitchenguideService {
         }
         return result;
     }
-
-
 
     public int trimPostViewCount(int trimNum) {
         int result = mapper.trimPostViewCount(trimNum);

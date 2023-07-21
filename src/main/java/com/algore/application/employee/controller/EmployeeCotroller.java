@@ -76,7 +76,6 @@ public class EmployeeCotroller {
     * HttpServletRequest : 현재 요청에 대한 정보를 담고 있는 HttpServletRequest 객체,
     *                      클라이언트의 요청 정보를 확인하거나 추가적인 작업을 수행할 수 있다
     * RequestParam : HttpServletRequest 객체와 같은 역할을 한다 (HttpServletRequest의 request.getParameter의 기능과 동일)
-    *
     * */
     @PostMapping("/file")
     public ModelAndView insertFile(@ModelAttribute InputContentDTO inputContent, HttpServletRequest request /* @RequestParam MultipartFile파일 전송 객체 file*/){

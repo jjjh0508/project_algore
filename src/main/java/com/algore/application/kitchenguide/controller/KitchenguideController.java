@@ -1,16 +1,22 @@
 package com.algore.application.kitchenguide.controller;
 
-
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -148,17 +154,40 @@ public class KitchenguideController {
         return "kitchenguide/trimwrite";
     }
 
-    /* HttpServletRequest : 현재 요청에 대한 정보를 담고 있는 HttpServletRequest 객체, 클라이언트의 요청 정보를 확인하거나 추가적인 작업을 수행할 수 있다
-    *  ModelAndView : Controller 처리 결과 후 응답할 view와 view에 전달할 값을 저장*/
+    /* ModelAndView : Controller 처리 결과 후 응답할 view와 view에 전달할 값을 저장
+    *  @RequestParam : HttpServletRequest 객체와 같은 역할을 한다 (HttpServletRequest의 request.getParameter의 기능과 동일)
+    *
+    * "tpFileName" = html(화면) name과 동일해야 함
+    * List<MultipartFile> fileName : 클라이언트가 업로드한 파일 데이터를 받기 위한 매개변수
+    * RedirectAttributes : 리다이엑트 시에 데이터를 전달하기 위한 객체
+    * */
     @PostMapping("/trimwrite") //사용자가 post 방식으로 /kitchenguide/trimwrite를 요청할 경우 실행
-    public ModelAndView insertTrim(ModelAndView mv,TrimDTO trimDTO) {
-//        손질법 등록 확인
+    @ResponseBody
+    public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, @RequestParam(value = "tpFileName", required = false)
+                                List<MultipartFile> fileName, RedirectAttributes redirectAttributes){
+//      사진 등록 확인
+        System.out.println(fileName.get(0).getOriginalFilename());
+        System.out.println(fileName.get(1).getOriginalFilename());
+
+//      현재 어플리케이션의 작업 리덱토리에서 정적 리소스 파일들을 저장할 경로를 지정
+        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+//      파일 이름 중복을 피하기 위해 현재 시간 기준으로 파일 이름을 생성할 때 사용할 날짜 형식을 지정
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+//      객체들을 저장할 리스트 생성
+        List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
+//      TrimDTO 객체에서 trimProcedureDTOList 필드를 가져와서 TrimProcedureDTOList 객체들을 저장
+        List<TrimProcedureDTO> trimProcedureDTOS1 = trimDTO.getTrimProcedureDTOList();
+//      TrimDTO 객체에서 trimNum 필드를 가져와 손질 번호 저장
+        int trimNum = TrimDTO.getTrimNum();
+        MultipartFile file = trimDTO.
+
+//      손질법 등록 확인
 //        System.out.println("trimNum");
-//        System.out.println("trimTitle");
-//        System.out.println("trimDetail");
-//        System.out.println("trimViews");
-//        System.out.println("trimVideoLink");
-//        System.out.println(trimDTO); // 제목, 내용, 동영상URL ok, (번호 : 0 , 조회수 : 0, 상태 : null x)
+        System.out.println("trimTitle");
+        System.out.println("trimDetail");
+        System.out.println("trimViews");
+        System.out.println("trimVideoLink");
+        System.out.println(trimDTO); // 제목, 내용, 동영상URL ok, (번호 : 0 , 조회수 : 0, 상태 : null x)
 
         /* KitchenguideService에 있는 insertTrim (Trim 테이블에 있는 값 넣어주기)를
          *  result에 실행 결과 담기 1 : 성공 0 : 실패*/
@@ -183,62 +212,4 @@ public class KitchenguideController {
         }
         return mv;
     }
-
-
-//    @GetMapping("/file")
-//    public void goFile(){}
-//
-//    @PostMapping("/file")
-//    public ModelAndView insertFile(@ModelAttribute InputDTO input, HttpServletRequest request) {
-//        // 파일을 입력 받고 해당 파일을 로컬에 저장한 뒤 저장된 경로를 데이터 베이스에 저장한 다음 해당 포스팅을 불러올때 이미지 경로에 경로를 넣어준다
-//        ModelAndView modelAndView = new ModelAndView();
-//
-//        // 사용자의 이전 요청 값을 확인한다
-//        String backUrl = request.getHeader("Refere");
-//
-//        // 파일 확장자 가져오기
-//        MultipartFile fileOne = input.getInputFile();
-//        String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf(","));
-//
-//        // 파일 확장자가 이미지 확장자가 아닌 경우
-//        if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg"))) {
-//            modelAndView.addObject("messege", "이미지가 아닙니다");
-//            modelAndView.setViewName(backUrl);
-//
-//            return modelAndView;
-//        }
-//
-//        // 업로드 된 파일이 존재하는 경우
-//        if (input.getInputFile() != null) {
-//            String originFilePath = "\\upload\\basic"; // 원본 파일이 저장될 폴더의 상대 경로
-//            String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static" + originFilePath; // 프로그램 내부 경로
-//
-//            File originDirectory = new File(path);
-//
-//            if (!originDirectory.exists()) { // 해당 경로의 폴더가 없는 경우
-//                originDirectory.mkdirs();  // 폴더가 존재하지 않는 경우에만 폴더 생성
-//            }
-//
-//            // 파일명 변경
-//
-//            /* 파일 저장경로에 파일 이름 추가
-//            *  최종 파일 저장 경로에 업*/
-//            path += input.getInputFile().getOriginalFilename();
-//
-//            // 파일 저장
-//            try {
-//                /* 업로드된 파일을 최종 파일 저장 경로에 저장*/
-//                input.getInputFile().transferTo(new File(path));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            modelAndView.addObject("message", "파일 저장 성공");
-//        } else {
-//            modelAndView.addObject("message", "파일 저장 실패");
-//            return  modelAndView;
-//        }
-//        modelAndView.setViewName("index");
-//
-//        return modelAndView;
-//    }
 }
