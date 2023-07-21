@@ -9,9 +9,9 @@ public class TrimProcedureDTO {
     private String tpFileName; //파일명
     private String tpDetail; //내용
     private String tpPath; //저장경로
-    private MultipartFile inputFile;
+    private MultipartFile inputFile;//손질사진
 
-    private MultipartFile trimInputFile; //손질사진
+    private MultipartFile trimInputFile;
 
     public TrimProcedureDTO() {
     }
