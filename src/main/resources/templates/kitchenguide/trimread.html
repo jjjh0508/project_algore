@@ -115,7 +115,8 @@
                 <!-- 비디오 주소를 입력했을때만-->
                 <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
                 <th:block th:if="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink != null}">
-                    <iframe width="980px" height="500" th:src="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink}"
+                    <iframe width="980px" height="500"
+                            th:src="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink}"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -155,16 +156,19 @@
         </th:block>
 
         <!--수정(관리자권한)"'/kitchenguide/delete/${trimDTO.trimNum}"-->
-        <div class="d-flex justify-content-end new-margin" style="margin-top: 30px;">
-            <a th:href="'/kitchenguide/delete/'+${trimNum}" class="btn btn-primary but-off-color" role="button"
-               style=" margin-right: 15px; text-align: center; border-radius: 2em;"
-               onclick="return confirm('게시글을 삭제하시겠습니까?')">
-                <b>삭제</b>
-            </a>
-            <a th:href="'/kitchenguide/trimupdate/'+${trimNum}" class="btn btn-primary but-off-color" role="button" style="border-radius: 2em;"
-               onclick="return confirm('게시글을 수정하시겠습니까?')">
-                <b>손질법 수정</b>
-            </a>
+        <div sec:authorize="hasRole('ADMIN')">
+            <div class="d-flex justify-content-end new-margin" style="margin-top: 30px;">
+                <a th:href="'/kitchenguide/delete/'+${trimNum}" class="btn btn-primary but-off-color" role="button"
+                   style=" margin-right: 15px; text-align: center; border-radius: 2em;"
+                   onclick="return confirm('게시글을 삭제하시겠습니까?')">
+                    <b>삭제</b>
+                </a>
+                <a th:href="'/kitchenguide/trimupdate/'+${trimNum}" class="btn btn-primary but-off-color" role="button"
+                   style="border-radius: 2em;"
+                   onclick="return confirm('게시글을 수정하시겠습니까?')">
+                    <b>손질법 수정</b>
+                </a>
+            </div>
         </div>
     </div>
     </body>

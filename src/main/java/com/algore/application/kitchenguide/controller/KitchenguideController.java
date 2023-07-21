@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import java.text.SimpleDateFormat;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -202,9 +203,21 @@ public class KitchenguideController {
     @ResponseBody
     public ModelAndView insertTrim(ModelAndView mv, TrimDTO trimDTO, @RequestParam(value = "tpFileName", required = false)
                                 List<MultipartFile> fileName, RedirectAttributes redirectAttributes){
-//      사진 등록 확인
+        System.out.println(trimDTO==null);
+        System.out.println("1");
+//      손질법 등록 확인
+        System.out.println("값 넘어오는지 확인하기...-=--------------------");
+        System.out.println("trimNum : " + trimDTO.getTrimNum());
+        System.out.println("trimTitle : " + trimDTO.getTrimTitle());
+        System.out.println("trimDetail : " + trimDTO.getTrimDetail() );
+        System.out.println("trimViews : " + trimDTO.getTrimViews());
+        System.out.println("trimVideoLink : " + trimDTO.getTrimVideoLink());
+        System.out.println(trimDTO); // 제목, 내용, 동영상URL ok, (번호 : 0 , 조회수 : 0, 상태 : null x)
+
+//         사진 등록 확인
         System.out.println(fileName.get(0).getOriginalFilename());
-        System.out.println(fileName.get(1).getOriginalFilename());
+
+
 
         try {
 //          현재 어플리케이션의 작업 리덱토리에서 정적 리소스 파일들을 저장할 경로를 지정
@@ -214,23 +227,25 @@ public class KitchenguideController {
 //          객체들을 저장할 리스트 생성
             List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
 //          TrimDTO 객체에서 trimProcedureDTOList 필드를 가져와서 TrimProcedureDTOList 객체들을 저장
-            List<TrimProcedureDTO> trimProcedureDTOList = trimDTO.getTrimProcedureDTOList();
+//            List<TrimProcedureDTO> trimProcedureDTOList = trimDTO.getTrimProcedureDTOList();
 //          TrimDTO 객체에서 trimNum 필드를 가져와 손질 번호 저장
             int trimNum = trimDTO.getTrimNum();
 
+            MultipartFile multipartFile = fileName.get(0);
+
+            String name = multipartFile.getOriginalFilename();
+
+            String newName = simpleDateFormat.format(new Date(System.currentTimeMillis()))+"."+name.substring(name.lastIndexOf(".")+1);
+            System.out.println(newName);
+            multipartFile.transferTo(new File(root+"\\"+newName));
+//            "/upload/basic/"
+//            newName
+//            setPath()
+//            setFileName(newName);
 
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-//      손질법 등록 확인
-//        System.out.println("trimNum");
-        System.out.println("trimTitle");
-        System.out.println("trimDetail");
-        System.out.println("trimViews");
-        System.out.println("trimVideoLink");
-        System.out.println(trimDTO); // 제목, 내용, 동영상URL ok, (번호 : 0 , 조회수 : 0, 상태 : null x)
 
         /* KitchenguideService에 있는 insertTrim (Trim 테이블에 있는 값 넣어주기)를
          *  result에 실행 결과 담기 1 : 성공 0 : 실패*/

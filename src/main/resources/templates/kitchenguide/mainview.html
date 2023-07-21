@@ -102,16 +102,16 @@
                 <!--손질법-->
                 <div class="conbox con2">
                     <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
-                                        <div th:if="${#authorization.expression('hasRole(''[ADMIN]'')') ? true : false}">
-                    <div class="d-flex justify-content-end">
-                        <a href="/kitchenguide/trimwrite">
-                            <button type="button" class="btn btn-outline-secondary"
-                                    style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
-                                <b>글
-                                    작성하기</b></button>
-                        </a>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <div class="d-flex justify-content-end">
+                            <a href="/kitchenguide/trimwrite">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
+                                    <b>글
+                                        작성하기</b></button>
+                            </a>
+                        </div>
                     </div>
-                                        </div>
 
                     <!--게시글 영역-->
                     <div class="container text-center">
@@ -139,13 +139,15 @@
                 <div class="conbox con3">
                     <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
                     <!--                    <div th:if="${#authorization.expression('hasRole(''ADMIN'')') ? true : false}">-->
-                    <div class="d-flex justify-content-end">
-                        <a href="/kitchenguide/trimwrite">
-                            <button type="button" class="btn btn-outline-secondary"
-                                    style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
-                                <b>글
-                                    작성하기</b></button>
-                        </a>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <div class="d-flex justify-content-end">
+                            <a href="/kitchenguide/trimwrite">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
+                                    <b>글
+                                        작성하기</b></button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
