@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -38,13 +39,19 @@ public class QnAController {
     }
 
     //qna글 조회
-    @GetMapping(value = "/read")
-    public ModelAndView read(ModelAndView model,int qNumber) {
-    //QuestionDTO 객체가져와서 service 담기, qNumber값 받아오기
+    @GetMapping( "read")
+    public ModelAndView read(ModelAndView model, @RequestParam("qNumber") int qNumber) {
+
+//    //QuestionDTO 객체가져와서 service 담기, qNumber값 받아오기
         QuestionDTO detailQna = detail.detaileRead(qNumber);
+        System.out.println("dd");
+        //detailQna.setqNumber(qNumber);
 
-        System.out.println(detailQna);
-
+//        //받아온 값 확인
+        System.out.println("read 입니다 " + detailQna);
+//
+//
+//        //오브젝트 연결
         model.addObject("detail", detailQna);
         model.setViewName("qna/read");
 

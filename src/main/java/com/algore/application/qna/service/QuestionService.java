@@ -24,7 +24,6 @@ public class QuestionService {
     }
 
     public QuestionDTO detaileRead(int qNumber) {
-
         QuestionDTO list = detailMapper.detaileRead(qNumber);
 
 
