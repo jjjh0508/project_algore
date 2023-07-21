@@ -78,9 +78,9 @@ public class KitchenguideService {
         return trimNum;
     }
 
-    public TrimDTO trimUpdatePost(int trimNum) {
-        TrimDTO trimDTO = mapper.trimPostUpdate(trimNum);
-        return trimDTO;
+    public int trimUpdatePost(TrimDTO trimDTO) {
+        int result = mapper.trimPostUpdate(trimDTO);
+        return result;
     }
 }
 
