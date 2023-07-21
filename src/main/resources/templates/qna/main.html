@@ -121,7 +121,7 @@
                 <tbody>
                     <tr th:each="ques: ${mainList}">
                         <td th:text="${ques.qNumber}"></td>
-                        <td><a th:href="@{/qna/read/{qNumber}(qNumber = ${ques.qNumber})}" th:text="${ques.qTitle}"></a></td>
+                        <td><a th:href="@{/qna/read(qNumber = ${ques.qNumber})}" th:text="${ques.qTitle}"></a></td>
                         <td th:text="${ques.nickname}"></td>
                         <td th:text="${ques.qDate}"></td>
                         <td th:text="${ques.status}"></td>

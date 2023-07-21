@@ -9,7 +9,5 @@ import java.util.List;
 @Mapper
 public interface QuestionMapper {
     List<QuestionDTO> questionAll();
-
-
-    List<QuestionDTO> detaileRead(int qNumber);
+    QuestionDTO detaileRead(int qNumber);
 }

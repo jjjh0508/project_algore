@@ -23,13 +23,16 @@ public class QuestionService {
         return allQuestion;
     }
 
-    public List<QuestionDTO> detaileRead(int qNumber) {
-        List<QuestionDTO> list = detailMapper.detaileRead(qNumber);
+    public QuestionDTO detaileRead(int qNumber) {
+
+        QuestionDTO list = detailMapper.detaileRead(qNumber);
+
+
         return list;
     }
 
 
-    
+
 
 
 

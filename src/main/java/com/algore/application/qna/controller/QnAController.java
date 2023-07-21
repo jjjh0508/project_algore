@@ -5,6 +5,7 @@ import com.algore.application.qna.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +29,7 @@ public class QnAController {
     public ModelAndView main(ModelAndView mv) {
         List<QuestionDTO> lists = detail.questionAll();
         for (QuestionDTO questionDTO: lists) {
-            System.out.println(questionDTO);
+            System.out.println("메인입니다.: " + questionDTO);
         }
         mv.addObject("mainList" , lists);
         mv.setViewName("qna/main");
@@ -37,24 +38,18 @@ public class QnAController {
     }
 
     //qna글 조회
-    @GetMapping("/read")
-    public ModelAndView read(ModelAndView model, int qNumber) {
-       List<QuestionDTO> lists = main.detaileRead(qNumber);
-        //QuestionDTO questionDTO = new QuestionDTO(qNumber);
+    @GetMapping(value = "/read")
+    public ModelAndView read(ModelAndView model,int qNumber) {
+    //QuestionDTO 객체가져와서 service 담기, qNumber값 받아오기
+        QuestionDTO detailQna = detail.detaileRead(qNumber);
 
-        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        System.out.println(detailQna);
 
-
-        for(QuestionDTO qts : questionDTOList){
-            System.out.println(qts);
-        }
-
-        model.addObject("detail", lists);
+        model.addObject("detail", detailQna);
         model.setViewName("qna/read");
 
-        System.out.println("컨트롤 입력 : " + questionDTOList);
+        System.out.println("컨트롤 입력 : " + detailQna);
         return model;
-
     }
 
 
