@@ -10,44 +10,23 @@
         <result property="category" column="CATEGORY"/>
     </resultMap>
 
-    <select id="readCategory" resultMap="categoryMap">
-        SELECT CATEGORY_NUM,
-               CATEGORY
-          FROM RECIPE_CATEGORY
-    </select>
+<!--    <select id="readCategory" resultMap="categoryMap">-->
+<!--        SELECT CATEGORY_NUM,-->
+<!--               CATEGORY-->
+<!--          FROM RECIPE_CATEGORY-->
+<!--    </select>-->
 
-    <resultMap id="unitMap" type="com.algore.application.recipe.dto.RecipeUnitDTO">
-        <id property="riUnitNum" column="RI_UNIT_NUM"/>
-        <result property="riUnit" column="RI_UNIT"/>
-    </resultMap>
+<!--    <resultMap id="unitMap" type="com.algore.application.recipe.dto.RecipeUnitDTO">-->
+<!--        <id property="riUnitNum" column="RI_UNIT_NUM"/>-->
+<!--        <result property="riUnit" column="RI_UNIT"/>-->
+<!--    </resultMap>-->
 
-    <select id="readUnit" resultMap="unitMap">
-        SELECT RI_UNIT_NUM,
-               RI_UNIT
-          FROM UNIT
-    </select>
+<!--    <select id="readUnit" resultMap="unitMap">-->
+<!--        SELECT RI_UNIT_NUM,-->
+<!--               RI_UNIT-->
+<!--          FROM UNIT-->
+<!--    </select>-->
 
-    
-<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
-    INSERT INTO RECIPE
-    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
-    VALUES (SEQ_RECIPE_NUM.NEXTVAL,
-            #{memNum},
-            #{mainPhoto},
-            #{photoPath},
-            #{categoryNum},
-            #{recipeTitle},
-            #{recipeIntro},
-            #{recipeVideoLink},
-            #{tip},
-            SYSDATE
-            )
-</insert>
-<select id="readCategory" resultMap="categoryMap">
-    SELECT CATEGORY_NUM,
-           CATEGORY
-      FROM RECIPE_CATEGORY
-</select>
 <!--    -->
 <!--<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">-->
 <!--    INSERT INTO RECIPE-->
@@ -64,57 +43,10 @@
 <!--            SYSDATE-->
 <!--            )-->
 <!--</insert>-->
+<select id="readCategory" resultMap="categoryMap">
+    SELECT CATEGORY_NUM,
+           CATEGORY
+      FROM RECIPE_CATEGORY
+</select>
 
-<!--    <insert id="recipeIngredient" parameterType="java.util.List">-->
-<!--        INSERT INTO RECIPE_INGREDIENT-->
-<!--        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)-->
-<!--        SELECT ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT-->
-<!--          FROM(-->
-<!--              <foreach collection="list" item="item" separator="UNION ALL">-->
-<!--                  SELECT #{item.ingNum} AS ING_NUM,-->
-<!--                         #{item.recipeNum} AS RECIPE_NUM,-->
-<!--                         #{item.weigh} AS WEIGH,-->
-<!--                         #{item.riUnit} AS RI_UNIT-->
-<!--                  FROM DUAL-->
-<!--              </foreach> ING-->
-<!--              )-->
-<!--    </insert>-->
-
-<!--    <insert id="recipeProcedure" parameterType="java.util.List">-->
-<!--    </insert>-->
-
-<!--    <insert id = "ingredient">-->
-<!--        INSERT INTO INGREDIENT-->
-<!--        (ING_NUM, ING_NAME, ING_PRICE, CATEGORY, ING_UNIT)-->
-<!--        VALUES (-->
-<!--                #{ ingNum },-->
-<!--                #{ ingName },-->
-<!--                #{ ingPrice },-->
-<!--                #{ category },-->
-<!--                #{ ingUnit }-->
-<!--               )-->
-<!--    </insert>-->
-
-<!--    <insert id = "recipePhotoWrite">-->
-<!--        INSERT INTO RECIPE_PHOTO-->
-<!--        (PHOTO_NUMBER, RECIPE_NUM, RECIPE_FILE_NAME, RECIPE_PATH)-->
-<!--        VALUES (-->
-<!--                #{ photoNumber },-->
-<!--                #{ recipeNum },-->
-<!--                #{ recipeFileName },-->
-<!--                #{ recipePath }-->
-<!--               )-->
-<!--    </insert>-->
-
-<!--    <insert id="recipeProcedure">-->
-<!--        INSERT INTO RECIPE_PROCEDURE-->
-<!--        (RP_NUM, RECIPE_NUM, RP_FILE_NAME, RP_CONTENT, RP_PATH)-->
-<!--        VALUES (-->
-<!--                #{ rpNum },-->
-<!--                #{ recipeNum },-->
-<!--                #{ rpFileName },-->
-<!--                #{ rpContent },-->
-<!--                #{ rpPath}-->
-<!--               )-->
-<!--    </insert>-->
 </mapper>

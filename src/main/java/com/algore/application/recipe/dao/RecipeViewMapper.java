@@ -34,7 +34,7 @@ public interface RecipeViewMapper {
     int writeRecipe(RecipeWriteDTO recipeWriteDTO);
     List<RecipeCategoryDTO> readCategory();
 
-    List<RecipeIngredientDTO> recipeIngredient(int recipeNum);
+//    List<RecipeIngredientDTO> recipeIngredient(int recipeNum);
 
     List<RecipeUnitDTO> readUnit();
 
@@ -52,5 +52,5 @@ public interface RecipeViewMapper {
 
 
     int modifyIng(List<RecipeIngredientDTO> ingredientDTOList);
->>>>>>> c69f0e6e73b395cd7413f34fa431c67d534e7568
+
 }
