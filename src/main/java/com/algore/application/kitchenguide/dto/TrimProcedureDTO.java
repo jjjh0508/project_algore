@@ -11,26 +11,21 @@ public class TrimProcedureDTO {
     private String tpPath; //저장경로
     private MultipartFile inputFile;//손질사진
 
+<<<<<<< HEAD
     private MultipartFile trimInputFile;
 
+=======
+>>>>>>> 2b6ca62026289f9469bd9d7914cec3ee1f9d8cd9
     public TrimProcedureDTO() {
     }
 
-<<<<<<< HEAD
     public TrimProcedureDTO(int tpStepNum, int trimNum, String tpFileName, String tpDetail, String tpPath, MultipartFile inputFile) {
-=======
-    public TrimProcedureDTO(int tpStepNum, int trimNum, String tpFileName, String tpDetail, String tpPath, MultipartFile trimInputFile) {
->>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
         this.tpStepNum = tpStepNum;
         this.trimNum = trimNum;
         this.tpFileName = tpFileName;
         this.tpDetail = tpDetail;
         this.tpPath = tpPath;
-<<<<<<< HEAD
         this.inputFile = inputFile;
-=======
-        this.trimInputFile = trimInputFile;
->>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
     }
 
     public int getTpStepNum() {
@@ -73,21 +68,12 @@ public class TrimProcedureDTO {
         this.tpPath = tpPath;
     }
 
-<<<<<<< HEAD
     public MultipartFile getInputFile() {
         return inputFile;
     }
 
     public void setInputFile(MultipartFile inputFile) {
         this.inputFile = inputFile;
-=======
-    public MultipartFile getTrimInputFile() {
-        return trimInputFile;
-    }
-
-    public void setTrimInputFile(MultipartFile trimInputFile) {
-        this.trimInputFile = trimInputFile;
->>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
     }
 
     @Override
@@ -98,11 +84,7 @@ public class TrimProcedureDTO {
                 ", tpFileName='" + tpFileName + '\'' +
                 ", tpDetail='" + tpDetail + '\'' +
                 ", tpPath='" + tpPath + '\'' +
-<<<<<<< HEAD
                 ", inputFile=" + inputFile +
-=======
-                ", trimInputFile=" + trimInputFile +
->>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
                 '}';
     }
 }

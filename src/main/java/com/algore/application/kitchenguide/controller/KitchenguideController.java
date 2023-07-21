@@ -12,15 +12,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
+
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-=======
+
 import java.text.SimpleDateFormat;
->>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
+
 import java.util.List;
 
 @Controller
@@ -98,7 +98,7 @@ public class KitchenguideController {
         String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
         /*파일 이름 중복을 방지하기 위한 초단위 파일명*/
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
-        MultipartFile trimFile = trimProcedureDTO.getTrimInputFile();
+        MultipartFile trimFile = trimProcedureDTO.getInputFile();
 
 
 
@@ -188,18 +188,18 @@ public class KitchenguideController {
 //      사진 등록 확인
         System.out.println(fileName.get(0).getOriginalFilename());
         System.out.println(fileName.get(1).getOriginalFilename());
-
-//      현재 어플리케이션의 작업 리덱토리에서 정적 리소스 파일들을 저장할 경로를 지정
-        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
-//      파일 이름 중복을 피하기 위해 현재 시간 기준으로 파일 이름을 생성할 때 사용할 날짜 형식을 지정
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
-//      객체들을 저장할 리스트 생성
-        List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
-//      TrimDTO 객체에서 trimProcedureDTOList 필드를 가져와서 TrimProcedureDTOList 객체들을 저장
-        List<TrimProcedureDTO> trimProcedureDTOS1 = trimDTO.getTrimProcedureDTOList();
-//      TrimDTO 객체에서 trimNum 필드를 가져와 손질 번호 저장
-        int trimNum = TrimDTO.getTrimNum();
-        MultipartFile file = trimDTO.
+//
+////      현재 어플리케이션의 작업 리덱토리에서 정적 리소스 파일들을 저장할 경로를 지정
+//        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+////      파일 이름 중복을 피하기 위해 현재 시간 기준으로 파일 이름을 생성할 때 사용할 날짜 형식을 지정
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+////      객체들을 저장할 리스트 생성
+//        List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
+////      TrimDTO 객체에서 trimProcedureDTOList 필드를 가져와서 TrimProcedureDTOList 객체들을 저장
+//        List<TrimProcedureDTO> trimProcedureDTOS1 = trimDTO.getTrimProcedureDTOList();
+////      TrimDTO 객체에서 trimNum 필드를 가져와 손질 번호 저장
+//        int trimNum = TrimDTO.getTrimNum();
+////        MultipartFile file = trimDTO.
 
 //      손질법 등록 확인
 //        System.out.println("trimNum");
