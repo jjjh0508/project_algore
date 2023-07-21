@@ -11,11 +11,6 @@ public class TrimProcedureDTO {
     private String tpPath; //저장경로
     private MultipartFile inputFile;//손질사진
 
-<<<<<<< HEAD
-    private MultipartFile trimInputFile;
-
-=======
->>>>>>> 2b6ca62026289f9469bd9d7914cec3ee1f9d8cd9
     public TrimProcedureDTO() {
     }
 
