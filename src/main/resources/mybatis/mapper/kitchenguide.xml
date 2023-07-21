@@ -67,37 +67,14 @@
     </update>
 
     <!--trimUpdate 게시글 수정-->
-    <insert id="trimPostUpdate" parameterType="com.algore.application.kitchenguide.dto.TrimDTO">
-        INSERT ALL
-        INTO TRIM (
-            TRIM_NUM,
-            TRIM_TITLE,
-            TRIM_DETAIL,
-            TRIM_VIEWS,
-            TRIM_VIDEO_LINK
-        ) VALUES (
-            SEQ_TRIM_NUM.NEXTVAL,
-            #{trimTitle},
-            #{trimDetail},
-            0,
-            #{trimVideoLink}
-        )
-        <foreach collection="list" item="" index="" open="" close="SELECT * FROM DUAL">
-        INTO TRIM_PROCEDURE (
-            TP_STEP_NUM,
-            TRIM_NUM,
-            TP_FILE_NAME,
-            TP_DETAIL,
-            TP_PATH
-        ) VALUES (
-            TRIM_P_HAM,
-            SEQ_TRIM_NUM.NEXTVAL,
-            'DKJFA.PNG',
-            'DKFAJLDJFLAJLFDJLJSFL',
-            '/img/algorelogo.png'
-        )
-        </foreach>
-    </insert>
+    <update id="trimPostUpdate">
+        UPDATE TRIM
+        SET
+            TRIM_TITLE = #{trimTitle} ,
+            TRIM_DETAIL = #{trimDetail} ,
+            TRIM_VIDEO_LINK = #{trimVideoLink}
+        WHERE TRIM_NUM = #{trimNum}
+    </update>
 
     <!--TrimDTO (write)
         TrimDTO를 매개변수로 받아서 trim 테이블에 값 넣어주기-->

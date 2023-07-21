@@ -78,8 +78,7 @@
                     <label style="font-size: 17px; margin-left: 10px;"><b>손질 제목</b></label>
                 </div>
                 <!--타이틀 input 영역-->
-                <input th:field="${trimDTO.trimTitle}" name="trimTitle" class="pla-col form-control input-box-sty"
-                       id="formGroupExampleInput"
+                <input type="text" th:field="${trimDTO.trimTitle}" th:value="${trimTitle}" class="pla-col form-control input-box-sty"
                        placeholder="제목을 입력해 주세요."/>
             </div>
             <!--손질 내용-->
@@ -91,7 +90,7 @@
                 </div>
                 <!--손질 내용 input 영역-->
                 <div class="form-floating">
-                    <textarea th:field="${trimDTO.trimDetail}" class="form-control input-box-sty" name="trimDetail"
+                    <textarea th:field="${trimDTO.trimDetail}" class="form-control input-box-sty" value="trimDetail"
                               placeholder="Leave a comment here"
                               id="floatingTextarea2" style="height: 100px; resize: none"></textarea>
                     <label for="floatingTextarea2" style="font-size: 15px; color: #085A8485; margin-left: 2px;">내용을 입력해

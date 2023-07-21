@@ -12,11 +12,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+=======
+import java.text.SimpleDateFormat;
+>>>>>>> 4249339d0cca744a22ac62c1fd7971ea838cf4bd
 import java.util.List;
 
 @Controller
@@ -69,20 +73,36 @@ public class KitchenguideController {
     }
 
     @PostMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한) - 수정 시 작동하는 컨트롤러
-    public ModelAndView trimupdatepost(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+    public ModelAndView trimupdatepost(ModelAndView mv, TrimDTO trimDTO, TrimProcedureDTO trimProcedureDTO,
+                                       HttpServletRequest request/*요청*/, HttpServletResponse response/*응답*/,
+                                       @RequestParam("trimTitle") String trimTitle/*손질제목*/,
+                                       @RequestParam("trimDetail") String trimDetail/*손질내용*/,
+                                       @RequestParam("trimVideoLink") String trimVideoLink/*동영상링크*/,
+                                       @RequestParam("tpFileName") List<MultipartFile> fileOne/*파일 저장해주기*/) {
 
-        /* setter를 사용하여 값을 변경한 다음 덮어쓰는 방식*/
-        System.out.println("post/trimupdate controller 실행됨");
-        /*Service 로직에서 불러오기*/
-        TrimDTO trimDTO = kitchenguideService.readTrim(trimNum);
-        trimDTO.setTrimTitle(trimDTO.getTrimTitle());
-        trimDTO.setTrimDetail(trimDTO.getTrimDetail());
-        trimDTO.setTrimVideoLink(trimDTO.getTrimVideoLink());
-//        trimDTO.setTrimProcedureDTOList(trimDTO.setTrimProcedureDTOList());
+        System.out.println("post/trimupdate controller 실행됨--------------------------------");
 
-        System.out.println(trimDTO.getTrimTitle());
-        System.out.println(trimDTO.getTrimDetail());
-        System.out.println(trimDTO.getTrimVideoLink());
+        /*TrimDTO*/
+        trimDTO.setTrimTitle(trimTitle); //손질 제목
+        trimDTO.setTrimDetail(trimDetail); //손질 내용
+        trimDTO.setTrimVideoLink(trimVideoLink); //동영상링크
+
+        /*매퍼 연결*/
+        int result = kitchenguideService.trimUpdatePost(trimDTO);
+
+        /*값 제대로 받아오는지 확인*/
+        System.out.println("trimTitle : " + trimTitle);
+        System.out.println("trimDetail : " + trimDetail);
+        System.out.println("trimVideoLink : " + trimVideoLink);
+
+        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+        /*파일 이름 중복을 방지하기 위한 초단위 파일명*/
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+        MultipartFile trimFile = trimProcedureDTO.getTrimInputFile();
+
+
+
+        /*파일 이름만 담아서 dto로 보내주기....*/
 
 
         mv.setViewName("/kitchenguide/trimread/{trimNum}");
