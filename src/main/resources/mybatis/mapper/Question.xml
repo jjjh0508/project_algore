@@ -28,7 +28,7 @@
                  JOIN MEMBER M on (Q.MEM_NUM = M.MEM_NUM)
     </select>
     
-    <select id="detaileRead" resultMap="detailMap">
+    <select id="detaileRead" resultMap="questionMap">
     SELECT
         M.NICKNAME ,
         U.QUE_TITLE,
@@ -36,7 +36,20 @@
     FROM QNA Q
         JOIN QUESTION U ON (Q.Q_NUMBER = U.Q_NUMBER)
         JOIN MEMBER M on (Q.MEM_NUM = M.MEM_NUM)
+    WHERE U.Q_NUMBER = #{ qNumber }
      </select>
 
+<!--    <insert id="insertCreate" parameterType="com.algore.application.qna.dto.QuestionDTO">-->
+<!--        INSERT INTO(Q_NUMBER, QUE_TITLE, QUE_CONTENT, QUE_DATE, QUE_MODI_STATUS, QUE_MODI_DATE)-->
+<!--            VALUES(-->
+<!--                    #{ qNumber }-->
+<!--            ,       #{ qTitle }-->
+<!--            ,       #{ nickname }-->
+<!--            ,       #{ qContent }-->
+<!--            ,       #{ qDate }-->
+<!--            ,       #{ status }-->
+<!--    );-->
+
+<!--    </insert>-->
 
 </mapper>

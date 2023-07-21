@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
       layout:decorate="~{common/layouts/layout}">
 
 <th:block layout:fragment="content">
@@ -96,20 +96,23 @@
     <main class="write01"
           style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px;">
 
-        <div class="container-fluid modifys d-flex justify-content-start" style="margin-top: 50px;">
+        <div class="container-fluid modifys d-flex justify-content-start" style="margin-top: 50px;"
+        th:name="oprderInputFile">
             <div class="container text-center">
                 <!--제목 영역-->
                 <div class="row row-cols-auto" style="margin-top: 40px;">
                     <!--제목-->
                     <div class="col-1-sm-3 p-2"
-                         style="width: 10%; border-radius: 2em; font-size: 20px; background: #D6F2FF;">
-                        <label style="color: #085A84; height: 50px; padding-top: 10px; font-size: 18px;"><div th:text="${detailList}"></div></label>
+                         style="width: 10%; border-radius: 2em; font-size: 20px; background: #D6F2FF;" label style="color: #085A84; height: 50px; padding-top: 10px; font-size: 18px;">닉네임</label>
                     </div>
                     <!--제목 입력-->
                     <div class="col" style="width: 90%; text-align: left;">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">
-                        dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: auto; padding: 12px 20px 10px 20px;">
+                            <span th:text="${detail.nickname}"></span>
+<!--                            <td>-->
+<!--                                <span th:text="${session[detailList.nickname]}"></span>-->
+<!--                            </td>-->
+                        </p>
                     </div>
                 </div>
 
@@ -123,8 +126,10 @@
                     </div>
                     <!--제목 입력-->
                     <div class="col" style="width: 90%; text-align: left;">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: 50px; padding: 12px 20px 10px 20px;">
+                            <span th:text="${detail.qTitle}"></span>
+
+                        </p>
                     </div>
                 </div>
                 <!--내용 영역-->
@@ -136,8 +141,9 @@
                     </div>
                     <!--내용 입력-->
                     <div class="col" style="width: 90%; text-align: left;" id="#">
-                        <!--th:type="${recipevlew.recipeIntro}"--><p class="form-control pla-col input-box-sty"
-                           style=" border-radius: 2em; height: 200px; padding: 15px 20px 10px 20px;">dsfadfaf</p>
+                        <p class="form-control pla-col input-box-sty" style=" border-radius: 2em; height: 200px; padding: 15px 20px 10px 20px;">
+                            <span th:text="${detail.qContent}"></span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -166,7 +172,7 @@
     <script>
         //이전 버튼 클릭 시 main 화면으로 이동
         function home() {
-            window.location.assign("http://localhost:8081/Q&Aquestion/q&aMain");
+            window.location.assign("http://localhost:8081/qna/main");
         }
     </script>
     </body>

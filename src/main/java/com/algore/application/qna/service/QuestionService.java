@@ -16,18 +16,20 @@ public class QuestionService {
         this.questionMapper = questionMapper;
         this.detailMapper = detailMapper;
     }
+    //전체글 main
     public List<QuestionDTO> questionAll(){
         List<QuestionDTO> allQuestion = questionMapper.questionAll();
 
         return allQuestion;
     }
 
-    //상세화면 서비스
-    public List<QuestionDTO> detaileRead(){
-        List<QuestionDTO> allDetail = detailMapper.detailAll();
-
-        return allDetail;
+    public List<QuestionDTO> detaileRead(int qNumber) {
+        List<QuestionDTO> list = detailMapper.detaileRead(qNumber);
+        return list;
     }
+
+
+    
 
 
 
