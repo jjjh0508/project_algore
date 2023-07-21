@@ -39,7 +39,7 @@ public class TrimProcedureDTO {
         this.trimNum = trimNum;
     }
 
-    public String getTpFileName() {
+    public String getTpFileName(String tpFileNames) {
         return tpFileName;
     }
 

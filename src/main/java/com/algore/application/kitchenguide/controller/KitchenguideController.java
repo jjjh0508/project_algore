@@ -3,7 +3,6 @@ package com.algore.application.kitchenguide.controller;
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +14,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -216,32 +212,36 @@ public class KitchenguideController {
 
 //         사진 등록 확인
         System.out.println(fileName.get(0).getOriginalFilename());
-
-
-
         try {
 //          현재 어플리케이션의 작업 리덱토리에서 정적 리소스 파일들을 저장할 경로를 지정
             String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
 //          파일 이름 중복을 피하기 위해 현재 시간 기준으로 파일 이름을 생성할 때 사용할 날짜 형식을 지정
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
 //          객체들을 저장할 리스트 생성
-            List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
+//            List<TrimProcedureDTO> trimProcedureDTOS = new ArrayList<>();
 //          TrimDTO 객체에서 trimProcedureDTOList 필드를 가져와서 TrimProcedureDTOList 객체들을 저장
-//            List<TrimProcedureDTO> trimProcedureDTOList = trimDTO.getTrimProcedureDTOList();
+//          List<TrimProcedureDTO> trimProcedureDTOList = trimDTO.getTrimProcedureDTOList();
 //          TrimDTO 객체에서 trimNum 필드를 가져와 손질 번호 저장
             int trimNum = trimDTO.getTrimNum();
 
+            /* 사진 로직
+            *  MultipartFile : 파일 업로드 시 클라이언트로부터 전송된 파일 데이터를 처리하는 인터페이스
+            *  리스트의 첫 번째 업로드된 파일을 가져오고 multipartFile에 할당*/
             MultipartFile multipartFile = fileName.get(0);
-
+            // 업로드된 파일의 원본 파일 이름 가져오기
             String name = multipartFile.getOriginalFilename();
+            // 이름 중복을 피하기 위해서 현재 시간을 기준으로 새로운 파일 이름 생성 (파일 이름에는 원본 파일의 확장자 포함되어 있음)
+            String tpFileNames = simpleDateFormat.format(new Date(System.currentTimeMillis()))+"."+name.substring(name.lastIndexOf(".")+1);
+            System.out.println(tpFileNames);
+            // 업로드된 파일이 로컬 저장소에 새로운 파일 이름으로 저장
+            multipartFile.transferTo(new File(root+"\\"+tpFileNames));
 
-            String newName = simpleDateFormat.format(new Date(System.currentTimeMillis()))+"."+name.substring(name.lastIndexOf(".")+1);
-            System.out.println(newName);
-            multipartFile.transferTo(new File(root+"\\"+newName));
-//            "/upload/basic/"
-//            newName
-//            setPath()
-//            setFileName(newName);
+            TrimProcedureDTO trimProcedureDTO = new TrimProcedureDTO();
+            trimProcedureDTO.getTpFileName(tpFileNames); // 새로운 파일 이름으로 설정
+            trimProcedureDTO.setTpPath("/upload/basic/"); // 이미지 경로 설정
+
+            // TrimDTO 객체의 trimProcedureDTOList에 생성한 TrimProcedureDTO 객체 추가
+            trimDTO.getTrimProcedureDTOList().add(trimProcedureDTO); 
 
         }catch (Exception e){
             e.printStackTrace();
