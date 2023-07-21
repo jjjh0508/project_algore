@@ -197,6 +197,7 @@
     </insert>
 
     <resultMap id="RecipeingredientMap" type="com.algore.application.recipe.dto.RecipeIngredientDTO">
+        <result property="ingNum" column="ING_NUM"/>
         <result property="ingName" column="ING_NAME"/>
         <result property="weigh" column="WEIGH"/>
         <result property="riUnit" column="RI_UNIT"/>
@@ -205,6 +206,7 @@
 
     <select id="recipeIngredient" resultMap="RecipeingredientMap">
         SELECT
+            RI.ING_NUM,
             I.ING_NAME ,
             RI.WEIGH ,
             U.RI_UNIT ,

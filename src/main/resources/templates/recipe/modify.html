@@ -233,12 +233,14 @@
 
                                     <select class="form-select input-box-sty" name="ingName"
                                             style="border-radius: 1.5em; color: #085A84; width: 300px;" id="floatingInput5">
-                                        <option th:each="ing:${recipevlew.ingredientDTOList}" th:value="${ing.ingNum}"
-                                                th:selected="${recipevlew.ingredientDTOList[__${ingStat.index}__].ingNum}==${recipevlew.recipeIngredientDTOS[__${ingredientStat.index}__].ingNum}"
+                                        <th:block th:each="ing:${recipevlew.ingredientDTOList}">
+                                        <option  th:value="${ing.ingNum}"
+                                               th:selected="${ingredient.ingNum}==${ing.ingNum}"
                                                 th:text="${ing.ingName}"
-
-
                                         ></option>
+                                        </th:block>
+
+
 
                                     </select>
 

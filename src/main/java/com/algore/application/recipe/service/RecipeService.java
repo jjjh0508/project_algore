@@ -28,7 +28,6 @@ public class RecipeService {
         int allPrice =0;
         for (RecipeIngredientDTO recipeIngredientDTO:recipeIngredientDTOS) {
             allPrice += recipeIngredientDTO.getPrice();
-
         }
         System.out.println();
         recipeviewDTO.setIngredientDTOList(ingredientDTOList);
