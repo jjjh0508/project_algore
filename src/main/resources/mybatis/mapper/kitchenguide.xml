@@ -53,7 +53,8 @@
     <select id="trimProPostRead" resultMap="trimProcedureDTOPost">
         SELECT
         TP.TP_DETAIL,
-        TP.TP_PATH
+        TP.TP_PATH,
+        TP.TP_FILE_NAME
         FROM TRIM T
         JOIN TRIM_PROCEDURE TP ON (T.TRIM_NUM = TP.TRIM_NUM)
         WHERE T.TRIM_NUM = #{trimNum}
@@ -75,6 +76,16 @@
             TRIM_VIDEO_LINK = #{trimVideoLink}
         WHERE TRIM_NUM = #{trimNum}
     </update>
+    
+<!--    <update id="" parameterType="java.util.List">-->
+<!--        <foreach collection="list" item="item" index="index" separator=" ">-->
+<!--            UPDATE TRIM_PROCEDURE-->
+<!--            SET-->
+<!--                TP_FILE_NAME = #{},-->
+<!--                TP_DETAIL = #{tpDetail}-->
+<!--            WHERE TRIM_NUM = #{trimNum}-->
+<!--        </foreach>-->
+<!--    </update>-->
 
     <!--TrimDTO (write)
         TrimDTO를 매개변수로 받아서 trim 테이블에 값 넣어주기-->

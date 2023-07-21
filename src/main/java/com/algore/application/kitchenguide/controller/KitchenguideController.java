@@ -3,6 +3,8 @@ package com.algore.application.kitchenguide.controller;
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,8 +47,11 @@ public class KitchenguideController {
         return mv;
     }
 
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한) - 페이지 수정 폼 컨트롤러
-    public ModelAndView trimupdate(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/) {
+    public ModelAndView trimupdate(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/, Authentication authentication/*권한*/) {
+
+        System.out.println(authentication.getAuthorities());
         
         /* 파라미터를 넘겨주는 방법
           1. @PathVariable 사용
@@ -77,9 +82,10 @@ public class KitchenguideController {
                                        HttpServletRequest request/*요청*/, HttpServletResponse response/*응답*/,
                                        @RequestParam("trimTitle") String trimTitle/*손질제목*/,
                                        @RequestParam("trimDetail") String trimDetail/*손질내용*/,
-                                       @RequestParam("trimVideoLink") String trimVideoLink/*동영상링크*/,
-                                       @RequestParam("tpFileName") List<MultipartFile> fileOne/*파일 저장해주기*/) {
+                                       @RequestParam("trimVideoLink") String trimVideoLink/*동영상링크*/) {
 
+//        ,
+//        @RequestParam("tpFileName") List<MultipartFile> fileOne/*파일 저장해주기*/
         System.out.println("post/trimupdate controller 실행됨--------------------------------");
 
         /*TrimDTO*/
@@ -87,25 +93,36 @@ public class KitchenguideController {
         trimDTO.setTrimDetail(trimDetail); //손질 내용
         trimDTO.setTrimVideoLink(trimVideoLink); //동영상링크
 
-        /*매퍼 연결*/
-        int result = kitchenguideService.trimUpdatePost(trimDTO);
-
         /*값 제대로 받아오는지 확인*/
         System.out.println("trimTitle : " + trimTitle);
         System.out.println("trimDetail : " + trimDetail);
         System.out.println("trimVideoLink : " + trimVideoLink);
 
-        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
-        /*파일 이름 중복을 방지하기 위한 초단위 파일명*/
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
-        MultipartFile trimFile = trimProcedureDTO.getInputFile();
+        /*매퍼 연결*/
+        int result = kitchenguideService.trimUpdatePost(trimDTO);
 
+
+
+//        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+//        /*파일 이름 중복을 방지하기 위한 초단위 파일명*/
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+//        MultipartFile trimFile = trimProcedureDTO.getInputFile();
+//        String trimFileName = trimFile.getOriginalFilename();
+//
+//        if (!trimFile.isEmpty()) {
+//            File trimTPFile = new File(root + trimProcedureDTO.getTpFileName());
+//            System.out.println(trimTPFile);
+//            if (trimTPFile.exists()) {
+//                trimTPFile.delete();
+//            }
+//
+//        }
 
 
         /*파일 이름만 담아서 dto로 보내주기....*/
 
 
-        mv.setViewName("/kitchenguide/trimread/{trimNum}");
+        mv.setViewName("/kitchenguide/trimread");
         return mv;
     }
 
