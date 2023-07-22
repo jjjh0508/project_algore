@@ -19,15 +19,11 @@
         };
 
 
-
-
         let message = [[${message}]];
 
-        if(message != null && message !== '') {
+        if (message != null && message !== '') {
             alert(message);
         }
-
-
 
 
     </script>
@@ -132,7 +128,7 @@
             }
 
             .dd-col {
-                color: F8FCFF;
+                color: #F8FCFF;
             }
 
 
@@ -191,7 +187,7 @@
                 <div class="profile-img">
                     <div class="d-flex justify-content-start">
                         <th:block th:if="${recipevlew.proFilePath!=null}">
-                            <img th:src=${recipevlew.proFilePath}+${recipevlew.proFileName} alt="프로필사진"
+                            <img th:src="${recipevlew.proFilePath}+${recipevlew.proFileName}" alt="프로필사진"
                                  style="margin-top: 22px; margin-left: 20px;">
                             <div id="recipe-writer-profile" style="margin-top: 33px; margin-left: 20px;">
                                 <h6 style="padding: 3px;" th:text="${recipevlew.memName}">작성자 닉네임나오는곳</h6>
@@ -273,17 +269,37 @@
 
             <div id="material-area" class="m-3" style="padding-top: 50px; padding-left: 20px;">
                 <h4>레시피 재료</h4>
-                <ul>
-                    <th:block th:each="ingList:${recipevlew.recipeIngredientDTOS}" >
-                        <li> 재료 :  <p th:text="${ingList.ingName}"></p></li>
-                        <li> 계량: <p th:text="${ingList.weigh}+${ingList.riUnit}"></p></li>
 
-                        <li>묶음 시세기준 총 가격 : <p th:text="${recipevlew.allPrice}+원" ></p></li>
-                    </th:block>
-                </ul>
-                <ul>
+                <th:block th:each="ingredient:${recipevlew.recipeIngredientDTOS}">
+                    <div id="REgreenC" class="REgreenC">
+                        <!--재료입력1-->
 
-                </ul>
+                        <div class="d-flex justify-content-between">
+                            <!-- 재료명-->
+
+                            <div class="form-floating fon-colors" >
+
+                                <input disabled="false" type="text" class="form-control input-box-sty"
+                                       id="floatingInput3"
+                                       maxlength="5"
+                                       name="weigh" th:value="${ingredient.ingName}"
+                                       style="border-radius: 1.5em; color: #085A84;">
+
+                            </div>
+
+                            <!--계량 단위 -->
+                            <div class="form-floating w-100" style="margin-right: 53%;">
+                                <input disabled="false" type="text" class="form-control input-box-sty"
+                                       id="floatingInput4"
+                                       maxlength="5"
+                                       name="weigh" th:value=" ${ingredient.weigh}+${ingredient.riUnit}"
+                                       style="border-radius: 1.5em; color: #085A84; width: 30%" >
+                            </div>
+
+                        </div>
+                    </div>
+                </th:block>
+                <ul th:text="'재료 묶음 단위 총 가격'+${recipevlew.allPrice}+원"></ul>
                 <hr style="margin-top: 30px;">
             </div>
             <!--레시피 순서영역 여러개가 나와야한다.-->
@@ -327,9 +343,9 @@
 
                 <div>
 
-                        <div class="d-flex justify-content-start" style="">
-                            <h4>완성 사진</h4>
-                        </div>
+                    <div class="d-flex justify-content-start" style="">
+                        <h4>완성 사진</h4>
+                    </div>
                     <th:block th:if="${not #strings.isEmpty(recipevlew.recipePhotoDTOList)}">
 
                         <div class="d-flex justify-content-between" style="">
@@ -498,44 +514,7 @@
                                    class="btn btn-outline-primary but-off-color">
                         </div>
                     </div>
-                    <!-- 코멘트 페이지 영역  테스트-->
-                    <!--                <div id="page-area" style="text-align:center">-->
 
-
-                    <!--                    <div id="app" class="container">-->
-                    <!--                        <ul class="page">-->
-                    <!--                            &lt;!&ndash; 1페이지 아닐때만 &ndash;&gt;-->
-                    <!--                            <c:if test="${startNavi ne 1 && startNavi > 0}">-->
-                    <!--                                <li class="page__btn">-->
-                    <!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${startNavi-1 }#reply-area"> < </a>-->
-                    <!--                                </li>-->
-                    <!--                            </c:if>-->
-
-                    <!--                            <c:forEach var="p" begin="${startNavi }" end="${endNavi }">-->
-
-                    <!--                                <c:if test="${currentPage == p}">-->
-                    <!--                                    <li class="page__numbers active">${p }</li>-->
-                    <!--                                </c:if>-->
-                    <!--                                <c:if test="${currentPage ne p}">-->
-                    <!--                                    <li class="page__numbers"><a-->
-                    <!--                                            href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${p }#reply-area">${p }</a></li>-->
-                    <!--                                </c:if>-->
-                    <!--                            </c:forEach>-->
-
-
-                    <!--                            &lt;!&ndash; 마지막페이지 아닐때만 &ndash;&gt;-->
-                    <!--                            <c:if test="${endNavi < maxPage }">-->
-                    <!--                                <li class="page__btn">-->
-                    <!--                                    <a href="/recipe/detail.do?recipeNo=${recipe.recipeNo }&page=${endNavi+1 }#reply-area"> > </a>-->
-                    <!--                                </li>-->
-                    <!--                            </c:if>-->
-                    <!--                        </ul>-->
-                    <!--                    </div>-->
-
-
-                    <!--                </div>-->
-
-                    <!--                 코멘트 페이지 영역 종료-->
                 </form>
 
             </th:block>
