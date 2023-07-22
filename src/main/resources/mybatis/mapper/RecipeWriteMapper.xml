@@ -27,6 +27,37 @@
           FROM UNIT
     </select>
 
+    <resultMap id="ingMap" type="com.algore.application.recipe.dto.IngredientDTO">
+        <id property="ingNum" column="ING_NUM"/>
+        <result property="ingName" column="ING_NAME"/>
+    </resultMap>
+
+    <select id="readIng" resultMap="ingMap">
+        SELECT ING_NUM,
+               ING_NAME
+          FROM INGREDIENT
+    </select>
+
+    <insert id="writeProcedure" parameterType="java.util.List">
+        INSERT INTO RECIPE_PROCEDURE
+            (RP_NUM, RECIPE_NUM, RP_CONTENT, RP_FILE, RP_FILE_NAME, RP_PATH)
+        SELECT SEQ_RP_NUM.NEXTVAL,
+               RECIPE_NUM,
+               RP_CONTENT,
+               RP_FILE,
+               RP_FILE_NAME,
+               RP_PATH
+        FROM (
+            <foreach item="item" collection="list" separator="UNION ALL">
+                SELECT #{item.recipeNum} AS RECIPE_NUM,
+                       #{item.content} AS RP_CONTENT,
+                       #{item.fileName} AS RP_FILE_NAME,
+                       #{item.path} AS RP_PATH
+                  FROM DUAL
+            </foreach>PRO
+        )
+    </insert>
+
     
 <insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
     INSERT INTO RECIPE
@@ -43,12 +74,7 @@
             SYSDATE
             )
 </insert>
-<select id="readCategory" resultMap="categoryMap">
-    SELECT CATEGORY_NUM,
-           CATEGORY
-      FROM RECIPE_CATEGORY
-</select>
-<!--    -->
+
 <!--<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">-->
 <!--    INSERT INTO RECIPE-->
 <!--    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)-->

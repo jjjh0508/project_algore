@@ -38,8 +38,6 @@ public class RecipeController {
         mv.addObject("commentRead", commentReadDTOList);
         mv.addObject("recipevlew", recipeviewDTO);
 
-
-
         mv.setViewName("/recipe/view");
         return mv;
     }
@@ -50,85 +48,100 @@ public class RecipeController {
 
             List<RecipeCategoryDTO> recipeCategory = recipeService.readcategory();
             List<RecipeUnitDTO> recipeUnit = recipeService.readUnit();
-        System.out.println(".");
-            for (RecipeUnitDTO riUnit : recipeUnit
-            ) {
-                System.out.println(riUnit);
-            }
-        System.out.println(".....");
+            List<IngredientDTO> recipeIng = recipeService.readIng();
+
             mv.addObject("CategoryList", new RecipeCategoryDTO());
             mv.addObject("recipeCategory", recipeCategory);
             mv.addObject("UnitList", new RecipeUnitDTO());
             mv.addObject("recipeUnit", recipeUnit);
+            mv.addObject("IngList", new IngredientDTO());
+            mv.addObject("recipeIng", recipeIng);
 
             mv.setViewName("/recipe/write");
             return mv;
         }
-
         @PostMapping("/registform")
-        public ModelAndView writeReci (ModelAndView model, RecipeWriteDTO recipeWriteDTO){
+        @ResponseBody
+        public ModelAndView writeReci (ModelAndView model, RecipeWriteDTO recipeWriteDTO, HttpServletRequest request,
+                                       @RequestParam(value = "rpFileName", required = false)List<MultipartFile> rpFile,
+                                       @RequestParam(value = "rpContent", required = false)List <String> rpContent,
+                                       @RequestParam(value = "ingName", required = false)int[] ingName,
+                                       @RequestParam(value = "weigh", required = false)String[] weigh,
+                                       @RequestParam(value = "riUnitNum", required = false) int[] riUnitNum
+                                      )
+        {
+            try {
+                String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\basic\\";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+                List<SelectProcedure> selectProcedures = new ArrayList<>();
+                List<RecipeProcedureDTO> recipeProcedureDTOS = recipeWriteDTO.getRecipeProcedureDTOList();
+                List<RecipePhotoWriteDTO> recipePhotoWriteDTOList = recipeWriteDTO.getRecipePhotoWriteDTOList();
+                int recipeNum = recipeWriteDTO.getRecipeNum();
 
-            int result = recipeService.writeRecipe(recipeWriteDTO);
+                // 메인 사진
+                MultipartFile mainFile = recipeWriteDTO.getMainPhotoInputFile();
+                String mainPhoto = mainFile.getOriginalFilename();
 
-            String path = "";
-            if (result > 0) {
-                model.addObject("message", "등록이 완료되었습니다.");
-                model.setViewName("redirect:/view");
-            } else {
-                model.addObject("message", "등록에 실패하였습니다.");
-                model.setViewName("redirect:/");
+                if(!mainFile.isEmpty()){
+                    File profileFile = new File(root);
+                    System.out.println(profileFile);
+                    if(profileFile.exists()){
+                        profileFile.mkdir();
+                    }
+
+                    String mainPhotoName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "." + mainPhoto.substring(mainPhoto.lastIndexOf(".") + 1);
+
+                    mainFile.transferTo(new File(root + "\\" + mainPhotoName));
+
+                    recipeWriteDTO.setMainPhoto(mainPhotoName);
+                    recipeWriteDTO.setPhotoPath("/upload/basic/");
+                }
+
+                // 요리 순서 로직
+                int countStep = 1;
+                for(int i=0; i < rpContent.size(); i++){
+                    if(rpFile.get(i).getOriginalFilename().equals("")){
+                        if(i < recipeProcedureDTOS.size()){
+                            selectProcedures.add(new SelectProcedure(recipeNum, rpContent.get(i), recipeProcedureDTOS.get(i).getRpFileName(), recipeProcedureDTOS.get(i).getRpPath()));
+                        }
+                    }else{
+                        if(i > recipeProcedureDTOS.size()){
+                            File file = new File(root + "\\");
+
+                            if(file.exists()){
+                                file.mkdirs();
+                            }
+                        }
+
+                    }
+                }
+
+                // 완성 사진
+                for(int i = 0; i <recipePhotoWriteDTOList.size(); i++){
+                    recipePhotoWriteDTOList.get(i).setRecipeNum(recipeWriteDTO.getRecipeNum());
+                }
+
+
+
+
+                System.out.println(rpFile.get(0).getOriginalFilename());
+                int result = recipeService.writeRecipe(recipeWriteDTO);
+
+                String path = "";
+
+                if (result > 0) {
+                    model.addObject("message", "등록이 완료되었습니다.");
+                    model.setViewName("redirect:/view");
+                } else {
+                    model.addObject("message", "등록에 실패하였습니다.");
+                    model.setViewName("redirect:/");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             return model;
-        }
-
-        @GetMapping("/file")
-        public void goFile () {
-        }
-
-        @PostMapping("/file")
-        public ModelAndView RecipePhoto (@ModelAttribute RecipePhotoWriteDTO recipePhotoWrite, HttpServletRequest
-        request){
-            ModelAndView modelAndView = new ModelAndView();
-
-            String backUrl = request.getHeader("Refere");
-
-            MultipartFile fileOne = recipePhotoWrite.getRecipePhotoWriteInput();
-            String ext = fileOne.getOriginalFilename().substring(fileOne.getOriginalFilename().indexOf("."));
-
-            if (!(ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".bmp"))) {
-                modelAndView.addObject("message", "이미지가 아닙니다.");
-                modelAndView.setViewName(backUrl);
-
-                return modelAndView;
-            }
-
-            if (recipePhotoWrite.getRecipePhotoPath() != null) {
-                String originFilePath = "\\upload\\basic\\";
-                String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static" + originFilePath;
-
-                File originDirectory = new File(path);
-
-                if (!originDirectory.exists()) {
-                    originDirectory.mkdirs();
-                }
-
-                path += recipePhotoWrite.getRecipePhotoWriteInput().getOriginalFilename();
-
-                try {
-                    recipePhotoWrite.getRecipePhotoWriteInput().transferTo(new File(path));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                modelAndView.addObject("message", "파일 저장에 성공하였습니다.");
-            } else {
-                modelAndView.addObject("message", "파일 저장에 실패하였습니다.");
-                return modelAndView;
-            }
-            modelAndView.setViewName("index");
-
-            return modelAndView;
-
         }
 
         @ResponseBody
@@ -236,7 +249,6 @@ public class RecipeController {
 
                         recipePicture.get(i).transferTo(new File(root + "\\" + newOrderFileName));
                         modifyRecipeOrders.add(new ModifyRecipeOrder(recipeNum, orderContent.get(i), newOrderFileName, "/upload/basic/"));
-
 
                     }
                 }

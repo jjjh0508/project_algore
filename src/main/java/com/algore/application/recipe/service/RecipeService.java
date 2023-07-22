@@ -3,6 +3,7 @@ package com.algore.application.recipe.service;
 import com.algore.application.recipe.dao.RecipeViewMapper;
 import com.algore.application.recipe.dto.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -60,14 +61,29 @@ public class RecipeService {
         return result;
     }
 
-
+    @Transactional
     public int writeRecipe(RecipeWriteDTO recipeWriteDTO) {
 
-        int result = 0;
-        try {
-            result = mapper.writeRecipe(recipeWriteDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        int result = mapper.writeRecipe(recipeWriteDTO);
+
+        if(result > 0){
+
+            List<RecipeProcedureDTO> recipeProcedureDTOList = recipeWriteDTO.getRecipeProcedureDTOList();
+
+            if(recipeProcedureDTOList != null && !recipeProcedureDTOList.isEmpty()){
+                for(RecipeProcedureDTO recipeProcedure : recipeProcedureDTOList){
+                    recipeProcedure.setRpNum(result);
+                }
+                mapper.writeRecipeProduce(recipeProcedureDTOList);
+            }
+            List<RecipePhotoWriteDTO> recipePhotoWriteDTOList = recipeWriteDTO.getRecipePhotoWriteDTOList();
+            if (recipePhotoWriteDTOList != null && !recipePhotoWriteDTOList.isEmpty()) {
+                for (RecipePhotoWriteDTO recipePhotoWriteDTO : recipePhotoWriteDTOList) {
+                    recipePhotoWriteDTO.setRecipeNum(result);
+                }
+                mapper.writeRecipePhotos(recipePhotoWriteDTOList);
+            }
+
         }
         return result;
     }
@@ -109,6 +125,13 @@ public class RecipeService {
         List<RecipeUnitDTO> recipeunit = mapper.readUnit();
         System.out.println(recipeunit);
         return recipeunit;
+    }
+
+    public List<IngredientDTO> readIng() {
+
+        List<IngredientDTO> recipeing = mapper.readIng();
+        System.out.println(recipeing);
+        return recipeing;
     }
 }
 
