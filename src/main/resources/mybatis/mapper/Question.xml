@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.algore.application.qna.dao.QuestionMapper">
-<!--    <resultMap id="questionMap" type="com.algore.application.qna.dto.QuestionDTO">-->
-<!--        <id property="qNumber" column="Q_NUMBER"/>-->
-<!--        <result property="qTitle" column="QUE_TITLE"/>-->
-<!--        <result property="nickname" column="NICKNAME"/>-->
-<!--        <result property="qContent" column="QUE_CONTENT"/>-->
-<!--        <result property="qDate" column="QUE_DATE"/>-->
-<!--        <result property="status" column="A_STATUS"/>-->
+    <resultMap id="questionMap" type="com.algore.application.qna.dto.QuestionDTO">
+        <id property="qNumber" column="Q_NUMBER"/>
+        <result property="qTitle" column="QUE_TITLE"/>
+        <result property="nickname" column="NICKNAME"/>
+        <result property="qContent" column="QUE_CONTENT"/>
+        <result property="qDate" column="QUE_DATE"/>
+        <result property="status" column="A_STATUS"/>
 
-<!--    </resultMap>-->
+    </resultMap>
 
 
 

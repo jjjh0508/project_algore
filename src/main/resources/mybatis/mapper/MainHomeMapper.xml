@@ -11,7 +11,7 @@
         <result property="filePath" column="PHOTO_PATH"/>
     </resultMap>
 
-    <select id="mainView" resultMap="mainViewMap">
+    <select id="mainView" resultMap="mainViewMap" parameterType="Int">
 
         SELECT
             RECIPE_NUM,

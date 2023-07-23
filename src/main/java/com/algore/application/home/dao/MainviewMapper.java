@@ -2,6 +2,7 @@ package com.algore.application.home.dao;
 
 import com.algore.application.home.dto.MainViewDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface MainviewMapper {
     List<MainViewDTO> mainView();
 
 
-    List<MainViewDTO> mainView(int startIndex , int pageSiz, int page);
+    List<MainViewDTO> mainView(@Param("startIndex")int startIndex , @Param("pageSiz")int pageSiz, @Param("page") int page);
 
     int allcnt();
 

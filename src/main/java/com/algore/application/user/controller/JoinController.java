@@ -20,8 +20,8 @@ public class JoinController {
         this.joinService = joinService;
     }
 
-    @Value("${open-api.key}")
-    private String apikey;
+//    @Value("${open-api.key}")
+//    private String apikey;
 
     @GetMapping("/memberList")
     public ModelAndView selectAll(ModelAndView mv) { //프론트 화면

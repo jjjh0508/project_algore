@@ -3,7 +3,7 @@ package com.algore.application.recipe.service;
 import com.algore.application.recipe.dao.RecipeViewMapper;
 import com.algore.application.recipe.dto.*;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -61,7 +61,7 @@ public class RecipeService {
         return result;
     }
 
-    @Transactional
+
     public int writeRecipe(RecipeWriteDTO recipeWriteDTO) {
 
         int result = mapper.writeRecipe(recipeWriteDTO);
