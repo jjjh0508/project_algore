@@ -26,8 +26,8 @@ public class KitchenguideService {
 
 
     public List<TrimProcedureDTO> readPost(int trimNum) {
-        List<TrimProcedureDTO> procedure = mapper.trimProPostRead(trimNum);
-        return procedure;
+        List<TrimProcedureDTO> procedureList = mapper.trimProPostRead(trimNum);
+        return procedureList;
     }
 
     /* @Transactional : 스프링 프레임워크에서 제공하는 어노테이션, 데이터베이스 트랜잭션 관리를 위해서 사용 */
