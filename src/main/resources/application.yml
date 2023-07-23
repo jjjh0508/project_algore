@@ -29,7 +29,7 @@ spring:
     check-template-location: true
   web:
     resources:
-      static-locations: classpath:/upload/
+      static-locations: classpath:/static/upload/
 
 image:
   image-dir: src/main/resources

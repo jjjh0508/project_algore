@@ -13,6 +13,10 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/").setCachePeriod(60 * 60 * 24 * 365);
 
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("classpath:/upload/");
+                .addResourceLocations("classpath:/static/upload/");
+
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("classpath:/templates/css/");
+
     }
 }

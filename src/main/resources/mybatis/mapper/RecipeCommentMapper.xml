@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.algore.application.recipe.dao.RecipeCommentMapper">
+    <insert id="registComment"  parameterType="com.algore.application.recipe.dto.CommentInsertDTO">
+        INSERT INTO
+            R_COMMENT(COMMNET_NUM,RECIPE_NUM,C_CONTENT,MEM_NUM,C_DATE)
+        VALUES(SEQ_COMMNET_NUM.NEXTVAL,#{recipeNum},#{conutent},(SELECT MEM_NUM FROM MEMBER WHERE ID=#{userId}),SYSDATE)
+    </insert>
+</mapper>

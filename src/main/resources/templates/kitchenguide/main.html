@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            a {
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            /*여기는 메뉴....*/
+            input[type="radio"] {
+                display: none;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            input[type="radio"] + label {
+                display: inline-block;
+                margin-bottom: 35px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 20px 25px 20px 25px;
+                border-radius: 2em;
+                background: #D8F0FF;
+                color: #085A84;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            input[type="radio"]:checked + label {
+                background: #84D9FF;
+                color: #085A84;
+            }
+
+            .conbox {
+                width: 1200px;
+                height: 100%;
+                /*background: #ECF8FF; !*여기 구역 색 바꾸기*!*/
+                display: none;
+            }
+
+            input[id=tab01]:checked ~ .con1 {
+                display: block;
+            }
+
+            input[id=tab02]:checked ~ .con2 {
+                display: block;
+            }
+
+            input[id=tab03]:checked ~ .con3 {
+                display: block;
+            }
+
+            table,
+            th,
+            td {
+                /*border: 1px solid black;*/
+                border-collapse: separate;
+                border-spacing: 10px;
+            }
+        </style>
+    </head>
+    <body>
+    <!--20_0_레시피_메인-->
+    <main class="write01"
+          style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px;">
+        <!--버튼 누르면 동적 어쩌고는... 자바스크립트로?-->
+        <!--탭메뉴효과-->
+        <div class="d-flex justify-content-evenly" style="margin-top: 50px;">
+            <div class="pagination justify-content-center" style="text-align: center;">
+                <div class="dd">
+                    <input type="radio" name="tabmenu" id="tab01" checked>
+                    <label for="tab01"><b>전체보기</b></label>
+                    <input type="radio" name="tabmenu" id="tab02">
+                    <label for="tab02"><b>손질법</b></label>
+                    <input type="radio" name="tabmenu" id="tab03">
+                    <label for="tab03"><b>보관법</b></label>
+                    <!--1.전체보기-->
+                    <div class="conbox con1">
+                        <div class="d-flex justify-content-evenly">
+                            <!--게시글1-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글2-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글3-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글4-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <!--2.손질법-->
+                    <div class="conbox con2">
+                        <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
+                        <div class="d-flex justify-content-end">
+                            <a href="#">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
+                                    <b>글 작성하기</b>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+                            <!--게시글1-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글2-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글3-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글4-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <!--3.보관법-->
+                    <div class="conbox con3">
+                        <!--관리자 전용 버튼 : 이 부분은 자바로스크립트로해보기...-->
+                        <div class="d-flex justify-content-end">
+                            <a href="#">
+                                <button type="button" class="btn btn-outline-secondary"
+                                        style="height: 50px; width: 150px; border-radius: 1.3em; float: right; margin-right: 50px; margin-bottom: 50px;">
+                                    <b>글 작성하기</b>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+                            <!--게시글1-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글2-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글3-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                            <!--게시글4-->
+                            <!--게시물 이동을 위한 a태그-->
+                            <a href="#">
+                                <!--사진-->
+                                <div>
+                                    <img src="/images/떡볶이1.png" style="height: 250px; width: 250px;">
+                                </div>
+                                <!--제목-->
+                                <p style="color: #08507D; text-decoration-line: none; margin-top: 10px;"><b>게시글
+                                    제목1</b>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="javascript">
+    </script>
+    </body>
+</th:block>
+</html>

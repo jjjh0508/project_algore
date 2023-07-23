@@ -1,5 +1,6 @@
 package com.algore.application.kitchenguide.controller;
 
+<<<<<<< HEAD
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
@@ -515,4 +516,28 @@ public class KitchenguideController {
 //        return mv;
 //    }
 
+=======
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/kitchenguide")
+public class KitchenguideController {
+
+    @GetMapping("/main")
+    public void main() {
+    }
+
+    @GetMapping("/repairwrite")
+    public String repairwrite() {
+        return "kitchenguide/repairwrite";
+    }
+
+    @GetMapping("/repairread")
+    public String repairread() {
+        return "kitchenguide/repairread";
+    }
+
+>>>>>>> a5d9fd23012d58831839b5dbeaf654638fc989f2
 }

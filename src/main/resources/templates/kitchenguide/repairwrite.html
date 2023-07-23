@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            header a {
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            .new-margin {
+                margin-top: 30px;
+            }
+
+            .fon-color {
+                color: #085A84;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .input-box-sty {
+                margin-top: 10px;
+                border: 2px solid;
+                border-color: #085A8430;
+                font-size: 15px;
+            }
+
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
+        </style>
+    </head>
+    <body>
+    <!--게시글 작성 시작-->
+    <div class="write01" style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px;">
+        <!--손질 제목-->
+        <div class="title_son" style="margin-top: 50px;">
+            <div class="fon-color">
+                <i class="bi bi-three-dots-vertical" style="font-size: 18px"></i>
+                <label style="font-size: 17px;"><b>손질 제목</b></label>
+            </div>
+            <input type="text" class="pla-col form-control input-box-sty" id="formGroupExampleInput"
+                   placeholder="제목을 입력해 주세요."/>
+        </div>
+        <!--손질 내용-->
+        <div class=" new-margin">
+            <div class="fon-color">
+                <i class="bi bi-three-dots-vertical" style="font-size: 20px"></i>
+                <label style="font-size: 17px;"><b>손질 내용</b></label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control input-box-sty" placeholder="Leave a comment here" id="floatingTextarea2"
+                          style="height: 100px; resize: none"></textarea>
+                <label for="floatingTextarea2" style="font-size: 15px; color: #085A8485; margin-left: 2px;">내용을 입력해
+                    주세요.</label>
+            </div>
+        </div>
+        <!--동영상 링크 첨부-->
+        <div class="link_son new-margin">
+            <div class="fon-color">
+                <i class="bi bi-three-dots-vertical" style="font-size: 20px; "></i>
+                <label style="font-size: 17px;"><b>손질 동영상 링크 첨부</b></label>
+            </div>
+            <input type="text" class="pla-col form-control input-box-sty" id="sd" placeholder="영상 URL 주소를 입력해 주세요."/>
+        </div>
+        <!--손질 순서-->
+        <div class="new-margin">
+            <div class="fon-color">
+                <i class="bi bi-three-dots-vertical" style="font-size: 20px"></i>
+                <label style="font-size: 17px;"><b>손질 순서</b></label>
+            </div>
+            <div class="d-flex justify-content-start" style="">
+                <div>
+                    <img src="images/떡볶이1.png" class="img-thumbnail input-box-sty"
+                         style="height: 200px; width: 370px; margin-right: 30px;">
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control input-box-sty" placeholder="Leave a comment here"
+                              id="floatingTextarea2" style="height:200px; width: 600px; resize: none"></textarea>
+                    <label for="floatingTextarea2"
+                           style="font-size: 15px; color: #085A8485; margin-top: 10px; margin-left: 2px;">내용을 입력해
+                        주세요.</label>
+                </div>
+            </div>
+            <!--추가하기 버튼-->
+            <button class="btn btn-primary but-off-color" onclick="test2()" type="submit"
+                    style="width: 980px; height: 35px; font-size: 13px; margin-top: 10px; display: flex; justify-content: center; align-content: center; align-items: center;">
+                순서 추가하기
+            </button>
+            <script th:inline="javascript" th:object="${TestDTO}">
+                // 노드를 추가하는 로직
+
+                // 엘리먼트를 복사함
+                const testDiv = document.getElementById("node");
+                // 자식노드를 선택함 : 필요 없는 경우 그냥 해도됨
+                let ulEle = testDiv.querySelector("ul");
+                let nameList
+                // 아래와 같이 문자열로 취급되기 때문에 추가하는 것도 가능함
+                let cnt = 0;
+
+                // 노드를 추가하는 로직
+                function test2() {
+                    ulEle.innerHTML += "<li> 이름 : <input th:type=\"text\" name=\"name\"/> <br>" +
+                        "숫자 : <input th:type=\"number\" name=\"test\"/></li>";
+                }
+            </script>
+        </div>
+        <!--취소, 등록 버튼-->
+        <div class="d-flex justify-content-end new-margin" style="margin-bottom: 100px;">
+            <a class="btn btn-primary but-off-color" href="/01_키친가이드_메인.html" role="button"
+               style=" margin-right: 15px; text-align: center;" onclick="return confirm('게시글 작성을 취소하시겠습니까?')">
+                <b>취소</b>
+            </a>
+            <a class="btn btn-primary but-off-color" href="/01_키친가이드_메인.html" role="button"
+               onclick="return confirm('게시글을 등록하시겠습니까?')">
+                <b>손질법 등록</b>
+            </a>
+        </div>
+    </div>
+    </body>
+</th:block>
+</html>
