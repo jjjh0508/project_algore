@@ -31,24 +31,21 @@
     </select>
 
     <!--회원가입페이지-->
-    <!--    <insert id="registUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">-->
-    <!--        INSERT-->
-    <!--        INTO MEMBER()-->
-    <!--        VALUES-->
-    <!--            (-->
-    <!--                SEQ_MEM_NUM.NEXTVAL,-->
-    <!--                #{ memNum },-->
-    <!--                #{ name },-->
-    <!--                #{ id },-->
-    <!--                #{ nickName },-->
-    <!--                #{ passWord },-->
-    <!--                #{ birth },-->
-    <!--                #{ email },-->
-    <!--                #{ role }-->
-    <!--                SYSDATE,-->
-    <!--                'N'-->
-    <!--            )-->
-    <!--    </insert>-->
+        <insert id="registUser" parameterType="com.algore.application.user.dto.UserMemberDTO">
+            INSERT
+            INTO MEMBER(MEM_NUM,NAME,ID,NICKNAME,PASSWORD,BIRTH,EMAIL,STRAT_DATE)
+            VALUES
+                (
+                    SEQ_MEM_NUM.NEXTVAL,
+                    #{ name },
+                    #{username},
+                    #{ nickName },
+                    #{ password },
+                    #{ birth },
+                    #{ email },
+                    SYSDATE
+                )
+        </insert>
 
     <!--    <update id="reqistUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">-->
     <!--        UPDATE MEMBER()-->
@@ -74,6 +71,5 @@
     <!--              ROLE-->
     <!--        FROM MEMBER-->
     <!--    </select>-->
-
 
 </mapper>

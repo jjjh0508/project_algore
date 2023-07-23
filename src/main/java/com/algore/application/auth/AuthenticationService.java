@@ -27,8 +27,8 @@ public class AuthenticationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 매퍼에서 쿼리 등록 해줘야함
 
-        System.out.println(username);
-        System.out.println(passwordEncoder.encode("2222"));
+//        System.out.println(username);
+//        System.out.println(passwordEncoder.encode("2222"));
         // mapper에서 가져와야함
         // 현재는 가상의 값을 넣어서 반환하는 로직으로 작성됨
         AuthUserDTO authUserDTO = loginTestMapper.loginSham(username);

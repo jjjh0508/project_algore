@@ -8,6 +8,8 @@ import java.util.List;
 @Mapper
 public interface JoinMapper {
     List<UserMemberDTO>selectAll();
-//    void registUser(InsertmemberDTO insertmemberDTO);
+
+    int registUser(UserMemberDTO insertUserMemberDTO);
+// 서비스에서 자동으로 받아 만들어 짐
 
 }

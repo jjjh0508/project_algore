@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class UserMemberDTO {
     private int memNum; //로그인 페이지 회원번호 식별
-    private String name; //회원이름
-    private String username;  //회원아이디 불러
+    private String username; //아이디
+    private String name;  // 이름 불러
     private String nickName;
     private String password;
-    private Date birth;
+    private String birth;
     private String email;
     private String role;
     private String status;
@@ -17,10 +17,10 @@ public class UserMemberDTO {
         super();
     }
 
-    public UserMemberDTO(int memNum, String name, String id, String nickName, String password, Date birth, String email, String role, String status) {
+    public UserMemberDTO(int memNum, String username, String name, String nickName, String password, String birth, String email, String role, String status) {
         this.memNum = memNum;
+        this.username = username;
         this.name = name;
-        this.username = id;
         this.nickName = nickName;
         this.password = password;
         this.birth = birth;
@@ -37,20 +37,13 @@ public class UserMemberDTO {
         this.memNum = memNum;
     }
 
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return username;
-    }
-
-    public void setId(String id) {
-        this.username = id;
     }
 
     public String getNickName() {
@@ -69,12 +62,20 @@ public class UserMemberDTO {
         this.password = password;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -105,11 +106,11 @@ public class UserMemberDTO {
     public String toString() {
         return "UserMemberDTO{" +
                 "memNum=" + memNum +
-                ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", password='" + password + '\'' +
-                ", birth=" + birth +
+                ", birth='" + birth + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
