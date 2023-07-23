@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layouts/layout}">
 
@@ -173,13 +174,13 @@
     <main class="write01"
           style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 120px;">
         <!--레시피 제목-->
+
         <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
             <div class="title" style="margin-bottom: 15px; color: #085A84;">
                 <h2 th:text="${recipevlew.recipeTitle}"><b>레시피 제목 나오는 칸</b></h2>
             </div>
             <hr style="margin-top: 30px; margin-bottom: 20px;">
         </div>
-
         <!--레시피 작성자-->
         <div id="recipe-writer" class="">
             <div class="shadow-none bg-light" style="height: 160px; border-radius: 2em; align-items: center;">
@@ -409,7 +410,10 @@
         </div>
 
 
-        <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">
+<!--        <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">-->
+<!--        <th:block th:if="${#authentication.getAuthorities()}==${recipevlew.recipeWriter}">-->
+        <div sec:authorize="hasRole('ADMIN')">
+        <!-- ROLE_SUB_ADMIN 권한을 가지고 있다면 보임 -->
             <div class="d-flex justify-content-end new-margin" style="margin-top: 30px; margin-right: 25px;">
                 <a class="btn btn-primary but-off-color" th:href="@{/recipe/delete(recipe=${recipevlew.recipeNum})}"
                    role="button"
@@ -427,7 +431,8 @@
             <div style="margin-bottom: 6%;">
 
             </div>
-        </th:block>
+        </div>
+<!--        </th:block>-->
         <hr style="margin-bottom: 30px;">
 
         <!-- 코멘트 출력영역 시작 -->

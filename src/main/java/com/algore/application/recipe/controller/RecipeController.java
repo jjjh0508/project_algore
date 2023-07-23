@@ -2,6 +2,7 @@ package com.algore.application.recipe.controller;
 
 import com.algore.application.recipe.dto.*;
 import com.algore.application.recipe.service.RecipeService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -144,10 +145,10 @@ public class RecipeController {
 
                 List<RecipeOrderDTO> newOrderDTO = new ArrayList<>();
 
-                System.out.println(authentication.getDetails());
+               /* System.out.println(authentication.getDetails());
                 System.out.println(authentication.isAuthenticated());
                 System.out.println(authentication.getPrincipal());
-                System.out.println(authentication.getAuthorities());
+                System.out.println(authentication.getAuthorities());*/
 
                 if (!authentication.getName().equals(name)) {
                     //작성자만 수정가능
