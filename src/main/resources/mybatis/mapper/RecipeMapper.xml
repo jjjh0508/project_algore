@@ -173,13 +173,11 @@
          INTO RECIPE_INGREDIENT
         (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT_NUM)
         VALUES
-
            ( #{item.ingNum},
             #{item.recipeNum},
             #{item.weigh},
             #{item.riUnitNum}
             )
-
         </foreach>
     </update>
 
@@ -236,7 +234,4 @@
     DELETE RECIPE_INGREDIENT
     WHERE RECIPE_NUM= ${recipeNum}
 </delete>
-
-
-
 </mapper>
