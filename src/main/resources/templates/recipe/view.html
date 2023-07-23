@@ -410,9 +410,9 @@
         </div>
 
 
-<!--        <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">-->
+        <th:block th:if="${#authentication.name}==${recipevlew.recipeWriter}">
 <!--        <th:block th:if="${#authentication.getAuthorities()}==${recipevlew.recipeWriter}">-->
-        <div sec:authorize="hasRole('ADMIN')">
+<!--        <div sec:authorize="hasRole('ADMIN')">-->
         <!-- ROLE_SUB_ADMIN 권한을 가지고 있다면 보임 -->
             <div class="d-flex justify-content-end new-margin" style="margin-top: 30px; margin-right: 25px;">
                 <a class="btn btn-primary but-off-color" th:href="@{/recipe/delete(recipe=${recipevlew.recipeNum})}"
@@ -432,7 +432,7 @@
 
             </div>
         </div>
-<!--        </th:block>-->
+        </th:block>
         <hr style="margin-bottom: 30px;">
 
         <!-- 코멘트 출력영역 시작 -->
