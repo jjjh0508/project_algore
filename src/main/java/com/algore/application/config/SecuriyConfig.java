@@ -30,8 +30,9 @@ public class SecuriyConfig {
     String[] staticResources  =  {
             "/css/**",
             "/img/**",
+            "/upload/**",
             "/fonts/**",
-            "/scripts/**",
+            "/scripts/**"
     };
 
     @Bean
@@ -40,7 +41,7 @@ public class SecuriyConfig {
                 // (/list) -> 이와 같은 것을 리소르라고 한다.
                 // 아래의 mvcMatchers는 요청 주소 식별에서 (/list/)와 같이 모호한 요청도 식별을 해준다.
                 // 추가됨
-                .mvcMatchers("/*","/common/login","/common/loginfail","common/test")
+                .mvcMatchers("/*","/user/login","/common/loginfail","common/test" ,"user/join","user/regist")
                 // 해당 설정은 위에 정의된 리소스 요청에 모든 권한의 사용자를 허용해준다는 것이다.
                 .permitAll() //이와 반대인 denyAll()도 있으며 이것은 모두 제안한다.
                 // .rememberMe() : 로그인된 사용자만 접근을 허용해준다.
@@ -57,7 +58,7 @@ public class SecuriyConfig {
                 .csrf().disable();
 
         http.formLogin() // 로그인 설정
-                .loginPage("/common/login")
+                .loginPage("/user/login")
                 // 로그인을 진행할 페이지 필드명을 맞추야 한다.
                 // 로그인 성공시 아래의 페이지로 요청을 보냄
                 .defaultSuccessUrl("/common/test")

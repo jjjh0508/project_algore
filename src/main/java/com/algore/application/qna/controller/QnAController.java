@@ -72,6 +72,7 @@ public class QnAController {
     public void userupdatequestion() {
     }
 
+
     //글쓰기
     @GetMapping("/adminwriteanswer")
     public void adminwriteanswer() {

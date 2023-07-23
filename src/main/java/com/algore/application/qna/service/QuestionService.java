@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class QuestionService {
+
     private final QuestionMapper questionMapper;
     private final QuestionMapper detailMapper;
 
@@ -29,7 +30,6 @@ public class QuestionService {
 
         return list;
     }
-
 
 
 
