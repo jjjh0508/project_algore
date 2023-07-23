@@ -1,6 +1,5 @@
 package com.algore.application.kitchenguide.controller;
 
-<<<<<<< HEAD
 import com.algore.application.kitchenguide.dto.TrimDTO;
 import com.algore.application.kitchenguide.dto.TrimProcedureDTO;
 import com.algore.application.kitchenguide.service.KitchenguideService;
@@ -276,14 +275,14 @@ public class KitchenguideController {
         }
         return mv;
     }
-    
-    
-    
-    
+
+
+
+
     /*
-    *  보관법
-    * 
-    * */
+     *  보관법
+     *
+     * */
 
 //    @GetMapping("/trimupdate/{trimNum}") //손질법 게시글 수정(관리자 권한) - 페이지 수정 폼 컨트롤러
 //    public ModelAndView trimupdate(ModelAndView mv, @PathVariable("trimNum") int trimNum/*손질번호*/, Authentication authentication/*권한*/) {
@@ -515,29 +514,4 @@ public class KitchenguideController {
 //        }
 //        return mv;
 //    }
-
-=======
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-@RequestMapping("/kitchenguide")
-public class KitchenguideController {
-
-    @GetMapping("/main")
-    public void main() {
-    }
-
-    @GetMapping("/repairwrite")
-    public String repairwrite() {
-        return "kitchenguide/repairwrite";
-    }
-
-    @GetMapping("/repairread")
-    public String repairread() {
-        return "kitchenguide/repairread";
-    }
-
->>>>>>> a5d9fd23012d58831839b5dbeaf654638fc989f2
 }
