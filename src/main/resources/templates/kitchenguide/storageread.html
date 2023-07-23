@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            header a {
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            .new-margin {
+                margin-top: 30px;
+            }
+
+            .fon-color {
+                color: #085A84;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .input-box-sty {
+                margin-top: 10px;
+                border: 2px solid;
+                border-color: #085A8430;
+                font-size: 15px;
+            }
+
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
+
+            /*미디어*/
+            @media (max-width: 500px) {
+
+                iframe {
+                    height: auto;
+                }
+
+                #other-recipe-area {
+                    display: none;
+                }
+
+                #article1 {
+
+                    border-right-width: 0px;
+
+                }
+
+                #step-img-area {
+                    padding: 0px;
+                }
+
+
+                #list-icon {
+                    position: fixed;
+                    top: 15%;
+                    left: 6%;
+                    z-index: 99;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    <!--게시글 조회 시작-->
+    <div class="write01"
+         style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 70px;">
+        <!--레시피 제목-->
+        <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
+            <!--DTO-trimNum 손질번호 불러오기-->
+            <div class="title" style="margin-bottom: 15px;">
+                <h2><b class="fon-color" th:text="${trimDTO.trimTitle}"></b></h2>
+            </div>
+            <!--조회수 값 받아오기-->
+            <div style="text-align: right; margin-right: 30px;">
+                <h6 th:text="${trimDTO.trimViews}+회"></h6></div>
+        </div>
+        <hr>
+        <!-- 비디오 영역 -->
+        <div id="youtube-area">
+            <div style="margin-top: 30px;">
+                <!-- 비디오 주소를 입력했을때만-->
+                <!-- <c:if test="${recipe.recipeVideo ne null }"> -->
+                <th:block th:if="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink != null}">
+                    <iframe width="980px" height="500"
+                            th:src="'https://www.youtube.com/embed/'+${trimDTO.trimVideoLink}"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                    </iframe>
+                </th:block>
+            </div>
+        </div>
+        <!-- 손질 방법 소개 내용 출력-->
+        <div class="form-floating">
+            <textarea th:text="${trimDTO.trimDetail}" class="form-control input-box-sty border-none"
+                      id="floatingTextaread2"
+                      style="height: 200px; resize: none" readonly></textarea>
+        </div>
+
+        <!-- 손질 순서 내용-->
+        <!--손질 순서-->
+        <div class="fon-color" style="margin-top: 50px;">
+            <i class="bi bi-three-dots-vertical" style="font-size: 20px;"></i>
+            <label style="font-size: 17px;"><b>손질 순서</b></label>
+        </div>
+        <!--손질 순서 영역1-->
+        <!--블럭 리스트 형태로 값 가져오기-->
+        <th:block th:each="List:${procedureList}">
+            <div class="d-flex justify-content-center" id="main-one-area" style="margin-top: 10px;">
+                <!--손질 순서 사진-->
+                <div>
+                    <img th:src="${List.tpPath}" class="img-thumbnail input-box-sty"
+                         style="height: 200px; width: 370px; margin-right: 30px;">
+                </div>
+                <!--손질 순서 내용-->
+                <div class="form-floating">
+                        <textarea th:text="${List.tpDetail}" class="form-control input-box-sty border-none"
+                                  id="floatingTextareafa2"
+                                  style="height:200px; width: 580px; resize: none" readonly></textarea>
+                </div>
+            </div>
+        </th:block>
+
+        <!--수정(관리자권한)"'/kitchenguide/delete/${trimDTO.trimNum}"-->
+        <div sec:authorize="hasRole('ADMIN')">
+            <div class="d-flex justify-content-end new-margin" style="margin-top: 30px;">
+                <a th:href="'/kitchenguide/delete/'+${trimNum}" class="btn btn-primary but-off-color" role="button"
+                   style=" margin-right: 15px; text-align: center; border-radius: 2em;"
+                   onclick="return confirm('게시글을 삭제하시겠습니까?')">
+                    <b>삭제</b>
+                </a>
+                <a th:href="'/kitchenguide/trimupdate/'+${trimNum}" class="btn btn-primary but-off-color" role="button"
+                   style="border-radius: 2em;"
+                   onclick="return confirm('게시글을 수정하시겠습니까?')">
+                    <b>손질법 수정</b>
+                </a>
+            </div>
+        </div>
+    </div>
+    </body>
+</th:block>
+</html>

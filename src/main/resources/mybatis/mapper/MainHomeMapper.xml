@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.algore.application.home.dao.MainviewMapper">
+    <resultMap id="mainViewMap" type="com.algore.application.home.dto.MainViewDTO">
+        <id property="recipeNum" column="RECIPE_NUM"/>
+        <result property="recipeTitle" column="RECIPE_TITLE"/>
+        <result property="views" column="RECIPE_VIEWS"/>
+        <result property="fileName" column="MAIN_PHOTO"/>
+        <result property="filePath" column="PHOTO_PATH"/>
+    </resultMap>
+
+    <select id="mainView" resultMap="mainViewMap" parameterType="Int">
+
+        SELECT
+            RECIPE_NUM,
+            RECIPE_TITLE,
+            RECIPE_VIEWS,
+            MAIN_PHOTO,
+            PHOTO_PATH
+        FROM recipe
+        WHERE RECIPE_STATUS='Y'
+        ORDER BY RECIPE_VIEWS  DESC
+        OFFSET #{startIndex} ROWS FETCH NEXT #{pageSiz} ROWS ONLY
+
+
+    </select>
+
+
+    <select id="allcnt">
+    SELECT
+        count(*)
+        FROM RECIPE
+    WHERE RECIPE_STATUS ='Y'
+
+    </select>
+</mapper>

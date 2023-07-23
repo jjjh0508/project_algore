@@ -16,13 +16,15 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
       location:  #?? ??
+
   devtools:
-    restart:
-      enabled: true
-    livereload:
-      enabled: true
-  freemarker:
-    cache: false
+    devtools:
+      livereload:
+        enabled: true
+      restart:
+        enabled: true
+      thymeleaf:
+        cache: false
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -31,7 +33,7 @@ spring:
     check-template-location: true
   web:
     resources:
-      static-locations: classpath:/upload/
+      static-locations: classpath:/static/upload/
 
 image:
   image-dir: src/main/resources

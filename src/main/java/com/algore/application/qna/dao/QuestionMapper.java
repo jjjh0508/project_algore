@@ -8,6 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface QuestionMapper {
+
     List<QuestionDTO> questionAll();
     QuestionDTO detaileRead(int qNumber);
 }
+
