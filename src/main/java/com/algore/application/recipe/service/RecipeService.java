@@ -84,6 +84,14 @@ public class RecipeService {
                 mapper.writeRecipePhotos(recipePhotoWriteDTOList);
             }
 
+            List<RecipeIngredientDTO> recipeIngredientDTOList = recipeWriteDTO.getRecipeIngredientDTOList();
+            if (recipeIngredientDTOList != null && !recipeIngredientDTOList.isEmpty()) {
+                for (RecipeIngredientDTO recipeIngredientDTO : recipeIngredientDTOList) {
+                    recipeIngredientDTO.setRecipeNum(result);
+                }
+                mapper.writeRecipeIngredients(recipeIngredientDTOList);
+            }
+
         }
         return result;
     }

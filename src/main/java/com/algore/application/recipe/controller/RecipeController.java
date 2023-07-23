@@ -60,6 +60,7 @@ public class RecipeController {
             mv.setViewName("/recipe/write");
             return mv;
         }
+
         @PostMapping("/registform")
         @ResponseBody
         public ModelAndView writeReci (ModelAndView model, RecipeWriteDTO recipeWriteDTO, HttpServletRequest request,
@@ -98,7 +99,6 @@ public class RecipeController {
                 }
 
                 // 요리 순서 로직
-                int countStep = 1;
                 for(int i=0; i < rpContent.size(); i++){
                     if(rpFile.get(i).getOriginalFilename().equals("")){
                         if(i < recipeProcedureDTOS.size()){
@@ -108,26 +108,64 @@ public class RecipeController {
                         if(i > recipeProcedureDTOS.size()){
                             File file = new File(root + "\\");
 
-                            if(file.exists()){
+                            if(file.exists()) {
                                 file.mkdirs();
                             }
                         }
+
+                        String newPhotoName = rpFile.get(i).getOriginalFilename();
+                        String newOrdeFileName = simpleDateFormat.format(new Date(System.currentTimeMillis())) + "." + newPhotoName.substring(newPhotoName.lastIndexOf(".") + 1);
+
+                        rpFile.get(i).transferTo(new File(root + "\\" + newOrdeFileName));
+                        selectProcedures.add(new SelectProcedure(recipeNum, rpContent.get(i), newOrdeFileName, "/upload/basic/"));
+
 
                     }
                 }
 
                 // 완성 사진
-                for(int i = 0; i <recipePhotoWriteDTOList.size(); i++){
+                for(int i = 0; i <recipePhotoWriteDTOList.size(); i++) {
                     recipePhotoWriteDTOList.get(i).setRecipeNum(recipeWriteDTO.getRecipeNum());
+
+                    String photoName = recipePhotoWriteDTOList.get(i).getRecipePhotoWriteInput().getOriginalFilename();
+                    if(photoName != null && !photoName.equals("")){
+                        System.out.println(photoName);
+
+                        File file = new File(root + "//" + recipePhotoWriteDTOList.get(i).getRecipeFileName());
+                        if(file.exists()){
+                            file.mkdirs();
+                        }
+
+                        String PhotoName = simpleDateFormat.format(new Date(System.currentTimeMillis()))+ "." + photoName.substring(photoName.lastIndexOf(".") + 1);
+
+                        recipePhotoWriteDTOList.get(i).getRecipePhotoWriteInput().transferTo(new File(root + "\\" + photoName));
+                        recipePhotoWriteDTOList.get(i).setRecipePhotoPath("/upload/basic");
+                        recipePhotoWriteDTOList.get(i).setRecipeFileName(photoName);
+                    }
                 }
 
+                // 재료
+                List<RecipeIngredientDTO> recipeIngredientDTOS = new ArrayList<>();
+                for(int i=0; i<ingName.length; i++){
+                    if(!(ingName[i] == 0)){
+                        recipeIngredientDTOS.add(new RecipeIngredientDTO(ingName[i],recipeNum,Integer.parseInt(weigh[i]),riUnitNum[i]));
+                        System.out.println(ingName[i]+"이름");
+                        System.out.println(weigh[i]+"용량");
+                        System.out.println(riUnitNum[i]+"단위");
+                    }
+                }
+
+                for(RecipeIngredientDTO recipeIngredientDTO : recipeIngredientDTOS){
+                    System.out.println(recipeIngredientDTO);
+                }
+                recipeWriteDTO.setRecipePhotoWriteDTOList(recipePhotoWriteDTOList);
+//                recipeWriteDTO.setIngredientDTOList(recipeIngredientDTOS);
+                recipeWriteDTO.setRecipeProcedureDTOList(recipeProcedureDTOS);
 
 
-
-                System.out.println(rpFile.get(0).getOriginalFilename());
+//                System.out.println(rpFile.get(0).getOriginalFilename());
                 int result = recipeService.writeRecipe(recipeWriteDTO);
 
-                String path = "";
 
                 if (result > 0) {
                     model.addObject("message", "등록이 완료되었습니다.");

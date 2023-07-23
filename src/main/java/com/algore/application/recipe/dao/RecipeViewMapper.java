@@ -52,4 +52,6 @@ public interface RecipeViewMapper {
     int writeRecipePhotos(List<RecipePhotoWriteDTO> recipePhotoWriteDTOList);
 
     List<IngredientDTO> readIng();
+
+    int writeRecipeIngredients(List<RecipeIngredientDTO> recipeIngredientDTOList);
 }
