@@ -11,5 +11,6 @@ public interface EmployeeMapper {
 
     List<SelectEmployeeDTO> selectAll();
 
+
     int registEmployee(InsertEmpDTO insertEmpDTO);
 }

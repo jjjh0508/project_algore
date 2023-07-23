@@ -97,7 +97,7 @@
           style="width: 1100px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px;">
         <!--사용자 전용 버튼-->
         <div class="d-flex justify-content-end">
-            <a href="#">
+            <a href="#{}">
                 <button type="button" class="btn btn-outline-secondary"
                         style="height: 50px; width: 150px; border-radius: 1.3em; float: right;">
                     <b>질문 작성하기</b>
@@ -112,24 +112,20 @@
                 <tr class="tr-col" style="height: 50px; vertical-align: middle;">
                     <th>No</th>
                     <th>글제목</th>
-                    <th>작성자</th>
+                    <th>글쓴이</th>
                     <th>작성일</th>
                     <th>답변상태</th>
                 </tr>
                 </thead>
                 <!--게시글1 _ 이 부분이 반복...삽입 되어야 함....!!!-->
                 <tbody>
-                <tr class="fon-color">
-                    <td>1</td>
-                    <td>
-                        <a href="QnA 상세페이지.html">
-                            <b>집에 가고싶은데</b>
-                        </a>
-                    </td>
-                    <td>nonno</td>
-                    <td>2023.06.06</td>
-                    <td>미완료</td>
-                </tr>
+                    <tr th:each="ques: ${mainList}">
+                        <td th:text="${ques.qNumber}"></td>
+                        <td th:text="${ques.qTitle}"></td>
+                        <td th:text="${ques.nickname}"></td>
+                        <td th:text="${ques.qDate}"></td>
+                        <td th:text="${ques.status}"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

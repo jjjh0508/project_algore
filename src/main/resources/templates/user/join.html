@@ -2,179 +2,185 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>알고레</title>
-  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-          crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
-  <style>
-    a {
-      text-decoration: none
-    }
+    <meta charset="UTF-8">
+    <title>알고레</title>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <style>
+        a {
+            text-decoration: none
+        }
 
-    .sear-btn {
-      font-family: Inter;
-      font-size: 20px;
-      letter-spacing: 0;
-      font-weight: bold;
-      color: #208BCE;
-    }
+        .sear-btn {
+            font-family: Inter;
+            font-size: 20px;
+            letter-spacing: 0;
+            font-weight: bold;
+            color: #208BCE;
+        }
 
-    .new-margin {
-      margin-top: 30px;
-    }
+        .new-margin {
+            margin-top: 30px;
+        }
 
-    .fon-color {
-      color: #085A84;
-    }
+        .fon-color {
+            color: #085A84;
+        }
 
-    .but-off-color {
-      background-color: #D8F0FF;
-      /*버튼테두리*/
-      border-color: #D8F0FF;
-      /*버튼*/
-      color: #085A84;
-      /*텍스트*/
-      padding: 10px 15px 10px 15px;
-      border-radius: 2em;
-    }
+        .but-off-color {
+            background-color: #D8F0FF;
+            /*버튼테두리*/
+            border-color: #D8F0FF;
+            /*버튼*/
+            color: #085A84;
+            /*텍스트*/
+            padding: 10px 15px 10px 15px;
+            border-radius: 2em;
+        }
 
-    .but-off-color:hover {
-      background-color: #99D3F8;
-      /*버튼테두리*/
-      border-color: #99D3F8;
-      /*버튼*/
-      color: #085A84;
-      /*텍스트*/
-      padding: 10px 15px 10px 15px;
-      border-radius: 2em;
-    }
+        .but-off-color:hover {
+            background-color: #99D3F8;
+            /*버튼테두리*/
+            border-color: #99D3F8;
+            /*버튼*/
+            color: #085A84;
+            /*텍스트*/
+            padding: 10px 15px 10px 15px;
+            border-radius: 2em;
+        }
 
-    .input-box-sty {
-      margin-top: 10px;
-      border: 2px solid;
-      border-color: #085A8430;
-      font-size: 15px;
-    }
+        .input-box-sty {
+            margin-top: 10px;
+            border: 2px solid;
+            border-color: #085A8430;
+            font-size: 15px;
+        }
 
-    .pla-col::placeholder {
-      color: #085A8485;
-      font-size: 15px;
-    }
-  </style>
+        .pla-col::placeholder {
+            color: #085A8485;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 <!--13_0_회원가입-->
 <main class="write01"
       style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 120px;">
-  <div class="text-center">
-    <div class="form-signin mx-auto" style="width: 400px;">
-      <form th:action="@{/common/login}" method="post">
-        <!--회원가입-->
-        <h1 class="h1 mb-5 fw-bold" style="color: #208BCE;">회원가입</h1>
-        <!--이름 입력 영역-->
-        <div class="form-floating">
-          <input type="text" class="form-control" id="username" name="username" placeholder="id">
-          <label for="username">이름</label>
+    <div class="text-center">
+        <div class="form-signin mx-auto" style="width: 400px;">
+            <form th:action="@{/user/regist}" method="post">
+                <!--회원가입-->
+                <h1 class="h1 mb-5 fw-bold" style="color: #208BCE;">회원가입</h1>
+                <!--이름 입력 영역-->
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="username" name="name" placeholder="id">
+                    <label for="username">이름</label>
+                </div>
+                <!--아이디 입력 영역-->
+                <div class="d-flex justify-content-start" style="margin-top: 15px;">
+                    <table>
+                        <td>
+                            <!--아이디 입력-->
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="username"
+                                       placeholder="id" style="width: 260px;">
+                                <label for="username">아이디</label>
+                            </div>
+                        </td>
+                        <td>
+                            <!--아이디 중복 확인-->
+                            <div class="checkId">
+                                <button type="submit" class="btn btn-info but-off-color"
+                                        style="width: 100px; height: 55px;">중복
+                                </button>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+                <!--(자바스크립트로) 아이디 중복 확인 알림...-->
+                <div class="d-flex justify-content-start" style="margin-top: 5px;">
+                    <label for="alim" style="float: left;">*사용가능한 아이디 입니다.</label>
+                </div>
+                <!--닉네임 입력 영역-->
+                <div class="d-flex justify-content-start" style="margin-top: 15px;">
+                    <table>
+                        <td>
+                            <!--닉네임 입력-->
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="nickName"
+                                       placeholder="id" style="width: 260px;">
+                                <label for="username">닉네임</label>
+                            </div>
+                        </td>
+                        <td>
+                            <!--닉네임 중복 확인-->
+                            <div class="checkId">
+                                <button type="submit" class="btn btn-info but-off-color"
+                                        style="width: 100px; height: 55px;">중복
+                                </button>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+                <!--(자바스크립트로) 닉네임 중복 확인 알림...-->
+                <div class="d-flex justify-content-start" style="margin-top: 5px;">
+                    <label for="alim" style="float: left;">*사용가능한 닉네임 입니다.</label>
+                </div>
+                <!--비밀번호 입력 영역-->
+                <div class="form-floating" style="margin-top: 15px;">
+                    <input type="text" class="form-control" id="username" name="password" placeholder="id">
+                    <label for="username">비밀번호</label>
+                </div>
+                <!--생년월일 입력 영역-->
+                <div class="form-floating" style="margin-top: 15px;">
+                    <input type="date" class="form-control" id="username" name="birth" placeholder="id">
+                    <label for="username">생년월일</label>
+                </div>
+                <!--이메일 입력 영역-->
+                <div class="d-flex justify-content-start" style="margin-top: 15px;">
+                    <table>
+                        <td>
+                            <!--이메일 입력-->
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="username" name="email"
+                                       placeholder="id" style="width: 260px;">
+                                <label for="username">이메일</label>
+                            </div>
+                        </td>
+                        <td>
+                            <!--이메일 인증-->
+                            <div class="checkId">
+                                <button type="submit" class="btn btn-info but-off-color"
+                                        style="width: 100px; height: 55px;">인증
+                                </button>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+                <!--(자바스크립트로) 닉네임 중복 확인 알림...-->
+                <div class="d-flex justify-content-start" style="margin-top: 5px;">
+                    <label for="alim" style="float: left;">*해당 이메일로 인증코드를 발송하였습니다.</label>
+                </div>
+                <!--버튼-->
+                <div class="d-flex justify-content-center" style="margin-top: 50px;">
+                    <!--이전 버튼-->
+                    <button class="btn btn-lg btn-primary but-off-color" type="button"
+                            style="margin-right: 20px;"><b>이전</b></button>
+                    <!--회원가입 버튼-->
+                    <button type="submit" class="btn btn-lg btn-primary but-off-color" role="button">
+                        <b>회원가입</b>
+                    </button>
+<!--                    <button class="btn btn-lg btn-primary but-off-color" type="submit"><b>회원가입</b></button>-->
+                </div>
+            </form>
         </div>
-        <!--아이디 입력 영역-->
-        <div class="d-flex justify-content-start" style="margin-top: 15px;">
-          <table>
-            <td>
-              <!--아이디 입력-->
-              <div class="form-floating">
-                <input type="text" class="form-control" id="username" name="username"
-                       placeholder="id" style="width: 260px;">
-                <label for="username">아이디</label>
-              </div>
-            </td>
-            <td>
-              <!--아이디 중복 확인-->
-              <div class="checkId">
-                <button type="submit" class="btn btn-info but-off-color"
-                        style="width: 100px; height: 55px;">중복</button>
-              </div>
-            </td>
-          </table>
-        </div>
-        <!--(자바스크립트로) 아이디 중복 확인 알림...-->
-        <div class="d-flex justify-content-start" style="margin-top: 5px;">
-          <label for="alim" style="float: left;">*사용가능한 아이디 입니다.</label>
-        </div>
-        <!--닉네임 입력 영역-->
-        <div class="d-flex justify-content-start" style="margin-top: 15px;">
-          <table>
-            <td>
-              <!--닉네임 입력-->
-              <div class="form-floating">
-                <input type="text" class="form-control" id="username" name="username"
-                       placeholder="id" style="width: 260px;">
-                <label for="username">닉네임</label>
-              </div>
-            </td>
-            <td>
-              <!--닉네임 중복 확인-->
-              <div class="checkId">
-                <button type="submit" class="btn btn-info but-off-color"
-                        style="width: 100px; height: 55px;">중복</button>
-              </div>
-            </td>
-          </table>
-        </div>
-        <!--(자바스크립트로) 닉네임 중복 확인 알림...-->
-        <div class="d-flex justify-content-start" style="margin-top: 5px;">
-          <label for="alim" style="float: left;">*사용가능한 닉네임 입니다.</label>
-        </div>
-        <!--비밀번호 입력 영역-->
-        <div class="form-floating" style="margin-top: 15px;">
-          <input type="text" class="form-control" id="username" name="username" placeholder="id">
-          <label for="username">비밀번호</label>
-        </div>
-        <!--생년월일 입력 영역-->
-        <div class="form-floating" style="margin-top: 15px;">
-          <input type="date" class="form-control" id="username" name="username" placeholder="id">
-          <label for="username">생년월일</label>
-        </div>
-        <!--이메일 입력 영역-->
-        <div class="d-flex justify-content-start" style="margin-top: 15px;">
-          <table>
-            <td>
-              <!--이메일 입력-->
-              <div class="form-floating">
-                <input type="email" class="form-control" id="username" name="username"
-                       placeholder="id" style="width: 260px;">
-                <label for="username">이메일</label>
-              </div>
-            </td>
-            <td>
-              <!--이메일 인증-->
-              <div class="checkId">
-                <button type="submit" class="btn btn-info but-off-color"
-                        style="width: 100px; height: 55px;">인증</button>
-              </div>
-            </td>
-          </table>
-        </div>
-        <!--(자바스크립트로) 닉네임 중복 확인 알림...-->
-        <div class="d-flex justify-content-start" style="margin-top: 5px;">
-          <label for="alim" style="float: left;">*해당 이메일로 인증코드를 발송하였습니다.</label>
-        </div>
-        <!--버튼-->
-        <div class="d-flex justify-content-center" style="margin-top: 50px;">
-          <!--이전 버튼-->
-          <button class="btn btn-lg btn-primary but-off-color" type="submit"
-                  style="margin-right: 20px;"><b>이전</b></button>
-          <!--회원가입 버튼-->
-          <button class="btn btn-lg btn-primary but-off-color" type="submit"><b>회원가입</b></button>
-        </div>
-      </form>
     </div>
-  </div>
 </main>
 </body>
 </html>

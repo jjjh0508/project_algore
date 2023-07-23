@@ -20,7 +20,14 @@
 
     <!--상단바-->
     <div class="d-flex flex-row-reverse" style="padding-right: 4%; padding-top: 2%;">
-        <div class="p-2"><a href="#" style="color: #208BCE;"><b>로그인</b></a></div>
+        <th:block th:if="${#authentication.name}==anonymousUser">
+        <div class="p-2"><a href="/user/login" style="color: #208BCE;"><b>로그인</b></a></div>
+        </th:block>
+
+        <th:block th:unless="${#authentication.name}==anonymousUser">
+            <div class="p-2"><a href="/common/logout" style="color: #208BCE;"><b>로그아웃</b></a></div>
+        </th:block>
+
         <div class="p-2"><a href="#" style="color: #208BCE; margin-right: 20px;"><b>마이페이지</b></a></div>
         <div class="p-2"><a href="#" style="color: #208BCE; margin-right: 20px;"><b>Q&A</b></a></div>
     </div>

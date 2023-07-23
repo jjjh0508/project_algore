@@ -24,11 +24,17 @@
     <li>
       <a href="/employee/file">파일 업로드</a>
     </li>
+    <li>
+      <a href="/qna/main">qna메인</a>
+    </li>
   </ul>
   <div>
     <p th:text="${#authentication.name}"></p>
     <p th:text="${#authentication.authorities}"></p>
     <p th:text="${#authentication.authenticated}"></p>
+
+    <p th:text="${#authentication.getName()}"></p>
+
 
 
   </div>
@@ -49,7 +55,7 @@
   // 해당 요청은 비동기 요청으로써 호출하는 Controller는 employee > controller > restController 확인
   let testDiv = document.getElementById("test");
   function api(){
-    let empList = fetch("http://localhost:8080/test").then((res) => res.json())
+    let empList = fetch("http://localhost:8081/test").then((res) => res.json())
             .then(data => test(data))
             .catch(err => console.log(err));
   }

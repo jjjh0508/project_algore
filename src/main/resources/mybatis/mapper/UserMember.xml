@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.algore.application.employee.dao.LoginTestMapper">
+
+<!--    로그인에 들어가는 쿼리-->
+        <resultMap id="authUser" type="com.algore.application.auth.AuthUserDTO">
+            <id property="memNum" column="MEM_NUM"/>
+            <result property="username" column="ID"/>
+            <result property="password" column="PASSWORD"/>
+            <result property="nickName" column="NICKNAME"/>
+            <result property="role" column="ROLE"/>
+        </resultMap>
+<!--    로그인에 들어가는 쿼리-->
+
+        <select id="loginSham"  parameterType="String" resultMap="authUser">
+            SELECT
+                *
+            FROM MEMBER
+            WHERE ID = #{username}
+        </select>
+
+
+<!--    &lt;!&ndash;회원가입할때 사용할 쿼리&ndash;&gt;-->
+<!--        <resultMap id="userMemberDTO" type="com.algore.application.user.dto.UserMemberDTO">-->
+<!--            <id property="memNum" column="MEM_NUM"/>-->
+<!--            <result property="name" column="NAME"/>-->
+<!--            <result property="username" column="ID"/>-->
+<!--            <result property="nickName" column="NICKNAME"/>-->
+<!--            <result property="password" column="PASSWORD"/>-->
+<!--            <result property="birth" column="BIRTH"/>-->
+<!--            <result property="email" column="EMAIL"/>-->
+<!--            <result property="role" column="ROLE"/>-->
+<!--        </resultMap>-->
+
+<!--        <select id="selectAll" resultMap="userMemberDTO">-->
+<!--            SELECT-->
+<!--                   MEM_NUM,-->
+<!--                   NAME,-->
+<!--                   ID,-->
+<!--                   NICKNAME,-->
+<!--                   PASSWORD,-->
+<!--                   BIRTH,-->
+<!--                   EMAIL,-->
+<!--                   ROLE-->
+<!--            FROM MEMBER-->
+<!--        </select>-->
+
+<!--회원가입페이지-->
+    <!--    <insert id="registUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">-->
+    <!--        INSERT-->
+    <!--        INTO MEMBER()-->
+    <!--        VALUES-->
+    <!--            (-->
+    <!--                SEQ_MEM_NUM.NEXTVAL,-->
+    <!--                #{ memNum },-->
+    <!--                #{ name },-->
+    <!--                #{ id },-->
+    <!--                #{ nickName },-->
+    <!--                #{ passWord },-->
+    <!--                #{ birth },-->
+    <!--                #{ email },-->
+    <!--                #{ role }-->
+    <!--                SYSDATE,-->
+    <!--                'N'-->
+    <!--            )-->
+    <!--    </insert>-->
+
+    <!--    <update id="reqistUserMemberDTO" parameterType="com.algore.application.user.dto.UserMemberDTO">-->
+    <!--        UPDATE MEMBER()-->
+    <!--        SET-->
+    <!--            NAME=''-->
+    <!--            ID=''-->
+    <!--            NICKNAME=''-->
+    <!--            PASSWORD=''-->
+    <!--            BIRTH=''-->
+    <!--            EMAIL=''-->
+    <!--        WHERE MEM_NUM=''-->
+    <!--    </update>-->
+
+    <!--    <select id="findBymember" parameterType="String" resultType="com.algore.application.user.dto.UserMemberDTO">-->
+    <!--        SELECT-->
+    <!--              MEMBERID,-->
+    <!--              NICKNAME,-->
+    <!--              PASSWORD,-->
+    <!--              BIRTH,-->
+    <!--              EMAIL,-->
+    <!--              STARTDATE,-->
+    <!--              STATUS,-->
+    <!--              ROLE-->
+    <!--        FROM MEMBER-->
+    <!--    </select>-->
+
+
+
+
+
+</mapper>

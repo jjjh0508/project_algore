@@ -32,5 +32,12 @@ public class SecurityController {
         return mv;
     }
 
+//    @GetMapping("/login")
+//    public ModelAndView testlogin(ModelAndView mv){
+//        mv.setViewName("/common/logouts/");
+//        return mv;
+//    }
+
 
 }
+
