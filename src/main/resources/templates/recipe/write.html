@@ -119,11 +119,11 @@
 </head>
     <!--21_0_레시피_작성-->
 <body>
-<form action="/recipe/registForm" method="post" enctype="multipart/form-data" th:object="${newWrite}">
+<form action="/recipe/registForm" method="post" enctype="multipart/form-data">
 <main class="write01"
       style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px; margin-bottom: 100px; margin-top: 100px;">
     <!--레시피 제목-->
-    <input type="hidden" name="recipeNum" th:field="${recipewrite.recipeNum}">
+    <input type="hidden" name="recipeNum">
     <div class="recipeTitle" style="text-align: center; margin-bottom: 30px;">
         <div class="title fon-color" style="margin-bottom: 15px;">
             <h3><b>레시피 작성</b></h3>
