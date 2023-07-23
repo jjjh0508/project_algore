@@ -227,21 +227,21 @@ public class KitchenguideController {
             /* 사진 로직
             *  MultipartFile : 파일 업로드 시 클라이언트로부터 전송된 파일 데이터를 처리하는 인터페이스
             *  리스트의 첫 번째 업로드된 파일을 가져오고 multipartFile에 할당*/
-            MultipartFile multipartFile = fileName.get(0);
-            // 업로드된 파일의 원본 파일 이름 가져오기
-            String name = multipartFile.getOriginalFilename();
-            // 이름 중복을 피하기 위해서 현재 시간을 기준으로 새로운 파일 이름 생성 (파일 이름에는 원본 파일의 확장자 포함되어 있음)
-            String tpFileNames = simpleDateFormat.format(new Date(System.currentTimeMillis()))+"."+name.substring(name.lastIndexOf(".")+1);
-            System.out.println(tpFileNames);
-            // 업로드된 파일이 로컬 저장소에 새로운 파일 이름으로 저장
-            multipartFile.transferTo(new File(root+"\\"+tpFileNames));
-
-            TrimProcedureDTO trimProcedureDTO = new TrimProcedureDTO();
-            trimProcedureDTO.getTpFileName(tpFileNames); // 새로운 파일 이름으로 설정
-            trimProcedureDTO.setTpPath("/upload/basic/"); // 이미지 경로 설정
-
-            // TrimDTO 객체의 trimProcedureDTOList에 생성한 TrimProcedureDTO 객체 추가
-            trimDTO.getTrimProcedureDTOList().add(trimProcedureDTO); 
+//            MultipartFile multipartFile = fileName.get(0);
+//            // 업로드된 파일의 원본 파일 이름 가져오기
+//            String name = multipartFile.getOriginalFilename();
+//            // 이름 중복을 피하기 위해서 현재 시간을 기준으로 새로운 파일 이름 생성 (파일 이름에는 원본 파일의 확장자 포함되어 있음)
+//            String tpFileNames = simpleDateFormat.format(new Date(System.currentTimeMillis()))+"."+name.substring(name.lastIndexOf(".")+1);
+//            System.out.println(tpFileNames);
+//            // 업로드된 파일이 로컬 저장소에 새로운 파일 이름으로 저장
+//            multipartFile.transferTo(new File(root+"\\"+tpFileNames));
+//
+//            TrimProcedureDTO trimProcedureDTO = new TrimProcedureDTO();
+//            trimProcedureDTO.getTpFileName(tpFileNames); // 새로운 파일 이름으로 설정
+//            trimProcedureDTO.setTpPath("/upload/basic/"); // 이미지 경로 설정
+//
+//            // TrimDTO 객체의 trimProcedureDTOList에 생성한 TrimProcedureDTO 객체 추가
+//            trimDTO.getTrimProcedureDTOList().add(trimProcedureDTO);
 
         }catch (Exception e){
             e.printStackTrace();
