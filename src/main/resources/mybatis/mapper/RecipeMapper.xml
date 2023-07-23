@@ -21,6 +21,7 @@
         <result property="proFileName" column="FILE_NAME"/>
         <result property="proFilePath" column="FILE_PATH"/>
         <result property="recipeWriter" column="ID"/>
+        <result property="categoryNum" column="CATEGORY_NUM"/>
     </resultMap>
 
 
@@ -40,7 +41,8 @@
             R.RECIPE_VIDEO_LINK,
             P.FILE_NAME,
             P.FILE_PATH,
-            M.ID
+            M.ID,
+            R.CATEGORY_NUM
         FROM RECIPE R
                  JOIN MEMBER M ON (M.MEM_NUM = R.MEM_NUM)
                  JOIN RECIPE_CATEGORY C ON (C.CATEGORY_NUM = R.CATEGORY_NUM)
@@ -53,7 +55,7 @@
 
     <resultMap id="recipeOrderMap" type="com.algore.application.recipe.dto.RecipeOrderDTO">
         <id property="rpNum" column="RP_NUM"/>
-        <result property="recipe_num" column="RECIPE_NUM"/>
+        <result property="recipeNum" column="RECIPE_NUM"/>
         <result property="content" column="RP_CONTENT"/>
         <result property="fileName" column="RP_FILE_NAME"/>
         <result property="path" column="RP_PATH"/>
@@ -92,7 +94,8 @@
         <result property="creatDate" column="C_DATE"/>
         <result property="profileName" column="FILE_NAME"/>
         <result property="profilePath" column="FILE_PATH"/>
-    </resultMap>
+     </resultMap>
+
     <select id="commentRead" resultMap="commentReadMap">
         SELECT
                M.NICKNAME,
@@ -116,6 +119,119 @@
         WHERE RECIPE_NUM = #{recipeNum}
     </update>
 
+    <select id="getUserName">
+        SELECT
+            M.ID
+            FROM MEMBER M
+            JOIN RECIPE R ON (M.MEM_NUM = R.MEM_NUM)
+        WHERE R.RECIPE_NUM =#{recipeNum}
+    </select>
+
+    <update id="recipeDelete">
+        UPDATE RECIPE
+        SET RECIPE_STATUS ='N' , RECIPE_DEL_DATE=SYSDATE
+        WHERE RECIPE_NUM = #{recipe}
+
+    </update>
 
 
+
+    <update id="modifyRecipe" parameterType="com.algore.application.recipe.dto.RecipeviewDTO">
+        UPDATE RECIPE
+        SET RECIPE_INTRO =#{recipeIntro} , RECIPE_TITLE=#{recipeTitle} , CATEGORY_NUM=#{categoryNum},
+            RECIPE_MODI_DATE = SYSDATE , TIP=#{tip} , RECIPE_VIDEO_LINK=#{youtube},
+            PHOTO_PATH=#{mainPath}  , MAIN_PHOTO =#{mainFileName}
+        WHERE RECIPE_NUM = #{recipeNum}
+    </update>
+
+
+    <delete id="orderDelete">
+        DELETE FROM RECIPE_PROCEDURE
+        WHERE RECIPE_NUM=#{recipeNum}
+    </delete>
+
+    <delete id="photoDelete">
+        DELETE FROM RECIPE_PHOTO
+        WHERE RECIPE_NUM=#{recipeNum}
+    </delete>
+
+
+    <insert id="modifyOrder" parameterType="java.util.List">
+        INSERT INTO RECIPE_PROCEDURE
+            (RP_NUM,RECIPE_NUM, RP_CONTENT,RP_FILE_NAME,RP_PATH)
+        SELECT SEQ_RP_NUM.NEXTVAL, A.* FROM(
+        <foreach item="item" collection="list" separator="UNION ALL ">
+            SELECT #{item.recipeNum} AS  RECIPE_NUM , #{item.content} AS RP_CONTENT ,
+                   #{item.fileName} AS RP_FILE_NAME , #{item.path} AS RP_PATH
+            FROM DUAL
+
+        </foreach>)A
+
+    </insert>
+    <update id="modifyIng" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+         INTO RECIPE_INGREDIENT
+        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT_NUM)
+        VALUES
+           ( #{item.ingNum},
+            #{item.recipeNum},
+            #{item.weigh},
+            #{item.riUnitNum}
+            )
+        </foreach>
+    </update>
+
+    <insert id="modifyPhoto" parameterType="java.util.List">
+        INSERT INTO RECIPE_PHOTO
+        (PHOTO_NUMBER , RECIPE_NUM , RECIPE_FILE_NAME , RECIPE_PATH)
+        SELECT SEQ_PHOTO_NUMBER.NEXTVAL , A.* FROM(
+            <foreach item="item" collection="list" separator="UNION ALL">
+                SELECT  #{item.recipeNum} AS  RECIPE_NUM ,
+                        #{item.recipeFileName ,jdbcType=VARCHAR} AS RECIPE_FILE_NAME ,
+                        #{item.recipePhotoPath ,jdbcType=VARCHAR } AS RECIPE_PATH
+                FROM DUAL
+            </foreach> )A
+
+    </insert>
+
+    <resultMap id="RecipeingredientMap" type="com.algore.application.recipe.dto.RecipeIngredientDTO">
+        <result property="ingNum" column="ING_NUM"/>
+        <result property="ingName" column="ING_NAME"/>
+        <result property="weigh" column="WEIGH"/>
+        <result property="riUnit" column="RI_UNIT"/>
+        <result property="price" column="ING_PRICE"/>
+    </resultMap>
+
+    <select id="recipeIngredient" resultMap="RecipeingredientMap">
+        SELECT
+            RI.ING_NUM,
+            I.ING_NAME ,
+            RI.WEIGH ,
+            U.RI_UNIT ,
+            I.ING_PRICE ,
+            RI.RI_UNIT_NUM
+        FROM RECIPE_INGREDIENT RI
+                 JOIN UNIT U ON(U.RI_UNIT_NUM = RI.RI_UNIT_NUM)
+                 JOIN INGREDIENT I ON(I.ING_NUM = RI.ING_NUM)
+        WHERE RECIPE_NUM = ${recipeNum}
+    </select>
+
+    <resultMap id="ingredientMap" type="com.algore.application.recipe.dto.IngredientDTO">
+        <result property="ingNum" column="ING_NUM"/>
+        <result property="ingName" column="ING_NAME"/>
+
+    </resultMap>
+
+
+    <select id="ingredienList" resultMap="ingredientMap">
+    SELECT
+        ING_NUM,
+        ING_NAME
+    FROM INGREDIENT
+    </select>
+
+<delete id="recipeIngDelete">
+    DELETE RECIPE_INGREDIENT
+    WHERE RECIPE_NUM= ${recipeNum}
+</delete>
 </mapper>

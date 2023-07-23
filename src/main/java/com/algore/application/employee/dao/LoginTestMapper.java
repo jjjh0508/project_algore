@@ -22,7 +22,7 @@ public class LoginTestMapper {
         AuthUserDTO authUserDTO = null;
         Collection<GrantedAuthority> list = new ArrayList<>();
         list.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//        list.add(new SimpleGrantedAuthority("ROLE_USER"));
+        list.add(new SimpleGrantedAuthority("ROLE_USER"));
         // DB에서 조회한 결과가 있다고 가정함
         if(username.equals("user2@gmail.com")){
             String pass = passwordEncoder.encode("pass");

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.algore.application.recipe.dao.RecipeViewMapper">
+
+    <resultMap id="categoryMap" type="com.algore.application.recipe.dto.RecipeCategoryDTO">
+        <id property="categoryNum" column="CATEGORY_NUM"/>
+        <result property="category" column="CATEGORY"/>
+    </resultMap>
+
+    <select id="readCategory" resultMap="categoryMap">
+        SELECT CATEGORY_NUM,
+               CATEGORY
+          FROM RECIPE_CATEGORY
+    </select>
+
+    <resultMap id="unitMap" type="com.algore.application.recipe.dto.RecipeUnitDTO">
+        <id property="riUnitNum" column="RI_UNIT_NUM"/>
+        <result property="riUnit" column="RI_UNIT"/>
+    </resultMap>
+
+    <select id="readUnit" resultMap="unitMap">
+        SELECT RI_UNIT_NUM,
+               RI_UNIT
+          FROM UNIT
+    </select>
+
+    <resultMap id="ingMap" type="com.algore.application.recipe.dto.IngredientDTO">
+        <id property="ingNum" column="ING_NUM"/>
+        <result property="ingName" column="ING_NAME"/>
+    </resultMap>
+
+    <select id="readIng" resultMap="ingMap">
+        SELECT ING_NUM,
+               ING_NAME
+          FROM INGREDIENT
+    </select>
+
+    <insert id="writeProcedure" parameterType="java.util.List">
+        INSERT INTO RECIPE_PROCEDURE
+            (RP_NUM, RECIPE_NUM, RP_CONTENT, RP_FILE, RP_FILE_NAME, RP_PATH)
+        SELECT SEQ_RP_NUM.NEXTVAL,
+               RECIPE_NUM,
+               RP_CONTENT,
+               RP_FILE,
+               RP_FILE_NAME,
+               RP_PATH
+        FROM (
+            <foreach item="item" collection="list" separator="UNION ALL">
+                SELECT #{item.recipeNum} AS RECIPE_NUM,
+                       #{item.content} AS RP_CONTENT,
+                       #{item.fileName} AS RP_FILE_NAME,
+                       #{item.path} AS RP_PATH
+                  FROM DUAL
+            </foreach>PRO
+        )
+    </insert>
+
+    
+<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">
+    INSERT INTO RECIPE
+    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)
+    VALUES (SEQ_RECIPE_NUM.NEXTVAL,
+            #{memNum},
+            #{mainPhoto},
+            #{photoPath},
+            #{categoryNum},
+            #{recipeTitle},
+            #{recipeIntro},
+            #{recipeVideoLink},
+            #{tip},
+            SYSDATE
+            )
+</insert>
+
+<!--<insert id="writeRecipe" parameterType="com.algore.application.recipe.dto.RecipeWriteDTO">-->
+<!--    INSERT INTO RECIPE-->
+<!--    (RECIPE_NUM, MEM_NUM, MAIN_PHOTO, PHOTO_PATH, CATEGORY_NUM, RECIPE_TITLE, RECIPE_INTRO, RECIPE_VIDEO_LINK, TIP, RECIPE_CREATE_DATE)-->
+<!--    VALUES (SEQ_RECIPE_NUM.NEXTVAL,-->
+<!--            #{memNum},-->
+<!--            #{mainPhoto},-->
+<!--            #{photoPath},-->
+<!--            #{categoryNum},-->
+<!--            #{recipeTitle},-->
+<!--            #{recipeIntro},-->
+<!--            #{recipeVideoLink},-->
+<!--            #{tip},-->
+<!--            SYSDATE-->
+<!--            )-->
+<!--</insert>-->
+
+<!--    <insert id="recipeIngredient" parameterType="java.util.List">-->
+<!--        INSERT INTO RECIPE_INGREDIENT-->
+<!--        (ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT)-->
+<!--        SELECT ING_NUM, RECIPE_NUM, WEIGH, RI_UNIT-->
+<!--          FROM(-->
+<!--              <foreach collection="list" item="item" separator="UNION ALL">-->
+<!--                  SELECT #{item.ingNum} AS ING_NUM,-->
+<!--                         #{item.recipeNum} AS RECIPE_NUM,-->
+<!--                         #{item.weigh} AS WEIGH,-->
+<!--                         #{item.riUnit} AS RI_UNIT-->
+<!--                  FROM DUAL-->
+<!--              </foreach> ING-->
+<!--              )-->
+<!--    </insert>-->
+
+<!--    <insert id="recipeProcedure" parameterType="java.util.List">-->
+<!--    </insert>-->
+
+<!--    <insert id = "ingredient">-->
+<!--        INSERT INTO INGREDIENT-->
+<!--        (ING_NUM, ING_NAME, ING_PRICE, CATEGORY, ING_UNIT)-->
+<!--        VALUES (-->
+<!--                #{ ingNum },-->
+<!--                #{ ingName },-->
+<!--                #{ ingPrice },-->
+<!--                #{ category },-->
+<!--                #{ ingUnit }-->
+<!--               )-->
+<!--    </insert>-->
+
+<!--    <insert id = "recipePhotoWrite">-->
+<!--        INSERT INTO RECIPE_PHOTO-->
+<!--        (PHOTO_NUMBER, RECIPE_NUM, RECIPE_FILE_NAME, RECIPE_PATH)-->
+<!--        VALUES (-->
+<!--                #{ photoNumber },-->
+<!--                #{ recipeNum },-->
+<!--                #{ recipeFileName },-->
+<!--                #{ recipePath }-->
+<!--               )-->
+<!--    </insert>-->
+
+<!--    <insert id="recipeProcedure">-->
+<!--        INSERT INTO RECIPE_PROCEDURE-->
+<!--        (RP_NUM, RECIPE_NUM, RP_FILE_NAME, RP_CONTENT, RP_PATH)-->
+<!--        VALUES (-->
+<!--                #{ rpNum },-->
+<!--                #{ recipeNum },-->
+<!--                #{ rpFileName },-->
+<!--                #{ rpContent },-->
+<!--                #{ rpPath}-->
+<!--               )-->
+<!--    </insert>-->
+</mapper>

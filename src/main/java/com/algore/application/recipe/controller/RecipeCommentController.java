@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,21 +21,20 @@ public class RecipeCommentController {
     }
 
     @PostMapping("/regist")
-    public ModelAndView recipeComment(ModelAndView mv, CommentInsertDTO commentInsertDTO, HttpServletRequest req, Authentication authentication){
-//        String backUrl = req.getHeader("referer"); //에러남
-//        System.out.println(backUrl);
+    public ModelAndView recipeComment(ModelAndView mv, CommentInsertDTO commentInsertDTO, RedirectAttributes rttr, Authentication authentication){
+
         int recipeNum = commentInsertDTO.getRecipeNum();
 
-//        System.out.println(commentInsertDTO.getUserId());
+
         if(authentication.getName()!=null){
             int result = recipeCommentService.registComment(commentInsertDTO);
             if(result>0){
                 mv.setViewName("redirect:/recipe/view?recipe="+recipeNum);
-//                mv.addObject("commentmessage", "등록 성공했습니다..");
+                rttr.addFlashAttribute("message", "등록 성공했습니다..");
                 return mv;
             }else {
                 mv.setViewName("redirect:/recipe/view?recipe="+recipeNum);
-//                mv.addObject("commentmessage", "등록 실패했습니다..");
+                 rttr.addFlashAttribute("message", "등록 실패했습니다..");
                 return mv;
             }
 

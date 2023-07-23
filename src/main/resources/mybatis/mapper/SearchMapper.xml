@@ -38,4 +38,5 @@
     FROM RECIPE
     WHERE  RECIPE_STATUS ='Y' AND RECIPE_TITLE <![CDATA[ LIKE '%'||#{recipeName}||'%'    ]]>
 </select>
+
 </mapper>

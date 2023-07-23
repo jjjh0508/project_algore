@@ -1,9 +1,6 @@
 package com.algore.application.recipe.dao;
 
-import com.algore.application.recipe.dto.CommentReadDTO;
-import com.algore.application.recipe.dto.RecipeOrderDTO;
-import com.algore.application.recipe.dto.RecipePhotoDTO;
-import com.algore.application.recipe.dto.RecipeviewDTO;
+import com.algore.application.recipe.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +16,42 @@ public interface RecipeViewMapper {
     List<CommentReadDTO> commentRead(int recipeNum);
 
     int viewCount(int recipeNum);
+
+    String getUserName(int recipeNum);
+
+    int recipeDelete(int recipe);
+
+    int modifyRecipe(RecipeviewDTO recipeviewDTO);
+
+    int orderDelete(int recipeNum);
+
+    int modifyOrder(List<ModifyRecipeOrder> modifyRecipeOrder);
+
+    int modifyPhoto(List<RecipePhotoDTO> recipePhotoDTOList);
+
+    int photoDelete(int recipeNum);
+
+    int writeRecipe(RecipeWriteDTO recipeWriteDTO);
+    List<RecipeCategoryDTO> readCategory();
+
+    List<RecipeIngredientDTO> recipeIngredient(int recipeNum);
+
+    List<RecipeUnitDTO> readUnit();
+
+    int recipeProcedure(RecipeProcedureDTO recipeProcedureDTO);
+
+    List<IngredientDTO> ingredienList();
+
+
+    int recipeIngDelete(int recipeNum);
+
+    int modifyIng(List<RecipeIngredientDTO> ingredientDTOList);
+
+    int writeRecipeProduce(List<RecipeProcedureDTO> recipeProcedureDTOList);
+
+    int writeRecipePhotos(List<RecipePhotoWriteDTO> recipePhotoWriteDTOList);
+
+    List<IngredientDTO> readIng();
+
+    int writeRecipeIngredients(List<RecipeIngredientDTO> recipeIngredientDTOList);
 }
