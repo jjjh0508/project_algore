@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+
+<th:block layout:fragment="content">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            header a {
+                text-decoration: none
+            }
+
+            .sear-btn {
+                font-family: Inter;
+                font-size: 20px;
+                letter-spacing: 0;
+                font-weight: bold;
+                color: #208BCE;
+            }
+
+            .new-margin {
+                margin-top: 30px;
+            }
+
+            .fon-color {
+                color: #085A84;
+            }
+
+            .but-off-color {
+                background-color: #D8F0FF;
+                /*버튼테두리*/
+                border-color: #D8F0FF;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .but-off-color:hover {
+                background-color: #99D3F8;
+                /*버튼테두리*/
+                border-color: #99D3F8;
+                /*버튼*/
+                color: #085A84;
+                /*텍스트*/
+                padding: 10px 15px 10px 15px;
+                border-radius: 2em;
+            }
+
+            .input-box-sty {
+                margin-top: 10px;
+                border: 2px solid;
+                border-color: #085A8430;
+                font-size: 15px;
+            }
+
+            .pla-col::placeholder {
+                color: #085A8485;
+                font-size: 15px;
+            }
+        </style>
+    </head>
+    <body>
+    <form action="/kitchenguide/trimwrite" method="post" enctype="multipart/form-data">
+        <!--게시글 작성 시작-->
+        <div class="write01" style="width: 1000px; margin: 0 auto; padding-left:10px; padding-right: 10px;">
+            <!--손질 제목-->
+            <div class="trim-title" style="margin-top: 50px;">
+                <div class="fon-color">
+                    <i class="bi bi-three-dots-vertical" style="font-size: 18px"></i>
+                    <label style="font-size: 17px; margin-left: 10px;"><b>손질 제목</b></label>
+                </div>
+                <input name="trimTitle" type="text" class="pla-col form-control input-box-sty" id="formGroupExampleInput"
+                       placeholder="제목을 입력해 주세요."/>
+            </div>
+            <!--손질 내용-->
+            <div class="trim-content">
+                <div class="fon-color">
+                    <i class="bi bi-three-dots-vertical" style="font-size: 20px"></i>
+                    <label style="font-size: 17px; margin-left: 10px;"><b>손질 내용</b></label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control input-box-sty" name="trimDetail"  placeholder="Leave a comment here"
+                              id="floatingTextarea2" style="height: 100px; resize: none"></textarea>
+                    <label for="floatingTextarea2" style="font-size: 15px; color: #085A8485; margin-left: 2px;">내용을 입력해
+                        주세요.</label>
+                </div>
+            </div>
+            <!--동영상 링크 첨부-->
+            <div class="trim-VideoLink" style="margin-bottom: 40px;">
+                <div class="fon-color">
+                    <i class="bi bi-three-dots-vertical" style="font-size: 20px; "></i>
+                    <label style="font-size: 17px; margin-left: 10px;"><b>손질 동영상 링크 첨부</b></label>
+                </div>
+                <input type="text" name="trimVideoLink" class="pla-col form-control input-box-sty" id="sd" placeholder="영상 URL 주소를 입력해 주세요."
+                       onblur="isYoutube()"/>
+            </div>
+            <!--손질 순서-->
+            <div class="fon-color">
+                <i class="bi bi-three-dots-vertical" style="font-size: 20px"></i>
+                <label style="font-size: 17px; margin-left: 10px;"><b>손질 순서</b></label>
+            </div>
+            <!--손질 순서 이미지-->
+            <div>
+                <div Id="REdetail" class="REdetailC d-flex justify-content-center">
+                    <!-- 이미지 미리보기 이미지 파일 -->
+                    <div class="align-items-center" style="margin-top: 15px;">
+                        <label class="input-file-button float-start">
+                            <img  class="detailImg" width="400px" height="270px"
+                                 style="background-color: #D8F0FF70; border-radius: 10px; border-radius: 30px;">
+                            <input type="file" name="tpFileName" class="isFile" style="display: none"
+                                   accept="image/jpeg, image/png, image/jpg" onchange="imgView(this);">
+
+
+                        </label>
+                    </div>
+                    <!--손질 순서 설명-->
+                    <div class="form-floating" style="margin-top: 10px; margin-left: 35px; ">
+                        <textarea class="form-control input-box-sty"  placeholder="" id="floatingTextarea"
+                                  style="width: 520px; height: 260px; resize: none; border-radius: 2em;"></textarea>
+                        <label for="floatingTextarea" class="mt-3 pla-col mb-3" name="tpDetail"
+                               style="font-size: 17px; margin-left: 10px;">설명을
+                            입력하세요.</label>
+                    </div>
+                    <!-- 설명에 쉼표를 넣었을때 배열로 만들지 않기위한 더미 value -->
+                    <input type="text" name="recipeDescription" value="ab22bb" style="display: none">
+                    <!-- 삭제 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-x-circle" viewBox="0 0 16 16" type="button" onclick="removeDe()">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </div>
+
+                <span id="addplace"></span>
+            </div>
+            <!--추가 버튼-->
+            <div class="d-grid" style="margin-top: 10px; padding-left: 0px; padding-right: 30px;">
+                <button class="btn btn-primary but-off-color" type="button" onclick="addDe()">추가</button>
+            </div>
+            <!--취소, 등록 버튼--> <!-- 경로 수정해주기!!!1-->
+            <div class="d-flex justify-content-end new-margin" style="margin-bottom: 100px;">
+                <a class="btn btn-primary but-off-color" href="/01_키친가이드_메인.html" role="button"
+                   style=" margin-right: 15px; text-align: center;" onclick="return confirm('게시글 작성을 취소하시겠습니까?')">
+                    <b>취소</b>
+                </a>
+                <button type="submit" class="btn btn-primary but-off-color"  role="button"
+                        onclick="return confirm('게시글을 등록하시겠습니까?')" >
+                    <b>손질법 등록</b>
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <script>
+        /*손질순서*/
+        var detailForm = document.querySelector('#REdetail');
+        var addplace = document.querySelector('#addplace');
+        var count = 20;
+
+        function addDe() {
+            if (count <= 20) {
+                addplace.appendChild(detailForm.cloneNode(true));
+                document.querySelectorAll('.REdetailC')[document
+                    .querySelectorAll('.REdetailC').length - 1].childNodes[1].childNodes[1].childNodes[1].value = "";
+                document.querySelectorAll('.REdetailC')[document
+                    .querySelectorAll('.REdetailC').length - 1].childNodes[5].childNodes[1].childNodes[1].childNodes[3].childNodes[3].value = "";
+
+                count++;
+            }
+
+        }
+
+        function removeDe() {
+            var detailFormClass = document.querySelectorAll('.REdetailC');
+            if (count > 1) {
+                detailFormClass[detailFormClass.length - 1].remove();
+                count--;
+            }
+
+        }
+
+        function loadFile(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src)
+            };
+            imgCheck()
+        };
+
+        var imgFile = document.querySelectorAll('.isFile');
+        var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/i;
+        var fileSize;
+
+        function checkMainPic() {
+            if (imgFile[0].value == "") {
+                alert("대표 이미지를 넣어주세요.");
+            }
+        };
+
+        function imgCheck() {
+            for (var i = 0; i < imgFile.length; i++) {
+                if (imgFile[i].value != "") {
+
+                    if (!imgFile[i].value.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        imgFile[i].value = "";
+                    }
+                }
+            }
+        };
+
+        function imgView(obj) {
+
+            var imgid = obj.previousElementSibling;
+
+            imgid.src = URL.createObjectURL(event.target.files[0]);
+            imgid.onload = function () {
+                URL.revokeObjectURL(imgid.src)
+            }
+
+            imgCheck()
+
+        };
+
+    </script>
+    </body>
+</th:block>
+</html>

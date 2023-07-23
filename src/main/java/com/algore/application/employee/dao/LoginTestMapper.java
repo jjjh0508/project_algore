@@ -17,8 +17,10 @@ public interface LoginTestMapper {
     AuthUserDTO loginSham(String username);
 
 
+
     // 아래의 메소드는 인메모리에서 테스트하기 위해 임시로 만든 값임
     // 회원가입관련 dto : 회원정보 joinMember
     UserMemberDTO joinMember(String Username);
+
 
 }

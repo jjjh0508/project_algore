@@ -30,8 +30,9 @@ public class SecuriyConfig {
     String[] staticResources  =  {
             "/css/**",
             "/img/**",
+            "/upload/**",
             "/fonts/**",
-            "/scripts/**",
+            "/scripts/**"
     };
 
     @Bean

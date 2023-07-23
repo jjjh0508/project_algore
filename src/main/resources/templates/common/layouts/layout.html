@@ -17,6 +17,7 @@
 
 <body>
 <header>
+
     <!--상단바-->
     <div class="d-flex flex-row-reverse" style="padding-right: 4%; padding-top: 2%;">
         <th:block th:if="${#authentication.name}==anonymousUser">
@@ -32,7 +33,7 @@
     </div>
     <!--로고-->
     <div class="d-flex justify-content-center">
-        <a href="index.html">
+        <a href="/home/?page=1">
             <img src="/img/algorelogo.png" alt="이미지 로고" width="350px" height="150px"/>
         </a>
     </div>
@@ -40,11 +41,11 @@
     <div class="d-flex justify-content-center">
         <div class="p-2 flex-grow-3"
              style="background-color: #D8F0FF; width:22%; height: 60px; border-radius: 2em;">
-            <form class="form-inline form-navbar my-2 my-lg-0 order-2" action="https://naver.com"
-                  style="color: #208BCE"><!--돋보기-->
+            <form class="form-inline form-navbar my-2 my-lg-0 order-2" action="/search"
+                  style="color: #208BCE" method="get"><!--돋보기-->
                 <div class="mb-3" style="position: relative; padding: 3px;">
                     <input type="text" id="disabledTextInput" class="form-control" placeholder="  레시피명을 입력해 주세요."
-                           style="border-radius: 2.5em; font-size: 15px; border-color: #D8F0FF"><!--검색창 테두리 컬러-->
+                           style="border-radius: 2.5em; font-size: 15px; border-color: #D8F0FF" name="recipeName"><!--검색창 테두리 컬러-->
                     <button id="sear-btn" style="display:none;">
                     </button>
                     <label for="sear-btn" style="position: absolute; top: 8px; right: 23px"><!--돋보기위치-->
@@ -56,16 +57,19 @@
                     </label>
                 </div>
             </form>
+
         </div>
     </div>
-    <!--메인-->
-    <nav class="d-flex justify-content-center" style="margin-top: 50px; margin-bottom: 80px;">
-        <div class="p-2"><a href="#" style="margin-right: 200px; color: #208BCE; font-size: 20px;"><b>레시피</b></a>
-        </div>
-        <div class="p-2"><a href="#" style="color: #208BCE; font-size: 20px;"><b>키친가이드</b></a></div>
-        <div class="p-2"><a href="#" style="margin-left: 200px; color: #208BCE; font-size: 20px;"><b>공지사항</b></a>
-        </div>
-    </nav>
+
+  </div>
+  <!--메인-->
+  <nav class="d-flex justify-content-center" style="margin-top: 50px; margin-bottom: 100px;">
+    <div class="p-2"><a href="#" style="margin-right: 200px; color: #208BCE; font-size: 20px;"><b>레시피</b></a>
+    </div>
+    <div class="p-2"><a href="#" style="color: #208BCE; font-size: 20px;"><b>키친가이드</b></a></div>
+    <div class="p-2"><a href="#" style="margin-left: 200px; color: #208BCE; font-size: 20px;"><b>공지사항</b></a></div>
+  </nav>
+
 </header>
 </body>
 
