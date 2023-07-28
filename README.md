@@ -1,5 +1,11 @@
 # algore레시피 
 
+-  팀원소개
+![profile](https://github.com/jjjh0508/project_algore/assets/130436421/73992c46-6283-40ec-8e66-92f9bb62da93)
+
+
+
+---
 ### 알고레 아이디어 캐치 
  **✔️ 물가 급등으로 소비 심리 위축 속에서 더 합리적으로 먹을 수 있을지 제안**
 
