@@ -102,13 +102,10 @@ public class RecipeService {
 
         int IngDelete =  mapper.recipeIngDelete(recipeviewDTO.getRecipeNum());
         int orderDelete = mapper.orderDelete(recipeviewDTO.getRecipeNum());
+        int orderResult = mapper.modifyOrder(recipeviewDTO.getModifyRecipeOrders());
 
         int photoDelete = mapper.photoDelete(recipeviewDTO.getRecipeNum());
-        System.out.println("여기");
-        int orderResult = mapper.modifyOrder(recipeviewDTO.getModifyRecipeOrders());
-        System.out.println("여기");
         int IngResult = mapper.modifyIng(recipeviewDTO.getRecipeIngredientDTOS());
-        System.out.println("여기");
 
         int recipeResult = mapper.modifyRecipe(recipeviewDTO);
         int photoResult = mapper.modifyPhoto(recipeviewDTO.getRecipePhotoDTOList());
