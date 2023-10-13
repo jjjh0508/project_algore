@@ -1,68 +1,77 @@
-# algore레시피 
-
--  팀원소개
-![profile](https://github.com/jjjh0508/project_algore/assets/130436421/73992c46-6283-40ec-8e66-92f9bb62da93)
 
 
 
----
-### 알고레 아이디어 캐치 
- **✔️ 물가 급등으로 소비 심리 위축 속에서 더 합리적으로 먹을 수 있을지 제안**
+# 알고레 (Algore)
+### &nbsp;: &nbsp;요리 레시피에 따른 물가 정보 제공 웹사이트
 
- **✔️ 요리에 경험이 없거나 숙련되지 않은 사람들도 가격비교와 함께 보고 만들 수 있는 강점**
+<img width="700" alt="알고레 로고 이미지" src="https://github.com/Teddybear-6/.github/assets/130436337/c2f9e0fb-3957-472e-94ba-4b43b5993593">
 
- **✔️ 이용객에게 신뢰감을 주는 데이터 정보 제공 (공공데이터 활용)**
+<br><br>
 
-        ●  요리를 하는 입장에서 현재 물가를 모르는 상태에서 요리를 하지만 정확한 정보제공 
+## 프로젝트 소개
 
-        ●  물가와 제품의 정보를 알려주고 사용자들을 유입
+### [ 개요 ]
+- 명칭 &nbsp;:&nbsp; <u>***알고레***</u> (algore)
+- 개발 인원 &nbsp;:&nbsp; 7명 (Team_ 전지환)
+- 개발 기간 &nbsp;:&nbsp; 2023.07.06 ~ 2023.07.23
+- [알고레(algore) PPT.pdf](https://github.com/Teddybear-6/.github/files/12897588/-.__.pdf)
 
-![이단비 바보](https://github.com/jjjh0508/project_algore/assets/130436421/3b4c4362-29f2-4e77-ab05-6f0adc791afc)
+<br>
 
->>> 자료 조사 정보 링크
->>> 
-[농림수산식품교육문화정보원_지자체 농수축산물 물가조사가격 정보조회](https://www.data.go.kr/data/15109061/openapi.do)
+### [ 작업 ]
+- [Algore_Repositories](https://github.com/jjjh0508/project_algore/)
 
-[국가지표체계 | 지표상세정보](https://www.index.go.kr/unify/idx-info.do?idxCd=4226#)
+<br>
 
-[경기도 용인시_물가 조사 정보_20230331](https://www.data.go.kr/data/3035764/fileData.do)
+### [ 아이디어 캐치 ]
+- 물가 급등으로 소비 심리 위축 속에서 더 합리적으로 먹을 수 있을지 제안
+- 요리에 경험이 없거나 숙련되지 않은 사람들도 가격비교와 함께 보고 만들 수 있는 강점
+- 이용객에게 신뢰감을 주는 데이터 정보 제공 (공공데이터 활용)
+  - 물가를 모르는 이용객들에게 정확한 물가 정보 제공을 통해 사용자들 유입
 
-------------------------------------------------------------------------------------------------------------------
+<br>
 
+### [ 공공데이터 자료 ]
+- [[농림수산식품교육문화정보원] 지자체 농수축산물 물가조사가격 정보조회](https://www.data.go.kr/data/15109061/openapi.do)
+- [[국가지표체계] 지표상세정보](https://www.index.go.kr/unify/idx-info.do?idxCd=4226#)
+- [경기도 용인시_물가 조사 정보_20230331](https://www.data.go.kr/data/3035764/fileData.do)
 
-# 논리 데이터베이스 설계
-![Untitled](https://github.com/jjjh0508/project_algore/assets/130436421/6794be39-606d-4ff1-a4e5-a155539cbfa6)
+<br><br>
 
+## 팀 소개
 
+### [ Team. 전지환 ]
 
+- 레시피 : [전지환 GitHub](https://github.com/jjjh0508) , [이단비 GitHub](https://github.com/daneeb1) 
+- 키친가이드 : [고민영 GitHub](https://github.com/bearnyong) , [강소임 GitHub](https://github.com/afdsj)
+- 문의하기 : [김민지 GitHub](https://github.com/KMJs680)
+- 로그인 : [김형통 GitHub](https://github.com/httt56 )
 
-# algore 탄생 배경을 위한 시장조사 
-
-![제목을 입력해주세요_-009](https://github.com/jjjh0508/project_algore/assets/130436421/0022b275-fc3d-492c-9794-704afe3dd61b)
-## 🧐 2023년 5월 소비자물가지수는 111.13%대 육박
-
-
----
-
-- **농산물 및 석유류제외지수는 전년동월대비 4.3% 상승**
-- **식료품 및 에너지제외지수는 전년동월대비 3.9% 상승**
-- **생활물가지수는 전년동월대비 3.2% 상승**
-- **전월세 포함 생활물가지수는 전년동월대비 2.8% 상승**
-- **신선식품지수는 전년동월대비는 3.5% 상승**
-- **식품은 전년동월대비 5.0% 상승하였고,**
-- **식품 이외는 전년동월대비 2.0% 각각 상승하였습니다.**
-
->> [출처] 대한민국 정책브리핑([www.korea.kr](http://www.korea.kr/))
-
-## 🧐 **고조되는 이자 부담 가구 중심 가계소비 위축 가능성**
-
----
-
-### **최근 국내 경제는 고물가·고금리 기조가 장기화되면서 가계의 실질 구매력 약화와 심리 둔화에 따르는 소비 위축 가능성이 고조되고 있는 상황**
-
-[고조되는 이자 부담 가구 중심 가계소비 위축 가능성 - 가계소비 위축 가능성 점검과 시사점 | 국내연구자료 | KDI 경제정보센터]
-(https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000171491&issus=S&pp=20&datecount=&pg=1)
+<br><br>
 
 
+## 개발 환경 및 기술 소개
 
+### [ 메뉴구조도 ]
+<img width="700" alt="알고레 메뉴구조도" src="https://github.com/Teddybear-6/.github/assets/130436337/8ceb8818-e7d7-4aa8-966b-f1baea57ec37">
 
+<br>
+
+### [ 논리 데이터 베이스 모델 (ERD) ]
+<img width="700" alt="알고레 논리 데이터베이스 모델(ERD)" src="https://github.com/Teddybear-6/.github/assets/130436337/90823b56-d251-4982-b64e-943bed023a5d">
+
+<br>
+
+### [ 기술스택 및 개발 환경 ]
+<img width="700" alt="알고레 로고 이미지" src="https://github.com/Teddybear-6/.github/assets/130436337/4a56121d-30ff-493f-a698-8096b63e248b">
+
+<br>
+
+### [ Branch 관리 ]
+<img width="700" alt="Git Flow 전략 이미지" src="https://github.com/Teddybear-6/Front_ToeGeunGil/assets/130436427/895a2bb6-97f5-46f6-86cd-f63619c5e916">
+
+- main : 실제 배포를 위한 main 브랜치
+- develop : main 브랜치에 영향을 주지 않으면서 개발하기 위해서 사용
+- feature : develop을 개발하면서 기능 단위로 develop 서버에 영향을 주지 않기 위해서 사용
+
+<br><br><br>
